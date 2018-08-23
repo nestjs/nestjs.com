@@ -4,7 +4,8 @@
   "description": "NestJS - official website",
   "scripts": {
     "build": "rm -rf dist && parcel build index.html --public-url ./",
-    "start": "parcel index.html"
+    "start": "parcel index.html",
+    "start:watch": "parcel watch index.html"
   },
   "author": "Kamil Myśliwiec",
   "license": "MIT",
