@@ -286,6 +286,11 @@ a:active {
   max-width: 100%;
 }
 
+.gojob-logo {
+  width: 115px;
+  margin-left: 15px;
+}
+
 .company-logo {
   max-width: 100px;
   max-height: 75px;
@@ -573,4 +578,25 @@ a:active {
   width: 100%;
   background: url('img/video-poster.png') center center no-repeat;
   background-size: 100%;
+}
+
+.live-wrapper {
+  background: #111;
+  text-align: center;
+  color: #fff;
+  padding: 100px 0;
+}
+
+.live-wrapper h4 {
+  font-size: 36px;
+  margin: 0;
+  line-height: 60px;
+}
+
+.live-wrapper p {
+  font-weight: 500;
+  max-width: 700px;
+  margin: 15px auto 100px;
+  font-size: 16px;
+  line-height: 30px;
 }
