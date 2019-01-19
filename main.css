@@ -68,18 +68,18 @@ a:active {
 }
 
 .page-header {
-  background-image: url('./img/cat-header.png');
-  background-position: right top;
+  background-image: url('./img/header.png');
+  background-position: center top;
+  background-size: cover;
   background-repeat: no-repeat;
   background-color: #090909;
   background-attachment: fixed;
   color: #fff;
-  min-height: 700px;
+  min-height: 750px;
 }
 
 .main-wrapper {
-  text-align: center;
-  padding-top: 128px;
+  padding-top: 140px;
 }
 
 .main-wrapper h1 {
@@ -98,18 +98,18 @@ a:active {
 
 .main-wrapper h4 {
   font-weight: 500;
-  max-width: 710px;
-  margin: 20px auto 0;
+  max-width: 600px;
+  margin: 20px 0 0;
   font-size: 18px;
   line-height: 32px;
 }
 
 .buttons-wrapper {
-  padding: 80px 0;
+  padding: 40px 0;
 }
 
-.buttons-wrapper .btn {
-  margin: 0 10px;
+.buttons-wrapper .btn:first-child {
+  margin-right: 20px;
 }
 
 .buttons-wrapper .btn .fa-github {
@@ -494,6 +494,20 @@ a:active {
     width: 100%;
     text-align: center;
   }
+
+  .main-wrapper {
+    text-align: center;
+  }
+
+  .main-wrapper h4 {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .buttons-wrapper .btn:first-child,
+  .buttons-wrapper .btn {
+    margin: 0 10px;
+  }
 }
 
 @media (max-width: 920px) {
@@ -534,7 +548,8 @@ a:active {
     display: none !important;
   }
 
-  .buttons-wrapper .btn {
+  .buttons-wrapper .btn,
+  .buttons-wrapper .btn:first-child {
     display: block;
     max-width: 300px;
     margin-left: auto;
