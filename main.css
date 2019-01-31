@@ -277,13 +277,18 @@ a:active {
 }
 
 .gold-logo {
-  width: 230px;
+  width: 320px;
   max-width: 100%;
 }
 
 .silver-logo {
   width: 170px;
   max-width: 100%;
+}
+
+.silver-logo--low {
+  max-height: 120px;
+  width: auto;
 }
 
 .gojob-logo {
@@ -614,4 +619,12 @@ a:active {
   margin: 15px auto 100px;
   font-size: 16px;
   line-height: 30px;
+}
+
+.m-l-10 {
+  margin-left: 10px;
+}
+
+.m-r-10 {
+  margin-right: 10px;
 }
