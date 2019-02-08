@@ -279,6 +279,7 @@ a:active {
 .gold-logo {
   width: 320px;
   max-width: 100%;
+  margin: 0 10px;
 }
 
 .silver-logo {
@@ -300,6 +301,10 @@ a:active {
   max-width: 100px;
   max-height: 75px;
   margin: 0 10px 15px;
+}
+
+.logo-novologic {
+  width: 210px;
 }
 
 .company-logo--high {
