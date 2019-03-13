@@ -598,11 +598,15 @@ a:active {
   z-index: 100;
   left: 0;
   right: 0;
-  top: 0;
+  top: -1px;
   bottom: 0;
   width: 100%;
   background: url('img/video-poster.png') center center no-repeat;
   background-size: 100%;
+}
+
+.plyr__video-embed:not(.plyr__video-wrapper) {
+  visibility: hidden;
 }
 
 .live-wrapper {
