@@ -3,17 +3,18 @@
   "version": "1.0.0",
   "description": "NestJS - official website",
   "scripts": {
-    "build": "rm -rf dist && parcel build index.html --public-url ./",
+    "build": "rm -rf dist && parcel build index.html --public-url ./ && npm run copy-assets",
+    "copy-assets": "copyfiles img/* dist",
     "start": "parcel index.html",
     "start:watch": "parcel watch index.html"
   },
   "author": "Kamil Myśliwiec",
   "license": "MIT",
   "devDependencies": {
-    "parcel-bundler": "^1.9.7"
+    "parcel-bundler": "1.12.2"
   },
   "dependencies": {
     "copyfiles": "^2.1.0",
-    "lib": "^3.0.2"
+    "lib": "4.0.1"
   }
 }
