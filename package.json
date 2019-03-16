@@ -13,6 +13,7 @@
     "parcel-bundler": "^1.9.7"
   },
   "dependencies": {
+    "copyfiles": "^2.1.0",
     "lib": "^3.0.2"
   }
 }
