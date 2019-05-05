@@ -316,6 +316,10 @@ a:active {
   max-width: 130px;
 }
 
+.company-logo--wide2x {
+  max-width: 150px;
+}
+
 .company-logo--low {
   max-height: 40px;
 }
