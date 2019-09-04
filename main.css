@@ -75,7 +75,7 @@ a:active {
   background-color: #090909;
   background-attachment: fixed;
   color: #fff;
-  min-height: 750px;
+  min-height: 700px;
 }
 
 .main-wrapper {
@@ -83,29 +83,22 @@ a:active {
 }
 
 .main-wrapper h1 {
-  font-weight: 500;
-  font-size: 110px;
-  font-family: 'EB Garamond', serif;
-  margin: 0 0 35px;
+  font-weight: 600;
+  font-size: 55px;
+  margin: 0 0 5px;
   line-height: 75px;
-}
-
-.main-wrapper h1 span {
-  font-size: 30px;
-  margin-left: 8px;
-  font-weight: bold;
 }
 
 .main-wrapper h4 {
   font-weight: 500;
   max-width: 600px;
-  margin: 20px 0 0;
+  margin: 0;
   font-size: 18px;
   line-height: 32px;
 }
 
 .buttons-wrapper {
-  padding: 40px 0;
+  padding: 60px 0;
 }
 
 .buttons-wrapper .btn:first-child {
@@ -271,6 +264,29 @@ a:active {
   font-weight: 600;
 }
 
+.sponsor-tiles a {
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  height: 60px;
+  width: 180px;
+  margin: 5px 0;
+  position: relative;
+}
+
+.sponsor-tiles--high a {
+  height: 100px;
+  width: 150px;
+}
+
+.sponsor-tiles a img {
+  margin: 0;
+  left: 50%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  position: absolute;
+}
+
 .principal-logo {
   width: 320px;
   max-width: 100%;
@@ -297,6 +313,10 @@ a:active {
   margin-left: 15px;
 }
 
+.trilon-logo {
+  width: 200px;
+}
+
 .company-logo {
   max-width: 100px;
   max-height: 75px;
@@ -321,7 +341,7 @@ a:active {
 }
 
 .company-logo--low {
-  max-height: 40px;
+  max-height: 35px;
 }
 
 .company-logo--medium {
@@ -341,6 +361,16 @@ a:active {
 
 .support-section:first-of-type {
   margin-top: 50px;
+}
+
+.support-section img {
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+
+.support-section img:hover {
+  filter: grayscale(0);
+  opacity: 1;
 }
 
 .btn-black {
