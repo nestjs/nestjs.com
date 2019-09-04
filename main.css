@@ -227,7 +227,7 @@ a:active {
 }
 
 .video-wrapper {
-  background: #f7f7f7;
+  background: #0a0a0a;
 }
 
 .sponsors-wrapper {
@@ -257,6 +257,11 @@ a:active {
   color: #000;
   font-size: 16px;
   line-height: 30px;
+}
+
+.video-wrapper h4,
+.video-wrapper p {
+  color: #fff;
 }
 
 .video-wrapper p a {
