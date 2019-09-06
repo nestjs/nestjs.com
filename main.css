@@ -545,7 +545,7 @@ a:active {
   font-weight: 500;
 }
 
-.newsletter-wrapper hgroup,
+.newsletter-wrapper .hgroup,
 .newsletter-form {
   display: inline-block;
   vertical-align: middle;
@@ -558,7 +558,7 @@ a:active {
   margin-top: 5px;
 }
 
-.newsletter-wrapper hgroup {
+.newsletter-wrapper .hgroup {
   width: 60%;
   float: left;
   position: relative;
@@ -633,7 +633,7 @@ a:active {
 }
 
 @media (max-width: 1020px) {
-  .newsletter-wrapper hgroup,
+  .newsletter-wrapper .hgroup,
   .newsletter-form {
     width: 50%;
   }
@@ -695,11 +695,11 @@ a:active {
     padding-left: 0;
     padding-right: 0;
   }
-  .newsletter-wrapper hgroup,
+  .newsletter-wrapper .hgroup,
   .newsletter-form {
     width: 100%;
   }
-  .newsletter-wrapper hgroup {
+  .newsletter-wrapper .hgroup {
     float: none;
     text-align: center;
   }
