@@ -590,8 +590,26 @@ a:active {
   transition: all 200ms ease-in-out;
 }
 
-.newsletter-form button:hover {
+.newsletter-form button:hover,
+.newsletter-form button[disabled] {
   background: #111111;
+}
+
+.newsletter-form button .icon-success {
+  display: none;
+}
+
+.newsletter-form .btn-success .fa-paper-plane {
+  display: none;
+}
+
+.newsletter-form .btn-success[disabled] {
+  background: #d3e6d4;
+  color: #1dd81c;
+  pointer-events: none;
+}
+.newsletter-form .btn-success .icon-success {
+  display: block;
 }
 
 .newsletter-wrapper .envelope-bg {
