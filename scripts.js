@@ -60,7 +60,7 @@ window.addEventListener('load', function() {
       const value = newsletterEmailInput.value;
       const xhr = new XMLHttpRequest();
       const url =
-        'https://khsw78qkle.execute-api.us-east-2.amazonaws.com/Stage/newsletter?token=db1f899025b5a59a76b6b34b2a013893';
+        'https://z93f42xq2l.execute-api.us-east-2.amazonaws.com/Stage/newsletter?token=db1f899025b5a59a76b6b34b2a013893';
       xhr.open('POST', url, true);
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.onreadystatechange = function() {
