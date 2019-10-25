@@ -11,7 +11,7 @@
   "author": "Kamil Myśliwiec",
   "license": "MIT",
   "devDependencies": {
-    "parcel-bundler": "1.12.3"
+    "parcel-bundler": "1.12.4"
   },
   "dependencies": {
     "copyfiles": "2.1.1"
