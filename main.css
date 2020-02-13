@@ -4,7 +4,7 @@ html {
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 17.5px;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -68,7 +68,7 @@ a:active {
 }
 
 .page-header {
-  background-image: url('./img/header.png');
+  background-image: url("./img/header.png");
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
@@ -155,7 +155,7 @@ a:active {
 }
 
 .event-bar {
-  background-image: url('./img/mane-bg.png');
+  background-image: url("./img/mane-bg.png");
   background-position: 70% top;
   background-repeat: no-repeat;
   background-color: #eb2845;
@@ -486,7 +486,7 @@ a:active {
 }
 
 .enterprise-wrapper {
-  background-image: url('./img/support.png');
+  background-image: url("./img/support.png");
   background-position: left bottom;
   background-repeat: no-repeat;
   background-color: #ed1543;
@@ -631,6 +631,9 @@ a:active {
     width: 70%;
     padding: 70px;
   }
+  .hidden-lg {
+    display: none !important;
+  }
 }
 
 @media (max-width: 1020px) {
@@ -760,7 +763,7 @@ a:active {
 }
 
 .plyr__video-wrapper:not(.hidden-poster)::before {
-  content: '';
+  content: "";
   position: absolute;
   z-index: 100;
   left: 0;
@@ -768,7 +771,7 @@ a:active {
   top: -1px;
   bottom: 0;
   width: 100%;
-  background: url('img/video-poster.png') center center no-repeat;
+  background: url("img/video-poster.png") center center no-repeat;
   background-size: 100%;
 }
 
