@@ -293,8 +293,9 @@ a:active {
 }
 
 .principal-logo {
-  width: 320px;
+  width: 240px;
   max-width: 100%;
+  margin: 15px;
 }
 
 .gold-logo {
