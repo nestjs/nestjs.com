@@ -362,6 +362,10 @@ a:active {
   max-height: 40px;
 }
 
+.max-height-60 {
+  max-height: 60px;
+}
+
 .support-section {
   margin-bottom: 47px;
   max-width: 1200px;
