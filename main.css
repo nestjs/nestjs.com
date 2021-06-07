@@ -299,9 +299,12 @@ a:active {
 }
 
 .gold-logo {
-  width: 200px;
-  max-width: 100%;
-  margin: 10px;
+  width: auto;
+  max-width: 185px;
+  margin: 10px 20px;
+  vertical-align: middle;
+  height: auto;
+  max-height: 100px;
 }
 
 .silver-logo {
