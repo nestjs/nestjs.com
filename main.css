@@ -321,6 +321,11 @@ a:active {
   width: auto;
 }
 
+.silver-logo-140 {
+  width: 140px;
+  max-width: 100%;
+}
+
 .gojob-logo {
   width: 115px;
   margin-left: 15px;
