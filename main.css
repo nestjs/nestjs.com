@@ -298,6 +298,11 @@ a:active {
   margin: 15px;
 }
 
+.principal-logo--slim {
+  max-height: 50px;
+  width: auto;
+}
+
 .gold-logo {
   width: auto;
   max-width: 185px;
