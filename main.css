@@ -316,6 +316,10 @@ a:active {
   max-width: 225px;
 }
 
+.gold-logo--high {
+  max-height: 120px;
+}
+
 .silver-logo {
   width: 170px;
   max-width: 100%;
