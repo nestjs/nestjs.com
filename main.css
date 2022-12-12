@@ -290,6 +290,7 @@ a:active {
   top: 50%;
   transform: translateY(-50%) translateX(-50%);
   position: absolute;
+  max-height: 100%;
 }
 
 .principal-logo {
