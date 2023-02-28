@@ -671,6 +671,10 @@ a:active {
   .newsletter-form {
     width: 50%;
   }
+
+  .hidden-md {
+    display: none !important;
+  }
 }
 
 @media (max-width: 991px) {
@@ -836,4 +840,13 @@ a:active {
 
 .m-r-10 {
   margin-right: 10px;
+}
+
+.new {
+  color: #fff;
+  background: #ea2845;
+  font-size: 11px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  margin-right: 2px;
 }
