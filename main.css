@@ -299,17 +299,17 @@ a:active {
   margin: 15px;
 }
 
-.principal-logo--slim {
-  max-height: 50px;
-  width: auto;
-}
-
 .gold-logo {
   max-width: 185px;
   margin: 10px 20px;
   vertical-align: middle;
   height: auto;
   max-height: 100px;
+}
+
+.gold-logo--slim {
+  max-height: 50px;
+  width: auto;
 }
 
 .gold-logo--wide {
