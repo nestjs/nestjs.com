@@ -21,6 +21,11 @@ window.addEventListener('load', function() {
   player.once('play', function() {
     var videoWrapper = document.querySelector('.plyr__video-wrapper');
     videoWrapper.classList.add('hidden-poster');
+
+    const poster = videoWrapper.querySelector('.plyr__poster');
+    if (poster) {
+      poster.remove();
+    }
   });
 
   registerNavigation();
