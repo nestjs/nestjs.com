@@ -17,10 +17,19 @@ window.addEventListener('load', function() {
     }
     stickyNavbarElement.classList.remove('visible');
   }
-  var player = new Plyr('#player');
+  var player = new Plyr('#player', {
+    keyboard: {
+      global: true,
+    },
+  });
   player.once('play', function() {
     var videoWrapper = document.querySelector('.plyr__video-wrapper');
     videoWrapper.classList.add('hidden-poster');
+
+    const poster = videoWrapper.querySelector('.plyr__poster');
+    if (poster) {
+      poster.remove();
+    }
   });
 
   registerNavigation();
