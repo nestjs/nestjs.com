@@ -273,6 +273,9 @@ a:active {
   font-size: 36px;
   margin: 0;
   line-height: 60px;
+}
+
+.video-wrapper h4 {
   color: #ed1543;
 }
 
@@ -865,7 +868,7 @@ a:active {
   z-index: 100;
   left: 0;
   right: 0;
-  top: -1px;
+  top: -2px;
   bottom: 0;
   width: 100%;
   background: url("img/video-poster.png") center center no-repeat;
@@ -912,4 +915,8 @@ a:active {
   padding: 2px 4px;
   border-radius: 2px;
   margin-right: 2px;
+}
+
+.plyr__poster {
+  display: none !important;
 }
