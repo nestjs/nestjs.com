@@ -470,9 +470,9 @@ a:active {
 }
 
 .page-footer {
-  background-color: #f1f3f3;
+  color: #f1f3f3;
   text-align: center;
-  color: #090909;
+  background-color: #090909;
   padding: 60px 0;
 }
 
