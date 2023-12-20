@@ -383,6 +383,7 @@ a:active {
   background-color: transparent;
 }
 
+
 .support-section a img {
   max-width: 100%;
   max-height: 100%;
@@ -401,7 +402,7 @@ a:active {
 
 .support-section--bronze a {
   padding: 12px;
-  width: 90px;
+  width: 92px;
   height: 60px;
 }
 
