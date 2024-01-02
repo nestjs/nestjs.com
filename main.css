@@ -30,7 +30,8 @@ a:active {
   max-width: 70px;
 }
 
-.nav-wrapper a {
+.nav-wrapper > li > a,
+.nav-wrapper > li > span {
   text-transform: uppercase;
   font-weight: bold;
   color: #fff;
@@ -41,18 +42,111 @@ a:active {
   -webkit-transition: all 100ms ease-in;
 }
 
-.nav-wrapper a:hover {
-  color: #ea2845;
+.nav-wrapper .arrow {
+  font-size: 12px;
+  margin-left: 4px;
 }
 
-.nav-wrapper li {
+.nav-wrapper  > li > a:hover,
+.nav-wrapper > li > span:hover,
+.sub-nav-wrapper li a:hover {
+  color: #ea2845;
+  cursor: pointer;
+}
+
+.nav-wrapper > li > span > * {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.nav-wrapper .text {
+  margin-left: 4px;
+}
+
+.nav-wrapper > li {
   display: inline-block;
   vertical-align: middle;
+  position: relative;
 }
 
 .nav-wrapper .icon {
   margin-left: 27px;
   font-size: 22px;
+}
+
+.nav-wrapper > li:hover > .sub-nav-outlet {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+} 
+
+.sub-nav-outlet {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  right: -25px;
+  left: 6px;
+  padding-top: 6px;
+  transition: all 100ms ease-in;
+  transform: translateY(-10px);
+}
+
+.sub-nav-wrapper {
+  background: #0f1114;
+  border-radius: 8px;
+  padding: 24px;
+  text-align: left;
+}
+
+.navbar-sticky .sub-nav-wrapper {
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.07);
+  background: #fff;
+}
+
+.sub-nav-wrapper li {
+  list-style: none;
+  line-height: 14px;
+}
+
+.sub-nav-wrapper li a {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 5px 0;
+  transition: all 100ms ease-in;
+  -moz-transition: all 100ms ease-in;
+  -webkit-transition: all 100ms ease-in;
+}
+
+.navbar-sticky .sub-nav-wrapper li a {
+  color: #090909;
+}
+
+.sub-nav-wrapper ul {
+  padding: 0;
+  margin: 0 0 16px;
+}
+
+.sub-nav-wrapper ul:last-of-type {
+  margin-bottom: 0;
+}
+
+.sub-nav-wrapper .nav-category {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+}
+
+.navbar-sticky .sub-nav-wrapper .nav-category {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 700;
 }
 
 .d-inline-block {
@@ -512,7 +606,8 @@ a:active {
   vertical-align: middle;
 }
 
-.navbar-sticky .nav-wrapper a {
+.navbar-sticky .nav-wrapper > li > a,
+.navbar-sticky .nav-wrapper > li > span {
   color: #090909;
   font-size: 14px;
   margin-left: 20px;
@@ -895,6 +990,7 @@ a:active {
   padding: 2px 4px;
   border-radius: 2px;
   margin-right: 2px;
+  vertical-align: middle;
 }
 
 .plyr__poster {
