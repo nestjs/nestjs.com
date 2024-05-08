@@ -4,7 +4,7 @@
   "description": "NestJS - official website",
   "scripts": {
     "build": "rm -rf dist && parcel build index.html --public-url ./ && npm run copy-assets",
-    "copy-assets": "copyfiles img/* dist",
+    "copy-assets": "copyfiles img/**/* dist",
     "start": "parcel index.html",
     "start:watch": "parcel watch index.html"
   },
