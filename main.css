@@ -1,3 +1,9 @@
+:root {
+  --primary-color: #ea2845;
+  --primary-accent-color: #ea2868;
+  --primary-gradient: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-accent-color) 100%);
+}
+
 html {
   position: relative;
   min-height: 450px;
@@ -25,6 +31,10 @@ a:active {
   color: #fff;
 }
 
+.gradient-svg {
+  position: absolute;
+}
+
 .logo-wrapper svg,
 .logo-wrapper img {
   max-width: 70px;
@@ -47,11 +57,22 @@ a:active {
   margin-left: 4px;
 }
 
+.nav-wrapper >li > span:hover > .arrow {
+  color: #ea2845;
+  cursor: pointer;
+}
+
 .nav-wrapper  > li > a:hover,
 .nav-wrapper > li > span:hover,
 .sub-nav-wrapper li a:hover {
-  color: #ea2845;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   cursor: pointer;
+}
+
+.nav-wrapper > li > span:hover > .new {
+  -webkit-text-fill-color: #fff;
 }
 
 .nav-wrapper > li > span > * {
@@ -61,6 +82,20 @@ a:active {
 
 .nav-wrapper .text {
   margin-left: 4px;
+}
+
+.nav-wrapper a:hover span:not(.new),
+.nav-wrapper .sub-nav-trigger:hover {
+  color: #ea2845;
+  cursor: pointer;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+.nav-wrapper a:hover svg path {
+  fill: url(#primary-gradient);
 }
 
 .nav-wrapper > li {
@@ -169,7 +204,7 @@ a:active {
   background-color: #090909;
   background-attachment: fixed;
   color: #fff;
-  min-height: 700px;
+  min-height: 760px;
 }
 
 .main-wrapper {
@@ -199,6 +234,10 @@ a:active {
   margin-right: 20px;
 }
 
+.buttons-wrapper * {
+  vertical-align: middle;
+}
+
 .buttons-wrapper .btn .fa-github {
   margin-right: 6px;
   font-size: 18px;
@@ -210,34 +249,81 @@ a:active {
   font-size: 16px;
   color: #fff;
   text-align: center;
-  padding: 14px 28px;
+  padding: 16px 28px;
   min-width: 230px;
   border-radius: 30px;
   -webkit-border-radius: 30px;
-  transition: all 100ms ease-in;
-  -moz-transition: all 100ms ease-in;
-  -webkit-transition: all 100ms ease-in;
 }
 
 .btn-primary {
-  background: #ea2845;
-  border: 2px solid #ea2845;
+  background: var(--primary-gradient);
   color: #fff;
+  position: relative;
+  overflow: hidden;
 }
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  padding: 2px;
+  background: var(--primary-gradient);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.btn-primary span {
+  z-index: 3;
+  position: relative;
+}
+
 .btn-primary:hover {
-  border: 2px solid #e93333;
   background: transparent;
-  color: #fff;
+}
+
+.btn-primary:hover span, .btn-primary:active span, .btn-primary:focus span {
+  color: var(--primary-color);
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .btn-secondary {
-  border: 2px solid #fff;
   color: #fff;
+  position: relative;
 }
+
+.btn-secondary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  padding: 2px;
+  background: #fff;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+}
+
 .btn-secondary:hover {
-  border: 2px solid #e92845;
-  background: transparent;
-  color: #e92845;
+  color: var(--primary-color);
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-secondary:hover::before {
+  background: var(--primary-gradient);
 }
 
 .btn img {
@@ -287,7 +373,8 @@ a:active {
 
 .highlights-wrapper,
 .discover-wrapper {
-  background: #f1f3f3;
+  background-color: #f1f3f3;
+  background: linear-gradient(360deg, #f1f1f1, #f9f9f9);
   padding: 100px 0;
   text-align: center;
 }
@@ -380,7 +467,10 @@ a:active {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 18px;
-  color: #ea2845;
+  color: var(--primary-color);
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin: 40px 0 0;
 }
 
@@ -392,13 +482,18 @@ a:active {
   margin: 20px auto;
   line-height: 30px;
 }
-
-.discover-wrapper .heading a {
-  color: #ea2845;
+.heading a {
+  color: var(--primary-color);
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.discover-wrapper .heading a:hover {
+.heading a:hover {
   color: #111;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+  background: none;
 }
 
 .sponsors-wrapper,
@@ -423,7 +518,10 @@ a:active {
 }
 
 .video-wrapper h4 {
-  color: #ed1543;
+  color: var(--primary-color);
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .sponsors-wrapper h5,
@@ -520,12 +618,6 @@ a:active {
   border: 2px solid #090909;
 }
 
-.sponsors-wrapper .btn-primary:hover {
-  color: #fff;
-  background: #090909;
-  border: 2px solid #090909;
-}
-
 .btn-black span {
   color: #969696;
   margin: 0 3px;
@@ -568,8 +660,17 @@ a:active {
 }
 
 .page-footer p a {
-  color: #ea2845;
+  color: var(--primary-color);
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-weight: 600;
+}
+
+.page-footer p a:hover {
+  background: #111;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .navbar-sticky {
@@ -655,14 +756,21 @@ a:active {
   background: #fff;
   border-color: #fff;
   color: #ed1543;
+  -webkit-text-fill-color: unset !important;
+  -webkit-background-clip: unset !important;
 }
+
 .enterprise-column .btn:hover {
   background: transparent;
   color: #fff;
 }
 
+.enterprise-column .btn:hover::before {
+  background: #fff;
+}
+
 .newsletter-wrapper {
-  background: #e8e8e8;
+  background: #ebebeb;
   padding: 45px 0 35px;
   overflow: hidden;
   position: relative;
@@ -715,7 +823,8 @@ a:active {
 }
 
 .newsletter-form button {
-  background: #ed1543;
+  background: var(--primary-color);
+  background: var(--primary-gradient);
   padding: 13px 18px;
   border: 0;
   color: #fff;
@@ -724,7 +833,7 @@ a:active {
   vertical-align: middle;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
-  transition: all 200ms ease-in-out;
+  transition: none;
 }
 
 .newsletter-form button:hover,
@@ -984,8 +1093,8 @@ a:active {
 }
 
 .new {
-  color: #fff;
-  background: #ea2845;
+  color: #fff !important;
+  background: var(--primary-gradient);
   font-size: 11px;
   padding: 2px 4px;
   border-radius: 2px;
