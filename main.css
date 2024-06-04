@@ -46,10 +46,13 @@ a:active {
   font-weight: bold;
   color: #fff;
   font-size: 16px;
-  margin-left: 25px;
   transition: all 100ms ease-in;
   -moz-transition: all 100ms ease-in;
   -webkit-transition: all 100ms ease-in;
+}
+
+.nav-wrapper > li:not(.social-icon) {
+  margin-left: 25px;
 }
 
 .nav-wrapper .arrow {
@@ -711,7 +714,6 @@ a:active {
 .navbar-sticky .nav-wrapper > li > span {
   color: #090909;
   font-size: 14px;
-  margin-left: 20px;
 }
 
 .navbar-sticky .nav-wrapper a:hover {
