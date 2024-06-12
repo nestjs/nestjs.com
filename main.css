@@ -332,7 +332,7 @@ body.mobile-nav-open {
   margin-right: 0;
 }
 
-.mobile-nav li a:hover {
+.mobile-nav li a:hover span:not(.new) {
   background: var(--primary-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
