@@ -263,7 +263,7 @@ body.mobile-nav-open {
 }
 
 .mobile-nav-logo img {
-  width: 50px;
+  width: 60px;
 }
 
 .mobile-nav-head {
@@ -314,13 +314,13 @@ body.mobile-nav-open {
 
 .mobile-nav li {
   list-style: none;
-  line-height: 34px;
+  line-height: 36px;
 }
 
 .mobile-nav li a {
   color: #fff;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .mobile-nav li a span {
@@ -339,7 +339,7 @@ body.mobile-nav-open {
 }
 
 .mobile-nav .btn-primary {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   width: 100%;
   padding: 14px;
