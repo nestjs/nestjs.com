@@ -245,7 +245,7 @@ a:active {
   bottom: 0;
   background: #111111;
   z-index: 1000000;
-  padding: 24px;
+  padding: 24px 15px;
   display: flex;
   flex-direction: column;
   display: none;
@@ -263,7 +263,7 @@ body.mobile-nav-open {
 }
 
 .mobile-nav-logo img {
-  width: 60px;
+  width: 70px;
 }
 
 .mobile-nav-head {
@@ -274,8 +274,8 @@ body.mobile-nav-open {
 
 .mobile-nav-close span {
   position: relative;
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   display: block;
   cursor: pointer;
 }
@@ -284,7 +284,7 @@ body.mobile-nav-open {
 .mobile-nav-close span::after {
   content: "";
   position: absolute;
-  width: 22px;
+  width: 24px;
   height: 2px;
   background: #fff;
   transition: all 100ms ease-in;
@@ -356,6 +356,12 @@ body.mobile-nav-open {
 
 .top-wrapper {
   padding-top: 30px;
+}
+
+@media (max-width: 1020px) {
+  .top-wrapper {
+    padding-top: 24px;
+  }
 }
 
 .m-l-30 {
