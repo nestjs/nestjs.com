@@ -228,13 +228,21 @@ a:active {
   bottom: -8px;
 }
 
-.mobile-nav-icon span:hover {
+.mobile-nav-icon:hover {
+  cursor: pointer;
+}
+
+.mobile-nav-icon:hover span,
+.mobile-nav-icon:hover span::before,
+.mobile-nav-icon:hover span::after {
   background: var(--primary-gradient);
 }
 
-.mobile-nav-icon span:hover::before,
-.mobile-nav-icon span:hover::after {
-  background: var(--primary-gradient);
+.mobile-nav-icon .fill {
+  height: 24px;
+  width: 24px;
+  margin-top: -12px;
+  position: absolute;
 }
 
 .mobile-nav {
