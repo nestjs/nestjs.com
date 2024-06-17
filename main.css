@@ -735,8 +735,8 @@ body.mobile-nav-open {
   background-color: #f6f6f6;
   justify-content: center;
   align-items: center;
-  width: 240px;
-  height: 150px;
+  width: 205px;
+  height: 140px;
   vertical-align: top;
   padding: 25px;
   margin-bottom: 5px;
@@ -761,7 +761,7 @@ body.mobile-nav-open {
 
 .support-section--silver a {
   width: 120px;
-  height: 80px;
+  height: 95px;
 }
 
 .support-section--bronze a {
