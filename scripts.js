@@ -92,4 +92,36 @@ window.addEventListener('load', function() {
     mobileNav.classList.remove('open');
     body.classList.remove('mobile-nav-open');
   });
+
+  // Sponsors
+  const fetchBronzeSponsorsUrl = `https://opencollective.com/nest/tiers/bronze-sponsors/all.json`;
+  fetch(fetchBronzeSponsorsUrl, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (!data) {
+        return;
+      }
+      const activeSponsors = data.filter((sponsor) => sponsor.isActive);
+      const bronzeSponsorsContainer = document.querySelector('.bronze-sponsors-container');
+      if (!bronzeSponsorsContainer) {
+        return;
+      }
+
+      activeSponsors.filter(item => item.image).forEach((sponsor) => {
+        const sponsorElement = document.createElement('a');
+        sponsorElement.href = sponsor.website;
+        sponsorElement.target = '_blank';
+        sponsorElement.rel = 'noopener noreferrer';
+        sponsorElement.title = sponsor.name;
+        sponsorElement.innerHTML = `<img src="${sponsor.image}" alt="${sponsor.name}" />`;
+        bronzeSponsorsContainer.appendChild(sponsorElement);
+      });
+    });
+  
+
 });
