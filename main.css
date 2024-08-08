@@ -768,8 +768,8 @@ body.mobile-nav-open {
 }
 
 .support-section--silver a {
-  width: 120px;
-  height: 95px;
+  width: 150px;
+  max-height: 95px;
 }
 
 .support-section--bronze a {
