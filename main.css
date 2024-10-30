@@ -1,3 +1,36 @@
+/* montserrat-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/lib/fonts/montserrat-v26-latin-regular.woff2') format('woff2');
+}
+/* montserrat-500 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/lib/fonts/montserrat-v26-latin-500.woff2') format('woff2');
+}
+/* montserrat-600 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/lib/fonts/montserrat-v26-latin-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src: url('/lib/fonts/icomoon.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
 :root {
   --primary-color: #ea2845;
   --primary-accent-color: #ea2868;
@@ -377,7 +410,8 @@ body.mobile-nav-open {
 }
 
 .page-header {
-  background-image: url("./img/header.png");
+  position: relative;
+  background-image: url("./img/header.webp");
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
@@ -904,12 +938,19 @@ body.mobile-nav-open {
 }
 
 .enterprise-wrapper {
-  background-image: url("./img/support.png");
-  background-position: left bottom;
-  background-repeat: no-repeat;
+  position: relative;
   background-color: #ed1543;
   height: 500px;
   overflow: hidden;
+}
+
+.enterprise-wrapper img {
+  position: absolute;
+  height: 500px;
+  width: 100%;
+  z-index: 0;
+  object-fit: contain;
+  object-position: left bottom;
 }
 
 .enterprise-column {
@@ -1184,11 +1225,6 @@ body.mobile-nav-open {
   -webkit-background-clip: unset !important;
 }
 
-.card--dark .btn-secondary:hover,
-.card--primary .btn-secondary:hover  {
-  background: transparent;
-}
-
 .card--light .btn-secondary:hover {
   background: #111;
   color: #fff;
@@ -1382,8 +1418,8 @@ body.mobile-nav-open {
 }
 
 @media (max-width: 1300px) {
-  .enterprise-wrapper {
-    background-position: -250px bottom;
+  .enterprise-wrapper img {
+    object-position: -250px bottom;
   }
   .enterprise-column {
     width: 70%;
@@ -1406,8 +1442,8 @@ body.mobile-nav-open {
 }
 
 @media (max-width: 991px) {
-  .enterprise-wrapper {
-    background-position: -400px bottom;
+  .enterprise-wrapper img {
+    object-position: -400px bottom;
   }
 
   .enterprise-column {
@@ -1582,4 +1618,40 @@ body.mobile-nav-open {
 
 .plyr__poster {
   display: none !important;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'icomoon';
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-x:before {
+  content: "\e900";
+}
+.icon-twitter:before {
+  content: "\e900";
+}
+.icon-check-circle:before {
+  content: "\f058";
+}
+.icon-chevron-down:before {
+  content: "\f078";
+}
+.icon-github:before {
+  content: "\f09b";
+}
+.icon-linkedin:before {
+  content: "\f0e1";
+}
+.icon-paper-plane:before {
+  content: "\f1d8";
+}
+.icon-send:before {
+  content: "\f1d8";
 }
