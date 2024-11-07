@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,6 +13,8 @@
       href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap"
       rel="stylesheet"
     />
+    <!-- Preload LCP image -->
+    <link rel="preload" href="img/header.webp" as="image" />
     <meta
       name="description"
       content="NestJS is a framework for building efficient, scalable Node.js web applications. It uses modern JavaScript, is built with TypeScript and combines elements of OOP (Object Oriented Programming), FP (Functional Programming), and FRP (Functional Reactive Programming)."
@@ -72,8 +74,8 @@
       defer
       src="https://use.fontawesome.com/releases/v6.4.2/js/all.js"
     ></script>
-    <script src="scripts.js"></script>
-    <link rel="stylesheet" href="lib/plyr.css" />
+    <script type="module" src="scripts.js"></script>
+    <!-- <link rel="stylesheet" href="lib/plyr.css" /> -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
       async
@@ -411,7 +413,9 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4 highlight-block">
-            <div class="icon-wrapper"><img src="img/3d.svg" /></div>
+            <div class="icon-wrapper">
+              <img src="img/3d.svg" loading="lazy" alt />
+            </div>
             <h5>Extensible</h5>
             <p>
               Provides unparalleled flexibility through its meticulously crafted
@@ -419,7 +423,9 @@
             </p>
           </div>
           <div class="col-md-4 highlight-block">
-            <div class="icon-wrapper"><img src="img/magic-wand.svg" /></div>
+            <div class="icon-wrapper">
+              <img src="img/magic-wand.svg" loading="lazy" alt />
+            </div>
             <h5>Versatile</h5>
             <p>
               Serves as a robust, elegant, and well-structured foundation for
@@ -427,7 +433,9 @@
             </p>
           </div>
           <div class="col-md-4 highlight-block">
-            <div class="icon-wrapper"><img src="img/quality.svg" /></div>
+            <div class="icon-wrapper">
+              <img src="img/quality.svg" loading="lazy" alt />
+            </div>
             <h5>Progressive</h5>
             <p>
               Introduces design patterns and well-established solutions to the
@@ -449,7 +457,9 @@
         <div class="row blocks-row">
           <div class="col-md-3 col-sm-6">
             <div class="block">
-              <div class="icon-wrapper"><img src="img/icons/puzzle.svg" /></div>
+              <div class="icon-wrapper">
+                <img src="img/icons/puzzle.svg" loading="lazy" alt />
+              </div>
               <h5>Modularity</h5>
               <p>
                 Streamline upkeep by organizing applications into self-contained
@@ -459,7 +469,9 @@
           </div>
           <div class="col-md-3 col-sm-6">
             <div class="block">
-              <div class="icon-wrapper"><img src="img/icons/rocket.svg" /></div>
+              <div class="icon-wrapper">
+                <img src="img/icons/rocket.svg" loading="lazy" alt />
+              </div>
               <h5>Scalability</h5>
               <p>
                 Scale seamlessly with an efficient, battle-tested components.
@@ -468,7 +480,9 @@
           </div>
           <div class="col-md-3 col-sm-6">
             <div class="block">
-              <div class="icon-wrapper"><img src="img/icons/di.svg" /></div>
+              <div class="icon-wrapper">
+                <img src="img/icons/di.svg" loading="lazy" alt />
+              </div>
               <h5>Dependency injection</h5>
               <p>
                 Elevate testability with a sophisticated dependency injection
@@ -479,7 +493,7 @@
           <div class="col-md-3 col-sm-6">
             <div class="block">
               <div class="icon-wrapper">
-                <img src="img/icons/type-safety.svg" />
+                <img src="img/icons/type-safety.svg" loading="lazy" alt />
               </div>
               <h5>Type safety</h5>
               <p>
@@ -491,7 +505,7 @@
           <div class="col-md-3 col-sm-6">
             <div class="block">
               <div class="icon-wrapper">
-                <img src="img/icons/ecosystem.svg" />
+                <img src="img/icons/ecosystem.svg" loading="lazy" alt />
               </div>
               <h5>Rich ecosystem</h5>
               <p>
@@ -502,7 +516,9 @@
           </div>
           <div class="col-md-3 col-sm-6">
             <div class="block">
-              <div class="icon-wrapper"><img src="img/icons/chip.svg" /></div>
+              <div class="icon-wrapper">
+                <img src="img/icons/chip.svg" loading="lazy" alt />
+              </div>
               <h5>Enterprise-ready</h5>
               <p>
                 Trusted by thousands of leading companies and organizations
@@ -513,7 +529,7 @@
           <div class="col-md-3 col-sm-6">
             <div class="block">
               <div class="icon-wrapper">
-                <img src="img/icons/microservices.svg" />
+                <img src="img/icons/microservices.svg" loading="lazy" alt />
               </div>
               <h5>Microservices</h5>
               <p>
@@ -524,7 +540,9 @@
           </div>
           <div class="col-md-3 col-sm-6">
             <div class="block">
-              <div class="icon-wrapper"><img src="img/icons/api.svg" /></div>
+              <div class="icon-wrapper">
+                <img src="img/icons/api.svg" loading="lazy" alt />
+              </div>
               <h5>Web apps</h5>
               <p>
                 Build REST APIs, GraphQL APIs, Queues, and real-time &
@@ -538,55 +556,70 @@
     <section id="other-services" class="other-services">
       <div class="container">
         <div class="row">
-        <div class="col-md-6 col-xs-12">
-          <div class="card card--dark">
-            <div class="ellipse-overlay"></div>
-            <div class="card-content">
-              <h2>Deploy, mau!</h2>
-              <p>Provision and manage your infrastracture on AWS without the hassle and extra DevOps work.</p>
-              <a href="https://mau.nestjs.com" class="btn btn-secondary">Start now</a>
-            </div>
-            <div class="card-image">
-              <img src="img/mau.png" alt="" />
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-xs-12">
-          <div class="card card--primary">
-            <div class="ellipse-overlay"></div>
-            <div class="card-content">
-              <h2>Explore your graph</h2>
-              <p>Identify dependencies and connections between modules, and dive deep into the inner workings of your classes.</p>
-              <a href="https://devtools.nestjs.com" class="btn btn-secondary">Learn more</a>
-            </div>
-            <div class="card-image">
-              <img src="img/devtools.png" alt="" />
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12">
-          <div class="card card--light">
-            <div class="ellipse-overlay"></div>
-            <div class="card-content">
-              <h2>Official NestJS Courses</h2>
-              <p>Learn everything you need to master NestJS and tackle modern backend applications at any scale.</p>
-              <a href="https://courses.nestjs.com" class="btn btn-secondary">See courses</a>
-            </div>
-            <div class="card-image">
-              <div class="card-boxes">
-                <div class="card-box">
-                  <img src="img/courses-box-2.png" alt="" />
-                </div>
-                <div class="card-box">
-                  <img src="img/courses-box-1.png" alt="" />
-                </div>
+          <div class="col-md-6 col-xs-12">
+            <div class="card card--dark">
+              <div class="ellipse-overlay"></div>
+              <div class="card-content">
+                <h2>Deploy, mau!</h2>
+                <p>
+                  Provision and manage your infrastracture on AWS without the
+                  hassle and extra DevOps work.
+                </p>
+                <a href="https://mau.nestjs.com" class="btn btn-secondary"
+                  >Start now</a
+                >
               </div>
-              <div class="image-wrapper">
-                <img src="img/courses.png" alt="" />
+              <div class="card-image">
+                <img src="img/mau.png" loading="lazy" alt />
               </div>
             </div>
           </div>
-        </div>
+          <div class="col-md-6 col-xs-12">
+            <div class="card card--primary">
+              <div class="ellipse-overlay"></div>
+              <div class="card-content">
+                <h2>Explore your graph</h2>
+                <p>
+                  Identify dependencies and connections between modules, and
+                  dive deep into the inner workings of your classes.
+                </p>
+                <a href="https://devtools.nestjs.com" class="btn btn-secondary"
+                  >Learn more</a
+                >
+              </div>
+              <div class="card-image">
+                <img src="img/devtools.png" loading="lazy" alt />
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <div class="card card--light">
+              <div class="ellipse-overlay"></div>
+              <div class="card-content">
+                <h2>Official NestJS Courses</h2>
+                <p>
+                  Learn everything you need to master NestJS and tackle modern
+                  backend applications at any scale.
+                </p>
+                <a href="https://courses.nestjs.com" class="btn btn-secondary"
+                  >See courses</a
+                >
+              </div>
+              <div class="card-image">
+                <div class="card-boxes">
+                  <div class="card-box">
+                    <img src="img/courses-box-2.png" loading="lazy" alt />
+                  </div>
+                  <div class="card-box">
+                    <img src="img/courses-box-1.png" loading="lazy" alt />
+                  </div>
+                </div>
+                <div class="image-wrapper">
+                  <img src="img/courses.png" loading="lazy" alt />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -663,76 +696,153 @@
         <div class="support-section">
           <h5>Principal sponsors</h5>
           <a href="https://trilon.io" target="_blank">
-            <img src="img/trilon.svg" />
+            <img src="img/trilon.svg" loading="lazy" alt="Trilon" />
           </a>
           <a href="https://microsoft.com" target="_blank">
-            <img src="img/logos/microsoft-logo.png" />
+            <img
+              src="img/logos/microsoft-logo.png"
+              loading="lazy"
+              alt="Microsoft"
+            />
           </a>
           <a href="https://mojam.co/" target="_blank">
-            <img src="img/logos/mojam-logo.png" />
+            <img src="img/logos/mojam-logo.png" loading="lazy" alt="Mojam" />
           </a>
           <a href="https://marblism.com?utm_source=nest" target="_blank">
-            <img src="img/logos/marblism-logo.png" />
+            <img
+              src="img/logos/marblism-logo.png"
+              loading="lazy"
+              alt="Marblism"
+            />
           </a>
           <a href="https://valor-software.com/" target="_blank">
-            <img src="img/logos/valor-software.png" />
+            <img
+              src="img/logos/valor-software.png"
+              loading="lazy"
+              alt="Valor Software"
+            />
           </a>
           <a href="https://amplication.com/" target="_blank">
-            <img src="img/logos/amplication-logo.svg" />
+            <img
+              src="img/logos/amplication-logo.svg"
+              loading="lazy"
+              alt="Amplication"
+            />
           </a>
         </div>
         <div class="support-section support-section--gold">
           <h5>Gold sponsors</h5>
-          <a href="https://www.redhat.com" target="_blank">
-            <img src="img/logos/red-hat-logo.svg" class="gold-logo" />
+          <a
+            href="https://www.redhat.com"
+            target="_blank"
+            rel="noopener nofollow"
+          >
+            <img
+              src="img/logos/red-hat-logo.svg"
+              class="gold-logo"
+              loading="lazy"
+              alt="Red Hat"
+            />
           </a>
-          <a href="https://github.com/Sanofi-IADC" target="_blank">
-            <img src="img/logos/sanofi.png" class="gold-logo" />
+          <a
+            href="https://github.com/Sanofi-IADC"
+            target="_blank"
+            rel="noopener nofollow"
+          >
+            <img
+              src="img/logos/sanofi.png"
+              class="gold-logo"
+              loading="lazy"
+              alt="Sanofi"
+            />
           </a>
-          <a href="https://nx.dev" target="_blank">
+          <a href="https://nx.dev" target="_blank" rel="noopener nofollow">
             <img
               src="img/logos/nx-logo.png"
               class="gold-logo gold-logo--slim"
+              loading="lazy"
+              alt="Nx"
             />
           </a>
-          <a href="https://intrinsic.ventures/" target="_blank" rel="nofollow">
+          <a
+            href="https://intrinsic.ventures/"
+            target="_blank"
+            rel="noopener nofollow"
+          >
             <img
               src="img/logos/intrinisic-logo.png"
               class="gold-logo gold-logo--wide"
+              loading="lazy"
+              alt="Intrinsic"
             />
           </a>
-          <a href="https://www.jetbrains.com/" target="_blank" rel="nofollow">
+          <a
+            href="https://www.jetbrains.com/"
+            target="_blank"
+            rel="noopener nofollow"
+          >
             <img
               src="img/logos/jetbrains-logo.svg"
               class="gold-logo gold-logo--high"
+              loading="lazy"
+              alt="Jetbrains"
             />
           </a>
-          <a href="https://snyk.co/nestjs" target="_blank" rel="nofollow">
+          <a
+            href="https://snyk.co/nestjs"
+            target="_blank"
+            rel="noopener nofollow"
+          >
             <img
               src="img/logos/snyk-logo-black.png"
               class="gold-logo gold-logo--high"
+              loading="lazy"
+              alt="Snyk"
             />
           </a>
-          <a href="https://fuseautotech.com/" target="_blank" rel="nofollow">
+          <a
+            href="https://fuseautotech.com/"
+            target="_blank"
+            rel="noopener nofollow"
+          >
             <img
               src="img/logos/fuse-logo.svg"
               class="gold-logo gold-logo--wide"
+              loading="lazy"
+              alt="Fuse"
             />
           </a>
-          <a href="https://ridicorp.com/career/" target="_blank" rel="nofollow">
+          <a
+            href="https://ridicorp.com/career/"
+            target="_blank"
+            rel="noopener nofollow"
+          >
             <img
               src="img/logos/ridi-logo.svg"
               class="gold-logo gold-logo--high"
               width="100"
+              loading="lazy"
+              alt="Ridicorp"
             />
           </a>
-          <a href="https://www.movavi.com" target="_blank" rel="nofollow">
-            <img src="img/logos/movavi-logo.svg" class="gold-logo" />
+          <a
+            href="https://www.movavi.com"
+            target="_blank"
+            rel="noopener nofollow"
+          >
+            <img
+              src="img/logos/movavi-logo.svg"
+              class="gold-logo"
+              loading="lazy"
+              alt="Movavi"
+            />
           </a>
-          <a href="https://skunk.team" target="_blank" rel="nofollow">
+          <a href="https://skunk.team" target="_blank" rel="noopener nofollow">
             <img
               src="img/logos/skunk-logo.png"
               class="gold-logo gold-logo--slim"
+              loading="lazy"
+              alt="Skunk"
             />
           </a>
         </div>
@@ -741,57 +851,96 @@
           <a
             href="https://www.mercedes-benz.com/"
             target="_blank"
-            rel="nofollow"
+            rel="noopener nofollow"
           >
             <img
               src="img/logos/mercedes-logo.png"
               class="silver-logo m-l-10 m-r-10"
+              loading="lazy"
             />
           </a>
           <a
             href="https://www.casinoszondercruks.nu/"
             target="_blank"
-            rel="nofollow"
+            rel="noopener nofollow"
           >
             <img
               src="img/logos/casinos-zonder-logo.png"
               class="silver-logo m-l-10 m-r-10"
+              loading="lazy"
             />
           </a>
-          <a href="https://www.dinii.jp/" target="_blank" rel="nofollow">
+          <a
+            href="https://www.dinii.jp/"
+            target="_blank"
+            rel="noopener nofollow"
+          >
             <img
               src="img/logos/dinii-logo.png"
               class="silver-logo m-l-10 m-r-10"
+              loading="lazy"
             />
           </a>
           <a
             href="https://handsontable.com/docs/react-data-grid/?utm_source=NestJS_homepage&utm_medium=sponsorship&utm_campaign=library_sponsorship_2024"
             target="_blank"
-            rel="nofollow"
+            rel="noopener nofollow"
           >
-            <img src="img/logos/handsontable-logo.svg" class="silver-logo" />
+            <img
+              src="img/logos/handsontable-logo.svg"
+              class="silver-logo"
+              loading="lazy"
+            />
           </a>
-          <a href="https://www.itflashcards.com/" target="_blank"
-            ><img src="img/logos/it_flashcards-logo.png" class="silver-logo"
+          <a
+            href="https://www.itflashcards.com/"
+            target="_blank"
+            rel="noopener nofollow"
+            ><img
+              src="img/logos/it_flashcards-logo.png"
+              class="silver-logo"
+              loading="lazy"
           /></a>
-          <a href="https://arcjet.com/?ref=nestjs" target="_blank"
-            ><img src="img/logos/arcjet-logo.svg" class="silver-logo"
+          <a
+            href="https://arcjet.com/?ref=nestjs"
+            target="_blank"
+            rel="noopener nofollow"
+            ><img
+              src="img/logos/arcjet-logo.svg"
+              class="silver-logo"
+              loading="lazy"
           /></a>
         </div>
         <div class="support-section sponsor-tiles support-section--bronze">
           <h5>Sponsors / Partners</h5>
           <div class="bronze-sponsors-container">
-            <a href="https://www.netlify.com/" target="_blank" rel="nofollow">
-              <img src="img/logos/netlify-logo.svg" />
+            <a
+              href="https://www.netlify.com/"
+              target="_blank"
+              rel="noopener nofollow"
+            >
+              <img src="img/logos/netlify-logo.svg" loading="lazy" />
             </a>
-            <a href="https://www.novologic.com/" target="_blank" rel="nofollow">
-              <img src="img/logos/novologic.png" />
+            <a
+              href="https://www.novologic.com/"
+              target="_blank"
+              rel="noopener nofollow"
+            >
+              <img src="img/logos/novologic.png" loading="lazy" />
             </a>
-            <a href="https://www.swingdev.io/" target="_blank" rel="nofollow">
-              <img src="img/logos/swingdev-logo.svg" />
+            <a
+              href="https://www.swingdev.io/"
+              target="_blank"
+              rel="noopener nofollow"
+            >
+              <img src="img/logos/swingdev-logo.svg" loading="lazy" />
             </a>
-            <a href="https://www.route4me.com/" target="_blank" rel="nofollow">
-              <img src="img/logos/route4me-logo.svg" />
+            <a
+              href="https://www.route4me.com/"
+              target="_blank"
+              rel="noopener nofollow"
+            >
+              <img src="img/logos/route4me-logo.svg" loading="lazy" />
             </a>
           </div>
         </div>
@@ -927,6 +1076,7 @@
           <a
             href="https://github.com/nestjs/nest/blob/master/readme_zh.md"
             target="_blank"
+            rel="noopener"
             >中文说明</a
           >
         </p>
