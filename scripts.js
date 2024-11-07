@@ -1,4 +1,4 @@
-var Plyr = require('./lib/plyr.polyfilled');
+// var Plyr = require('./lib/plyr.polyfilled');
 
 window.addEventListener('load', function() {
   var headerHeight = document.querySelector('.page-header').clientHeight;
@@ -17,20 +17,20 @@ window.addEventListener('load', function() {
     }
     stickyNavbarElement.classList.remove('visible');
   }
-  var player = new Plyr('#player', {
-    keyboard: {
-      global: true,
-    },
-  });
-  player.once('play', function() {
-    var videoWrapper = document.querySelector('.plyr__video-wrapper');
-    videoWrapper.classList.add('hidden-poster');
+  // var player = new Plyr('#player', {
+  //   keyboard: {
+  //     global: true,
+  //   },
+  // });
+  // player.once('play', function() {
+  //   var videoWrapper = document.querySelector('.plyr__video-wrapper');
+  //   videoWrapper.classList.add('hidden-poster');
 
-    const poster = videoWrapper.querySelector('.plyr__poster');
-    if (poster) {
-      poster.remove();
-    }
-  });
+  //   const poster = videoWrapper.querySelector('.plyr__poster');
+  //   if (poster) {
+  //     poster.remove();
+  //   }
+  // });
 
   registerNavigation();
 
@@ -118,10 +118,29 @@ window.addEventListener('load', function() {
         sponsorElement.target = '_blank';
         sponsorElement.rel = 'noopener noreferrer';
         sponsorElement.title = sponsor.name;
-        sponsorElement.innerHTML = `<img src="${sponsor.image}" alt="${sponsor.name}" />`;
+        sponsorElement.innerHTML = `<img src="${sponsor.image}" alt="${sponsor.name}" loading="lazy" />`;
         bronzeSponsorsContainer.appendChild(sponsorElement);
       });
     });
-  
 
+    // Footer year
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Only load iframe when it's in view to improve performance
+    const iframe = document.querySelector('#preview iframe');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          iframe.src = iframe.dataset.src;
+          observer.disconnect();
+        }
+      });
+    });
+
+    observer.observe(iframe);
+
+    // Disconnect observer on unload
+    window.addEventListener('beforeunload', () => {
+      observer.disconnect();
+    });
 });
