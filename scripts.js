@@ -106,7 +106,10 @@ window.addEventListener('load', function() {
       if (!data) {
         return;
       }
-      const activeSponsors = data.filter((sponsor) => sponsor.isActive);
+      
+      const oneMonth = 1000 * 60 * 60 * 24 * 30;
+      const now = new Date();
+      const activeSponsors = data.filter((sponsor) => sponsor.isActive || (sponsor.lastTransactionAt && new Date(sponsor.lastTransactionAt).getTime() > now.getTime() - oneMonth));
       const bronzeSponsorsContainer = document.querySelector('.bronze-sponsors-container');
       if (!bronzeSponsorsContainer) {
         return;
