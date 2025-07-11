@@ -75,6 +75,7 @@
       src="https://use.fontawesome.com/releases/v6.4.2/js/all.js"
     ></script>
     <script type="module" src="scripts.js"></script>
+    <script type="module" src="./lib/fetchStars.js"></script>
     <!-- <link rel="stylesheet" href="lib/plyr.css" /> -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
@@ -187,6 +188,7 @@
               class="icon m-l-30"
             >
               <i class="fa-brands fa-github"></i>
+              <span class="github-stars"></span>
             </a>
           </li>
           <li class="social-icon">
@@ -280,8 +282,8 @@
                   href="https://github.com/nestjs/nest"
                   target="_blank"
                   title="GitHub | NestJS - A progressive Node.js framework"
-                  ><span>GITHUB</span></a
-                >
+                  ><span>GITHUB</span> <span class="github-stars"></span
+                ></a>
               </li>
             </ul>
             <div class="mobile-nav-footer">
@@ -364,6 +366,7 @@
                   class="icon"
                 >
                   <i class="fa-brands fa-github"></i>
+                  <span class="github-stars"></span>
                 </a>
               </li>
               <li class="social-icon">
@@ -402,7 +405,9 @@
                 href="https://github.com/nestjs/nest"
                 class="btn btn-secondary d-inline-block"
               >
-                <i class="fa-brands fa-github"></i> <span>Source code</span>
+                <i class="fa-brands fa-github"></i>
+                <span class="github-stars"></span>
+                <span>Source code</span>
               </a>
             </div>
           </div>
@@ -1026,6 +1031,7 @@
         <div class="social-wrapper">
           <a href="https://github.com/nestjs/nest" target="_blank" class="icon">
             <i class="fab fa-github"></i>
+            <span class="github-stars"></span>
           </a>
           <a
             href="https://twitter.com/nestframework"
@@ -1078,4 +1084,5 @@
       </div>
     </footer>
   </body>
+  <script src="lib/fetchStars.js"></script>
 </html>

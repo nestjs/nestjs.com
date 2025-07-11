@@ -1,7 +1,11 @@
 :root {
   --primary-color: #ea2845;
   --primary-accent-color: #ea2868;
-  --primary-gradient: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-accent-color) 100%);
+  --primary-gradient: linear-gradient(
+    90deg,
+    var(--primary-color) 0%,
+    var(--primary-accent-color) 100%
+  );
 }
 
 html {
@@ -60,12 +64,12 @@ a:active {
   margin-left: 4px;
 }
 
-.nav-wrapper >li > span:hover > .arrow {
+.nav-wrapper > li > span:hover > .arrow {
   color: #ea2845;
   cursor: pointer;
 }
 
-.nav-wrapper  > li > a:hover,
+.nav-wrapper > li > a:hover,
 .nav-wrapper > li > span:hover,
 .sub-nav-wrapper li a:hover {
   background: var(--primary-gradient);
@@ -115,7 +119,7 @@ a:active {
   visibility: visible;
   opacity: 1;
   transform: translateY(0);
-} 
+}
 
 .sub-nav-outlet {
   visibility: hidden;
@@ -449,11 +453,9 @@ body.mobile-nav-open {
   border-radius: 30px;
   padding: 2px;
   background: var(--primary-gradient);
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
-          mask-composite: exclude;
+  mask-composite: exclude;
   pointer-events: none;
   z-index: 2;
 }
@@ -467,7 +469,9 @@ body.mobile-nav-open {
   background: transparent;
 }
 
-.btn-primary:hover span, .btn-primary:active span, .btn-primary:focus span {
+.btn-primary:hover span,
+.btn-primary:active span,
+.btn-primary:focus span {
   color: var(--primary-color);
   background: var(--primary-gradient);
   -webkit-background-clip: text;
@@ -486,11 +490,9 @@ body.mobile-nav-open {
   border-radius: 30px;
   padding: 2px;
   background: #fff;
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
-          mask-composite: exclude;
+  mask-composite: exclude;
   pointer-events: none;
   z-index: 2;
 }
@@ -755,7 +757,6 @@ body.mobile-nav-open {
 .support-section a:nth-child(2n) {
   background-color: transparent;
 }
-
 
 .support-section a img {
   max-width: 100%;
@@ -1094,11 +1095,11 @@ body.mobile-nav-open {
 }
 
 .card--dark {
-  background: #0E0E10;
+  background: #0e0e10;
 }
 
 .card--primary {
-  background: #EE1744;
+  background: #ee1744;
 }
 
 .card--dark,
@@ -1108,7 +1109,7 @@ body.mobile-nav-open {
 }
 
 .card--light {
-  background: #E7E7E7;
+  background: #e7e7e7;
   margin-top: 30px;
   min-height: 520px;
 }
@@ -1185,7 +1186,7 @@ body.mobile-nav-open {
 }
 
 .card--dark .btn-secondary:hover,
-.card--primary .btn-secondary:hover  {
+.card--primary .btn-secondary:hover {
   background: transparent;
 }
 
@@ -1246,12 +1247,12 @@ body.mobile-nav-open {
   box-shadow: -20px -20px 60px 15px hsl(0deg 0% 0% / 15%);
 }
 
-.card--dark .card-image > img  {
-  border: 12px solid #1C1C1E;
+.card--dark .card-image > img {
+  border: 12px solid #1c1c1e;
 }
 
 .card--primary .card-image > img {
-  border: 12px solid #EF254F;
+  border: 12px solid #ef254f;
 }
 
 .card--light .image-wrapper > img {
@@ -1304,7 +1305,8 @@ body.mobile-nav-open {
 }
 
 @media (max-width: 1199px) and (min-width: 992px) {
-  .card--dark, .card--primary {
+  .card--dark,
+  .card--primary {
     min-height: 640px;
   }
 
@@ -1351,14 +1353,15 @@ body.mobile-nav-open {
     font-size: 28px;
   }
 
-  .card--dark, .card--primary {
+  .card--dark,
+  .card--primary {
     min-height: 640px;
   }
 
   .card--light {
     min-height: 580px;
   }
-  
+
   .card--light .card-image {
     bottom: -120px;
     width: 700px;
@@ -1366,7 +1369,8 @@ body.mobile-nav-open {
 }
 
 @media (max-width: 480px) {
-  .card--dark, .card--primary {
+  .card--dark,
+  .card--primary {
     min-height: 580px;
   }
 
@@ -1376,7 +1380,8 @@ body.mobile-nav-open {
 }
 
 @media (max-width: 400px) {
-  .card--dark, .card--primary {
+  .card--dark,
+  .card--primary {
     min-height: 500px;
   }
 }
@@ -1582,4 +1587,10 @@ body.mobile-nav-open {
 
 .plyr__poster {
   display: none !important;
+}
+
+.github-stars {
+  font-size: 20px;
+  font-family: math;
+  font-weight: 500;
 }
