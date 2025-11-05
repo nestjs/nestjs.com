@@ -15,7 +15,7 @@
     "@parcel/packager-xml": "^2.12.0",
     "@parcel/transformer-webmanifest": "^2.12.0",
     "@parcel/transformer-xml": "^2.12.0",
-    "parcel": "2.12.0"
+    "parcel": "2.16.1"
   },
   "dependencies": {
     "copyfiles": "2.4.1"
