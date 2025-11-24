@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-2xl: initial;
+  --font-sans: 'Manrope', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+  --color-bg: #050303;
+  --color-text: #ffffff;
+}
+
+body {
+  background-color: var(--color-bg);
+  font-family: var(--font-sans);
+  color: var(--color-text);
+}

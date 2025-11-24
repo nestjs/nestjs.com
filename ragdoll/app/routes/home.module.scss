@@ -1,0 +1,31 @@
+.navPanel {
+  position: relative;
+}
+
+.navPanel::before,
+.navPanel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 32px;
+  padding: 1px;
+  width: 50%;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.5) 0.05%, transparent 30%);
+  mask: conic-gradient(#000 0 0) content-box, conic-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+}
+
+.navPanel::before {
+  left: 0;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.6) 0.05%, transparent 30%);
+}
+
+.navPanel::after {
+  right: 0;
+  background: linear-gradient(165deg, transparent 70%, rgba(255, 255, 255, 0.6) 99.95%);
+  left: auto;
+}
