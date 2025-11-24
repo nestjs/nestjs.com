@@ -19,9 +19,10 @@ export default function Home() {
   return (
     <div className="p-10">
       <header
-        className="flex justify-center bg-gradient-to-r from-[#050303] 
-            via-[#c21f3a] 
-            to-[#050303] overflow-hidden relative rounded-[32px]"
+        className="flex justify-center overflow-hidden relative rounded-[32px] 
+          bg-gradient-to-r from-[#050303] 
+          via-[#c21f3a] 
+          to-[#050303]"
       >
         <BokehHeader />
         <NoiseOverlay />
