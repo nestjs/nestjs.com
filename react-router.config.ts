@@ -7,6 +7,8 @@ const config: Config = {
 
   // Which paths to prerender
   prerender: ["/"],
+
+  buildDirectory: "dist",
 };
 
 export default config;
