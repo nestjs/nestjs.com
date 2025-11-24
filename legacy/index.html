@@ -1,0 +1,1034 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>NestJS - A progressive Node.js framework</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    />
+    <link rel="stylesheet" href="lib/bootstrap.css" />
+    <link rel="stylesheet" href="main.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Preload LCP image -->
+    <link rel="preload" href="img/header.webp" as="image" />
+    <meta
+      name="description"
+      content="NestJS is a framework for building efficient, scalable Node.js web applications. It uses modern JavaScript, is built with TypeScript and combines elements of OOP (Object Oriented Programming), FP (Functional Programming), and FRP (Functional Reactive Programming)."
+    />
+    <meta name="robots" content="noodp" />
+    <link rel="canonical" href="https://nestjs.com" />
+    <meta property="og:url" content="https://nestjs.com" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      property="og:site_name"
+      content="NestJS - A progressive Node.js framework"
+    />
+    <meta
+      property="og:title"
+      content="NestJS - A progressive Node.js framework"
+    />
+    <meta
+      property="og:description"
+      content="NestJS is a framework for building efficient, scalable Node.js web applications. It uses modern JavaScript, is built with TypeScript and combines elements of OOP (Object Oriented Programming), FP (Functional Programming), and FRP (Functional Reactive Programming)."
+    />
+    <meta property="og:image" content="https://nestjs.com/img/nest-og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="650" />
+    <meta
+      name="twitter:description"
+      content="NestJS is a framework for building efficient, scalable Node.js web applications. It uses modern JavaScript, is built with TypeScript and combines elements of OOP (Object Oriented Programming), FP (Functional Programming), and FRP (Functional Reactive Programming)."
+    />
+    <meta
+      name="twitter:title"
+      content="NestJS - A progressive Node.js framework"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="img/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="img/favicon-16x16.png"
+    />
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
+    <link rel="manifest" href="img/manifest.webmanifest" />
+    <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#ed2945" />
+    <meta name="msapplication-config" content="img/browserconfig.xml" />
+    <meta name="msapplication-TileColor" content="#ed2945" />
+    <meta name="theme-color" content="#ffffff" />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v6.4.2/js/all.js"
+    ></script>
+    <script type="module" src="scripts.js"></script>
+    <!-- <link rel="stylesheet" href="lib/plyr.css" /> -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-6XRN4DXQ09"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-6XRN4DXQ09");
+    </script>
+  </head>
+
+  <body>
+    <div class="navbar-sticky">
+      <div class="container">
+        <div class="logo-wrapper d-inline-block">
+          <a href="/">
+            <img
+              src="img/logo-small-gradient.svg"
+              alt="NestJS - A progressive Node.js framework"
+            />
+          </a>
+        </div>
+        <ul class="nav-wrapper d-inline-block">
+          <li class="hidden-xs">
+            <a
+              href="https://docs.nestjs.com"
+              title="Documentation | NestJS - A progressive Node.js framework"
+              ><span>DOCUMENTATION</span></a
+            >
+          </li>
+          <li class="hidden-xs">
+            <a
+              href="https://enterprise.nestjs.com"
+              title="Enterprise | NestJS - A progressive Node.js framework"
+              ><span>ENTERPRISE</span></a
+            >
+          </li>
+          <li class="hidden-xs">
+            <span
+              ><span class="new">NEW</span><span class="text">RESOURCES</span>
+              <i class="fa-solid fa-chevron-down arrow"></i
+            ></span>
+            <div class="sub-nav-outlet">
+              <div class="sub-nav-wrapper sub-nav-wrapper--light">
+                <span class="nav-category">Education</span>
+                <ul>
+                  <li>
+                    <a
+                      href="https://courses.nestjs.com"
+                      title="Courses | NestJS - A progressive Node.js framework"
+                      >Courses</a
+                    >
+                  </li>
+                </ul>
+                <span class="nav-category">Platforms</span>
+                <ul>
+                  <li>
+                    <a
+                      href="https://jobs.nestjs.com"
+                      title="Jobs | NestJS - A progressive Node.js framework"
+                      >Jobs</a
+                    >
+                  </li>
+                </ul>
+                <span class="nav-category">Tools</span>
+                <ul>
+                  <li>
+                    <a
+                      href="https://devtools.nestjs.com"
+                      title="Devtools | NestJS - A progressive Node.js framework"
+                      >Devtools</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://mau.nestjs.com"
+                      title="Deploy with Mau | NestJS - A progressive Node.js framework"
+                      >Mau</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="social-icon">
+            <svg width="0" height="0" class="gradient-svg">
+              <defs>
+                <linearGradient
+                  id="primary-gradient"
+                  x1="0%"
+                  x2="100%"
+                  y1="0%"
+                  y2="0%"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop offset="0%" stop-color="#ea2845" />
+                  <stop offset="100%" stop-color="#ea2868" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <a
+              href="https://github.com/nestjs/nest"
+              target="_blank"
+              class="icon m-l-30"
+            >
+              <i class="fa-brands fa-github"></i>
+            </a>
+          </li>
+          <li class="social-icon">
+            <a
+              href="https://twitter.com/nestframework"
+              target="_blank"
+              class="icon"
+            >
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+          </li>
+          <li class="social-icon">
+            <a
+              href="https://linkedin.com/company/19078346"
+              target="_blank"
+              class="icon"
+            >
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <header class="page-header">
+      <div class="container">
+        <div class="top-wrapper">
+          <div class="logo-wrapper d-inline-block">
+            <a href="/">
+              <img
+                src="img/logo-small-gradient.svg"
+                alt="NestJS - A progressive Node.js framework"
+              />
+            </a>
+          </div>
+          <div class="mobile-nav-icon pull-right">
+            <span></span>
+            <div class="fill"></div>
+          </div>
+          <nav class="mobile-nav">
+            <div class="mobile-nav-head">
+              <div class="mobile-nav-logo">
+                <a href="/">
+                  <img
+                    src="img/logo-small-gradient.svg"
+                    alt="NestJS - A progressive Node.js framework"
+                  />
+                </a>
+              </div>
+              <div class="mobile-nav-close">
+                <span></span>
+              </div>
+            </div>
+            <ul>
+              <li>
+                <a
+                  href="https://enterprise.nestjs.com"
+                  title="Enterprise | NestJS - A progressive Node.js framework"
+                  ><span>ENTERPRISE</span></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://courses.nestjs.com"
+                  title="Courses | NestJS - A progressive Node.js framework"
+                  ><span>COURSES</span></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://jobs.nestjs.com"
+                  title="Jobs | NestJS - A progressive Node.js framework"
+                  ><span>JOBS</span></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://devtools.nestjs.com"
+                  title="Devtools | NestJS - A progressive Node.js framework"
+                  ><span>DEVTOOLS</span></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://mau.nestjs.com"
+                  title="Deploy with Mau | NestJS - A progressive Node.js framework"
+                  ><span>DEPLOY WITH MAU</span><span class="new">NEW</span></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://github.com/nestjs/nest"
+                  target="_blank"
+                  title="GitHub | NestJS - A progressive Node.js framework"
+                  ><span>GITHUB</span></a
+                >
+              </li>
+            </ul>
+            <div class="mobile-nav-footer">
+              <a
+                href="https://docs.nestjs.com"
+                title="Documentation | NestJS - A progressive Node.js framework"
+                class="btn btn-primary d-inline-block"
+                ><span>DOCUMENTATION</span></a
+              >
+            </div>
+          </nav>
+          <nav class="pull-right hidden-md">
+            <ul class="nav-wrapper">
+              <li>
+                <a
+                  href="https://docs.nestjs.com"
+                  title="Documentation | NestJS - A progressive Node.js framework"
+                  ><span>DOCUMENTATION</span></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://enterprise.nestjs.com"
+                  title="Enterprise | NestJS - A progressive Node.js framework"
+                  ><span>ENTERPRISE</span></a
+                >
+              </li>
+              <li>
+                <span class="sub-nav-trigger"
+                  ><span class="new">NEW</span
+                  ><span class="text">RESOURCES</span>
+                  <i class="fa-solid fa-chevron-down arrow"></i
+                ></span>
+                <div class="sub-nav-outlet">
+                  <div class="sub-nav-wrapper">
+                    <span class="nav-category">Education</span>
+                    <ul>
+                      <li>
+                        <a
+                          href="https://courses.nestjs.com"
+                          title="Courses | NestJS - A progressive Node.js framework"
+                          >Courses</a
+                        >
+                      </li>
+                    </ul>
+                    <span class="nav-category">Platforms</span>
+                    <ul>
+                      <li>
+                        <a
+                          href="https://jobs.nestjs.com"
+                          title="Jobs | NestJS - A progressive Node.js framework"
+                          >Jobs</a
+                        >
+                      </li>
+                    </ul>
+                    <span class="nav-category">Tools</span>
+                    <ul>
+                      <li>
+                        <a
+                          href="https://devtools.nestjs.com"
+                          title="Devtools | NestJS - A progressive Node.js framework"
+                          >Devtools</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="https://mau.nestjs.com"
+                          title="Deploy with Mau | NestJS - A progressive Node.js framework"
+                          >Deploy with Mau</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <li class="social-icon">
+                <a
+                  href="https://github.com/nestjs/nest"
+                  target="_blank"
+                  class="icon"
+                >
+                  <i class="fa-brands fa-github"></i>
+                </a>
+              </li>
+              <li class="social-icon">
+                <a
+                  href="https://twitter.com/nestframework"
+                  target="_blank"
+                  class="icon"
+                >
+                  <i class="fa-brands fa-x-twitter"></i>
+                </a>
+              </li>
+              <li class="social-icon">
+                <a
+                  href="https://linkedin.com/company/19078346"
+                  target="_blank"
+                  class="icon"
+                >
+                  <i class="fa-brands fa-linkedin"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="main-wrapper">
+            <h1>Hello, nest!</h1>
+            <h4>
+              A progressive Node.js framework for building efficient, reliable
+              and scalable server-side applications.
+            </h4>
+            <div class="buttons-wrapper">
+              <a
+                href="https://docs.nestjs.com"
+                class="btn btn-primary d-inline-block"
+                ><span>Documentation</span></a
+              >
+              <a
+                href="https://github.com/nestjs/nest"
+                class="btn btn-secondary d-inline-block"
+              >
+                <i class="fa-brands fa-github"></i> <span>Source code</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section id="highlights" class="highlights-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 highlight-block">
+            <div class="icon-wrapper">
+              <img src="img/3d.svg" loading="lazy" alt />
+            </div>
+            <h5>Extensible</h5>
+            <p>
+              Provides unparalleled flexibility through its meticulously crafted
+              modular architecture.
+            </p>
+          </div>
+          <div class="col-md-4 highlight-block">
+            <div class="icon-wrapper">
+              <img src="img/magic-wand.svg" loading="lazy" alt />
+            </div>
+            <h5>Versatile</h5>
+            <p>
+              Serves as a robust, elegant, and well-structured foundation for
+              all kinds of server-side applications.
+            </p>
+          </div>
+          <div class="col-md-4 highlight-block">
+            <div class="icon-wrapper">
+              <img src="img/quality.svg" loading="lazy" alt />
+            </div>
+            <h5>Progressive</h5>
+            <p>
+              Introduces design patterns and well-established solutions to the
+              Node.js landscape.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="features" class="blocks-wrapper">
+      <div class="container">
+        <div class="heading">
+          <h4>Everything you need..</h4>
+          <p>
+            Build robust, powerful, and scalable server-side applications and
+            stop reinventing the wheel.
+          </p>
+        </div>
+        <div class="row blocks-row">
+          <div class="col-md-3 col-sm-6">
+            <div class="block">
+              <div class="icon-wrapper">
+                <img src="img/icons/puzzle.svg" loading="lazy" alt />
+              </div>
+              <h5>Modularity</h5>
+              <p>
+                Streamline upkeep by organizing applications into self-contained
+                modules.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="block">
+              <div class="icon-wrapper">
+                <img src="img/icons/rocket.svg" loading="lazy" alt />
+              </div>
+              <h5>Scalability</h5>
+              <p>
+                Scale seamlessly with efficient, battle-tested components.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="block">
+              <div class="icon-wrapper">
+                <img src="img/icons/di.svg" loading="lazy" alt />
+              </div>
+              <h5>Dependency injection</h5>
+              <p>
+                Elevate testability with a sophisticated dependency injection
+                system.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="block">
+              <div class="icon-wrapper">
+                <img src="img/icons/type-safety.svg" loading="lazy" alt />
+              </div>
+              <h5>Type safety</h5>
+              <p>
+                Mitigate errors through the robust type safety features of
+                TypeScript.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="block">
+              <div class="icon-wrapper">
+                <img src="img/icons/ecosystem.svg" loading="lazy" alt />
+              </div>
+              <h5>Rich ecosystem</h5>
+              <p>
+                Explore a rich ecosystem offering versatile tools to craft
+                solutions tailored to your needs.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="block">
+              <div class="icon-wrapper">
+                <img src="img/icons/chip.svg" loading="lazy" alt />
+              </div>
+              <h5>Enterprise-ready</h5>
+              <p>
+                Trusted by thousands of leading companies and organizations
+                worldwide.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="block">
+              <div class="icon-wrapper">
+                <img src="img/icons/microservices.svg" loading="lazy" alt />
+              </div>
+              <h5>Microservices</h5>
+              <p>
+                Create loosely coupled, independently deployable services for
+                increased agility and scalability.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="block">
+              <div class="icon-wrapper">
+                <img src="img/icons/api.svg" loading="lazy" alt />
+              </div>
+              <h5>Web apps</h5>
+              <p>
+                Build REST APIs, GraphQL APIs, Queues, and real-time &
+                event-driven applications in no time.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="other-services" class="other-services">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-xs-12">
+            <div class="card card--dark">
+              <div class="ellipse-overlay"></div>
+              <div class="card-content">
+                <h2>Deploy, mau!</h2>
+                <p>
+                  Provision and manage your infrastracture on AWS without the
+                  hassle and extra DevOps work.
+                </p>
+                <a href="https://mau.nestjs.com" class="btn btn-secondary"
+                  >Start now</a
+                >
+              </div>
+              <div class="card-image">
+                <img src="img/mau.png" loading="lazy" alt />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <div class="card card--primary">
+              <div class="ellipse-overlay"></div>
+              <div class="card-content">
+                <h2>Explore your graph</h2>
+                <p>
+                  Identify dependencies and connections between modules, and
+                  dive deep into the inner workings of your classes.
+                </p>
+                <a href="https://devtools.nestjs.com" class="btn btn-secondary"
+                  >Learn more</a
+                >
+              </div>
+              <div class="card-image">
+                <img src="img/devtools.png" loading="lazy" alt />
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <div class="card card--light">
+              <div class="ellipse-overlay"></div>
+              <div class="card-content">
+                <h2>Official NestJS Courses</h2>
+                <p>
+                  Learn everything you need to master NestJS and tackle modern
+                  backend applications at any scale.
+                </p>
+                <a href="https://courses.nestjs.com" class="btn btn-secondary"
+                  >See courses</a
+                >
+              </div>
+              <div class="card-image">
+                <div class="card-boxes">
+                  <div class="card-box">
+                    <img src="img/courses-box-2.png" loading="lazy" alt />
+                  </div>
+                  <div class="card-box">
+                    <img src="img/courses-box-1.png" loading="lazy" alt />
+                  </div>
+                </div>
+                <div class="image-wrapper">
+                  <img src="img/courses.png" loading="lazy" alt />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="enterprise-wrapper" id="enterprise">
+      <div class="container">
+        <div class="enterprise-column">
+          <h2>
+            The open source platform designed for the future. Build enterprise.
+          </h2>
+          <p>
+            A complete development kit for building scalable server-side apps.
+            Contact us to find out more about expertise consulting, on-site
+            enterprise support, trainings, and private sessions.
+          </p>
+          <a
+            href="https://enterprise.nestjs.com"
+            target="_blank"
+            class="btn btn-secondary d-inline-block"
+            title="Enterprise | NestJS - A progressive Node.js framework"
+            >Learn more about support offerings</a
+          >
+        </div>
+      </div>
+    </section>
+    <section id="preview" class="live-wrapper">
+      <div class="container">
+        <h4>Live preview</h4>
+        <p>
+          See how your application may potentially look like without leaving<br />
+          your personal browser.
+        </p>
+        <iframe
+          src="https://stackblitz.com/edit/nestjs-typescript-starter-pcysqn?embed=1&file=src/app.service.ts&hideNavigation=1&showSidebar=1&view=editor&ctl=1"
+          style="
+            width: 100%;
+            height: 600px;
+            border: 0;
+            border-radius: 4px;
+            overflow: hidden;
+          "
+          sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+        ></iframe>
+      </div>
+    </section>
+    <!-- <section class="video-wrapper" id="video">
+      <div class="container">
+        <h4>Conferences</h4>
+        <p>
+          Building a platform: Nest from the ground up
+          <a href="https://twitter.com/kammysliwiec" target="_blank"
+            >Kamil Mysliwiec </a
+          ><br />
+          <a href="https://js-poland.pl/" target="_blank" rel="nofollow">JSPoland</a> Warsaw
+          2018
+        </p>
+        <div class="plyr__video-embed" id="player">
+          <iframe
+            src="https://www.youtube.com/embed/f0qzBkAQ3mk?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+            allowfullscreen
+            allowtransparency
+            allow="autoplay"
+          ></iframe>
+        </div>
+      </div>
+    </section> -->
+    <section class="sponsors-wrapper" id="sponsors">
+      <div class="container">
+        <h4>Support us</h4>
+        <p>
+          Nest is an MIT-licensed open-source project. Hence, it grows thanks to
+          the sponsors and support by the amazing backers. Please, consider
+          supporting us!
+        </p>
+        <div class="support-section">
+          <h5>Principal sponsors</h5>
+          <a href="https://trilon.io" target="_blank">
+            <img src="img/trilon.svg" loading="lazy" alt="Trilon" />
+          </a>
+          <a href="https://microsoft.com" target="_blank">
+            <img
+              src="img/logos/microsoft-logo.png"
+              loading="lazy"
+              alt="Microsoft"
+            />
+          </a>
+          <a href="https://mojam.co/" target="_blank">
+            <img src="img/logos/mojam-logo.png" loading="lazy" alt="Mojam" />
+          </a>
+          <a href="https://valor-software.com/" target="_blank">
+            <img
+              src="img/logos/valor-software.png"
+              loading="lazy"
+              alt="Valor Software"
+            />
+          </a>
+        </div>
+        <div class="support-section support-section--gold">
+          <h5>Gold sponsors</h5>
+          <a
+            href="https://www.redhat.com"
+            target="_blank"
+            rel="noopener nofollow"
+          >
+            <img
+              src="img/logos/red-hat-logo.svg"
+              class="gold-logo"
+              loading="lazy"
+              alt="Red Hat"
+            />
+          </a>
+          <a
+            href="https://github.com/Sanofi-IADC"
+            target="_blank"
+            rel="noopener nofollow"
+          >
+            <img
+              src="img/logos/sanofi.png"
+              class="gold-logo"
+              loading="lazy"
+              alt="Sanofi"
+            />
+          </a>
+          <a href="https://nx.dev" target="_blank" rel="noopener nofollow">
+            <img
+              src="img/logos/nx-logo.png"
+              class="gold-logo gold-logo--slim"
+              loading="lazy"
+              alt="Nx"
+            />
+          </a>
+          <a
+            href="https://www.jetbrains.com/"
+            target="_blank"
+            rel="noopener nofollow"
+          >
+            <img
+              src="img/logos/jetbrains-logo.svg"
+              class="gold-logo gold-logo--high"
+              loading="lazy"
+              alt="Jetbrains"
+            />
+          </a>
+          <a
+            href="https://snyk.co/nestjs"
+            target="_blank"
+            rel="noopener nofollow"
+          >
+            <img
+              src="img/logos/snyk-logo-black.png"
+              class="gold-logo gold-logo--high"
+              loading="lazy"
+              alt="Snyk"
+            />
+          </a>
+          <a
+            href="https://www.movavi.com"
+            target="_blank"
+            rel="noopener nofollow"
+          >
+            <img
+              src="img/logos/movavi-logo.svg"
+              class="gold-logo"
+              loading="lazy"
+              alt="Movavi"
+            />
+          </a>
+        </div>
+        <div class="support-section support-section--silver">
+          <h5>Silver sponsors</h5>
+          <a
+            href="https://www.mercedes-benz.com/"
+            target="_blank"
+            rel="noopener nofollow"
+          >
+            <img
+              src="img/logos/mercedes-logo.png"
+              class="silver-logo m-l-10 m-r-10"
+              loading="lazy"
+            />
+          </a>
+          <a
+            href="https://www.dinii.jp/"
+            target="_blank"
+            rel="noopener nofollow"
+          >
+            <img
+              src="img/logos/dinii-logo.png"
+              class="silver-logo m-l-10 m-r-10"
+              loading="lazy"
+            />
+          </a>
+          <a
+            href="https://handsontable.com/docs/react-data-grid/?utm_source=NestJS_homepage&utm_medium=sponsorship&utm_campaign=library_sponsorship_2024"
+            target="_blank"
+            rel="noopener nofollow"
+          >
+            <img
+              src="img/logos/handsontable-logo.svg"
+              class="silver-logo"
+              loading="lazy"
+            />
+          </a>
+          <a
+            href="https://www.itflashcards.com/"
+            target="_blank"
+            rel="noopener nofollow"
+            ><img
+              src="img/logos/it_flashcards-logo.png"
+              class="silver-logo"
+              loading="lazy"
+          /></a>
+          <a
+            href="https://arcjet.com/?ref=nestjs"
+            target="_blank"
+            rel="noopener nofollow"
+            ><img
+              src="img/logos/arcjet-logo.svg"
+              class="silver-logo"
+              loading="lazy"
+          /></a>
+          <a
+            href="https://www.crawljobs.com/"
+            target="_blank"
+            rel="noopener nofollow"
+            ><img
+              src="img/logos/crawljobs-logo.svg"
+              class="silver-logo"
+              loading="lazy"
+          /></a>
+          <a
+            href="https://pandektes.com/"
+            target="_blank"
+            rel="noopener nofollow"
+            ><img
+              src="img/logos/pandektes-logo.png"
+              class="silver-logo"
+              loading="lazy"
+          /></a>
+        </div>
+        <div class="support-section sponsor-tiles support-section--bronze">
+          <h5>Sponsors / Partners</h5>
+          <div class="bronze-sponsors-container">
+            <a
+              href="https://www.netlify.com/"
+              target="_blank"
+              rel="noopener nofollow"
+            >
+              <img src="img/logos/netlify-logo.svg" loading="lazy" />
+            </a>
+            <a
+              href="https://www.novologic.com/"
+              target="_blank"
+              rel="noopener nofollow"
+            >
+              <img src="img/logos/novologic.png" loading="lazy" />
+            </a>
+            <a
+              href="https://www.swingdev.io/"
+              target="_blank"
+              rel="noopener nofollow"
+            >
+              <img src="img/logos/swingdev-logo.svg" loading="lazy" />
+            </a>
+            <a
+              href="https://www.route4me.com/"
+              target="_blank"
+              rel="noopener nofollow"
+            >
+              <img src="img/logos/route4me-logo.svg" loading="lazy" />
+            </a>
+          </div>
+        </div>
+        <!-- <div class="support-section sponsor-tiles sponsor-tiles--high">
+          <h5>Community partners</h5>
+          <a href="http://ng-atl.org" target="_blank" rel="nofollow">
+            <img src="img/logos/ngatl.svg"  />
+          </a>
+          <a href="https://ngtalks.io/" target="_blank" rel="nofollow">
+            <img
+              src="img/logos/ngtalks.png"
+              class="company-logo company-logo--high"
+            />
+          </a>
+          <a href="https://jscamp.tech/" target="_blank" rel="nofollow">
+            <img
+              src="img/logos/jscamp-official.svg"
+              class="company-logo company-logo--high"
+            />
+          </a>
+          <a href="https://js-kongress.com" target="_blank" rel="nofollow">
+            <img
+              src="img/logos/jskongress.png"
+              class="company-logo company-logo--high"
+            />
+          </a>
+          <a href="http://js-poland.pl" target="_blank" rel="nofollow">
+            <img src="img/logos/js-poland-logo.png" />
+          </a>
+          <a href="http://ng-poland.pl" target="_blank" rel="nofollow">
+            <img src="img/logos/ng-poland-logo.png" />
+          </a>
+          <a href="https://ng-my.org" target="_blank" rel="nofollow">
+            <img src="img/logos/ngmy.svg"  />
+          </a>
+          <a href="https://ngvikings.org/" target="_blank" rel="nofollow">
+            <img
+              src="img/logos/ngvikings-logo.png" />
+          </a>
+          <a href="https://angularmix.com" target="_blank" rel="nofollow">
+            <img
+              src="img/logos/angularmix-logo.png" />
+          </a>
+          <a href="https://angular.love" target="_blank" rel="nofollow">
+            <img
+              src="img/logos/angularlove-logo.png"
+             
+            />
+          </a>
+        </div> -->
+        <a
+          href="https://docs.nestjs.com/support"
+          target="_blank"
+          class="btn btn-primary d-inline-block"
+          ><span>Become a sponsor <span>/</span> backer</span></a
+        >
+      </div>
+    </section>
+    <div class="newsletter-wrapper">
+      <div class="signup container">
+        <div class="hgroup">
+          <h3>Join our Newsletter</h3>
+          <p>
+            Subscribe to stay up to date with the latest Nest updates, features,
+            and videos!
+          </p>
+        </div>
+        <div class="newsletter-form">
+          <form class="form-wrapper">
+            <input
+              id="newsletter-email"
+              class="form-control"
+              name="email"
+              type="email"
+              placeholder="Email address.."
+              required
+            />
+            <button type="submit" class="signup-button">
+              <i class="far fa-paper-plane"></i>
+              <i class="icon-success fas fa-check-circle"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <footer class="page-footer">
+      <div class="container">
+        <div class="social-wrapper">
+          <a href="https://github.com/nestjs/nest" target="_blank" class="icon">
+            <i class="fab fa-github"></i>
+          </a>
+          <a
+            href="https://twitter.com/nestframework"
+            target="_blank"
+            class="icon"
+          >
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+          <a
+            href="https://linkedin.com/company/19078346"
+            target="_blank"
+            class="icon"
+          >
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+        </div>
+        <p>
+          Released under the MIT License <br />
+          Official NestJS Consulting
+          <a
+            href="https://trilon.io"
+            title="Official NestJS Consulting | Angular Consulting"
+            target="_blank"
+            >Trilon.io</a
+          ><br />
+          Copyright © 2017-
+          <script>
+            var currentYear = new Date().getFullYear();
+            document.write(currentYear);
+          </script>
+          <a href="https://twitter.com/kammysliwiec" target="_blank"
+            >Kamil Mysliwiec</a
+          >
+          <br />
+          Designed by
+          <a href="https://dribbble.com/JakubStaron" target="_blank"
+            >Jakub Staron</a
+          >, hosted by
+          <a href="https://www.netlify.com" target="_blank" rel="nofollow"
+            >Netlify</a
+          >
+          <br />
+          <a
+            href="https://github.com/nestjs/nest/blob/master/readme_zh.md"
+            target="_blank"
+            rel="noopener"
+            >中文说明</a
+          >
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

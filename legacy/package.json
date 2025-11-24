@@ -1,0 +1,27 @@
+{
+  "name": "nestjs.com",
+  "version": "1.0.0",
+  "description": "NestJS - official website",
+  "scripts": {
+    "build": "rm -rf dist && parcel build index.html --public-url ./ && npm run copy-assets",
+    "copy-assets": "copyfiles img/**/* img/* dist",
+    "start": "parcel index.html",
+    "start:watch": "parcel watch index.html"
+  },
+  "author": "Kamil Myśliwiec",
+  "license": "MIT",
+  "devDependencies": {
+    "@parcel/packager-raw-url": "^2.12.0",
+    "@parcel/packager-xml": "^2.12.0",
+    "@parcel/transformer-webmanifest": "^2.12.0",
+    "@parcel/transformer-xml": "^2.12.0",
+    "parcel": "2.16.1"
+  },
+  "dependencies": {
+    "copyfiles": "2.4.1"
+  },
+  "optionalDependencies": {
+    "@parcel/watcher-linux-x64-glibc": "2.5.1",
+    "@swc/core-linux-x64-gnu": "^1.7.40"
+  }
+}
