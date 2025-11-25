@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-const NoiseOverlay: React.FC<{ opacity?: number }> = ({ opacity = 0.2 }) => {
+const NoiseOverlay: React.FC<{ opacity?: number }> = ({ opacity = 0.15 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationRef = useRef<number>(null);
 
@@ -30,18 +30,18 @@ const NoiseOverlay: React.FC<{ opacity?: number }> = ({ opacity = 0.2 }) => {
       ctx.putImageData(imageData, 0, 0);
     };
 
-    const FRAME_SKIP = 4; // (4 ≈ 15fps noise)
+    const FRAME_SKIP = 5; // (4 ≈ 15fps noise)
     let frame = 0;
 
     const draw = () => {
-      // frame++;
-      // if (frame % FRAME_SKIP === 0) {
-      //   generateNoise();
-      // }
-      // animationRef.current = requestAnimationFrame(draw);
+      frame++;
+      if (frame % FRAME_SKIP === 0) {
+        generateNoise();
+      }
+      animationRef.current = requestAnimationFrame(draw);
     };
 
-    generateNoise();
+    draw();
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
