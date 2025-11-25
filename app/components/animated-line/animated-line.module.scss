@@ -7,7 +7,7 @@
 }
 
 .innerLine {
-  animation: rollDownAndUp 10s infinite;
+  animation: rollDown 10s ease-out 1 forwards, pulseLight 5s ease-in-out 1s infinite; 
   transform: translateX(-50%) scaleY(0);
   background: linear-gradient(
     to bottom,
@@ -34,7 +34,7 @@
 }
 
 .innerDot {
-  animation: fadeInAndOut 10s infinite;
+  animation: fadeIn 10s ease-out 1 forwards, pulseLight 5s ease-in-out 1s infinite; 
   top: 50%;
   transform: translate(-40%, -50%) rotate(45deg);
   width: 4px;
@@ -45,33 +45,34 @@
   position: absolute;
 }
 
-@keyframes rollDownAndUp {
+@keyframes rollDown {
   0% {
     transform: translateX(-50%) scaleY(0);
   }
-  10% {
-    transform: translateX(-50%) scaleY(1);
-  }
-  40% {
-    transform: translateX(-50%) scaleY(1);
-  }
-  50%,
+  10%,
   100% {
-    transform: translateX(-50%) scaleY(0);
+    transform: translateX(-50%) scaleY(1);
   }
 }
 
-@keyframes fadeInAndOut {
+@keyframes fadeIn {
   0%,
-  10%,
-  54%,
-  100% {
+  10% {
     opacity: 0;
     transform: translate(-50%, -50%) rotate(0);
   }
-  15%,
-  49% {
+  20%,
+  100% {
     opacity: 1;
-    transform: translate(-50%, -50%) rotate(135deg);
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+}
+
+@keyframes pulseLight {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(2.5);
   }
 }
