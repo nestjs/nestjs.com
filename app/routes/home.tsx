@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { siDiscord, siGithub, siX } from "simple-icons";
 import { AnimatedLine } from "../components/animated-line/animated-line";
 import Aurora from "../components/aurora-header/aurora-header";
@@ -20,8 +20,28 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
+const MENU_ITEMS = [
+  { id: "docs", label: "Docs", href: "https://docs.nestjs.com" },
+  {
+    id: "courses",
+    label: "Official courses",
+    href: "https://courses.nestjs.com",
+  },
+  { id: "tools", label: "Tools", href: "#" },
+  {
+    id: "enterprise",
+    label: "Enterprise",
+    href: "https://enterprise.nestjs.com",
+  },
+  { id: "jobs", label: "Jobs", href: "https://jobs.nestjs.com" },
+];
+
 export default function Home() {
   const headerRef = useRef<HTMLDivElement | null>(null);
+  const [hoveringTargetId, setHoveringTargetId] = useState<string | null>(null);
+  const onMenuItemMouseLeave = () => {
+    setHoveringTargetId(null);
+  };
 
   return (
     <div className="p-10">
@@ -52,11 +72,22 @@ export default function Home() {
                   <nav
                     className={`flex justify-center space-x-10 font-medium text-base flex-1`}
                   >
-                    <a href="https://docs.nestjs.com">Docs</a>
-                    <a href="https://courses.nestjs.com">Official courses</a>
-                    <a href="#">Tools</a>
-                    <a href="https://enterprise.nestjs.com">Enterprise</a>
-                    <a href="https://jobs.nestjs.com">Jobs</a>
+                    {MENU_ITEMS.map((item) => (
+                      <a
+                        key={item.id}
+                        href={item.href}
+                        className={
+                          item.id === hoveringTargetId ||
+                          hoveringTargetId === null
+                            ? "text-white hover:opacity-100 duration-200"
+                            : "opacity-30 duration-200"
+                        }
+                        onMouseEnter={() => setHoveringTargetId(item.id)}
+                        onMouseLeave={onMenuItemMouseLeave}
+                      >
+                        {item.label}
+                      </a>
+                    ))}
                   </nav>
 
                   <div className="flex justify-end space-x-5">
