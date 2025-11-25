@@ -16,6 +16,7 @@ uniform float uAmplitude;
 uniform vec3 uColorStops[3];
 uniform vec2 uResolution;
 uniform float uBlend;
+uniform vec2 uMouse;
 
 out vec4 fragColor;
 
@@ -98,12 +99,23 @@ void main() {
   height = (uv.y * 3.5 - height + 0.2);
   float intensity = 0.6 * height;
   
-  float midPoint = 0.20;
-  float auroraAlpha = smoothstep(midPoint - uBlend * 0.5, midPoint + uBlend * 0.5, intensity);
-  
-  vec3 auroraColor = intensity * rampColor;
-  
-  fragColor = vec4(auroraColor * auroraAlpha, auroraAlpha);
+// Existing aurora intensity and alpha
+float midPoint = 0.20;
+float auroraAlpha = smoothstep(midPoint - uBlend * 0.5, midPoint + uBlend * 0.5, intensity);
+vec3 auroraColor = intensity * rampColor;
+
+// Cursor effect (glow) — works even if auroraAlpha is zero
+vec2 mouseUV = uMouse / uResolution;
+float dist = distance(uv, mouseUV);
+float cursorEffect = smoothstep(0.6, 0.0, dist); // bigger area
+vec3 cursorGlow = vec3(cursorEffect * 0.25); // pure glow color (white, or can multiply by rampColor)
+
+// Combine aurora + cursor glow
+vec3 glowColor = vec3(0.878, 0.137, 0.306); // #e0234e
+vec3 finalColor = mix(auroraColor, glowColor, cursorEffect * 0.5); 
+float finalAlpha = max(auroraAlpha, cursorEffect * 0.5);
+
+fragColor = vec4(finalColor, finalAlpha);
 }
 `;
 
@@ -125,6 +137,7 @@ export default function Aurora(props: AuroraProps) {
   propsRef.current = props;
 
   const ctnDom = useRef<HTMLDivElement>(null);
+  const mouse = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     const ctn = ctnDom.current;
@@ -173,11 +186,19 @@ export default function Aurora(props: AuroraProps) {
         uColorStops: { value: colorStopsArray },
         uResolution: { value: [ctn.offsetWidth, ctn.offsetHeight] },
         uBlend: { value: blend },
+        uMouse: { value: [0, 0] }, // NEW
       },
     });
 
     const mesh = new Mesh(gl, { geometry, program });
     ctn.appendChild(gl.canvas);
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = ctn.getBoundingClientRect();
+      mouse.current.x = e.clientX - rect.left;
+      mouse.current.y = rect.height - (e.clientY - rect.top); // flip Y
+    };
+    window.addEventListener("mousemove", handleMouseMove);
 
     let animateId = 0;
     const update = (t: number) => {
@@ -192,6 +213,7 @@ export default function Aurora(props: AuroraProps) {
           const c = new Color(hex);
           return [c.r, c.g, c.b];
         });
+        program.uniforms.uMouse.value = [mouse.current.x, mouse.current.y]; // update mouse
         renderer.render({ scene: mesh });
       }
     };
@@ -202,6 +224,7 @@ export default function Aurora(props: AuroraProps) {
     return () => {
       cancelAnimationFrame(animateId);
       window.removeEventListener("resize", resize);
+      window.removeEventListener("mousemove", handleMouseMove);
       if (ctn && gl.canvas.parentNode === ctn) {
         ctn.removeChild(gl.canvas);
       }
