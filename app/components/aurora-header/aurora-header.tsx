@@ -99,22 +99,21 @@ void main() {
   height = (uv.y * 3.5 - height + 0.2);
   float intensity = 0.6 * height;
   
-// Existing aurora intensity and alpha
-float midPoint = 0.20;
-float auroraAlpha = smoothstep(midPoint - uBlend * 0.5, midPoint + uBlend * 0.5, intensity);
-vec3 auroraColor = intensity * rampColor;
+  // Existing aurora intensity and alpha
+  float midPoint = 0.20;
+  float auroraAlpha = smoothstep(midPoint - uBlend * 0.5, midPoint + uBlend * 0.5, intensity);
+  vec3 auroraColor = intensity * rampColor;
 
-// Cursor effect (glow) — works even if auroraAlpha is zero
-vec2 mouseUV = uMouse / uResolution;
-float dist = distance(uv, mouseUV);
-float cursorEffect = smoothstep(0.6, 0.0, dist); // bigger area
+  // Cursor effect (glow) — works even if auroraAlpha is zero
+  vec2 mouseUV = uMouse / uResolution;
+  float dist = distance(uv, mouseUV);
+  float cursorEffect = smoothstep(0.6, 0.0, dist);
 
-// Combine aurora + cursor glow
-vec3 glowColor = vec3(0.878, 0.137, 0.306); // #e0234e
-vec3 finalColor = mix(auroraColor, glowColor, cursorEffect * 0.3); 
-float finalAlpha = max(auroraAlpha, cursorEffect * 0.5);
+  vec3 glowColor = vec3(0.878, 0.137, 0.306); // #e0234e
+  vec3 finalColor = mix(auroraColor, glowColor, cursorEffect * 0.3); 
+  float finalAlpha = max(auroraAlpha, cursorEffect * 0.5);
 
-fragColor = vec4(finalColor, finalAlpha);
+  fragColor = vec4(finalColor, finalAlpha);
 }
 `;
 
@@ -128,7 +127,7 @@ interface AuroraProps {
 
 export default function Aurora(props: AuroraProps) {
   const {
-    colorStops = ["#780f20", "transparent", "#780f20"],
+    colorStops = ["#780f20", "#050303", "#780f20"],
     amplitude = 1.0,
     blend = 0.5,
   } = props;

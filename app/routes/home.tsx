@@ -1,8 +1,9 @@
 import { useRef } from "react";
 import { siDiscord, siGithub, siX } from "simple-icons";
+import { AnimatedLine } from "../components/animated-line/animated-line";
 import Aurora from "../components/aurora-header/aurora-header";
 import { BlurIn } from "../components/blur-in/blur-in";
-import NoiseOverlay from "../components/bokeh-header/noise-overlay";
+import NoiseOverlay from "../components/noise-overlay/noise-overlay";
 import SpotlightCard from "../components/spotlight-card/spotlight-card";
 import { WordByWord } from "../components/word-by-word/word-by-word";
 import type { Route } from "./+types/home";
@@ -32,8 +33,9 @@ export default function Home() {
           to-[#050303]"
       >
         <Aurora />
-        {/* <BokehHeader parentRef={headerRef} /> */}
         <NoiseOverlay />
+        <AnimatedLine left="10%" top="50%" />
+        <AnimatedLine left="90%" top="40%" delay={1} />
         <div className="container relative z-10">
           <BlurIn delay={0.1}>
             <div className="rounded-[32px] mt-8 relative overflow-hidden">
@@ -117,13 +119,13 @@ export default function Home() {
                 <>
                   <a
                     href="https://docs.nestjs.com/"
-                    className="btn bg-white rounded text-black font-bold pt-6 pb-6 pl-8 pr-8 rounded-[32px]"
+                    className="btn bg-white rounded text-black font-bold pt-5 pb-5 pl-7 pr-7 rounded-[20px]"
                   >
                     Get started
                   </a>
                   <a
                     href="https://github.com/nestjs/nest"
-                    className="btn bg-secondary text-white font-bold pt-6 pb-6 pl-8 pr-8 rounded-[32px]"
+                    className="btn bg-secondary text-white font-bold pt-5 pb-5 pl-7 pr-7 rounded-[20px]"
                   >
                     Github
                   </a>
