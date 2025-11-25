@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import "context-filter-polyfill";
+import React, { useEffect, useRef, useState } from "react";
 
 interface Item {
   x: number;
@@ -10,12 +11,14 @@ interface Item {
   initialBlurDirection: number;
   colorOne: string;
   colorTwo: string;
-  gradient: [number, number, number, number];
+  gradient: CanvasGradient;
 }
 
-const BokehHeader: React.FC = () => {
+const BokehHeader: React.FC<{
+  parentRef: React.RefObject<HTMLDivElement | null>;
+}> = ({ parentRef }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-
+  const [canvasBlur, setCanvasBlur] = useState<string | null>("70px");
   const rand = (min: number, max: number) => Math.random() * (max - min) + min;
 
   useEffect(() => {
@@ -26,18 +29,24 @@ const BokehHeader: React.FC = () => {
     if (!ctx) return;
 
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.width = parentRef.current?.clientWidth || window.innerWidth;
+      canvas.height = parentRef.current?.clientHeight || window.innerHeight;
       ctx.globalCompositeOperation = "darken";
     };
+
+    if (!("filter" in ctx)) {
+      setCanvasBlur("70px");
+    } else {
+      setCanvasBlur(null);
+    }
 
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    const backgroundColors = ["#ea2845", "#ea2845"];
-    const colors = [["#ea2845", "#ea2845"]];
-    const count = 30;
-    const blur: [number, number] = [12, 90];
+    const backgroundColors = ["#ea2845", "#780f20"];
+    const colors = [["#ea2845", "#780f20"]];
+    const count = 20;
+    const blur: [number, number] = [60, 90];
     const radius: [number, number] = [1, 200];
 
     // Background gradient
@@ -58,7 +67,14 @@ const BokehHeader: React.FC = () => {
       const colorTwo = colors[colorIndex][1];
       const directionX = Math.round(rand(-99, 99) / 100);
       const directionY = Math.round(rand(-99, 99) / 100);
-
+      const gradient = ctx.createLinearGradient(
+        x - thisRadius / 2,
+        y - thisRadius / 2,
+        x + thisRadius,
+        y + thisRadius
+      );
+      gradient.addColorStop(0, colorOne);
+      gradient.addColorStop(1, colorTwo);
       return {
         x,
         y,
@@ -69,20 +85,15 @@ const BokehHeader: React.FC = () => {
         initialBlurDirection: directionX,
         colorOne,
         colorTwo,
-        gradient: [
-          x - thisRadius / 2,
-          y - thisRadius / 2,
-          x + thisRadius,
-          y + thisRadius,
-        ] as [number, number, number, number],
+        gradient,
       };
     });
 
     // Animation loop
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const adjX = 1;
-      const adjY = 1;
+      const adjX = 2;
+      const adjY = 2;
       const adjBlur = 1;
 
       items.forEach((item) => {
@@ -115,19 +126,23 @@ const BokehHeader: React.FC = () => {
 
         item.x += item.initialXDirection * adjX;
         item.y += item.initialYDirection * adjY;
-        item.blur += item.initialBlurDirection * adjBlur;
+        const newBlur = item.blur + item.initialBlurDirection * adjBlur;
+        if (newBlur >= blur[0]) {
+          item.blur = newBlur;
+        }
 
         ctx.beginPath();
-        ctx.filter = `blur(${item.blur}px)`;
-        const grd = ctx.createLinearGradient(...item.gradient);
-        grd.addColorStop(0, item.colorOne);
-        grd.addColorStop(1, item.colorTwo);
-        ctx.fillStyle = grd;
+        if ("filter" in ctx) ctx.filter = `blur(${item.blur}px)`;
+        ctx.fillStyle = item.gradient;
         ctx.arc(item.x, item.y, item.radius, 0, Math.PI * 2);
         ctx.fill();
         ctx.closePath();
       });
 
+      if (!("filter" in ctx)) {
+        // When in Safari, just stop the animation after one loop
+        return;
+      }
       requestAnimationFrame(animate);
     };
 
@@ -137,8 +152,22 @@ const BokehHeader: React.FC = () => {
       window.removeEventListener("resize", resizeCanvas);
     };
   }, []);
-
-  return <canvas ref={canvasRef} className="d-block absolute z-0" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className="d-block absolute z-0"
+      style={
+        canvasBlur
+          ? {
+              imageRendering: "auto",
+              filter: `blur(${canvasBlur})`,
+            }
+          : {
+              imageRendering: "auto",
+            }
+      }
+    />
+  );
 };
 
 export default BokehHeader;

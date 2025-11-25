@@ -1,6 +1,9 @@
+import { useRef } from "react";
 import { siDiscord, siGithub, siX } from "simple-icons";
+import { BlurIn } from "../components/blur-in/blur-in";
 import BokehHeader from "../components/bokeh-header/bokeh-header";
 import NoiseOverlay from "../components/bokeh-header/noise-overlay";
+import { WordByWord } from "../components/word-by-word/word-by-word";
 import type { Route } from "./+types/home";
 import classes from "./home.module.scss";
 
@@ -16,15 +19,17 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
+  const headerRef = useRef<HTMLDivElement | null>(null);
   return (
     <div className="p-10">
       <header
+        ref={headerRef}
         className="flex justify-center overflow-hidden relative rounded-[32px] 
           bg-gradient-to-r from-[#050303] 
-          via-[#c21f3a] 
+          via-[#780f20] 
           to-[#050303]"
       >
-        <BokehHeader />
+        <BokehHeader parentRef={headerRef} />
         <NoiseOverlay />
         <div className="container relative z-10">
           <div
@@ -90,25 +95,31 @@ export default function Home() {
           </div>
           <div className="centered text-center pt-30 pb-40 flex flex-col items-center">
             <h1 className="text-8xl font-medium max-w-4xl self-center">
-              More than just a Node framework
+              <WordByWord>More than just a Node framework</WordByWord>
             </h1>
-            <p className="mt-4 text-sm font-normal font-mono opacity-80 max-w-2xl leading-[24px]">
-              Nest - the world's fastest-growing Node framework for building
-              efficient, reliable and scalable server-side applications.
-            </p>
+            <BlurIn delay={1}>
+              <p className="mt-4 text-sm font-normal font-mono opacity-80 max-w-2xl leading-[24px]">
+                Nest - the world's fastest-growing Node framework for building
+                efficient, reliable and scalable server-side applications.
+              </p>
+            </BlurIn>
             <div className="mt-30">
-              <a
-                href="https://docs.nestjs.com/"
-                className="btn bg-white rounded text-black font-bold pt-6 pb-6 pl-8 pr-8 rounded-[32px]"
-              >
-                Get started
-              </a>
-              <a
-                href="https://github.com/nestjs/nest"
-                className="btn bg-secondary text-white font-bold pt-6 pb-6 pl-8 pr-8 rounded-[32px]"
-              >
-                Github
-              </a>
+              <BlurIn delay={1.5}>
+                <>
+                  <a
+                    href="https://docs.nestjs.com/"
+                    className="btn bg-white rounded text-black font-bold pt-6 pb-6 pl-8 pr-8 rounded-[32px]"
+                  >
+                    Get started
+                  </a>
+                  <a
+                    href="https://github.com/nestjs/nest"
+                    className="btn bg-secondary text-white font-bold pt-6 pb-6 pl-8 pr-8 rounded-[32px]"
+                  >
+                    Github
+                  </a>
+                </>
+              </BlurIn>
             </div>
           </div>
         </div>
