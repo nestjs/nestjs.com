@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { siDiscord, siGithub, siX } from "simple-icons";
+import Aurora from "../components/aurora-header/aurora-header";
 import { BlurIn } from "../components/blur-in/blur-in";
-import BokehHeader from "../components/bokeh-header/bokeh-header";
 import NoiseOverlay from "../components/bokeh-header/noise-overlay";
 import { WordByWord } from "../components/word-by-word/word-by-word";
 import type { Route } from "./+types/home";
@@ -29,7 +29,8 @@ export default function Home() {
           via-[#780f20] 
           to-[#050303]"
       >
-        <BokehHeader parentRef={headerRef} />
+        <Aurora />
+        {/* <BokehHeader parentRef={headerRef} /> */}
         <NoiseOverlay />
         <div className="container relative z-10">
           <BlurIn delay={0.1}>
