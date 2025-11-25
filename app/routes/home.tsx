@@ -3,6 +3,7 @@ import { siDiscord, siGithub, siX } from "simple-icons";
 import { AnimatedLine } from "../components/animated-line/animated-line";
 import Aurora from "../components/aurora-header/aurora-header";
 import { BlurIn } from "../components/blur-in/blur-in";
+import { LogoLoop } from "../components/logo-loop/logo-loop";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
 import SpotlightCard from "../components/spotlight-card/spotlight-card";
 import { WordByWord } from "../components/word-by-word/word-by-word";
@@ -34,6 +35,130 @@ const MENU_ITEMS = [
     href: "https://enterprise.nestjs.com",
   },
   { id: "jobs", label: "Jobs", href: "https://jobs.nestjs.com" },
+];
+
+const techLogoStyles = {
+  filter: "grayscale(1) brightness(0.8) contrast(1.2)",
+  transition: "filter 0.3s ease-in-out",
+  maxWidth: "100px",
+  maxHeight: "70px",
+};
+
+const techLogos = [
+  {
+    node: (
+      <img src="/logos/ibm.svg" alt="IBM" style={techLogoStyles} height={40} />
+    ),
+    title: "IBM",
+    href: "https://www.ibm.com",
+  },
+  {
+    node: (
+      <img
+        src="/logos/adidas.svg"
+        alt="Adidas"
+        style={techLogoStyles}
+        width={90}
+      />
+    ),
+    title: "Adidas",
+    href: "https://www.adidas.com",
+  },
+  {
+    node: (
+      <img
+        src="/logos/autodesk.png"
+        alt="Autodesk"
+        style={techLogoStyles}
+        height={70}
+      />
+    ),
+    title: "Autodesk",
+    href: "https://www.autodesk.com",
+  },
+  {
+    node: (
+      <img src="/logos/mercedes.png" alt="Mercedes" style={techLogoStyles} />
+    ),
+    title: "Mercedes-Benz",
+    href: "https://www.mercedes-benz.com",
+  },
+  {
+    node: (
+      <img src="/logos/bmw.svg" alt="BMW" style={techLogoStyles} height={70} />
+    ),
+    title: "BMW",
+    href: "https://www.bmw.com",
+  },
+  {
+    node: (
+      <img src="/logos/capgemini.svg" alt="Capgemini" style={techLogoStyles} />
+    ),
+    title: "Capgemini",
+    href: "https://www.capgemini.com",
+  },
+  {
+    node: <img src="/logos/gitlab.png" alt="GitLab" style={techLogoStyles} />,
+    title: "GitLab",
+    href: "https://www.gitlab.com",
+  },
+  {
+    node: (
+      <img src="/logos/decathlon.png" alt="Decathlon" style={techLogoStyles} />
+    ),
+    title: "Decathlon",
+    href: "https://www.decathlon.com",
+  },
+  {
+    node: (
+      <img
+        src="/logos/jetbrains.svg"
+        alt="JetBrains"
+        style={techLogoStyles}
+        width={135}
+      />
+    ),
+    title: "JetBrains",
+    href: "https://www.jetbrains.com",
+  },
+  {
+    node: <img src="/logos/red-hat.svg" alt="Red Hat" style={techLogoStyles} />,
+    title: "Red Hat",
+    href: "https://www.redhat.com",
+  },
+  {
+    node: <img src="/logos/rewe.svg" alt="REWE" style={techLogoStyles} />,
+    title: "REWE",
+    href: "https://www.rewe-group.com",
+  },
+  {
+    node: (
+      <img
+        src="/logos/roche-logo.png"
+        alt="Roche"
+        style={techLogoStyles}
+        height={55}
+      />
+    ),
+    title: "Roche",
+    href: "https://www.roche.com",
+  },
+  {
+    node: <img src="/logos/sanofi.png" alt="Sanofi" style={techLogoStyles} />,
+    title: "Sanofi",
+    href: "https://www.sanofi.com",
+  },
+  {
+    node: (
+      <img
+        src="/logos/societe-generale-logo.png"
+        alt="Société Générale"
+        style={techLogoStyles}
+      />
+    ),
+    title: "Société Générale",
+    href: "https://www.societegenerale.com",
+  },
 ];
 
 export default function Home() {
@@ -165,7 +290,42 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <div className="absolute right-15 bottom-15 text-right leading-11 text-sm font-mono">
+          <BlurIn distance={5} delay={0.5}>
+            <>
+              <p>
+                <span className="opacity-70 mr-4 font-sans">Github stars</span>{" "}
+                73,840
+              </p>
+              <p>
+                <span className="opacity-70 mr-4 font-sans">
+                  Latest release
+                </span>{" "}
+                Aug 7 / 11.1.9
+              </p>
+              <p>
+                <span className="opacity-70 mr-4 font-sans">
+                  Monthly downloads
+                </span>{" "}
+                24,200,000
+              </p>
+            </>
+          </BlurIn>
+        </div>
       </header>
+      <div className="height-[200px] relative overflow-hidden mt-20 mb-20">
+        <LogoLoop
+          logos={techLogos}
+          speed={30}
+          direction="left"
+          logoHeight={24}
+          gap={60}
+          hoverSpeed={0}
+          fadeOut
+          fadeOutColor="#050303"
+          ariaLabel="Technology partners"
+        />
+      </div>
     </div>
   );
 }
