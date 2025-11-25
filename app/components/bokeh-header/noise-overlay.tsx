@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-const NoiseOverlay: React.FC<{ opacity?: number }> = ({ opacity = 0.13 }) => {
+const NoiseOverlay: React.FC<{ opacity?: number }> = ({ opacity = 0.2 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationRef = useRef<number>(null);
 

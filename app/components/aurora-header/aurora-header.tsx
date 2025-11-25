@@ -111,7 +111,7 @@ float cursorEffect = smoothstep(0.6, 0.0, dist); // bigger area
 vec3 cursorGlow = vec3(cursorEffect * 0.25); // pure glow color (white, or can multiply by rampColor)
 
 // Combine aurora + cursor glow
-vec3 glowColor = vec3(0.914, 0.302, 0.447);
+vec3 glowColor = vec3(0.878, 0.137, 0.306); // #e0234e
 vec3 finalColor = mix(auroraColor, glowColor, cursorEffect * 0.5); 
 float finalAlpha = max(auroraAlpha, cursorEffect * 0.5);
 

@@ -20,6 +20,7 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   const headerRef = useRef<HTMLDivElement | null>(null);
+
   return (
     <div className="p-10">
       <header
