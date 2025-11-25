@@ -23,7 +23,7 @@ export function WordByWord({ children }: { children: string }) {
       stagger: 0.15, // delay between words
       duration: 0.75,
       filter: "blur(25px)",
-      scale: 1.05,
+      scale: 0.95,
       ease: "power3.out",
     });
   }, []);

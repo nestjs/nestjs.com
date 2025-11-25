@@ -6,11 +6,9 @@ interface Item {
   y: number;
   blur: number;
   radius: number;
-  initialXDirection: number;
-  initialYDirection: number;
-  initialBlurDirection: number;
-  colorOne: string;
-  colorTwo: string;
+  dx: number;
+  dy: number;
+  dBlur: number;
   gradient: CanvasGradient;
 }
 
@@ -18,7 +16,9 @@ const BokehHeader: React.FC<{
   parentRef: React.RefObject<HTMLDivElement | null>;
 }> = ({ parentRef }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const animationRef = useRef<number>(null);
   const [canvasBlur, setCanvasBlur] = useState<string | null>("70px");
+
   const rand = (min: number, max: number) => Math.random() * (max - min) + min;
 
   useEffect(() => {
@@ -28,143 +28,110 @@ const BokehHeader: React.FC<{
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    const supportsFilter = "filter" in ctx;
+    if (supportsFilter) setCanvasBlur(null);
+
+    let width = parentRef.current?.clientWidth || window.innerWidth;
+    let height = parentRef.current?.clientHeight || window.innerHeight;
+
     const resizeCanvas = () => {
-      canvas.width = parentRef.current?.clientWidth || window.innerWidth;
-      canvas.height = parentRef.current?.clientHeight || window.innerHeight;
+      width = parentRef.current?.clientWidth || window.innerWidth;
+      height = parentRef.current?.clientHeight || window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
       ctx.globalCompositeOperation = "darken";
     };
-
-    if (!("filter" in ctx)) {
-      setCanvasBlur("70px");
-    } else {
-      setCanvasBlur(null);
-    }
 
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    const backgroundColors = ["#ea2845", "#780f20"];
-    const colors = [["#ea2845", "#780f20"]];
-    const count = 20;
-    const blur: [number, number] = [60, 90];
-    const radius: [number, number] = [1, 200];
-
     // Background gradient
-    const grd = ctx.createLinearGradient(0, canvas.height, canvas.width, 0);
+    const backgroundColors = ["#ea2845", "#780f20"];
+    const grd = ctx.createLinearGradient(0, height, width, 0);
     grd.addColorStop(0, backgroundColors[0]);
     grd.addColorStop(1, backgroundColors[1]);
     ctx.fillStyle = grd;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, width, height);
 
     // Initialize items
+    const count = 20;
+    const blurRange: [number, number] = [60, 90];
+    const radiusRange: [number, number] = [1, 200];
+    const colors = [["#ea2845", "#780f20"]];
+
     const items: Item[] = Array.from({ length: count }).map(() => {
-      const thisRadius = rand(radius[0], radius[1]);
-      const thisBlur = rand(blur[0], blur[1]);
-      const x = rand(-100, canvas.width + 100);
-      const y = rand(-100, canvas.height + 100);
-      const colorIndex = Math.floor(rand(0, colors.length));
-      const colorOne = colors[colorIndex][0];
-      const colorTwo = colors[colorIndex][1];
-      const directionX = Math.round(rand(-99, 99) / 100);
-      const directionY = Math.round(rand(-99, 99) / 100);
+      const radius = rand(radiusRange[0], radiusRange[1]);
+      const blur = rand(blurRange[0], blurRange[1]);
+      const x = rand(-100, width + 100);
+      const y = rand(-100, height + 100);
+      const colorPair = colors[Math.floor(rand(0, colors.length))];
       const gradient = ctx.createLinearGradient(
-        x - thisRadius / 2,
-        y - thisRadius / 2,
-        x + thisRadius,
-        y + thisRadius
+        x - radius / 2,
+        y - radius / 2,
+        x + radius,
+        y + radius
       );
-      gradient.addColorStop(0, colorOne);
-      gradient.addColorStop(1, colorTwo);
+      gradient.addColorStop(0, colorPair[0]);
+      gradient.addColorStop(1, colorPair[1]);
+
       return {
         x,
         y,
-        blur: thisBlur,
-        radius: thisRadius,
-        initialXDirection: directionX,
-        initialYDirection: directionY,
-        initialBlurDirection: directionX,
-        colorOne,
-        colorTwo,
+        blur,
+        radius,
+        dx: Math.round(rand(-1, 1)),
+        dy: Math.round(rand(-1, 1)),
+        dBlur: Math.round(rand(-1, 1)),
         gradient,
       };
     });
 
-    // Animation loop
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const adjX = 2;
-      const adjY = 2;
-      const adjBlur = 1;
+      ctx.clearRect(0, 0, width, height);
 
       items.forEach((item) => {
+        // Bounce off edges
+        if (item.x + item.dx < 0 || item.x + item.dx > width) item.dx *= -1;
+        if (item.y + item.dy < 0 || item.y + item.dy > height) item.dy *= -1;
         if (
-          (item.x + item.initialXDirection * adjX >= canvas.width &&
-            item.initialXDirection !== 0) ||
-          (item.x + item.initialXDirection * adjX <= 0 &&
-            item.initialXDirection !== 0)
-        ) {
-          item.initialXDirection *= -1;
-        }
+          item.blur + item.dBlur < blurRange[0] ||
+          item.blur + item.dBlur > blurRange[1]
+        )
+          item.dBlur *= -1;
 
-        if (
-          (item.y + item.initialYDirection * adjY >= canvas.height &&
-            item.initialYDirection !== 0) ||
-          (item.y + item.initialYDirection * adjY <= 0 &&
-            item.initialYDirection !== 0)
-        ) {
-          item.initialYDirection *= -1;
-        }
-
-        if (
-          (item.blur + item.initialBlurDirection * adjBlur >= radius[1] &&
-            item.initialBlurDirection !== 0) ||
-          (item.blur + item.initialBlurDirection * adjBlur <= radius[0] &&
-            item.initialBlurDirection !== 0)
-        ) {
-          item.initialBlurDirection *= -1;
-        }
-
-        item.x += item.initialXDirection * adjX;
-        item.y += item.initialYDirection * adjY;
-        const newBlur = item.blur + item.initialBlurDirection * adjBlur;
-        if (newBlur >= blur[0]) {
-          item.blur = newBlur;
-        }
+        item.x += item.dx * 2;
+        item.y += item.dy * 2;
+        item.blur = Math.max(
+          blurRange[0],
+          Math.min(blurRange[1], item.blur + item.dBlur)
+        );
 
         ctx.beginPath();
-        if ("filter" in ctx) ctx.filter = `blur(${item.blur}px)`;
+        if (supportsFilter) ctx.filter = `blur(${item.blur}px)`;
         ctx.fillStyle = item.gradient;
         ctx.arc(item.x, item.y, item.radius, 0, Math.PI * 2);
         ctx.fill();
-        ctx.closePath();
       });
 
-      if (!("filter" in ctx)) {
-        // When in Safari, just stop the animation after one loop
-        return;
-      }
-      requestAnimationFrame(animate);
+      if (supportsFilter) animationRef.current = requestAnimationFrame(animate);
     };
 
     animate();
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
     };
-  }, []);
+  }, [parentRef]);
+
   return (
     <canvas
       ref={canvasRef}
       className="d-block absolute z-0"
       style={
         canvasBlur
-          ? {
-              imageRendering: "auto",
-              filter: `blur(${canvasBlur})`,
-            }
-          : {
-              imageRendering: "auto",
-            }
+          ? { imageRendering: "auto", filter: `blur(${canvasBlur})` }
+          : { imageRendering: "auto" }
       }
     />
   );

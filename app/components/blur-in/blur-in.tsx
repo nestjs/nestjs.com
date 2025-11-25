@@ -80,7 +80,7 @@ export function BlurIn({
         if (disappearAfter > 0) {
           gsap.to(el, {
             [axis]: reverse ? distance : -distance,
-            scale: 0.8,
+            // scale: 0.8,
             opacity: animateOpacity ? initialOpacity : 0,
             delay: disappearAfter,
             duration: disappearDuration,
