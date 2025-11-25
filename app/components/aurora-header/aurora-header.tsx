@@ -108,11 +108,10 @@ vec3 auroraColor = intensity * rampColor;
 vec2 mouseUV = uMouse / uResolution;
 float dist = distance(uv, mouseUV);
 float cursorEffect = smoothstep(0.6, 0.0, dist); // bigger area
-vec3 cursorGlow = vec3(cursorEffect * 0.25); // pure glow color (white, or can multiply by rampColor)
 
 // Combine aurora + cursor glow
 vec3 glowColor = vec3(0.878, 0.137, 0.306); // #e0234e
-vec3 finalColor = mix(auroraColor, glowColor, cursorEffect * 0.5); 
+vec3 finalColor = mix(auroraColor, glowColor, cursorEffect * 0.3); 
 float finalAlpha = max(auroraAlpha, cursorEffect * 0.5);
 
 fragColor = vec4(finalColor, finalAlpha);
