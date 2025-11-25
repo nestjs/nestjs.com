@@ -18,7 +18,6 @@ const NoiseOverlay: React.FC<{ opacity?: number }> = ({ opacity = 0.2 }) => {
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    // Create reusable buffer
     const imageData = ctx.createImageData(canvas.width, canvas.height);
     const buffer = new Uint32Array(imageData.data.buffer);
 
@@ -31,8 +30,14 @@ const NoiseOverlay: React.FC<{ opacity?: number }> = ({ opacity = 0.2 }) => {
       ctx.putImageData(imageData, 0, 0);
     };
 
+    const FRAME_SKIP = 4; // (4 ≈ 15fps noise)
+    let frame = 0;
+
     const draw = () => {
-      generateNoise();
+      frame++;
+      if (frame % FRAME_SKIP === 0) {
+        generateNoise();
+      }
       animationRef.current = requestAnimationFrame(draw);
     };
 
