@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 
 const NoiseOverlay: React.FC<{ opacity?: number }> = ({ opacity = 0.12 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const animationRef = useRef<number>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -17,30 +18,30 @@ const NoiseOverlay: React.FC<{ opacity?: number }> = ({ opacity = 0.12 }) => {
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    const generateNoise = () => {
-      const imageData = ctx.createImageData(canvas.width, canvas.height);
-      const buffer = new Uint32Array(imageData.data.buffer);
+    // Create reusable buffer
+    const imageData = ctx.createImageData(canvas.width, canvas.height);
+    const buffer = new Uint32Array(imageData.data.buffer);
 
+    const generateNoise = () => {
       for (let i = 0; i < buffer.length; i++) {
         const shade = Math.floor(Math.random() * 20);
         const alpha = Math.random() < 0.7 ? 255 : 0;
-        buffer[i] = (alpha << 24) | (shade << 16) | (shade << 8) | shade; // RGBA
+        buffer[i] = (alpha << 24) | (shade << 16) | (shade << 8) | shade;
       }
-
       ctx.putImageData(imageData, 0, 0);
     };
 
-    generateNoise();
-
     const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
       generateNoise();
-      requestAnimationFrame(draw);
+      animationRef.current = requestAnimationFrame(draw);
     };
 
     draw();
 
-    return () => window.removeEventListener("resize", resizeCanvas);
+    return () => {
+      window.removeEventListener("resize", resizeCanvas);
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
   }, [opacity]);
 
   return (

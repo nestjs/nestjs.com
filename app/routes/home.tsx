@@ -42,7 +42,7 @@ export default function Home() {
             </div>
 
             <nav
-              className={`flex justify-center space-x-10 font-bold text-base flex-1`}
+              className={`flex justify-center space-x-10 font-medium text-base flex-1`}
             >
               <a href="https://docs.nestjs.com">Docs</a>
               <a href="https://courses.nestjs.com">Official courses</a>
@@ -97,14 +97,14 @@ export default function Home() {
             <h1 className="text-8xl font-medium max-w-4xl self-center">
               <WordByWord>More than just a Node framework</WordByWord>
             </h1>
-            <BlurIn delay={1}>
-              <p className="mt-4 text-sm font-normal font-mono opacity-80 max-w-2xl leading-[24px]">
+            <BlurIn delay={0.7}>
+              <p className="mt-4 text-sm font-light font-mono opacity-80 max-w-2xl leading-[24px]">
                 Nest - the world's fastest-growing Node framework for building
                 efficient, reliable and scalable server-side applications.
               </p>
             </BlurIn>
             <div className="mt-30">
-              <BlurIn delay={1.5}>
+              <BlurIn delay={1} distance={10}>
                 <>
                   <a
                     href="https://docs.nestjs.com/"

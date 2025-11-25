@@ -8,12 +8,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function WordByWord({ children }: { children: string }) {
   const containerRef = useRef<HTMLSpanElement>(null);
-
-  // Split text into words
   const words = children.split(" ");
 
   useEffect(() => {
-    // Select all spans inside the container
     if (!containerRef.current) {
       return;
     }
@@ -24,9 +21,9 @@ export function WordByWord({ children }: { children: string }) {
       opacity: 0,
       y: 0,
       stagger: 0.15, // delay between words
-      duration: 1.5,
+      duration: 0.75,
       filter: "blur(25px)",
-      scale: 1.1,
+      scale: 1.05,
       ease: "power3.out",
     });
   }, []);
