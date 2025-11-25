@@ -34,14 +34,14 @@ const NoiseOverlay: React.FC<{ opacity?: number }> = ({ opacity = 0.2 }) => {
     let frame = 0;
 
     const draw = () => {
-      frame++;
-      if (frame % FRAME_SKIP === 0) {
-        generateNoise();
-      }
-      animationRef.current = requestAnimationFrame(draw);
+      // frame++;
+      // if (frame % FRAME_SKIP === 0) {
+      //   generateNoise();
+      // }
+      // animationRef.current = requestAnimationFrame(draw);
     };
 
-    draw();
+    generateNoise();
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
