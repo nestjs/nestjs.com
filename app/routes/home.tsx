@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import { siDiscord, siGithub, siX } from "simple-icons";
-import { AnimatedLine } from "../components/animated-line/animated-line";
 import Aurora from "../components/aurora-header/aurora-header";
 import { BlurIn } from "../components/blur-in/blur-in";
 import { LogoLoop } from "../components/logo-loop/logo-loop";
@@ -179,8 +178,8 @@ export default function Home() {
       >
         <Aurora />
         <NoiseOverlay />
-        <AnimatedLine left="10%" top="50%" />
-        <AnimatedLine left="90%" top="40%" delay={1} />
+        {/* <AnimatedLine left="10%" top="50%" />
+        <AnimatedLine left="90%" top="40%" delay={1} /> */}
         <div className="container relative z-10">
           <BlurIn delay={0.1}>
             <div className="rounded-[32px] mt-8 relative overflow-hidden">
