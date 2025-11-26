@@ -314,8 +314,8 @@ export default function Home() {
           </BlurIn>
         </div>
       </header>
-      <div className="height-[200px] relative overflow-hidden mt-20 mb-20">
-        {/* <LogoLoop
+      {/* <div className="height-[200px] relative overflow-hidden mt-20 mb-20">
+        <LogoLoop
           logos={techLogos}
           speed={30}
           direction="left"
@@ -325,9 +325,9 @@ export default function Home() {
           fadeOut
           fadeOutColor="#050303"
           ariaLabel="Technology partners"
-        /> */}
-      </div>
-      <div className="flex justify-center">
+        />
+      </div> */}
+      <div className="flex justify-center mt-25">
         <div className="container relative">
           <div className="grid grid-cols-[60%_10%_30%] gap-0">
             <ScrollReveal
