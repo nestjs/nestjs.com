@@ -1,5 +1,6 @@
 import { gsap } from "gsap";
 import { useEffect, useState } from "react";
+import { BlurIn } from "../blur-in/blur-in";
 import LightRays from "../light-rays/light-rays";
 import classes from "./bounce-cards.module.scss";
 
@@ -41,7 +42,10 @@ export default function BounceCards({
   const [transformStyles, setTransformStyles] = useState<string[]>(
     DEFAULT_TRANSFORM_STYLES
   );
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const DEFAULT_HOVERED_IDX = null;
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(
+    DEFAULT_HOVERED_IDX
+  );
 
   // TODO: change on resize
   useEffect(() => {
@@ -67,7 +71,6 @@ export default function BounceCards({
     });
 
     setTransformStyles(styles);
-    console.log(styles);
   }, []);
 
   useEffect(() => {
@@ -154,7 +157,7 @@ export default function BounceCards({
     if (!enableHover) {
       return;
     }
-    setHoveredIdx(null);
+    setHoveredIdx(DEFAULT_HOVERED_IDX);
 
     cards.forEach((_, i) => {
       const selector = `.card-${i}`;
@@ -181,46 +184,62 @@ export default function BounceCards({
       {cards.map((card, idx) => (
         <div
           key={idx}
-          className={`${classes.card} card-${idx} absolute w-[350px] aspect-square overflow-hidden`}
+          className={`${classes.card} card-${idx} absolute w-[350px] aspect-square overflow-hidden text-center hover:text-left`}
           style={{
             transform: transformStyles[idx] || "none",
           }}
           onMouseEnter={() => pushSiblings(idx)}
           onMouseLeave={resetSiblings}
         >
-          <div
-            className={`${classes.borderGlow} flex w-full h-full rounded-[24px]`}
+          <BlurIn
+            className="flex w-full h-full"
+            delay={idx * 0.1}
+            distance={100}
+            duration={1}
           >
             <div
-              className={`${classes.cardContainer} flex relative w-full h-full rounded-[24px] overflow-hidden`}
+              className={`${classes.borderGlow} flex w-full h-full rounded-[24px]`}
             >
               <div
-                className={`absolute inset-0 pointer-events-none transition-opacity duration-300 ${idx === hoveredIdx ? "opacity-70" : "opacity-0"}`}
+                className={`${classes.cardContainer} flex relative w-full h-full rounded-[24px] overflow-hidden`}
               >
-                <LightRays
-                  raysOrigin="top-right"
-                  raysColor="#fff"
-                  raysSpeed={1.5}
-                  lightSpread={5}
-                  rayLength={4}
-                  followMouse={true}
-                  mouseInfluence={0.1}
-                  noiseAmount={0.05}
-                  distortion={0.05}
-                />
-              </div>
-              <div
-                className={`p-6 flex flex-col justify-center h-full text-white ${classes.cardContent}`}
-              >
-                <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
-                {idx === hoveredIdx && (
-                  <p className="opacity-80 text-sm font-mono leading-6 font-light">
-                    {card.description}
-                  </p>
-                )}
+                <div
+                  className={`absolute inset-0 pointer-events-none transition-opacity duration-300 ${idx === hoveredIdx ? "opacity-70" : "opacity-0"}`}
+                >
+                  <LightRays
+                    raysOrigin="top-right"
+                    raysColor="#fff"
+                    raysSpeed={1.5}
+                    lightSpread={5}
+                    rayLength={4}
+                    followMouse={true}
+                    mouseInfluence={0.1}
+                    noiseAmount={0.05}
+                    distortion={0.05}
+                  />
+                </div>
+                <div
+                  className={`p-6 flex flex-col justify-center w-full h-full text-white ${classes.cardContent}`}
+                >
+                  {idx !== hoveredIdx && (
+                    <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
+                  )}
+                  {idx === hoveredIdx && (
+                    <>
+                      <h3 className="text-xl font-semibold mb-2">
+                        <BlurIn duration={0.4} distance={10}>
+                          {card.title}
+                        </BlurIn>
+                      </h3>
+                      <p className="opacity-80 text-sm font-mono leading-6 font-light">
+                        <BlurIn duration={0.4}>{card.description}</BlurIn>
+                      </p>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
+          </BlurIn>
         </div>
       ))}
     </div>

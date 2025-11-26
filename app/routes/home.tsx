@@ -38,8 +38,9 @@ const MENU_ITEMS = [
 ];
 
 const techLogoStyles = {
-  filter: "grayscale(1) brightness(0.8) contrast(1.2)",
+  filter: "grayscale(1) brightness(0.8) contrast(1)",
   transition: "filter 0.3s ease-in-out",
+  opacity: 0.7,
   maxWidth: "100px",
   maxHeight: "70px",
 };

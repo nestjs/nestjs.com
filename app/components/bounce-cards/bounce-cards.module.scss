@@ -1,5 +1,9 @@
 .card {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  
+  &:hover .cardContainer {
+    background: linear-gradient(to bottom, #353535, #0e0e0e);
+  }
 }
 
 .cardContent {
@@ -7,9 +11,9 @@
 }
 
 .cardContainer {
-  background: linear-gradient(to bottom, #353535, #0e0e0e);
+  background: linear-gradient(to bottom, #202020, #0e0e0e);
+  transition: background 0.3s ease-in-out;
 
-     
   &::before {
     content: "";
     background-image: url(misc/noise.png);
