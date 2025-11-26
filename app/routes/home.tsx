@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { siDiscord, siGithub, siX } from "simple-icons";
 import Aurora from "../components/aurora-header/aurora-header";
 import { BlurIn } from "../components/blur-in/blur-in";
+import BounceCards from "../components/bounce-cards/bounce-cards";
 import { LogoLoop } from "../components/logo-loop/logo-loop";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
 import SpotlightCard from "../components/spotlight-card/spotlight-card";
@@ -323,6 +324,52 @@ export default function Home() {
           fadeOut
           fadeOutColor="#050303"
           ariaLabel="Technology partners"
+        />
+      </div>
+      <div className="mb-40 mt-40 flex justify-center">
+        <BounceCards
+          className="custom-bounceCards"
+          cards={[
+            {
+              title: "Modules",
+              description:
+                "Streamline upkeep by organizing applications into self-contained modules.",
+            },
+            {
+              title: "Dependency Injection",
+              description:
+                "Boost code maintainability and testability with built-in dependency injection.",
+            },
+            {
+              title: "Type Safety",
+              description:
+                "Mitigate errors through the robust type safety features of TypeScript.",
+            },
+            {
+              title: "Enterprise Ready",
+              description:
+                "Trusted by thousands of leading companies and organizations worldwide.",
+            },
+            {
+              title: "Decorators",
+              description:
+                "Enhance code readability and structure with TypeScript decorators.",
+            },
+            {
+              title: "Microservices",
+              description:
+                "Build scalable and efficient microservice architectures with ease.",
+            },
+            {
+              title: "Web Apps",
+              description:
+                "Create dynamic and responsive web applications effortlessly.",
+            },
+          ]}
+          animationDelay={1}
+          animationStagger={0.08}
+          easeType="elastic.out(1, 0.5)"
+          enableHover
         />
       </div>
     </div>
