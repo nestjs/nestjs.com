@@ -335,8 +335,8 @@ export default function Home() {
               className="font-medium text-5xl mb-4 leading-14"
               enableBlur
             >
-              Nest is a modern framework for building efficient, scalable web
-              applications
+              Nest is a modern framework designed to build efficient, scalable
+              web applications
             </ScrollReveal>
             <span></span>
             <ScrollReveal
@@ -344,9 +344,9 @@ export default function Home() {
               ElementTag="p"
               enableBlur
             >
-              Built on top of TypeScript and Node.js, Nest combines the best
-              programming practices with a clean, modular architecture that
-              keeps projects organized and easy to maintain.
+              Built on TypeScript and Node.js, Nest blends best programming
+              practices with a clean, modular architecture, keeping projects
+              organized and easy to maintain.
             </ScrollReveal>
           </div>
         </div>
@@ -356,36 +356,43 @@ export default function Home() {
           className="custom-bounceCards"
           cards={[
             {
+              icon: <img src="/icons/modules.png" />,
               title: "Modules",
               description:
                 "Streamline upkeep by organizing applications into self-contained modules.",
             },
             {
+              icon: <img src="/icons/enterprise-ready.png" />,
               title: "Dependency Injection",
               description:
                 "Boost code maintainability and testability with built-in dependency injection.",
             },
             {
+              icon: <img src="/icons/modules.png" />,
               title: "Type Safety",
               description:
                 "Mitigate errors through the robust type safety features of TypeScript.",
             },
             {
+              icon: <img src="/icons/enterprise-ready.png" />,
               title: "Enterprise Ready",
               description:
                 "Trusted by thousands of leading companies and organizations worldwide.",
             },
             {
+              icon: <img src="/icons/modules.png" />,
               title: "Decorators",
               description:
                 "Enhance code readability and structure with TypeScript decorators.",
             },
             {
+              icon: <img src="/icons/enterprise-ready.png" />,
               title: "Microservices",
               description:
                 "Build scalable and efficient microservice architectures with ease.",
             },
             {
+              icon: <img src="/icons/modules.png" />,
               title: "Web Apps",
               description:
                 "Create dynamic and responsive web applications effortlessly.",

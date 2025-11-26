@@ -5,6 +5,7 @@ import LightRays from "../light-rays/light-rays";
 import classes from "./bounce-cards.module.scss";
 
 interface CardMetadata {
+  icon: React.ReactNode;
   title: string;
   description: string;
 }
@@ -222,10 +223,22 @@ export default function BounceCards({
                   className={`p-6 flex flex-col justify-center w-full h-full text-white ${classes.cardContent}`}
                 >
                   {idx !== hoveredIdx && (
-                    <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
+                    <>
+                      <div className="w-[75px] h-[75px] aspect-square self-center mb-5">
+                        {card.icon}
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2">
+                        {card.title}
+                      </h3>
+                    </>
                   )}
                   {idx === hoveredIdx && (
                     <>
+                      <BlurIn duration={0.4} distance={10}>
+                        <div className="w-[75px] h-[75px] aspect-square self-center mb-4">
+                          {card.icon}
+                        </div>
+                      </BlurIn>
                       <h3 className="text-xl font-semibold mb-2">
                         <BlurIn duration={0.4} distance={10}>
                           {card.title}
