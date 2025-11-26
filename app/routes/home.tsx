@@ -5,6 +5,7 @@ import { BlurIn } from "../components/blur-in/blur-in";
 import BounceCards from "../components/bounce-cards/bounce-cards";
 import { LogoLoop } from "../components/logo-loop/logo-loop";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
+import ScrollReveal from "../components/scroll-reveal/scroll-reveal";
 import SpotlightCard from "../components/spotlight-card/spotlight-card";
 import { WordByWord } from "../components/word-by-word/word-by-word";
 import type { Route } from "./+types/home";
@@ -326,6 +327,30 @@ export default function Home() {
           fadeOutColor="#050303"
           ariaLabel="Technology partners"
         />
+      </div>
+      <div className="flex justify-center">
+        <div className="container relative">
+          <div className="grid grid-cols-[60%_10%_30%] gap-0">
+            <ScrollReveal
+              ElementTag="h2"
+              className="font-medium text-5xl mb-4 leading-14"
+              enableBlur
+            >
+              Nest is a modern framework for building efficient, scalable web
+              applications
+            </ScrollReveal>
+            <span></span>
+            <ScrollReveal
+              className="font-mono text-sm opacity-70 leading-6 font-light"
+              ElementTag="p"
+              enableBlur
+            >
+              Built on top of TypeScript and Node.js, Nest combines the best
+              programming practices with a clean, modular architecture that
+              keeps projects organized and easy to maintain.
+            </ScrollReveal>
+          </div>
+        </div>
       </div>
       <div className="mb-40 mt-40 flex justify-center">
         <BounceCards
