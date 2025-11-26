@@ -3,7 +3,6 @@ import { siDiscord, siGithub, siX } from "simple-icons";
 import Aurora from "../components/aurora-header/aurora-header";
 import { BlurIn } from "../components/blur-in/blur-in";
 import BounceCards from "../components/bounce-cards/bounce-cards";
-import { LogoLoop } from "../components/logo-loop/logo-loop";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
 import ScrollReveal from "../components/scroll-reveal/scroll-reveal";
 import SpotlightCard from "../components/spotlight-card/spotlight-card";
@@ -316,7 +315,7 @@ export default function Home() {
         </div>
       </header>
       <div className="height-[200px] relative overflow-hidden mt-20 mb-20">
-        <LogoLoop
+        {/* <LogoLoop
           logos={techLogos}
           speed={30}
           direction="left"
@@ -326,7 +325,7 @@ export default function Home() {
           fadeOut
           fadeOutColor="#050303"
           ariaLabel="Technology partners"
-        />
+        /> */}
       </div>
       <div className="flex justify-center">
         <div className="container relative">
