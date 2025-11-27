@@ -25,6 +25,7 @@ interface LightRaysProps {
   noiseAmount?: number;
   distortion?: number;
   className?: string;
+  opacity?: number;
 }
 
 const DEFAULT_COLOR = "#ffffff";
@@ -100,6 +101,7 @@ const LightRays: React.FC<LightRaysProps> = ({
   mouseInfluence = 0.1,
   noiseAmount = 0.0,
   distortion = 0.0,
+  opacity = 1,
   className = "",
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -152,6 +154,7 @@ const LightRays: React.FC<LightRaysProps> = ({
       const renderer = new Renderer({
         dpr: Math.min(window.devicePixelRatio, 2),
         alpha: true,
+        premultipliedAlpha: false,
       });
       rendererRef.current = renderer;
 
@@ -258,6 +261,11 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
   }
 
   fragColor.rgb *= raysColor;
+
+  vec3 bgColor = vec3(0.0);
+  vec3 rayColLinear = pow(raysColor, vec3(2.2)); // linearization
+  fragColor.rgb = rayColLinear * fragColor.a + bgColor * (1.0 - fragColor.a);
+  fragColor.a = 1.0; // output opaque
 }
 
 void main() {
@@ -462,6 +470,7 @@ void main() {
     <div
       ref={containerRef}
       className={`w-full h-full pointer-events-none z-[3] overflow-hidden relative ${className}`.trim()}
+      style={{ opacity }}
     />
   );
 };

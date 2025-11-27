@@ -8,6 +8,23 @@
 
 .cardContent {
   padding: 32px;
+
+  p {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out 0s, opacity 0.5s ease-in-out 0s, filter 0.3s ease-in-out 0s;
+    filter: blur(2px);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &:hover p {
+    transition: max-height 0.3s ease-in-out 0.15s, opacity 0.5s ease-in-out 0.3s, filter 0.3s ease-in-out 0.1s;
+    max-height: 200px;
+    opacity: 1;
+    pointer-events: auto;
+    filter: blur(0);
+  }
 }
 
 .cardContainer {

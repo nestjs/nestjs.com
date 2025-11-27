@@ -19,6 +19,7 @@ interface BounceCardsProps {
   easeType?: string;
   transformStyles?: string[];
   enableHover?: boolean;
+  duration?: number;
 }
 
 export default function BounceCards({
@@ -27,6 +28,7 @@ export default function BounceCards({
   animationDelay = 0.5,
   containerHeight = 350,
   animationStagger = 0.06,
+  duration = 0.9,
   easeType = "elastic.out(1, 0.8)",
   enableHover = false,
 }: BounceCardsProps) {
@@ -132,7 +134,7 @@ export default function BounceCards({
         const noRotation = getNoRotationTransform(baseTransform);
         gsap.to(selector, {
           transform: noRotation,
-          duration: 0.4,
+          duration,
           ease: "back.out(1.4)",
           overwrite: "auto",
         });
@@ -145,7 +147,7 @@ export default function BounceCards({
 
         gsap.to(selector, {
           transform: pushedTransform,
-          duration: 0.4,
+          duration,
           ease: "back.out(1.4)",
           delay,
           overwrite: "auto",
@@ -167,7 +169,7 @@ export default function BounceCards({
       const baseTransform = transformStyles[i] || "none";
       gsap.to(selector, {
         transform: baseTransform,
-        duration: 0.4,
+        duration,
         ease: "back.out(1.4)",
         overwrite: "auto",
       });
@@ -185,7 +187,7 @@ export default function BounceCards({
       {cards.map((card, idx) => (
         <div
           key={idx}
-          className={`${classes.card} card-${idx} absolute w-[350px] aspect-square overflow-hidden text-center hover:text-left`}
+          className={`${classes.card} card-${idx} absolute w-[350px] aspect-square overflow-hidden text-center`}
           style={{
             transform: transformStyles[idx] || "none",
           }}
@@ -217,38 +219,19 @@ export default function BounceCards({
                     mouseInfluence={0.1}
                     noiseAmount={0.05}
                     distortion={0.05}
+                    opacity={0.3}
                   />
                 </div>
                 <div
-                  className={`p-6 flex flex-col justify-center w-full h-full text-white ${classes.cardContent}`}
+                  className={`p-6 flex flex-col justify-center w-full h-full text-white z-10 ${classes.cardContent}`}
                 >
-                  {idx !== hoveredIdx && (
-                    <>
-                      <div className="w-[75px] h-[75px] aspect-square self-center mb-5">
-                        {card.icon}
-                      </div>
-                      <h3 className="text-xl font-semibold mb-2">
-                        {card.title}
-                      </h3>
-                    </>
-                  )}
-                  {idx === hoveredIdx && (
-                    <>
-                      <BlurIn duration={0.4} distance={10}>
-                        <div className="w-[75px] h-[75px] aspect-square self-center mb-4">
-                          {card.icon}
-                        </div>
-                      </BlurIn>
-                      <h3 className="text-xl font-semibold mb-2">
-                        <BlurIn duration={0.4} distance={10}>
-                          {card.title}
-                        </BlurIn>
-                      </h3>
-                      <p className="opacity-80 text-sm font-mono leading-6 font-light">
-                        <BlurIn duration={0.4}>{card.description}</BlurIn>
-                      </p>
-                    </>
-                  )}
+                  <div className="w-[75px] h-[75px] aspect-square self-center mb-5">
+                    {card.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
+                  <p className="opacity-80 text-sm font-mono leading-6 font-light">
+                    {card.description}
+                  </p>
                 </div>
               </div>
             </div>
