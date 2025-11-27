@@ -29,7 +29,7 @@ export default function BounceCards({
   animationDelay = 0.5,
   containerHeight = 350,
   animationStagger = 0.06,
-  duration = 0.65,
+  duration = 0.3,
   easeType = "elastic.out(1, 0.8)",
   enableHover = false,
 }: BounceCardsProps) {
@@ -209,7 +209,7 @@ export default function BounceCards({
             className="flex w-full h-full"
             delay={idx * 0.1}
             distance={100}
-            duration={1}
+            duration={0.4}
           >
             <div
               className={`${classes.borderGlow} flex w-full h-full rounded-[24px]`}

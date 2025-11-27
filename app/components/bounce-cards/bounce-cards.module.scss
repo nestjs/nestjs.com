@@ -12,14 +12,14 @@
   p {
     // max-height: 0;
     // overflow: hidden;
-    transition: max-height 0.3s ease-in-out 0s, opacity 0.3s ease-in-out, filter 0.3s ease-in-out 0s;
+    transition: max-height 0.3s ease-in-out 0s, opacity 0.2s ease-in-out, filter 0.2s ease-in-out 0s;
     filter: blur(2px);
     opacity: 0;
     pointer-events: none;
   }
 
   &:hover p {
-    transition: max-height 0.3s ease-in-out 0.15s, opacity 0.3s ease-in-out, filter 0.3s ease-in-out 0.1s;
+    transition: max-height 0.3s ease-in-out 0.15s, opacity 0.2s ease-in-out, filter 0.2s ease-in-out 0s;
     // max-height: 200px;
     opacity: 1;
     pointer-events: auto;
