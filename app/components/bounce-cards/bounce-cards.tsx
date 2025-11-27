@@ -1,5 +1,6 @@
 import { gsap } from "gsap";
 import { useEffect, useState } from "react";
+import { debounce } from "../../utils/debounce";
 import { BlurIn } from "../blur-in/blur-in";
 import LightRays from "../light-rays/light-rays";
 import classes from "./bounce-cards.module.scss";
@@ -50,30 +51,37 @@ export default function BounceCards({
     DEFAULT_HOVERED_IDX
   );
 
-  // TODO: change on resize
   useEffect(() => {
     if (typeof window === "undefined") {
       return;
     }
 
-    const width = window.innerWidth;
-    setContainerWidth(width);
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setContainerWidth(width);
 
-    // Generate transform styles based on number of cards and container width
-    const styles: string[] = [];
-    const centerIdx = Math.floor(cards.length / 2);
-    const xOffset = 300;
-    const spacing = (width - xOffset) / (cards.length + 1);
+      // Generate transform styles based on number of cards and container width
+      const styles: string[] = [];
+      const centerIdx = Math.floor(cards.length / 2);
+      const xOffset = 300;
+      const spacing = (width - xOffset) / (cards.length + 1);
 
-    const rotations = [0, -5, 5];
-    cards.forEach((_, i) => {
-      const offsetFromCenter = i - centerIdx;
-      const rotation = rotations[Math.abs(offsetFromCenter) % rotations.length];
-      const translationX = offsetFromCenter * spacing;
-      styles.push(`rotate(${rotation}deg) translate(${translationX}px)`);
-    });
+      const rotations = [0, -5, 5];
+      cards.forEach((_, i) => {
+        const offsetFromCenter = i - centerIdx;
+        const rotation =
+          rotations[Math.abs(offsetFromCenter) % rotations.length];
+        const translationX = offsetFromCenter * spacing;
+        styles.push(`rotate(${rotation}deg) translate(${translationX}px)`);
+      });
 
-    setTransformStyles(styles);
+      setTransformStyles(styles);
+    };
+    handleResize();
+
+    const debouncedHandleResize = debounce(handleResize, 100);
+    window.addEventListener("resize", debouncedHandleResize);
+    return () => window.removeEventListener("resize", debouncedHandleResize);
   }, []);
 
   useEffect(() => {
