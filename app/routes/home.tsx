@@ -352,7 +352,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="mb-70 mt-40 flex justify-center">
+      <div className="mt-40 mb-40 flex justify-center">
         <BounceCards
           className="custom-bounceCards"
           cards={[
@@ -405,8 +405,8 @@ export default function Home() {
           enableHover
         />
       </div>
-      <div className="mb-70 flex justify-center flex-col items-center">
-        <BlurIn distance={10} duration={1} ease="elastic.out(1, 0.5)">
+      <div className="pb-70 pt-30 flex justify-center flex-col items-center relative">
+        <BlurIn distance={10} duration={2} ease="elastic.out(1, 0.5)">
           <ShineText
             ElementTag="h4"
             className="text-9xl font-medium text-center flex"
@@ -416,7 +416,7 @@ export default function Home() {
         </BlurIn>
         <BlurIn
           distance={10}
-          duration={1}
+          duration={2}
           delay={0.2}
           ease="elastic.out(1, 0.5)"
         >
