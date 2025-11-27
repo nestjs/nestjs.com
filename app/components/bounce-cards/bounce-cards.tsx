@@ -29,7 +29,7 @@ export default function BounceCards({
   animationDelay = 0.5,
   containerHeight = 350,
   animationStagger = 0.06,
-  duration = 0.9,
+  duration = 0.75,
   easeType = "elastic.out(1, 0.8)",
   enableHover = false,
 }: BounceCardsProps) {
@@ -234,9 +234,9 @@ export default function BounceCards({
                   />
                 </div>
                 <div
-                  className={`p-6 flex flex-col justify-center w-full h-full text-white z-10 ${classes.cardContent}`}
+                  className={`flex flex-col justify-center w-full h-full text-white z-10 ${classes.cardContent}`}
                 >
-                  <div className="w-[75px] h-[75px] aspect-square self-center mb-5">
+                  <div className="w-[75px] h-[75px] aspect-square self-center mb-5 mt-5">
                     {card.icon}
                   </div>
                   <h3 className="text-xl font-semibold mb-2">{card.title}</h3>

@@ -17,7 +17,7 @@ export function ShineText({
       style={{
         ...style,
         backgroundImage:
-          "linear-gradient(120deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 70%)",
+          "linear-gradient(120deg, #fff 30%, rgba(255, 255, 255, 0), #fff 70%)",
         backgroundSize: "200% 100%",
         WebkitBackgroundClip: "text",
       }}
