@@ -6,11 +6,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 const MIN_SCALE = 1;
 const MAX_SCALE = 50;
+const MIN_OPACITY = 0;
+const MAX_OPACITY = 1;
 
 export function ScaleOnScroll({ children }: { children: React.ReactNode }) {
   const rootRef = useRef<HTMLDivElement | null>(null);
 
-  // use gsap to scale the component on scroll
   useEffect(() => {
     if (!rootRef.current) return;
 
@@ -42,6 +43,19 @@ export function ScaleOnScroll({ children }: { children: React.ReactNode }) {
                 (endOffset - startOffset)
           )
         );
+        const opacity =
+          1 -
+          Math.min(
+            MAX_OPACITY,
+            Math.max(
+              MIN_OPACITY,
+              MIN_OPACITY +
+                ((MAX_OPACITY - MIN_OPACITY) * (clampedTop - startOffset)) /
+                  (containerHeight * 0.3 - startOffset)
+            )
+          );
+
+        text.style.opacity = `${opacity}`;
 
         text.style.transform = `scale(${scale})`;
       },
