@@ -30,7 +30,7 @@ export function ScaleOnScroll({ children }: { children: React.ReactNode }) {
         const containerTop = containerRect.top;
         const containerHeight = containerRect.height;
 
-        const startOffset = 0;
+        const startOffset = 500;
         const endOffset = containerHeight * 0.9;
         const clampedTop = Math.min(Math.abs(containerTop), endOffset);
 
@@ -68,7 +68,7 @@ export function ScaleOnScroll({ children }: { children: React.ReactNode }) {
     <div
       className="scale-on-scroll will-change-transform"
       style={{
-        height: "120vh",
+        height: "400vh",
         position: "relative",
         // marginTop: "-20vh",
       }}
