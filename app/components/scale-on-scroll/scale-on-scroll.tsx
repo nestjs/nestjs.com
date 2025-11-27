@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 const MIN_SCALE = 1;
-const MAX_SCALE = 50;
+const MAX_SCALE = 10;
 const MIN_OPACITY = 0;
 const MAX_OPACITY = 1;
 
@@ -31,7 +31,7 @@ export function ScaleOnScroll({ children }: { children: React.ReactNode }) {
         const containerHeight = containerRect.height;
 
         const startOffset = 0;
-        const endOffset = containerHeight * 0.8;
+        const endOffset = containerHeight * 0.9;
         const clampedTop = Math.min(Math.abs(containerTop), endOffset);
 
         const scale = Math.min(
@@ -51,7 +51,7 @@ export function ScaleOnScroll({ children }: { children: React.ReactNode }) {
               MIN_OPACITY,
               MIN_OPACITY +
                 ((MAX_OPACITY - MIN_OPACITY) * (clampedTop - startOffset)) /
-                  (containerHeight * 0.3 - startOffset)
+                  (containerHeight * 0.4 - startOffset)
             )
           );
 
@@ -68,10 +68,9 @@ export function ScaleOnScroll({ children }: { children: React.ReactNode }) {
     <div
       className="scale-on-scroll will-change-transform"
       style={{
-        height: "150vh",
+        height: "120vh",
         position: "relative",
-        overflow: "hidden",
-        marginTop: "-20vh",
+        // marginTop: "-20vh",
       }}
     >
       <div
@@ -79,23 +78,33 @@ export function ScaleOnScroll({ children }: { children: React.ReactNode }) {
           width: "100%",
           height: "100vh",
           position: "sticky",
+          overflow: "hidden",
           top: 0,
         }}
       >
         <div
-          ref={rootRef}
           style={{
-            justifyContent: "center",
-            alignItems: "center",
             width: "100%",
             height: "100%",
-            display: "flex",
-            flexDirection: "column",
             position: "relative",
-            transform: `scale(${MIN_SCALE})`,
+            overflow: "hidden",
           }}
         >
-          {children}
+          <div
+            ref={rootRef}
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              flexDirection: "column",
+              position: "relative",
+              transform: `scale(${MIN_SCALE})`,
+            }}
+          >
+            {children}
+          </div>
         </div>
       </div>
     </div>

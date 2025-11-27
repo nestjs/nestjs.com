@@ -172,150 +172,159 @@ export default function Home() {
   };
 
   return (
-    <div className="p-10">
-      <header
-        ref={headerRef}
-        className="flex justify-center overflow-hidden relative rounded-[32px] 
+    <>
+      <div className="p-10">
+        <header
+          ref={headerRef}
+          className="flex justify-center overflow-hidden relative rounded-[32px] 
           bg-gradient-to-r from-[#050303] 
           via-[#780f20] 
           to-[#050303]"
-      >
-        <Aurora />
-        <NoiseOverlay />
-        {/* <AnimatedLine left="10%" top="50%" />
+        >
+          <Aurora />
+          <NoiseOverlay />
+          {/* <AnimatedLine left="10%" top="50%" />
         <AnimatedLine left="90%" top="40%" delay={1} /> */}
-        <div className="container relative z-10">
-          <BlurIn delay={0.1}>
-            <div className="rounded-[32px] mt-8 relative overflow-hidden">
-              <SpotlightCard>
-                <div
-                  className={`${classes.navPanel} flex items-center p-5 bg-black/60 rounded-[32px]`}
-                >
-                  <div className="flex justify-start">
-                    <a href="https://nestjs.com">
-                      <img src="logo.svg" alt="NestJS Logo" className="h-10" />
-                    </a>
-                  </div>
-
-                  <nav
-                    className={`flex justify-center space-x-10 font-medium text-base flex-1`}
+          <div className="container relative z-10">
+            <BlurIn delay={0.1}>
+              <div className="rounded-[32px] mt-8 relative overflow-hidden">
+                <SpotlightCard>
+                  <div
+                    className={`${classes.navPanel} flex items-center p-5 bg-black/60 rounded-[32px]`}
                   >
-                    {MENU_ITEMS.map((item) => (
-                      <a
-                        key={item.id}
-                        href={item.href}
-                        className={
-                          item.id === hoveringTargetId ||
-                          hoveringTargetId === null
-                            ? "text-white hover:opacity-100 duration-200"
-                            : "opacity-30 duration-200"
-                        }
-                        onMouseEnter={() => setHoveringTargetId(item.id)}
-                        onMouseLeave={onMenuItemMouseLeave}
-                      >
-                        {item.label}
+                    <div className="flex justify-start">
+                      <a href="https://nestjs.com">
+                        <img
+                          src="logo.svg"
+                          alt="NestJS Logo"
+                          className="h-10"
+                        />
                       </a>
-                    ))}
-                  </nav>
+                    </div>
 
-                  <div className="flex justify-end space-x-5">
+                    <nav
+                      className={`flex justify-center space-x-10 font-medium text-base flex-1`}
+                    >
+                      {MENU_ITEMS.map((item) => (
+                        <a
+                          key={item.id}
+                          href={item.href}
+                          className={
+                            item.id === hoveringTargetId ||
+                            hoveringTargetId === null
+                              ? "text-white hover:opacity-100 duration-200"
+                              : "opacity-30 duration-200"
+                          }
+                          onMouseEnter={() => setHoveringTargetId(item.id)}
+                          onMouseLeave={onMenuItemMouseLeave}
+                        >
+                          {item.label}
+                        </a>
+                      ))}
+                    </nav>
+
+                    <div className="flex justify-end space-x-5">
+                      <a
+                        href="https://github.com/nestjs/nest"
+                        target="_blank"
+                        className="icon m-l-30"
+                      >
+                        <svg
+                          role="img"
+                          viewBox="0 0 24 24"
+                          className="w-5 h-5 fill-current color-text"
+                        >
+                          <path d={siGithub.path} />
+                        </svg>
+                      </a>
+                      <a
+                        href="https://twitter.com/nestframework"
+                        target="_blank"
+                        className="icon"
+                      >
+                        <svg
+                          role="img"
+                          viewBox="0 0 24 24"
+                          className="w-5 h-5 color-text fill-current"
+                        >
+                          <path d={siX.path} />
+                        </svg>
+                      </a>
+                      <a
+                        href="https://linkedin.com/company/19078346"
+                        target="_blank"
+                        className="icon"
+                      >
+                        <svg
+                          role="img"
+                          viewBox="0 0 24 24"
+                          className="w-5 h-5 fill-current color-text"
+                        >
+                          <path d={siDiscord.path} />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </SpotlightCard>
+              </div>
+            </BlurIn>
+            <div className="centered text-center pt-30 pb-40 flex flex-col items-center">
+              <h1 className="text-8xl font-medium max-w-4xl self-center">
+                <WordByWord>More than just a Node framework</WordByWord>
+              </h1>
+              <BlurIn delay={0.7}>
+                <p className="mt-4 text-sm font-light font-mono opacity-80 max-w-2xl leading-[24px]">
+                  Nest - the world's fastest-growing Node framework for building
+                  efficient, reliable and scalable server-side applications.
+                </p>
+              </BlurIn>
+              <div className="mt-30">
+                <BlurIn delay={1} distance={10}>
+                  <>
+                    <a
+                      href="https://docs.nestjs.com/"
+                      className="btn bg-white rounded text-black font-bold pt-5 pb-5 pl-7 pr-7 rounded-[20px]"
+                    >
+                      Get started
+                    </a>
                     <a
                       href="https://github.com/nestjs/nest"
-                      target="_blank"
-                      className="icon m-l-30"
+                      className="btn bg-secondary text-white font-bold pt-5 pb-5 pl-7 pr-7 rounded-[20px]"
                     >
-                      <svg
-                        role="img"
-                        viewBox="0 0 24 24"
-                        className="w-5 h-5 fill-current color-text"
-                      >
-                        <path d={siGithub.path} />
-                      </svg>
+                      Github
                     </a>
-                    <a
-                      href="https://twitter.com/nestframework"
-                      target="_blank"
-                      className="icon"
-                    >
-                      <svg
-                        role="img"
-                        viewBox="0 0 24 24"
-                        className="w-5 h-5 color-text fill-current"
-                      >
-                        <path d={siX.path} />
-                      </svg>
-                    </a>
-                    <a
-                      href="https://linkedin.com/company/19078346"
-                      target="_blank"
-                      className="icon"
-                    >
-                      <svg
-                        role="img"
-                        viewBox="0 0 24 24"
-                        className="w-5 h-5 fill-current color-text"
-                      >
-                        <path d={siDiscord.path} />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </SpotlightCard>
-            </div>
-          </BlurIn>
-          <div className="centered text-center pt-30 pb-40 flex flex-col items-center">
-            <h1 className="text-8xl font-medium max-w-4xl self-center">
-              <WordByWord>More than just a Node framework</WordByWord>
-            </h1>
-            <BlurIn delay={0.7}>
-              <p className="mt-4 text-sm font-light font-mono opacity-80 max-w-2xl leading-[24px]">
-                Nest - the world's fastest-growing Node framework for building
-                efficient, reliable and scalable server-side applications.
-              </p>
-            </BlurIn>
-            <div className="mt-30">
-              <BlurIn delay={1} distance={10}>
-                <>
-                  <a
-                    href="https://docs.nestjs.com/"
-                    className="btn bg-white rounded text-black font-bold pt-5 pb-5 pl-7 pr-7 rounded-[20px]"
-                  >
-                    Get started
-                  </a>
-                  <a
-                    href="https://github.com/nestjs/nest"
-                    className="btn bg-secondary text-white font-bold pt-5 pb-5 pl-7 pr-7 rounded-[20px]"
-                  >
-                    Github
-                  </a>
-                </>
-              </BlurIn>
+                  </>
+                </BlurIn>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="absolute right-15 bottom-15 text-right leading-11 text-sm font-mono">
-          <BlurIn distance={5} delay={0.5}>
-            <>
-              <p>
-                <span className="opacity-70 mr-4 font-sans">Github stars</span>{" "}
-                73,840
-              </p>
-              <p>
-                <span className="opacity-70 mr-4 font-sans">
-                  Latest release
-                </span>{" "}
-                Aug 7 / 11.1.9
-              </p>
-              <p>
-                <span className="opacity-70 mr-4 font-sans">
-                  Monthly downloads
-                </span>{" "}
-                24,200,000
-              </p>
-            </>
-          </BlurIn>
-        </div>
-      </header>
+          <div className="absolute right-15 bottom-15 text-right leading-11 text-sm font-mono">
+            <BlurIn distance={5} delay={0.5}>
+              <>
+                <p>
+                  <span className="opacity-70 mr-4 font-sans">
+                    Github stars
+                  </span>{" "}
+                  73,840
+                </p>
+                <p>
+                  <span className="opacity-70 mr-4 font-sans">
+                    Latest release
+                  </span>{" "}
+                  Aug 7 / 11.1.9
+                </p>
+                <p>
+                  <span className="opacity-70 mr-4 font-sans">
+                    Monthly downloads
+                  </span>{" "}
+                  24,200,000
+                </p>
+              </>
+            </BlurIn>
+          </div>
+        </header>
+      </div>
+
       {/* <div className="height-[200px] relative overflow-hidden mt-20 mb-20">
         <LogoLoop
           logos={techLogos}
@@ -329,7 +338,7 @@ export default function Home() {
           ariaLabel="Technology partners"
         />
       </div> */}
-      <div className="flex justify-center mt-25">
+      <div className="flex justify-center mt-30">
         <div className="container relative">
           <div className="grid grid-cols-[60%_10%_30%] gap-0">
             <ScrollReveal
@@ -353,7 +362,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="mt-40 mb-40 flex justify-center">
+      <div className="mt-50 mb-40 flex justify-center">
         <BounceCards
           className="custom-bounceCards"
           cards={[
@@ -479,6 +488,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
