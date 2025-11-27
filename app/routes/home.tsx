@@ -4,6 +4,7 @@ import Aurora from "../components/aurora-header/aurora-header";
 import { BlurIn } from "../components/blur-in/blur-in";
 import BounceCards from "../components/bounce-cards/bounce-cards";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
+import { ScaleOnScroll } from "../components/scale-on-scroll/scale-on-scroll";
 import ScrollReveal from "../components/scroll-reveal/scroll-reveal";
 import { ShineText } from "../components/shine-text/shine-text";
 import SpotlightCard from "../components/spotlight-card/spotlight-card";
@@ -405,7 +406,7 @@ export default function Home() {
           enableHover
         />
       </div>
-      <div className="pb-70 pt-30 flex justify-center flex-col items-center relative">
+      {/* <div className="pb-70 pt-30 flex justify-center flex-col items-center relative">
         <BlurIn distance={10} duration={2} ease="elastic.out(1, 0.5)">
           <ShineText
             ElementTag="h4"
@@ -427,6 +428,56 @@ export default function Home() {
             Build smarter.
           </ShineText>
         </BlurIn>
+      </div> */}
+
+      <ScaleOnScroll>
+        {/* <BlurIn distance={10} duration={2} ease="elastic.out(1, 0.5)"> */}
+        <ShineText
+          ElementTag="h4"
+          className="text-9xl font-medium text-center flex"
+        >
+          Work faster.
+        </ShineText>
+        {/* </BlurIn>
+          <BlurIn
+            distance={10}
+            duration={2}
+            delay={0.2}
+            ease="elastic.out(1, 0.5)"
+          > */}
+        <ShineText
+          ElementTag="h4"
+          className="text-9xl font-medium text-center flex"
+        >
+          Build smarter.
+        </ShineText>
+        {/* </BlurIn> */}
+      </ScaleOnScroll>
+      <div className="p-10">
+        <div className="flex justify-center mt-25">
+          <div className="container relative">
+            <div className="grid grid-cols-[60%_10%_30%] gap-0">
+              <ScrollReveal
+                ElementTag="h2"
+                className="font-medium text-5xl mb-4 leading-14"
+                enableBlur
+              >
+                Nest is a modern framework designed to build efficient, scalable
+                web applications
+              </ScrollReveal>
+              <span></span>
+              <ScrollReveal
+                className="font-mono text-sm opacity-70 leading-6 font-light"
+                ElementTag="p"
+                enableBlur
+              >
+                Built on TypeScript and Node.js, Nest blends best programming
+                practices with a clean, modular architecture, keeping projects
+                organized and easy to maintain.
+              </ScrollReveal>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
