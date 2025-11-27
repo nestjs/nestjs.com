@@ -3,6 +3,7 @@ import { siDiscord, siGithub, siX } from "simple-icons";
 import Aurora from "../components/aurora-header/aurora-header";
 import { BlurIn } from "../components/blur-in/blur-in";
 import BounceCards from "../components/bounce-cards/bounce-cards";
+import Hyperspeed from "../components/hyperspeed/hyperspeed";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
 import { ScaleOnScroll } from "../components/scale-on-scroll/scale-on-scroll";
 import ScrollReveal from "../components/scroll-reveal/scroll-reveal";
@@ -324,7 +325,6 @@ export default function Home() {
           </div>
         </header>
       </div>
-
       {/* <div className="height-[200px] relative overflow-hidden mt-20 mb-20">
         <LogoLoop
           logos={techLogos}
@@ -438,29 +438,83 @@ export default function Home() {
           </ShineText>
         </BlurIn>
       </div> */}
+      <ScaleOnScroll
+        background={
+          <div
+            style={{
+              width: "100%",
+              height: "100vh",
+              position: "absolute",
+              left: 0,
+              top: 0,
+              right: 0,
+              pointerEvents: "none",
+            }}
+          >
+            <Hyperspeed
+              effectOptions={{
+                onSpeedUp: () => {},
+                onSlowDown: () => {},
+                distortion: "mountainDistortion",
+                length: 1000,
+                roadWidth: 15,
+                islandWidth: 5,
+                lanesPerRoad: 4,
+                fov: 90,
+                fovSpeedUp: 150,
+                speedUp: 5,
+                carLightsFade: 0.4,
+                totalSideLightSticks: 50,
+                lightPairsPerRoadWay: 50,
+                shoulderLinesWidthPercentage: 0.05,
+                brokenLinesWidthPercentage: 0.1,
+                brokenLinesLengthPercentage: 0.5,
+                lightStickWidth: [0.12, 0.5],
+                lightStickHeight: [1.3, 1.7],
 
-      <ScaleOnScroll>
-        {/* <BlurIn distance={10} duration={2} ease="elastic.out(1, 0.5)"> */}
-        <ShineText
-          ElementTag="h4"
-          className="text-9xl font-medium text-center flex"
+                movingAwaySpeed: [60, 80],
+                movingCloserSpeed: [-120, -160],
+                carLightsLength: [400 * 0.05, 400 * 0.15],
+                carLightsRadius: [0.05, 0.14],
+                carWidthPercentage: [0.3, 0.5],
+                carShiftX: [-0.2, 0.2],
+                carFloorSeparation: [0.05, 1],
+                colors: {
+                  roadColor: 0x080808,
+                  islandColor: 0x0a0a0a,
+                  background: 0x000000,
+                  shoulderLines: 0x131318,
+                  brokenLines: 0x131318,
+                  leftCars: [0x780f20, 0xe0234f, 0x780f20],
+                  rightCars: [0xdadafa, 0xbebae3, 0x8f97e4],
+                  sticks: 0xdadafa,
+                },
+              }}
+            />
+          </div>
+        }
+      >
+        <BlurIn distance={10} duration={2} ease="elastic.out(1, 0.5)">
+          <ShineText
+            ElementTag="h4"
+            className="text-9xl font-medium text-center flex"
+          >
+            Work faster.
+          </ShineText>
+        </BlurIn>
+        <BlurIn
+          distance={10}
+          duration={2}
+          delay={0.2}
+          ease="elastic.out(1, 0.5)"
         >
-          Work faster.
-        </ShineText>
-        {/* </BlurIn>
-          <BlurIn
-            distance={10}
-            duration={2}
-            delay={0.2}
-            ease="elastic.out(1, 0.5)"
-          > */}
-        <ShineText
-          ElementTag="h4"
-          className="text-9xl font-medium text-center flex"
-        >
-          Build smarter.
-        </ShineText>
-        {/* </BlurIn> */}
+          <ShineText
+            ElementTag="h4"
+            className="text-9xl font-medium text-center flex"
+          >
+            Build smarter.
+          </ShineText>
+        </BlurIn>
       </ScaleOnScroll>
       <div className="p-10">
         <div className="flex justify-center mt-25">

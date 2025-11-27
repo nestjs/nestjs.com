@@ -16,11 +16,13 @@
     "isbot": "^5.1.31",
     "lucide-react": "^0.554.0",
     "ogl": "^1.0.11",
+    "postprocessing": "^6.38.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router": "^7.9.2",
     "simple-icons": "^15.22.0",
-    "simplex-noise": "^4.0.3"
+    "simplex-noise": "^4.0.3",
+    "three": "^0.181.2"
   },
   "devDependencies": {
     "@react-router/dev": "^7.9.2",

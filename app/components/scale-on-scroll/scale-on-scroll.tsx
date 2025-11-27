@@ -1,6 +1,6 @@
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -9,9 +9,37 @@ const MAX_SCALE = 5;
 const MIN_OPACITY = 0;
 const MAX_OPACITY = 1;
 
-export function ScaleOnScroll({ children }: { children: React.ReactNode }) {
+export function ScaleOnScroll({
+  children,
+  background,
+}: {
+  children: React.ReactNode;
+  background?: React.ReactNode;
+}) {
   const rootRef = useRef<HTMLDivElement | null>(null);
+  const [showBackground, setShowBackground] = useState(false);
+  const backgroundTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Show background only on scroll
+  useEffect(() => {
+    const onScroll = () => {
+      if (backgroundTimeoutRef.current) {
+        clearTimeout(backgroundTimeoutRef.current);
+      }
+      setShowBackground(true);
+
+      const hideBackgroundTimeout = setTimeout(() => {
+        setShowBackground(false);
+      }, 500);
+      backgroundTimeoutRef.current = hideBackgroundTimeout;
+
+      return () => clearTimeout(hideBackgroundTimeout);
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
   useEffect(() => {
     if (!rootRef.current) return;
 
@@ -90,6 +118,14 @@ export function ScaleOnScroll({ children }: { children: React.ReactNode }) {
             overflow: "hidden",
           }}
         >
+          <div
+            style={{
+              opacity: showBackground ? 1 : 0,
+              transition: "opacity 0.35s ease-in-out",
+            }}
+          >
+            {background}
+          </div>
           <div
             ref={rootRef}
             style={{
