@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 const MIN_SCALE = 1;
-const MAX_SCALE = 10;
+const MAX_SCALE = 5;
 const MIN_OPACITY = 0;
 const MAX_OPACITY = 1;
 
@@ -51,7 +51,7 @@ export function ScaleOnScroll({ children }: { children: React.ReactNode }) {
               MIN_OPACITY,
               MIN_OPACITY +
                 ((MAX_OPACITY - MIN_OPACITY) * (clampedTop - startOffset)) /
-                  (containerHeight * 0.4 - startOffset)
+                  (endOffset - startOffset)
             )
           );
 
