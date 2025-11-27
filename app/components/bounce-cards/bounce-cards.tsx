@@ -85,6 +85,9 @@ export default function BounceCards({
   }, []);
 
   useEffect(() => {
+    const cardElements = document.querySelectorAll(".card");
+    if (cardElements.length === 0) return;
+
     gsap.fromTo(
       ".card",
       { scale: 0 },

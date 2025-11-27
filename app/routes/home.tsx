@@ -5,6 +5,7 @@ import { BlurIn } from "../components/blur-in/blur-in";
 import BounceCards from "../components/bounce-cards/bounce-cards";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
 import ScrollReveal from "../components/scroll-reveal/scroll-reveal";
+import { ShineText } from "../components/shine-text/shine-text";
 import SpotlightCard from "../components/spotlight-card/spotlight-card";
 import { WordByWord } from "../components/word-by-word/word-by-word";
 import type { Route } from "./+types/home";
@@ -351,7 +352,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="mb-40 mt-40 flex justify-center">
+      <div className="mb-70 mt-40 flex justify-center">
         <BounceCards
           className="custom-bounceCards"
           cards={[
@@ -403,6 +404,29 @@ export default function Home() {
           easeType="elastic.out(1, 0.5)"
           enableHover
         />
+      </div>
+      <div className="mb-70 flex justify-center flex-col items-center">
+        <BlurIn distance={10} duration={1} ease="elastic.out(1, 0.5)">
+          <ShineText
+            ElementTag="h4"
+            className="text-9xl font-medium text-center flex mb-10"
+          >
+            Work faster.
+          </ShineText>
+        </BlurIn>
+        <BlurIn
+          distance={10}
+          duration={1}
+          delay={0.2}
+          ease="elastic.out(1, 0.5)"
+        >
+          <ShineText
+            ElementTag="h4"
+            className="text-9xl font-medium text-center flex "
+          >
+            Build smarter.
+          </ShineText>
+        </BlurIn>
       </div>
     </div>
   );

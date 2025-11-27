@@ -6,6 +6,16 @@
   --font-mono: 'Geist Mono', monospace;
   --color-bg: #050303;
   --color-text: #ffffff;
+  --animate-shine: shine 3s linear infinite;
+
+  @keyframes shine {
+    0% {
+      background-position: 100%;
+    }
+    100% {
+      background-position: -100%;
+    }
+  }
 }
 
 body {
