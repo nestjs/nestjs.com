@@ -409,7 +409,7 @@ export default function Home() {
         <BlurIn distance={10} duration={1} ease="elastic.out(1, 0.5)">
           <ShineText
             ElementTag="h4"
-            className="text-9xl font-medium text-center flex mb-10"
+            className="text-9xl font-medium text-center flex"
           >
             Work faster.
           </ShineText>
@@ -422,7 +422,7 @@ export default function Home() {
         >
           <ShineText
             ElementTag="h4"
-            className="text-9xl font-medium text-center flex "
+            className="text-9xl font-medium text-center flex"
           >
             Build smarter.
           </ShineText>
