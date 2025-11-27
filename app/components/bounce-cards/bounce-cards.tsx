@@ -29,7 +29,7 @@ export default function BounceCards({
   animationDelay = 0.5,
   containerHeight = 350,
   animationStagger = 0.06,
-  duration = 0.75,
+  duration = 0.65,
   easeType = "elastic.out(1, 0.8)",
   enableHover = false,
 }: BounceCardsProps) {
