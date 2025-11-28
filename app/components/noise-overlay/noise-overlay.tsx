@@ -18,17 +18,39 @@ const NoiseOverlay: React.FC<{ opacity?: number }> = ({ opacity = 0.15 }) => {
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    const imageData = ctx.createImageData(canvas.width, canvas.height);
-    const buffer = new Uint32Array(imageData.data.buffer);
+    const PREGENERATED_FRAME_COUNT = 6;
+    const pregenerated: OffscreenCanvas[] = [];
 
-    const generateNoise = () => {
-      for (let i = 0; i < buffer.length; i++) {
+    for (let i = 0; i < PREGENERATED_FRAME_COUNT; i++) {
+      const off = new OffscreenCanvas(window.innerWidth, window.innerHeight);
+      const octx = off.getContext("2d")!;
+      const imageData = octx!.createImageData(
+        window.innerWidth,
+        window.innerHeight
+      );
+      const buffer = new Uint32Array(imageData.data.buffer);
+
+      for (let p = 0; p < buffer.length; p++) {
         const shade = Math.floor(Math.random() * 20);
         const alpha = Math.random() < 0.7 ? 255 : 0;
-        buffer[i] = (alpha << 24) | (shade << 16) | (shade << 8) | shade;
+        buffer[p] = (alpha << 24) | (shade << 16) | (shade << 8) | shade;
       }
-      ctx.putImageData(imageData, 0, 0);
-    };
+
+      octx.putImageData(imageData, 0, 0);
+      pregenerated.push(off);
+    }
+
+    // const imageData = ctx.createImageData(canvas.width, canvas.height);
+    // const buffer = new Uint32Array(imageData.data.buffer);
+
+    // const generateNoise = () => {
+    //   for (let i = 0; i < buffer.length; i++) {
+    //     const shade = Math.floor(Math.random() * 20);
+    //     const alpha = Math.random() < 0.7 ? 255 : 0;
+    //     buffer[i] = (alpha << 24) | (shade << 16) | (shade << 8) | shade;
+    //   }
+    //   ctx.putImageData(imageData, 0, 0);
+    // };
 
     const FRAME_SKIP = 5; // (4 ≈ 15fps noise)
     let frame = 0;
@@ -36,7 +58,9 @@ const NoiseOverlay: React.FC<{ opacity?: number }> = ({ opacity = 0.15 }) => {
     const draw = () => {
       frame++;
       if (frame % FRAME_SKIP === 0) {
-        generateNoise();
+        const pg = pregenerated[frame % PREGENERATED_FRAME_COUNT];
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(pg as unknown as CanvasImageSource, 0, 0);
       }
       animationRef.current = requestAnimationFrame(draw);
     };

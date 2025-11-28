@@ -31,6 +31,7 @@
     "@types/node": "^22",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
+    "@types/three": "^0.181.0",
     "@vitejs/plugin-react": "^5.1.1",
     "sass-embedded": "^1.93.3",
     "tailwindcss": "^4.1.13",

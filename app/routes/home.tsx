@@ -3,7 +3,7 @@ import { siDiscord, siGithub, siX } from "simple-icons";
 import Aurora from "../components/aurora-header/aurora-header";
 import { BlurIn } from "../components/blur-in/blur-in";
 import BounceCards from "../components/bounce-cards/bounce-cards";
-import Hyperspeed from "../components/hyperspeed/hyperspeed";
+import CometParticleField from "../components/comet-particle-field/comet-particle-field";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
 import { ScaleOnScroll } from "../components/scale-on-scroll/scale-on-scroll";
 import ScrollReveal from "../components/scroll-reveal/scroll-reveal";
@@ -415,29 +415,6 @@ export default function Home() {
           enableHover
         />
       </div>
-      {/* <div className="pb-70 pt-30 flex justify-center flex-col items-center relative">
-        <BlurIn distance={10} duration={2} ease="elastic.out(1, 0.5)">
-          <ShineText
-            ElementTag="h4"
-            className="text-9xl font-medium text-center flex"
-          >
-            Work faster.
-          </ShineText>
-        </BlurIn>
-        <BlurIn
-          distance={10}
-          duration={2}
-          delay={0.2}
-          ease="elastic.out(1, 0.5)"
-        >
-          <ShineText
-            ElementTag="h4"
-            className="text-9xl font-medium text-center flex"
-          >
-            Build smarter.
-          </ShineText>
-        </BlurIn>
-      </div> */}
       <ScaleOnScroll
         background={
           <div
@@ -451,46 +428,7 @@ export default function Home() {
               pointerEvents: "none",
             }}
           >
-            <Hyperspeed
-              effectOptions={{
-                onSpeedUp: () => {},
-                onSlowDown: () => {},
-                distortion: "mountainDistortion",
-                length: 1000,
-                roadWidth: 15,
-                islandWidth: 5,
-                lanesPerRoad: 4,
-                fov: 90,
-                fovSpeedUp: 150,
-                speedUp: 5,
-                carLightsFade: 0.4,
-                totalSideLightSticks: 50,
-                lightPairsPerRoadWay: 50,
-                shoulderLinesWidthPercentage: 0.05,
-                brokenLinesWidthPercentage: 0.1,
-                brokenLinesLengthPercentage: 0.5,
-                lightStickWidth: [0.12, 0.5],
-                lightStickHeight: [1.3, 1.7],
-
-                movingAwaySpeed: [60, 80],
-                movingCloserSpeed: [-120, -160],
-                carLightsLength: [400 * 0.05, 400 * 0.15],
-                carLightsRadius: [0.05, 0.14],
-                carWidthPercentage: [0.3, 0.5],
-                carShiftX: [-0.2, 0.2],
-                carFloorSeparation: [0.05, 1],
-                colors: {
-                  roadColor: 0x080808,
-                  islandColor: 0x0a0a0a,
-                  background: 0x000000,
-                  shoulderLines: 0x131318,
-                  brokenLines: 0x131318,
-                  leftCars: [0x780f20, 0xe0234f, 0x780f20],
-                  rightCars: [0xdadafa, 0xbebae3, 0x8f97e4],
-                  sticks: 0xdadafa,
-                },
-              }}
-            />
+            <CometParticleField />
           </div>
         }
       >
@@ -516,32 +454,7 @@ export default function Home() {
           </ShineText>
         </BlurIn>
       </ScaleOnScroll>
-      <div className="p-10">
-        <div className="flex justify-center mt-25">
-          <div className="container relative">
-            <div className="grid grid-cols-[60%_10%_30%] gap-0">
-              <ScrollReveal
-                ElementTag="h2"
-                className="font-medium text-5xl mb-4 leading-14"
-                enableBlur
-              >
-                Nest is a modern framework designed to build efficient, scalable
-                web applications
-              </ScrollReveal>
-              <span></span>
-              <ScrollReveal
-                className="font-mono text-sm opacity-70 leading-6 font-light"
-                ElementTag="p"
-                enableBlur
-              >
-                Built on TypeScript and Node.js, Nest blends best programming
-                practices with a clean, modular architecture, keeping projects
-                organized and easy to maintain.
-              </ScrollReveal>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div className="p-10 h-[1000px]"></div>
     </>
   );
 }

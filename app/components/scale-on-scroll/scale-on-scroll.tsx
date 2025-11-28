@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 const MIN_SCALE = 1;
-const MAX_SCALE = 5;
+const MAX_SCALE = 10;
 const MIN_OPACITY = 0;
 const MAX_OPACITY = 1;
 
@@ -18,40 +18,23 @@ export function ScaleOnScroll({
 }) {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const [showBackground, setShowBackground] = useState(false);
-  const backgroundTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Show background only on scroll
   useEffect(() => {
-    const onScroll = () => {
-      if (backgroundTimeoutRef.current) {
-        clearTimeout(backgroundTimeoutRef.current);
-      }
-      setShowBackground(true);
-
-      const hideBackgroundTimeout = setTimeout(() => {
-        setShowBackground(false);
-      }, 500);
-      backgroundTimeoutRef.current = hideBackgroundTimeout;
-
-      return () => clearTimeout(hideBackgroundTimeout);
-    };
-    window.addEventListener("scroll", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
-  useEffect(() => {
-    if (!rootRef.current) return;
-
+    if (!rootRef.current) {
+      return;
+    }
     const text = rootRef.current;
     const container = document.querySelector(".scale-on-scroll")!;
 
     ScrollTrigger.create({
       trigger: container,
       start: "top top",
-      end: "bottom top",
+      end: "bottom-=300px top",
       scrub: true,
       // markers: true,
+      onLeave: () => {
+        setShowBackground(false);
+      },
       onUpdate: () => {
         const containerRect = container.getBoundingClientRect();
 
@@ -59,7 +42,7 @@ export function ScaleOnScroll({
         const containerHeight = containerRect.height;
 
         const startOffset = 500;
-        const endOffset = containerHeight * 0.9;
+        const endOffset = containerHeight * 0.75;
         const clampedTop = Math.min(Math.abs(containerTop), endOffset);
 
         const scale = Math.min(
@@ -82,9 +65,9 @@ export function ScaleOnScroll({
                   (endOffset - startOffset)
             )
           );
+        setShowBackground(scale > MIN_SCALE && opacity > MIN_OPACITY);
 
         text.style.opacity = `${opacity}`;
-
         text.style.transform = `scale(${scale})`;
       },
     });
