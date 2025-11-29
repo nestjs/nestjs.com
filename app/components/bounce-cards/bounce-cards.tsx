@@ -26,11 +26,8 @@ interface BounceCardsProps {
 export default function BounceCards({
   className = "",
   cards = [],
-  animationDelay = 0.5,
   containerHeight = 350,
-  animationStagger = 0.06,
   duration = 0.4,
-  easeType = "elastic.out(1, 0.8)",
   enableHover = false,
 }: BounceCardsProps) {
   const DEFAULT_TRANSFORM_STYLES = [
@@ -84,22 +81,6 @@ export default function BounceCards({
     return () => window.removeEventListener("resize", debouncedHandleResize);
   }, []);
 
-  useEffect(() => {
-    const cardElements = document.querySelectorAll(".card");
-    if (cardElements.length === 0) return;
-
-    gsap.fromTo(
-      ".card",
-      { scale: 0 },
-      {
-        scale: 1,
-        stagger: animationStagger,
-        ease: easeType,
-        delay: animationDelay,
-      }
-    );
-  }, [animationDelay, animationStagger, easeType]);
-
   const getNoRotationTransform = (transformStr: string): string => {
     const hasRotate = /rotate\([\s\S]*?\)/.test(transformStr);
     if (hasRotate) {
@@ -133,6 +114,7 @@ export default function BounceCards({
       return;
     }
 
+    // Update current hovered index
     setHoveredIdx(hoveredIdx);
 
     cards.forEach((_, i) => {
@@ -171,6 +153,7 @@ export default function BounceCards({
     if (!enableHover) {
       return;
     }
+    // Reset current hovered index
     setHoveredIdx(DEFAULT_HOVERED_IDX);
 
     cards.forEach((_, i) => {
@@ -218,20 +201,22 @@ export default function BounceCards({
                 className={`${classes.cardContainer} flex relative w-full h-full rounded-[24px] overflow-hidden`}
               >
                 <div
-                  className={`absolute inset-0 pointer-events-none transition-opacity duration-300 ${idx === hoveredIdx ? "opacity-70" : "opacity-0"}`}
+                  className={`light-rays-host absolute inset-0 pointer-events-none transition-opacity duration-300 ${idx === hoveredIdx ? "opacity-70" : "opacity-0"}`}
                 >
-                  <LightRays
-                    raysOrigin="top-right"
-                    raysColor="#fff"
-                    raysSpeed={1.5}
-                    lightSpread={5}
-                    rayLength={4}
-                    followMouse={true}
-                    mouseInfluence={0.1}
-                    noiseAmount={0.05}
-                    distortion={0.05}
-                    opacity={0.3}
-                  />
+                  {idx === hoveredIdx && (
+                    <LightRays
+                      raysOrigin="top-right"
+                      raysColor="#fff"
+                      raysSpeed={1.5}
+                      lightSpread={5}
+                      rayLength={4}
+                      followMouse={true}
+                      mouseInfluence={0.1}
+                      noiseAmount={0.05}
+                      distortion={0.05}
+                      opacity={0.3}
+                    />
+                  )}
                 </div>
                 <div
                   className={`flex flex-col justify-center w-full h-full text-white z-10 ${classes.cardContent}`}

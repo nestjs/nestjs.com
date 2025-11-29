@@ -63,7 +63,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
         ? scrollContainerRef.current
         : window;
 
-    gsap.fromTo(
+    const rotationTween = gsap.fromTo(
       el,
       { transformOrigin: "0% 50%", rotate: baseRotation },
       {
@@ -82,7 +82,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
 
     const wordElements = el.querySelectorAll<HTMLElement>(".word");
 
-    gsap.fromTo(
+    const opacityTween = gsap.fromTo(
       wordElements,
       { opacity: baseOpacity, willChange: "opacity" },
       {
@@ -100,8 +100,9 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
       }
     );
 
+    let blurTween: GSAPTween | null = null;
     if (enableBlur) {
-      gsap.fromTo(
+      blurTween = gsap.fromTo(
         wordElements,
         { filter: `blur(${blurStrength}px)` },
         {
@@ -121,7 +122,11 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
     }
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      rotationTween.kill();
+      opacityTween.kill();
+      if (blurTween) {
+        blurTween.kill();
+      }
     };
   }, [
     scrollContainerRef,

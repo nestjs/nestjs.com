@@ -26,7 +26,7 @@ export function ScaleOnScroll({
     const text = rootRef.current;
     const container = document.querySelector(".scale-on-scroll")!;
 
-    ScrollTrigger.create({
+    const trigger = ScrollTrigger.create({
       trigger: container,
       start: "top top",
       end: "bottom-=300px top",
@@ -72,7 +72,7 @@ export function ScaleOnScroll({
       },
     });
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      trigger.kill();
     };
   }, []);
   return (

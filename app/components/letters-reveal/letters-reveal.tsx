@@ -8,11 +8,9 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 export function LettersReveal({
   children,
   ElementTag = "p",
-  className = "",
 }: {
   children: React.ReactNode;
   ElementTag?: keyof JSX.IntrinsicElements;
-  className?: string;
 }) {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -37,7 +35,7 @@ export function LettersReveal({
       gsap.set(c, { attr: { "data-content": c.innerHTML } });
     });
 
-    ScrollTrigger.create({
+    const trigger = ScrollTrigger.create({
       trigger: container,
       start: "top top",
       end: `bottom top`,
@@ -94,9 +92,10 @@ export function LettersReveal({
       },
     });
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      trigger.kill();
     };
   }, []);
+
   return (
     <div
       ref={containerRef}

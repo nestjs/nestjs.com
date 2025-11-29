@@ -139,7 +139,9 @@ export default function Aurora(props: AuroraProps) {
 
   useEffect(() => {
     const ctn = ctnDom.current;
-    if (!ctn) return;
+    if (!ctn) {
+      return;
+    }
 
     const renderer = new Renderer({
       alpha: true,
@@ -184,7 +186,7 @@ export default function Aurora(props: AuroraProps) {
         uColorStops: { value: colorStopsArray },
         uResolution: { value: [ctn.offsetWidth, ctn.offsetHeight] },
         uBlend: { value: blend },
-        uMouse: { value: [0, 0] }, // NEW
+        uMouse: { value: [0, 0] },
       },
     });
 
@@ -194,7 +196,7 @@ export default function Aurora(props: AuroraProps) {
     const handleMouseMove = (e: MouseEvent) => {
       const rect = ctn.getBoundingClientRect();
       mouse.current.x = e.clientX - rect.left;
-      mouse.current.y = rect.height - (e.clientY - rect.top); // flip Y
+      mouse.current.y = rect.height - (e.clientY - rect.top);
     };
     window.addEventListener("mousemove", handleMouseMove);
 
@@ -211,7 +213,7 @@ export default function Aurora(props: AuroraProps) {
           const c = new Color(hex);
           return [c.r, c.g, c.b];
         });
-        program.uniforms.uMouse.value = [mouse.current.x, mouse.current.y]; // update mouse
+        program.uniforms.uMouse.value = [mouse.current.x, mouse.current.y];
         renderer.render({ scene: mesh });
       }
     };
