@@ -3,11 +3,9 @@ import { siDiscord, siGithub, siX } from "simple-icons";
 import Aurora from "../components/aurora-header/aurora-header";
 import { BlurIn } from "../components/blur-in/blur-in";
 import BounceCards from "../components/bounce-cards/bounce-cards";
-import CometParticleField from "../components/comet-particle-field/comet-particle-field";
+import { LettersReveal } from "../components/letters-reveal/letters-reveal";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
-import { ScaleOnScroll } from "../components/scale-on-scroll/scale-on-scroll";
 import ScrollReveal from "../components/scroll-reveal/scroll-reveal";
-import { ShineText } from "../components/shine-text/shine-text";
 import SpotlightCard from "../components/spotlight-card/spotlight-card";
 import { WordByWord } from "../components/word-by-word/word-by-word";
 import type { Route } from "./+types/home";
@@ -415,45 +413,25 @@ export default function Home() {
           enableHover
         />
       </div>
-      <ScaleOnScroll
-        background={
-          <div
-            style={{
-              width: "100%",
-              height: "100vh",
-              position: "absolute",
-              left: 0,
-              top: 0,
-              right: 0,
-              pointerEvents: "none",
-            }}
+      <LettersReveal ElementTag="h4">
+        <>
+          <BlurIn distance={10} duration={2} ease="elastic.out(1, 0.5)">
+            <h4 className="text-9xl font-medium text-center flex">
+              Work&nbsp;faster.
+            </h4>
+          </BlurIn>
+          <BlurIn
+            distance={10}
+            duration={2}
+            delay={0.2}
+            ease="elastic.out(1, 0.5)"
           >
-            <CometParticleField />
-          </div>
-        }
-      >
-        <BlurIn distance={10} duration={2} ease="elastic.out(1, 0.5)">
-          <ShineText
-            ElementTag="h4"
-            className="text-9xl font-medium text-center flex"
-          >
-            Work faster.
-          </ShineText>
-        </BlurIn>
-        <BlurIn
-          distance={10}
-          duration={2}
-          delay={0.2}
-          ease="elastic.out(1, 0.5)"
-        >
-          <ShineText
-            ElementTag="h4"
-            className="text-9xl font-medium text-center flex"
-          >
-            Build smarter.
-          </ShineText>
-        </BlurIn>
-      </ScaleOnScroll>
+            <h4 className="text-9xl font-medium text-center flex">
+              Code&nbsp;better.
+            </h4>
+          </BlurIn>
+        </>
+      </LettersReveal>
       <div className="p-10 h-[1000px]"></div>
     </>
   );
