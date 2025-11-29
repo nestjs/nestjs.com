@@ -75,7 +75,7 @@ export function LettersReveal({
         });
 
         if (iconLeft.current) {
-          if (containerTop + bottomOffset > containerHeight * 0.5) {
+          if (containerTop + bottomOffset / 2 > containerHeight * 0.5) {
             gsap.to(iconLeft.current, {
               y: -50,
               opacity: 1,
