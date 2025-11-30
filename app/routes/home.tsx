@@ -3,6 +3,7 @@ import { siDiscord, siGithub, siX } from "simple-icons";
 import Aurora from "../components/aurora-header/aurora-header";
 import { BlurIn } from "../components/blur-in/blur-in";
 import BounceCards from "../components/bounce-cards/bounce-cards";
+import LazyRender from "../components/lazy-render/lazy-render";
 import { LettersReveal } from "../components/letters-reveal/letters-reveal";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
 import ScrollReveal from "../components/scroll-reveal/scroll-reveal";
@@ -180,8 +181,15 @@ export default function Home() {
           via-[#780f20] 
           to-[#050303]"
         >
-          <Aurora />
-          <NoiseOverlay />
+          <LazyRender
+            className="absolute inset-0 z-0 top-[0px] bottom-[0px] left-[0px] right-[0px] pointer-events-none"
+            threshold={0}
+          >
+            <>
+              <Aurora />
+              <NoiseOverlay />
+            </>
+          </LazyRender>
           {/* <AnimatedLine left="10%" top="50%" />
         <AnimatedLine left="90%" top="40%" delay={1} /> */}
           <div className="container relative z-10">
