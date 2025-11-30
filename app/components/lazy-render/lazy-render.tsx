@@ -5,11 +5,13 @@ const LazyRender = ({
   className,
   dynamic = true,
   threshold = 0.1,
+  rootMargin = "0px",
 }: {
   children: React.ReactNode;
   className?: string;
   dynamic?: boolean;
   threshold?: number;
+  rootMargin?: string;
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -31,7 +33,7 @@ const LazyRender = ({
           }
         }
       },
-      { threshold }
+      { threshold, rootMargin }
     );
 
     if (ref.current) {

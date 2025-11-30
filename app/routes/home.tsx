@@ -184,6 +184,7 @@ export default function Home() {
           <LazyRender
             className="absolute inset-0 z-0 top-[0px] bottom-[0px] left-[0px] right-[0px] pointer-events-none"
             threshold={0}
+            rootMargin="800px 0px 0px 0px"
           >
             <>
               <Aurora />
