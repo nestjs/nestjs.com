@@ -3,6 +3,7 @@ import { siDiscord, siGithub, siX } from "simple-icons";
 import Aurora from "../components/aurora-header/aurora-header";
 import { BlurIn } from "../components/blur-in/blur-in";
 import BounceCards from "../components/bounce-cards/bounce-cards";
+import { LettersReveal } from "../components/letters-reveal/letters-reveal";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
 import ScrollReveal from "../components/scroll-reveal/scroll-reveal";
 import SpotlightCard from "../components/spotlight-card/spotlight-card";
@@ -412,7 +413,7 @@ export default function Home() {
           enableHover
         />
       </div>
-      {/* <LettersReveal ElementTag="h4">
+      <LettersReveal ElementTag="h4">
         <>
           <BlurIn distance={10} duration={2} ease="elastic.out(1, 0.5)">
             <h4 className="text-9xl font-medium text-center flex">
@@ -430,7 +431,7 @@ export default function Home() {
             </h4>
           </BlurIn>
         </>
-      </LettersReveal> */}
+      </LettersReveal>
       <div className="p-10 h-[1000px]"></div>
     </>
   );
