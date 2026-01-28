@@ -191,8 +191,6 @@ export default function Home() {
               <NoiseOverlay />
             </>
           </LazyRender>
-          {/* <AnimatedLine left="10%" top="50%" />
-        <AnimatedLine left="90%" top="40%" delay={1} /> */}
           <div className="container relative z-10">
             <BlurIn delay={0.1}>
               <div className="rounded-[32px] mt-8 relative overflow-hidden">

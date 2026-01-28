@@ -1,5 +1,5 @@
 import { gsap } from "gsap";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { debounce } from "../../utils/debounce";
 import { BlurIn } from "../blur-in/blur-in";
 import LightRays from "../light-rays/light-rays";
@@ -47,6 +47,10 @@ export default function BounceCards({
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(
     DEFAULT_HOVERED_IDX
   );
+  const [lightRaysVisible, setLightRaysVisible] = useState<boolean[]>(
+    cards.map(() => false)
+  );
+  const hideLightRaysTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -117,6 +121,11 @@ export default function BounceCards({
     // Update current hovered index
     setHoveredIdx(hoveredIdx);
 
+    if (hideLightRaysTimeoutRef.current) {
+      clearTimeout(hideLightRaysTimeoutRef.current);
+    }
+    setLightRaysVisible((prev) => prev.map((_, idx) => idx === hoveredIdx));
+
     cards.forEach((_, i) => {
       const selector = `.card-${i}`;
       gsap.killTweensOf(selector);
@@ -155,6 +164,14 @@ export default function BounceCards({
     }
     // Reset current hovered index
     setHoveredIdx(DEFAULT_HOVERED_IDX);
+
+    // Schedule after animation to hide all light rays
+    if (hideLightRaysTimeoutRef.current) {
+      clearTimeout(hideLightRaysTimeoutRef.current);
+    }
+    hideLightRaysTimeoutRef.current = setTimeout(() => {
+      setLightRaysVisible(cards.map(() => false));
+    }, duration * 1000);
 
     cards.forEach((_, i) => {
       const selector = `.card-${i}`;
@@ -203,7 +220,7 @@ export default function BounceCards({
                 <div
                   className={`light-rays-host absolute inset-0 pointer-events-none transition-opacity duration-300 ${idx === hoveredIdx ? "opacity-70" : "opacity-0"}`}
                 >
-                  {idx === hoveredIdx && (
+                  {lightRaysVisible[idx] && (
                     <LightRays
                       raysOrigin="top-right"
                       raysColor="#fff"
