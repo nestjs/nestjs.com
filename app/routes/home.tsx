@@ -6,12 +6,14 @@ import BounceCards from "../components/bounce-cards/bounce-cards";
 import CountUp from "../components/count-up/count-up";
 import LazyRender from "../components/lazy-render/lazy-render";
 import { LettersReveal } from "../components/letters-reveal/letters-reveal";
+import MagicBento from "../components/magic-bento/magic-bento";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
 import { PrimaryButton } from "../components/primary-button/primary-button";
 import ScrollReveal from "../components/scroll-reveal/scroll-reveal";
 import { SectionSubheading } from "../components/section-subheading/section-subheading";
 import { ShineText } from "../components/shine-text/shine-text";
 import SpotlightCard from "../components/spotlight-card/spotlight-card";
+import StackedCards from "../components/stacked-cards/stacked-cards";
 import { TransparentButton } from "../components/transparent-button/transparent-button";
 import { WordByWord } from "../components/word-by-word/word-by-word";
 import { BrandsSection } from "../sections/brands-section";
@@ -187,7 +189,7 @@ export default function Home() {
             </div>
           </div>
           <div className="absolute right-20 bottom-15 text-right leading-10 text-sm font-mono">
-            <BlurIn distance={5} delay={0.25}>
+            <BlurIn distance={5} delay={0.25} threshold={0.05}>
               <>
                 <p>
                   <span className="opacity-70 mr-4">Github stars</span>
@@ -292,7 +294,7 @@ export default function Home() {
         />
       </div>
       <LettersReveal ElementTag="h4">
-        <>
+        <section className="px-20">
           <BlurIn distance={10} duration={2} ease="elastic.out(1, 0.5)">
             <h4 className="text-9xl font-medium text-center flex">
               When&nbsp;there's&nbsp;no&nbsp;yarn
@@ -308,13 +310,13 @@ export default function Home() {
               we&nbsp;build&nbsp;our&nbsp;own&nbsp;toys
             </h4>
           </BlurIn>
-        </>
+        </section>
       </LettersReveal>
       <div className="relative centered text-center flex items-center flex-col">
         <ScrollReveal
           ElementTag="h4"
-          className="text-sm font-mono opacity-80 max-w-2xl leading-8 font-light"
-          wordAnimationEnd="bottom 10%"
+          className="text-sm font-mono opacity-80 max-w-2xl leading-8 font-light p-10"
+          wordAnimationEnd="bottom 30%"
           enableBlur
         >
           Explore our tools built to supercharge your Nest workflow. Discover
@@ -322,6 +324,53 @@ export default function Home() {
           help you ship faster with greater confidence.
         </ScrollReveal>
       </div>
+      <StackedCards />
+      <div className="width-full h-[50vh] relative"></div>
+      <div className="flex justify-center mt-30">
+        <div className="container relative">
+          <div className="grid grid-cols-[50%_10%_40%] gap-0">
+            <div>
+              <BlurIn duration={0.5}>
+                <SectionSubheading>
+                  Official Enterprise Support
+                </SectionSubheading>
+              </BlurIn>
+              <ScrollReveal
+                ElementTag="h2"
+                className="font-medium text-5xl mb-4 leading-14"
+                enableBlur
+              >
+                Scale your enterprise with official support from the experts
+                behind Nest
+              </ScrollReveal>
+            </div>
+            <span></span>
+            <ScrollReveal
+              className="font-mono text-sm opacity-70 leading-6 font-light pt-10"
+              ElementTag="p"
+              enableBlur
+            >
+              Implementing Nest in our company was a turning point for how we
+              manage energy and operations. The system is intuitive, reliable,
+              and has given us clear visibility into our consumption and savings
+              from day one.
+            </ScrollReveal>
+          </div>
+        </div>
+      </div>
+      <div className="mt-20" />
+      <MagicBento
+        textAutoHide={false}
+        enableStars
+        enableSpotlight
+        enableBorderGlow={true}
+        enableMagnetism={false}
+        enableTilt={false}
+        spotlightRadius={400}
+        particleCount={12}
+        glowColor="239, 37, 79"
+        disableAnimations={false}
+      />
       <div className="p-10 h-[1000px]"></div>
     </>
   );
