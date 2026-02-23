@@ -8,13 +8,14 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 export function LettersReveal({
   children,
   ElementTag = "p",
+  subComponent,
 }: {
   children: React.ReactNode;
   ElementTag?: keyof JSX.IntrinsicElements;
+  subComponent?: React.ReactNode;
 }) {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const iconLeft = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!rootRef.current) {
@@ -27,13 +28,27 @@ export function LettersReveal({
         type: "chars",
         charsClass: "inline-block will-change-transform opacity-20",
         reduceWhiteSpace: false,
-      }
+      },
     );
 
     split.chars.forEach((el) => {
       const c = el as HTMLElement;
       gsap.set(c, { attr: { "data-content": c.innerHTML } });
     });
+
+    // Find index of a 2nd word from the end
+    const chars = split.chars as HTMLElement[];
+    let lastTwoWordsStartIndex = chars.length - 1;
+    let spaceCount = 0;
+    for (let i = chars.length - 1; i >= 0; i--) {
+      if (chars[i].textContent.trim() === "") {
+        lastTwoWordsStartIndex = i + 1;
+        spaceCount++;
+        if (spaceCount === 2) {
+          break;
+        }
+      }
+    }
 
     const trigger = ScrollTrigger.create({
       trigger: container,
@@ -72,22 +87,18 @@ export function LettersReveal({
           });
         });
 
-        if (iconLeft.current) {
-          if (containerTop + bottomOffset / 2 > containerHeight * 0.5) {
-            gsap.to(iconLeft.current, {
-              y: -50,
-              opacity: 1,
+        const isRevealComplete = containerTop > containerHeight - bottomOffset;
+        if (isRevealComplete) {
+          // Just higlight 2 last words when we are below the text
+          split.chars.forEach((el, index) => {
+            const c = el as HTMLElement;
+            const isLastTwoChars = index >= lastTwoWordsStartIndex;
+            gsap.to(c, {
+              opacity: isLastTwoChars ? 1 : 0.2,
               ease: "ease.inOut",
               overwrite: true,
             });
-          } else {
-            gsap.to(iconLeft.current, {
-              y: 0,
-              opacity: 0,
-              ease: "ease.inOut",
-              overwrite: true,
-            });
-          }
+          });
         }
       },
     });
@@ -107,12 +118,6 @@ export function LettersReveal({
             ref={rootRef}
             className="relative flex flex-col items-center justify-center h-full w-full"
           >
-            <div
-              className="absolute top-45 left-45 w-20 h-20 opacity-0"
-              ref={iconLeft}
-            >
-              <img src="/icons/cat-sushi.png" />
-            </div>
             {children}
           </div>
         </div>

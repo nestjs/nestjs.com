@@ -6,6 +6,7 @@
   --font-mono: 'Geist Mono', monospace;
   --color-bg: #050303;
   --color-text: #ffffff;
+  --primary-color: #ea2845;
   --animate-shine: shine 3s linear infinite;
 
   @keyframes shine {

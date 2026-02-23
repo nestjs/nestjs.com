@@ -3,12 +3,18 @@ import { siDiscord, siGithub, siX } from "simple-icons";
 import Aurora from "../components/aurora-header/aurora-header";
 import { BlurIn } from "../components/blur-in/blur-in";
 import BounceCards from "../components/bounce-cards/bounce-cards";
+import CountUp from "../components/count-up/count-up";
 import LazyRender from "../components/lazy-render/lazy-render";
 import { LettersReveal } from "../components/letters-reveal/letters-reveal";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
+import { PrimaryButton } from "../components/primary-button/primary-button";
 import ScrollReveal from "../components/scroll-reveal/scroll-reveal";
+import { SectionSubheading } from "../components/section-subheading/section-subheading";
+import { ShineText } from "../components/shine-text/shine-text";
 import SpotlightCard from "../components/spotlight-card/spotlight-card";
+import { TransparentButton } from "../components/transparent-button/transparent-button";
 import { WordByWord } from "../components/word-by-word/word-by-word";
+import { BrandsSection } from "../sections/brands-section";
 import type { Route } from "./+types/home";
 import classes from "./home.module.scss";
 
@@ -39,131 +45,6 @@ const MENU_ITEMS = [
   { id: "jobs", label: "Jobs", href: "https://jobs.nestjs.com" },
 ];
 
-const techLogoStyles = {
-  filter: "grayscale(1) brightness(0.8) contrast(1)",
-  transition: "filter 0.3s ease-in-out",
-  opacity: 0.7,
-  maxWidth: "100px",
-  maxHeight: "70px",
-};
-
-const techLogos = [
-  {
-    node: (
-      <img src="/logos/ibm.svg" alt="IBM" style={techLogoStyles} height={40} />
-    ),
-    title: "IBM",
-    href: "https://www.ibm.com",
-  },
-  {
-    node: (
-      <img
-        src="/logos/adidas.svg"
-        alt="Adidas"
-        style={techLogoStyles}
-        width={90}
-      />
-    ),
-    title: "Adidas",
-    href: "https://www.adidas.com",
-  },
-  {
-    node: (
-      <img
-        src="/logos/autodesk.png"
-        alt="Autodesk"
-        style={techLogoStyles}
-        height={70}
-      />
-    ),
-    title: "Autodesk",
-    href: "https://www.autodesk.com",
-  },
-  {
-    node: (
-      <img src="/logos/mercedes.png" alt="Mercedes" style={techLogoStyles} />
-    ),
-    title: "Mercedes-Benz",
-    href: "https://www.mercedes-benz.com",
-  },
-  {
-    node: (
-      <img src="/logos/bmw.svg" alt="BMW" style={techLogoStyles} height={70} />
-    ),
-    title: "BMW",
-    href: "https://www.bmw.com",
-  },
-  {
-    node: (
-      <img src="/logos/capgemini.svg" alt="Capgemini" style={techLogoStyles} />
-    ),
-    title: "Capgemini",
-    href: "https://www.capgemini.com",
-  },
-  {
-    node: <img src="/logos/gitlab.png" alt="GitLab" style={techLogoStyles} />,
-    title: "GitLab",
-    href: "https://www.gitlab.com",
-  },
-  {
-    node: (
-      <img src="/logos/decathlon.png" alt="Decathlon" style={techLogoStyles} />
-    ),
-    title: "Decathlon",
-    href: "https://www.decathlon.com",
-  },
-  {
-    node: (
-      <img
-        src="/logos/jetbrains.svg"
-        alt="JetBrains"
-        style={techLogoStyles}
-        width={135}
-      />
-    ),
-    title: "JetBrains",
-    href: "https://www.jetbrains.com",
-  },
-  {
-    node: <img src="/logos/red-hat.svg" alt="Red Hat" style={techLogoStyles} />,
-    title: "Red Hat",
-    href: "https://www.redhat.com",
-  },
-  {
-    node: <img src="/logos/rewe.svg" alt="REWE" style={techLogoStyles} />,
-    title: "REWE",
-    href: "https://www.rewe-group.com",
-  },
-  {
-    node: (
-      <img
-        src="/logos/roche-logo.png"
-        alt="Roche"
-        style={techLogoStyles}
-        height={55}
-      />
-    ),
-    title: "Roche",
-    href: "https://www.roche.com",
-  },
-  {
-    node: <img src="/logos/sanofi.png" alt="Sanofi" style={techLogoStyles} />,
-    title: "Sanofi",
-    href: "https://www.sanofi.com",
-  },
-  {
-    node: (
-      <img
-        src="/logos/societe-generale-logo.png"
-        alt="Société Générale"
-        style={techLogoStyles}
-      />
-    ),
-    title: "Société Générale",
-    href: "https://www.societegenerale.com",
-  },
-];
-
 export default function Home() {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [hoveringTargetId, setHoveringTargetId] = useState<string | null>(null);
@@ -176,7 +57,7 @@ export default function Home() {
       <div className="p-10">
         <header
           ref={headerRef}
-          className="flex justify-center overflow-hidden relative rounded-[32px] 
+          className="flex justify-center overflow-hidden relative pb-16 rounded-[32px] 
           bg-gradient-to-r from-[#050303] 
           via-[#780f20] 
           to-[#050303]"
@@ -193,7 +74,7 @@ export default function Home() {
           </LazyRender>
           <div className="container relative z-10">
             <BlurIn delay={0.1}>
-              <div className="rounded-[32px] mt-8 relative overflow-hidden">
+              <div className="rounded-[32px] mt-16 relative overflow-hidden">
                 <SpotlightCard>
                   <div
                     className={`${classes.navPanel} flex items-center p-5 bg-black/60 rounded-[32px]`}
@@ -218,13 +99,17 @@ export default function Home() {
                           className={
                             item.id === hoveringTargetId ||
                             hoveringTargetId === null
-                              ? "text-white hover:opacity-100 duration-200"
-                              : "opacity-30 duration-200"
+                              ? "text-white hover:opacity-100 duration-300"
+                              : "opacity-50 duration-300 blur-[1px]"
                           }
                           onMouseEnter={() => setHoveringTargetId(item.id)}
                           onMouseLeave={onMenuItemMouseLeave}
                         >
-                          {item.label}
+                          {item.id === hoveringTargetId ? (
+                            <ShineText>{item.label}</ShineText>
+                          ) : (
+                            item.label
+                          )}
                         </a>
                       ))}
                     </nav>
@@ -275,7 +160,7 @@ export default function Home() {
               </div>
             </BlurIn>
             <div className="centered text-center pt-30 pb-40 flex flex-col items-center">
-              <h1 className="text-8xl font-medium max-w-4xl self-center">
+              <h1 className="text-[7rem] leading-[0.95] font-medium max-w-4xl self-center">
                 <WordByWord>More than just a Node framework</WordByWord>
               </h1>
               <BlurIn delay={0.7}>
@@ -284,79 +169,65 @@ export default function Home() {
                   efficient, reliable and scalable server-side applications.
                 </p>
               </BlurIn>
-              <div className="mt-30">
+              <div className="mt-24">
                 <BlurIn delay={1} distance={10}>
                   <>
-                    <a
+                    <PrimaryButton
                       href="https://docs.nestjs.com/"
-                      className="btn bg-white rounded text-black font-bold pt-5 pb-5 pl-7 pr-7 rounded-[20px]"
+                      className="mr-5"
                     >
                       Get started
-                    </a>
-                    <a
-                      href="https://github.com/nestjs/nest"
-                      className="btn bg-secondary text-white font-bold pt-5 pb-5 pl-7 pr-7 rounded-[20px]"
-                    >
+                    </PrimaryButton>
+                    <TransparentButton href="https://github.com/nestjs/nest">
                       Github
-                    </a>
+                    </TransparentButton>
                   </>
                 </BlurIn>
               </div>
             </div>
           </div>
-          <div className="absolute right-15 bottom-15 text-right leading-11 text-sm font-mono">
-            <BlurIn distance={5} delay={0.5}>
+          <div className="absolute right-20 bottom-15 text-right leading-10 text-sm font-mono">
+            <BlurIn distance={5} delay={0.25}>
               <>
                 <p>
-                  <span className="opacity-70 mr-4 font-sans">
-                    Github stars
-                  </span>{" "}
-                  73,840
+                  <span className="opacity-70 mr-4">Github stars</span>
+                  <CountUp to={73840} from={0} duration={2} separator="," />
                 </p>
                 <p>
-                  <span className="opacity-70 mr-4 font-sans">
-                    Latest release
-                  </span>{" "}
-                  Aug 7 / 11.1.9
+                  <span className="opacity-70 mr-4">Latest release</span> Aug 7
+                  / 11.1.9
                 </p>
                 <p>
-                  <span className="opacity-70 mr-4 font-sans">
-                    Monthly downloads
-                  </span>{" "}
-                  24,200,000
+                  <span className="opacity-70 mr-4">Monthly downloads</span>{" "}
+                  <CountUp to={24200000} from={0} duration={2} separator="," />
                 </p>
               </>
             </BlurIn>
           </div>
         </header>
       </div>
-      {/* <div className="height-[200px] relative overflow-hidden mt-20 mb-20">
-        <LogoLoop
-          logos={techLogos}
-          speed={30}
-          direction="left"
-          logoHeight={24}
-          gap={60}
-          hoverSpeed={0}
-          fadeOut
-          fadeOutColor="#050303"
-          ariaLabel="Technology partners"
-        />
-      </div> */}
+      <div className="flex justify-center mt-20 mb-0">
+        <BrandsSection />
+      </div>
       <div className="flex justify-center mt-30">
         <div className="container relative">
           <div className="grid grid-cols-[60%_10%_30%] gap-0">
-            <ScrollReveal
-              ElementTag="h2"
-              className="font-medium text-5xl mb-4 leading-14"
-              enableBlur
-            >
-              Nest is a modern framework designed to build efficient, scalable
-              web applications
-            </ScrollReveal>
+            <div>
+              <BlurIn duration={0.5}>
+                <SectionSubheading>What is Nest</SectionSubheading>
+              </BlurIn>
+              <ScrollReveal
+                ElementTag="h2"
+                className="font-medium text-5xl mb-4 leading-14"
+                enableBlur
+              >
+                Nest is a modern framework designed to build efficient, scalable
+                web applications
+              </ScrollReveal>
+            </div>
             <span></span>
             <ScrollReveal
-              className="font-mono text-sm opacity-70 leading-6 font-light"
+              className="font-mono text-sm opacity-70 leading-6 font-light pt-10"
               ElementTag="p"
               enableBlur
             >
@@ -424,7 +295,7 @@ export default function Home() {
         <>
           <BlurIn distance={10} duration={2} ease="elastic.out(1, 0.5)">
             <h4 className="text-9xl font-medium text-center flex">
-              Work&nbsp;faster.
+              When&nbsp;there's&nbsp;no&nbsp;yarn
             </h4>
           </BlurIn>
           <BlurIn
@@ -434,11 +305,23 @@ export default function Home() {
             ease="elastic.out(1, 0.5)"
           >
             <h4 className="text-9xl font-medium text-center flex">
-              Code&nbsp;better.
+              we&nbsp;build&nbsp;our&nbsp;own&nbsp;toys
             </h4>
           </BlurIn>
         </>
       </LettersReveal>
+      <div className="relative centered text-center flex items-center flex-col">
+        <ScrollReveal
+          ElementTag="h4"
+          className="text-sm font-mono opacity-80 max-w-2xl leading-8 font-light"
+          wordAnimationEnd="bottom 10%"
+          enableBlur
+        >
+          Explore our tools built to supercharge your Nest workflow. Discover
+          solutions we created to streamline development, automate tasks, and
+          help you ship faster with greater confidence.
+        </ScrollReveal>
+      </div>
       <div className="p-10 h-[1000px]"></div>
     </>
   );
