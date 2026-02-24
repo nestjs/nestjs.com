@@ -25,23 +25,26 @@ export default function StackedCards() {
       const card = cards[i];
       let scale = 1,
         rotationX = 0,
-        rotationY = 0;
+        rotationY = 0,
+        opacity = 1;
 
       if (i !== cards.length - 1) {
-        scale = 0.85 + 0.05 * i;
-        rotationX = 20;
-        rotationY = 4;
+        scale = 0.15;
+        rotationX = 30;
+        rotationY = i % 2 === 0 ? -10 : 10;
+        opacity = 0.3;
       }
 
       gsap.to(card, {
         scale,
         rotationX,
         rotationY,
+        opacity,
         transformOrigin: "top center",
         ease: "none",
         scrollTrigger: {
           trigger: wrapper,
-          start: `top ${60 + 10 * i}`,
+          start: `top 25`,
           end: "bottom 550",
           endTrigger: wrapperRef.current,
           scrub: true,
