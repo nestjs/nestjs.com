@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger.js";
 import { useLayoutEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
-const cardImages = ["/public/apps/mau.png", "/public/apps/devtools.png"];
+const cardImages = ["apps/mau.png", "apps/devtools.png"];
 
 export default function StackedCards() {
   const wrapperRef = useRef<HTMLDivElement>(null);
