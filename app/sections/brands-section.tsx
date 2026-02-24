@@ -82,12 +82,7 @@ export function BrandsSection() {
       </BlurIn>
       <div className="grid grid-cols-5 pt-20 gap-x-40 gap-y-20 p-5 place-items-center">
         {LOGOS.map((logo, index) => (
-          <BlurIn
-            key={logo.title}
-            delay={0.1 + index * 0.1}
-            duration={0.8}
-            distance={10}
-          >
+          <BlurIn key={logo.title} delay={0.1 + index * 0.1} duration={0.8}>
             <a
               key={logo.title}
               href={logo.href}

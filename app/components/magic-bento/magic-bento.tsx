@@ -4,8 +4,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 export interface BentoCardProps {
   color?: string;
   title?: string;
-  description?: string;
-  label?: string;
+  icon?: React.ReactNode;
   textAutoHide?: boolean;
   disableAnimations?: boolean;
 }
@@ -31,21 +30,40 @@ const MOBILE_BREAKPOINT = 768;
 
 const cardData: BentoCardProps[] = [
   {
+    icon: <img src="/icons/path.svg" />,
     title: "Providing technical guidance & architectural reviews",
   },
   {
+    icon: <img src="/icons/members.svg" />,
     title: "Mentoring team members",
   },
   {
+    icon: (
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 32 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M10.6694 8.00016V12.0002H6.66938V8.00016H10.6694ZM4.00271 5.3335V14.6668H13.3361V5.3335H4.00271ZM17.3361 5.3335H28.0027V8.00016H17.3361V5.3335ZM17.3361 14.6668H28.0027V17.3335H17.3361V14.6668ZM17.3361 24.0002H28.0027V26.6668H17.3361V24.0002ZM14.2789 21.6096L12.3932 19.724L8.00271 24.1146L5.61218 21.724L3.72656 23.6096L8.00271 27.8858L14.2789 21.6096Z"
+          fill="white"
+        />
+      </svg>
+    ),
     title: "Advising best practices",
   },
   {
+    icon: <img src="/icons/security.svg" />,
     title: "Addressing security & performance concerns",
   },
   {
+    icon: <img src="/icons/reviews.svg" />,
     title: "Performing in-depth code reviews",
   },
   {
+    icon: <img src="/icons/lts.svg" />,
     title: "Long-term support (LTS) & upgrade assistance",
   },
 ];
@@ -749,6 +767,7 @@ const MagicBento: React.FC<BentoProps> = ({
                   enableMagnetism={enableMagnetism}
                 >
                   <div className="card__content flex flex-col relative text-white justify-center flex-start h-full p-8">
+                    {card.icon && <div className="mb-8">{card.icon}</div>}
                     <h3
                       className={`card__title text-left font-medium text-lg m-0 mb-1 ${textAutoHide ? "text-clamp-1" : ""}`}
                     >
@@ -875,6 +894,7 @@ const MagicBento: React.FC<BentoProps> = ({
                 }}
               >
                 <div className="card__content flex flex-col relative text-white">
+                  {card.icon && <div className="mb-8">{card.icon}</div>}
                   <h3
                     className={`card__title font-normal text-base m-0 mb-1 ${textAutoHide ? "text-clamp-1" : ""}`}
                   >

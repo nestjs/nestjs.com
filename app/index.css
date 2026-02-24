@@ -8,6 +8,7 @@
   --color-text: #ffffff;
   --primary-color: #ea2845;
   --animate-shine: shine 3s linear infinite;
+  --animate-blob: blob 30s linear infinite;
 
   @keyframes shine {
     0% {
@@ -15,6 +16,27 @@
     }
     100% {
       background-position: -100%;
+    }
+  }
+
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scaleY(1);
+    }
+    25% {
+      transform: translate(70px, 0) scaleY(1.6) rotate(50deg);
+    }
+    45% {
+      transform: translate(-30px, 0) scaleY(0.7) rotate(-10deg);
+    }
+    65% {
+      transform: translate(50px, 0) scaleY(1.2) rotate(30deg);
+    }
+    85% {
+      transform: translate(-20px, 0) scaleY(0.8) rotate(-20deg);
+    }
+    100% {
+      transform: translate(0px, 0px) scaleY(1);
     }
   }
 }

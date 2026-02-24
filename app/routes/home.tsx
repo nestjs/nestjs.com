@@ -1,12 +1,12 @@
 import { useRef, useState } from "react";
 import { siDiscord, siGithub, siX } from "simple-icons";
+import AnimatedContent from "../components/animated-content/animated-content";
 import Aurora from "../components/aurora-header/aurora-header";
 import { BlurIn } from "../components/blur-in/blur-in";
 import BounceCards from "../components/bounce-cards/bounce-cards";
 import CountUp from "../components/count-up/count-up";
 import LazyRender from "../components/lazy-render/lazy-render";
 import { LettersReveal } from "../components/letters-reveal/letters-reveal";
-import MagicBento from "../components/magic-bento/magic-bento";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
 import { PrimaryButton } from "../components/primary-button/primary-button";
 import ScrollReveal from "../components/scroll-reveal/scroll-reveal";
@@ -14,9 +14,11 @@ import { SectionSubheading } from "../components/section-subheading/section-subh
 import { ShineText } from "../components/shine-text/shine-text";
 import SpotlightCard from "../components/spotlight-card/spotlight-card";
 import StackedCards from "../components/stacked-cards/stacked-cards";
+import StaticCodeEditor from "../components/static-code-editor/static-code-editor";
 import { TransparentButton } from "../components/transparent-button/transparent-button";
 import { WordByWord } from "../components/word-by-word/word-by-word";
 import { BrandsSection } from "../sections/brands-section";
+import { EnterpriseSection } from "../sections/enterprise-section";
 import type { Route } from "./+types/home";
 import classes from "./home.module.scss";
 
@@ -256,13 +258,13 @@ export default function Home() {
                 "Streamline upkeep by organizing applications into self-contained modules.",
             },
             {
-              icon: <img src="/icons/enterprise-ready.png" />,
+              icon: <img src="/icons/dependency.png" />,
               title: "Dependency Injection",
               description:
                 "Boost code maintainability and testability with built-in dependency injection.",
             },
             {
-              icon: <img src="/icons/modules.png" />,
+              icon: <img src="/icons/typesafety.png" />,
               title: "Type Safety",
               description:
                 "Mitigate errors through the robust type safety features of TypeScript.",
@@ -274,19 +276,19 @@ export default function Home() {
                 "Trusted by thousands of leading companies and organizations worldwide.",
             },
             {
-              icon: <img src="/icons/modules.png" />,
+              icon: <img src="/icons/scalability.png" />,
               title: "Decorators",
               description:
                 "Enhance code readability and structure with TypeScript decorators.",
             },
             {
-              icon: <img src="/icons/enterprise-ready.png" />,
+              icon: <img src="/icons/microservices.png" />,
               title: "Microservices",
               description:
                 "Build scalable and efficient microservice architectures with ease.",
             },
             {
-              icon: <img src="/icons/modules.png" />,
+              icon: <img src="/icons/webapps.png" />,
               title: "Web Apps",
               description:
                 "Create dynamic and responsive web applications effortlessly.",
@@ -331,52 +333,29 @@ export default function Home() {
       </div>
       <StackedCards />
       <div className="width-full h-[50vh] relative"></div>
+      <EnterpriseSection />
       <div className="flex justify-center mt-30">
         <div className="container relative">
-          <div className="grid grid-cols-[50%_10%_40%] gap-0">
+          <div className="grid grid-cols-[40%_10%_50%] gap-0">
             <div>
               <BlurIn duration={0.5}>
-                <SectionSubheading>
-                  Official Enterprise Support
-                </SectionSubheading>
+                <SectionSubheading>Syntax</SectionSubheading>
               </BlurIn>
               <ScrollReveal
                 ElementTag="h2"
                 className="font-medium text-5xl mb-4 leading-14"
                 enableBlur
               >
-                Scale your enterprise with official support from the experts
-                behind Nest
+                Build your app with most elegant and intuitive syntax.
               </ScrollReveal>
             </div>
             <span></span>
-            <ScrollReveal
-              className="font-mono text-sm opacity-70 leading-6 font-light pt-10"
-              ElementTag="p"
-              enableBlur
-            >
-              Implementing Nest in our company was a turning point for how we
-              manage energy and operations. The system is intuitive, reliable,
-              and has given us clear visibility into our consumption and savings
-              from day one.
-            </ScrollReveal>
+            <AnimatedContent distance={50} initialOpacity={0}>
+              <StaticCodeEditor />
+            </AnimatedContent>
           </div>
         </div>
       </div>
-      <div className="mt-20" />
-      <MagicBento
-        textAutoHide={false}
-        enableStars
-        enableSpotlight
-        clickEffect={false}
-        enableBorderGlow={true}
-        enableMagnetism={false}
-        enableTilt={false}
-        spotlightRadius={400}
-        particleCount={6}
-        glowColor="255, 255, 255"
-        disableAnimations={false}
-      />
       <div className="p-10 h-[1000px]"></div>
     </>
   );
