@@ -373,7 +373,7 @@ export default function Home() {
         enableTilt={false}
         spotlightRadius={400}
         particleCount={12}
-        glowColor="239, 37, 79"
+        glowColor="255, 255, 255"
         disableAnimations={false}
       />
       <div className="p-10 h-[1000px]"></div>

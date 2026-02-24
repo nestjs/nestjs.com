@@ -397,7 +397,7 @@ const GlobalSpotlight: React.FC<{
       transform: translate(-50%, -50%);
       mix-blend-mode: screen;
     `;
-    document.body.appendChild(spotlight);
+    // document.body.appendChild(spotlight);
     spotlightRef.current = spotlight;
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -595,10 +595,10 @@ const MagicBento: React.FC<BentoProps> = ({
             content: '';
             position: absolute;
             inset: 0;
-            padding: 2px;
+            padding: 1px;
             background: radial-gradient(var(--glow-radius) circle at var(--glow-x) var(--glow-y),
-                rgba(${glowColor}, calc(var(--glow-intensity) * 0.8)) 0%,
-                rgba(${glowColor}, calc(var(--glow-intensity) * 0.4)) 30%,
+                rgba(${glowColor}, calc(var(--glow-intensity) * 1)) 0%,
+                rgba(${glowColor}, calc(var(--glow-intensity) * 0.65)) 30%,
                 transparent 60%);
             border-radius: inherit;
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -620,7 +620,7 @@ const MagicBento: React.FC<BentoProps> = ({
           }
 
           .card--border-glow:hover {
-            box-shadow: 0 4px 20px rgba(46, 24, 78, 0.4), 0 0 30px rgba(${glowColor}, 0.2);
+            // box-shadow: 0 4px 20px rgba(46, 24, 78, 0.4), 0 0 30px rgba(${glowColor}, 0.2);
             border-color: rgba(${glowColor}, 0.1) !important;
           }
 
