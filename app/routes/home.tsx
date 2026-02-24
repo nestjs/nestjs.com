@@ -368,11 +368,12 @@ export default function Home() {
         textAutoHide={false}
         enableStars
         enableSpotlight
+        clickEffect={false}
         enableBorderGlow={true}
         enableMagnetism={false}
         enableTilt={false}
         spotlightRadius={400}
-        particleCount={12}
+        particleCount={6}
         glowColor="255, 255, 255"
         disableAnimations={false}
       />

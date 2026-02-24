@@ -597,9 +597,9 @@ const MagicBento: React.FC<BentoProps> = ({
             inset: 0;
             padding: 1px;
             background: radial-gradient(var(--glow-radius) circle at var(--glow-x) var(--glow-y),
-                rgba(${glowColor}, calc(var(--glow-intensity) * 1)) 0%,
-                rgba(${glowColor}, calc(var(--glow-intensity) * 0.65)) 30%,
-                transparent 60%);
+                rgba(${glowColor}, calc(var(--glow-intensity) * 0.5)) 0%,
+                rgba(${glowColor}, calc(var(--glow-intensity) * 0.2)) 25%,
+                transparent 50%);
             border-radius: inherit;
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
