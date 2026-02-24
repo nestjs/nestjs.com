@@ -201,7 +201,12 @@ export default function Home() {
                 </p>
                 <p>
                   <span className="opacity-70 mr-4">Monthly downloads</span>{" "}
-                  <CountUp to={24200000} from={0} duration={2} separator="," />
+                  <CountUp
+                    to={24200000}
+                    from={0}
+                    duration={0.5}
+                    separator=","
+                  />
                 </p>
               </>
             </BlurIn>
@@ -316,7 +321,7 @@ export default function Home() {
         <ScrollReveal
           ElementTag="h4"
           className="text-sm font-mono opacity-80 max-w-2xl leading-8 font-light p-10"
-          wordAnimationEnd="bottom 30%"
+          wordAnimationEnd="bottom 60%"
           enableBlur
         >
           Explore our tools built to supercharge your Nest workflow. Discover

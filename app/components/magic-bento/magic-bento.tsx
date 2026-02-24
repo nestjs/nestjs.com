@@ -595,7 +595,7 @@ const MagicBento: React.FC<BentoProps> = ({
             content: '';
             position: absolute;
             inset: 0;
-            padding: 3px;
+            padding: 2px;
             background: radial-gradient(var(--glow-radius) circle at var(--glow-x) var(--glow-y),
                 rgba(${glowColor}, calc(var(--glow-intensity) * 0.8)) 0%,
                 rgba(${glowColor}, calc(var(--glow-intensity) * 0.4)) 30%,
@@ -623,6 +623,26 @@ const MagicBento: React.FC<BentoProps> = ({
             box-shadow: 0 4px 20px rgba(46, 24, 78, 0.4), 0 0 30px rgba(${glowColor}, 0.2);
             border-color: rgba(${glowColor}, 0.1) !important;
           }
+
+          .card--border-glow:nth-of-type(1) {
+            transform: translateX(2px);
+          }
+
+          .card--border-glow:nth-of-type(3) {
+            transform: translateX(-2px);
+          } 
+
+          .card--border-glow:nth-of-type(4) {
+            transform: translateX(2px) translateY(-2px);
+          }
+            
+          .card--border-glow:nth-of-type(5) {
+            transform: translateY(-2px);
+          }
+
+          .card--border-glow:nth-of-type(6) {
+            transform: translateX(-2px) translateY(-2px);
+          } 
           
           .particle::before {
             content: '';
