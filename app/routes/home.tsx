@@ -10,11 +10,12 @@ import { LettersReveal } from "../components/letters-reveal/letters-reveal";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
 import { PrimaryButton } from "../components/primary-button/primary-button";
 import ScrollReveal from "../components/scroll-reveal/scroll-reveal";
+import { SecondaryButton } from "../components/secondary-button/secondary-button";
 import { SectionSubheading } from "../components/section-subheading/section-subheading";
 import { ShineText } from "../components/shine-text/shine-text";
 import SpotlightCard from "../components/spotlight-card/spotlight-card";
 import StackedCards from "../components/stacked-cards/stacked-cards";
-import StaticCodeEditor from "../components/static-code-editor/static-code-editor";
+import { StaticCodeEditor } from "../components/static-code-editor/static-code-editor";
 import { TransparentButton } from "../components/transparent-button/transparent-button";
 import { WordByWord } from "../components/word-by-word/word-by-word";
 import { BrandsSection } from "../sections/brands-section";
@@ -252,43 +253,43 @@ export default function Home() {
           className="custom-bounceCards"
           cards={[
             {
-              icon: <img src="/icons/modules.png" />,
+              icon: <img src="/features-icons/modules.png" />,
               title: "Modules",
               description:
                 "Streamline upkeep by organizing applications into self-contained modules.",
             },
             {
-              icon: <img src="/icons/dependency.png" />,
+              icon: <img src="/features-icons/dependency.png" />,
               title: "Dependency Injection",
               description:
                 "Boost code maintainability and testability with built-in dependency injection.",
             },
             {
-              icon: <img src="/icons/typesafety.png" />,
+              icon: <img src="/features-icons/typesafety.png" />,
               title: "Type Safety",
               description:
                 "Mitigate errors through the robust type safety features of TypeScript.",
             },
             {
-              icon: <img src="/icons/enterprise-ready.png" />,
+              icon: <img src="/features-icons/enterprise-ready.png" />,
               title: "Enterprise Ready",
               description:
                 "Trusted by thousands of leading companies and organizations worldwide.",
             },
             {
-              icon: <img src="/icons/scalability.png" />,
+              icon: <img src="/features-icons/scalability.png" />,
               title: "Decorators",
               description:
                 "Enhance code readability and structure with TypeScript decorators.",
             },
             {
-              icon: <img src="/icons/microservices.png" />,
+              icon: <img src="/features-icons/microservices.png" />,
               title: "Microservices",
               description:
                 "Build scalable and efficient microservice architectures with ease.",
             },
             {
-              icon: <img src="/icons/webapps.png" />,
+              icon: <img src="/features-icons/webapps.png" />,
               title: "Web Apps",
               description:
                 "Create dynamic and responsive web applications effortlessly.",
@@ -334,7 +335,7 @@ export default function Home() {
       <StackedCards />
       <div className="width-full h-[50vh] relative"></div>
       <EnterpriseSection />
-      <div className="flex justify-center mt-30">
+      <div className="flex justify-center mt-30 mb-80">
         <div className="container relative">
           <div className="grid grid-cols-[40%_10%_50%] gap-0">
             <div>
@@ -343,17 +344,58 @@ export default function Home() {
               </BlurIn>
               <ScrollReveal
                 ElementTag="h2"
-                className="font-medium text-5xl mb-4 leading-14"
+                className="font-medium text-5xl mb-8 leading-14"
                 enableBlur
               >
                 Build your app with most elegant and intuitive syntax.
               </ScrollReveal>
+              <BlurIn>
+                <SecondaryButton
+                  href="https://docs.nestjs.com/"
+                  className="mt-10"
+                >
+                  Official documentation
+                </SecondaryButton>
+              </BlurIn>
             </div>
             <span></span>
             <AnimatedContent distance={50} initialOpacity={0}>
               <StaticCodeEditor />
             </AnimatedContent>
           </div>
+        </div>
+      </div>
+      <div className="flex justify-center">
+        <div className="container relative centered justify-center items-center flex flex-col">
+          <BlurIn duration={0.5}>
+            <SectionSubheading>Courses</SectionSubheading>
+          </BlurIn>
+          <ScrollReveal
+            ElementTag="h2"
+            className="font-medium text-9xl text-center leading-[1.1]"
+            enableBlur
+          >
+            Become Nest Certified Expert
+          </ScrollReveal>
+          <ScrollReveal
+            className="font-mono text-sm opacity-70 leading-6 font-light pt-10 max-w-xl text-center"
+            ElementTag="p"
+            enableBlur
+          >
+            Over 20 courses. Learn everything you need to master NestJS and
+            tackle modern backend applications at any scale.
+          </ScrollReveal>
+          <BlurIn
+            className="mt-20 flex space-x-5 justify-center"
+            duration={0.5}
+          >
+            <PrimaryButton href="https://docs.nestjs.com/">
+              Get certified today
+            </PrimaryButton>
+            <TransparentButton href="https://docs.nestjs.com/">
+              Watch free lesson
+            </TransparentButton>
+          </BlurIn>
         </div>
       </div>
       <div className="p-10 h-[1000px]"></div>

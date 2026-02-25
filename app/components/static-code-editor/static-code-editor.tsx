@@ -1,9 +1,31 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const StaticCodeEditor: React.FC = () => {
+export function StaticCodeEditor() {
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+  const tooltipRef = useRef<HTMLDivElement>(null);
+  const editorTabsRef = useRef<HTMLDivElement>(null);
+  const outerBorderRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setTooltipPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
+
+  const handleMouseEnter = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
+    setShowTooltip(true);
+  };
+
+  const handleMouseLeave = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
+    setShowTooltip(false);
+  };
+
   const files = ["Bootstrap", "Controller", "Module"];
 
-  // Store code for each tab
   const [codeMap, setCodeMap] = useState<Record<string, string>>({
     Bootstrap: `import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
@@ -32,30 +54,27 @@ with multiple tabs and syntax highlighting.`,
   const [activeTab, setActiveTab] = useState("Bootstrap");
   const editorRef = useRef<HTMLDivElement>(null);
 
-  // Highlight TypeScript/JS keywords, braces, strings
   const highlightCode = (text: string) => {
-    const keywords = /(import|from|async|function|const|await)/g;
+    const keywords = /\b(import|from|async|function|const|await)\b/g;
     const methodEndings = /(\w+)(?=\()/g;
     const braces = /({|})/g;
     const strings = /('[^']*'|`[^`]*`)/g;
 
     return text
-      .replace(strings, `<span class="text-[#ea2845]">$1</span>`)
-      .replace(keywords, `<span class="text-blue-400">$1</span>`)
+      .replace(strings, `<span class="text-[#ffa657]">$1</span>`)
+      .replace(keywords, `<span class="text-[#ff7b72]">$1</span>`)
       .replace(braces, `<span class="text-gray-300">$1</span>`)
-      .replace(methodEndings, `<span class="text-[#DE9C33]">$1</span>`)
+      .replace(methodEndings, `<span class="text-[#a5d6ff]">$1</span>`)
       .replace(/\n/g, "<br>")
       .replace(/  /g, "&nbsp;&nbsp;");
   };
 
-  // Update contentEditable div whenever the active tab changes
   useEffect(() => {
     if (editorRef.current) {
       editorRef.current.innerHTML = highlightCode(codeMap[activeTab]);
     }
   }, [activeTab, codeMap]);
 
-  // Handle user typing
   const handleInput = (e: React.FormEvent<HTMLDivElement>) => {
     const text = e.currentTarget.innerText;
     setCodeMap((prev) => ({ ...prev, [activeTab]: text }));
@@ -88,7 +107,7 @@ with multiple tabs and syntax highlighting.`,
           }
         `}
       </style>
-      <div className="outer-border" />
+      <div className="outer-border" ref={outerBorderRef} />
       <div className="absolute w-full h-full flex justify-center items-center">
         <div
           className="absolute w-[40%] h-[25%] rotate-320 bg-gradient-to-r from-[#ea2845] to-[#f47a87] 
@@ -98,7 +117,10 @@ with multiple tabs and syntax highlighting.`,
         />
       </div>
       <div className="relative z-10 rounded-[6px] overflow-hidden">
-        <div className="flex font-semibold bg-[#1A1A1A] border-b border-[rgba(255,255,255,0.1)] px-10 py-6">
+        <div
+          className="flex font-semibold bg-[#1A1A1A] border-b border-[rgba(255,255,255,0.1)] px-10 py-6"
+          ref={editorTabsRef}
+        >
           {files.map((file) => (
             <div
               key={file}
@@ -113,9 +135,9 @@ with multiple tabs and syntax highlighting.`,
             </div>
           ))}
         </div>
-        <div className="font-mono font-light flex bg-[#181818] p-18 font-light relative overflow-hidden">
+        <div className="font-mono font-light flex bg-[#181818] py-18 pl-18 font-light relative overflow-hidden">
           <div className="absolute top-[-25%] left-1/2 rounded-full transform -translate-x-1/2 w-[50%] h-[50%] opacity-5 bg-[radial-gradient(circle,_#fff,_transparent)] blur-lg" />
-          <div className="text-right mr-2 select-none text-[#5A5A5A]">
+          <div className="text-right mr-2 select-none text-[#5A5A5A] w-[20px]">
             {codeMap[activeTab].split("\n").map((_, idx) => (
               <div key={idx} className="h-10 leading-10">
                 {idx + 1}
@@ -132,16 +154,56 @@ with multiple tabs and syntax highlighting.`,
           />
         </div>
       </div>
+      {/* Copy button and tooltip */}
+      <div
+        className="absolute top-[80px] bottom-0 left-0 right-0 z-[101] cursor-pointer"
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={() => {
+          navigator.clipboard.writeText(codeMap[activeTab]);
+          if (tooltipRef.current) {
+            const innerSpan = tooltipRef.current.querySelector("span");
+            if (innerSpan) {
+              innerSpan!.textContent = "Copied!";
+            }
+
+            setTimeout(() => {
+              if (tooltipRef.current) {
+                const innerSpan = tooltipRef.current.querySelector("span");
+                if (innerSpan) {
+                  innerSpan.textContent = "Copy to clipboard";
+                }
+              }
+            }, 2000);
+          }
+        }}
+      />
       <div
         className="absolute bottom-0 left-[-21px] right-[-30px] bg-gradient-to-t from-[var(--color-bg)] to-transparent
-        z-[10] w-[calc(100%+60px)] h-[500px] translate-y-7"
+        z-[10] w-[calc(100%+60px)] h-[300px] translate-y-7"
       />
       <div
         className="absolute right-0 top-[-50px] bottom-0 bg-gradient-to-l from-[var(--color-bg)] to-transparent
         z-[10] w-[300px] h-full translate-y-7"
       />
+
+      <div
+        ref={tooltipRef}
+        className={`absolute rounded-full bg-white text-black w-[192px] h-[192px] 
+          z-100 flex items-center justify-center transform -translate-x-1/2
+          ${showTooltip ? "scale-100" : "scale-0"} transition-transform duration-200 pointer-events-none`}
+        style={{ left: tooltipPos.x, top: tooltipPos.y }}
+      >
+        <span
+          className={`font-semibold text-base ${
+            showTooltip ? "opacity-100" : "opacity-0"
+          } transition-opacity duration-300 delay-200
+          `}
+        >
+          Copy to clipboard
+        </span>
+      </div>
     </div>
   );
-};
-
-export default StaticCodeEditor;
+}

@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-export function TransparentButton({
+export function SecondaryButton({
   children,
   href = "#",
   onClick,
@@ -27,6 +27,8 @@ export function TransparentButton({
 
   const handleMouseLeave = () => {
     if (circleRef.current) {
+      circleRef.current.style.left = `-9999px`;
+      circleRef.current.style.top = `-9999px`;
       circleRef.current.style.opacity = "0";
     }
   };
@@ -35,7 +37,7 @@ export function TransparentButton({
     <div className="relative inline-flex overflow-hidden">
       <a
         href={href}
-        className={`btn bg-secondary rounded text-white font-bold 
+        className={`btn bg-[#1e1c1c] rounded text-white font-bold 
           pt-5 pb-5 pl-5 pr-5 rounded-[20px] inset-0 overflow-hidden relative
           hover:scale-[0.98] transition-transform duration-100
           active:scale-[0.95]
@@ -47,11 +49,11 @@ export function TransparentButton({
         <span>{children}</span>
         <span
           ref={circleRef}
-          className="absolute rounded-full pointer-events-none w-5 h-5 
-            bg-[var(--primary-color)] z-10 
+          className="absolute rounded-full pointer-events-none w-20 h-20 
+            bg-[grey] z-10 
             transform -translate-x-1/2 -translate-y-1/2
-            filter blur-lg mix-blend-lighten
-            opacity-0 transition-opacity duration-300"
+            filter blur-lg mix-blend-darken
+            top-[-9999px] left-[-9999px] opacity-0 transition-opacity duration-300"
         />
       </a>
     </div>

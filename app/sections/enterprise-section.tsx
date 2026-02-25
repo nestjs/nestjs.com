@@ -5,11 +5,11 @@ import { SectionSubheading } from "../components/section-subheading/section-subh
 
 const CARDS = [
   {
-    icon: <img src="/icons/path.svg" />,
+    icon: <img src="/enterprise-icons/path.svg" />,
     title: "Providing technical guidance & architectural reviews",
   },
   {
-    icon: <img src="/icons/members.svg" />,
+    icon: <img src="/enterprise-icons/members.svg" />,
     title: "Mentoring team members",
   },
   {
@@ -30,15 +30,15 @@ const CARDS = [
     title: "Advising best practices",
   },
   {
-    icon: <img src="/icons/security.svg" />,
+    icon: <img src="/enterprise-icons/security.svg" />,
     title: "Addressing security & performance concerns",
   },
   {
-    icon: <img src="/icons/reviews.svg" />,
+    icon: <img src="/enterprise-icons/reviews.svg" />,
     title: "Performing in-depth code reviews",
   },
   {
-    icon: <img src="/icons/lts.svg" />,
+    icon: <img src="/enterprise-icons/lts.svg" />,
     title: "Long-term support (LTS) & upgrade assistance",
   },
 ];
@@ -140,7 +140,7 @@ export function EnterpriseSection() {
             ))}
           </div>
           <div className="my-20 justify-center flex">
-            <BlurIn duration={0.5}>
+            <BlurIn duration={0.5} delay={0.5}>
               <PrimaryButton>Request enterprise support</PrimaryButton>
             </BlurIn>
           </div>
