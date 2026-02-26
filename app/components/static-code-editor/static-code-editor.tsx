@@ -5,6 +5,7 @@ export function StaticCodeEditor() {
   const [showTooltip, setShowTooltip] = useState(false);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
   const tooltipRef = useRef<HTMLDivElement>(null);
+  const [innerText, setInnerText] = useState("Copy");
   const editorTabsRef = useRef<HTMLDivElement>(null);
   const outerBorderRef = useRef<HTMLDivElement>(null);
 
@@ -163,10 +164,12 @@ with multiple tabs and syntax highlighting.`,
         onMouseLeave={handleMouseLeave}
         onClick={() => {
           navigator.clipboard.writeText(codeMap[activeTab]);
+          setInnerText("Copied!");
+          setTimeout(() => setInnerText("Copy"), 2000);
         }}
       >
         <BlobCursor
-          innerText="Copy to clipboard"
+          innerText={innerText}
           shadowColor="none"
           show={showTooltip}
         />
