@@ -157,7 +157,7 @@ with multiple tabs and syntax highlighting.`,
       </div>
       {/* Copy button and tooltip */}
       <div
-        className="absolute top-[80px] bottom-0 left-0 right-0 z-[101] cursor-pointer"
+        className="absolute top-[80px] bottom-0 left-0 right-0 z-[101] cursor-none"
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
