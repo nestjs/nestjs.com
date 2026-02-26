@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import BlobCursor from "../blob-cursor/blob-cursor";
 
 export function StaticCodeEditor() {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -162,23 +163,14 @@ with multiple tabs and syntax highlighting.`,
         onMouseLeave={handleMouseLeave}
         onClick={() => {
           navigator.clipboard.writeText(codeMap[activeTab]);
-          if (tooltipRef.current) {
-            const innerSpan = tooltipRef.current.querySelector("span");
-            if (innerSpan) {
-              innerSpan!.textContent = "Copied!";
-            }
-
-            setTimeout(() => {
-              if (tooltipRef.current) {
-                const innerSpan = tooltipRef.current.querySelector("span");
-                if (innerSpan) {
-                  innerSpan.textContent = "Copy to clipboard";
-                }
-              }
-            }, 2000);
-          }
         }}
-      />
+      >
+        <BlobCursor
+          innerText="Copy to clipboard"
+          shadowColor="none"
+          show={showTooltip}
+        />
+      </div>
       <div
         className="absolute bottom-0 left-[-21px] right-[-30px] bg-gradient-to-t from-[var(--color-bg)] to-transparent
         z-[10] w-[calc(100%+60px)] h-[300px] translate-y-7"
@@ -187,8 +179,7 @@ with multiple tabs and syntax highlighting.`,
         className="absolute right-0 top-[-50px] bottom-0 bg-gradient-to-l from-[var(--color-bg)] to-transparent
         z-[10] w-[300px] h-full translate-y-7"
       />
-
-      <div
+      {/* <div
         ref={tooltipRef}
         className={`absolute rounded-full bg-white text-black w-[192px] h-[192px] 
           z-100 flex items-center justify-center transform -translate-x-1/2
@@ -203,7 +194,7 @@ with multiple tabs and syntax highlighting.`,
         >
           Copy to clipboard
         </span>
-      </div>
+      </div> */}
     </div>
   );
 }
