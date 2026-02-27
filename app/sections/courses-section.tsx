@@ -86,18 +86,32 @@ export function CoursesSection() {
     tl.to(cardRefs.current[courses.length - 1], {
       y: 0,
       opacity: 1,
-      duration: 0.2,
+      duration: 0.3,
       ease: "power2.out",
+      filter: "grayscale(100%)",
     });
 
     // Step 2 - Other cards can fade in as they won't be visible anyway
     cardRefs.current.forEach((card, index) => {
       if (index !== courses.length - 1) {
-        tl.to(card, {
-          opacity: 1,
-          duration: 0.1,
-          ease: "power2.out",
-        });
+        tl.to(
+          card,
+          {
+            opacity: 1,
+            duration: 0.3,
+            ease: "power2.out",
+          },
+          "fadeInOthers",
+        );
+      } else {
+        tl.to(
+          card,
+          {
+            filter: "grayscale(0%)",
+            duration: 0.3,
+          },
+          "fadeInOthers",
+        );
       }
     });
 
@@ -139,7 +153,7 @@ export function CoursesSection() {
         target,
         {
           ...vars,
-          duration: 0.3,
+          duration: 0.8,
           ease: "power2.out",
         },
         "fan", // <-- same position = simultaneous
@@ -169,7 +183,7 @@ export function CoursesSection() {
                       cardRefs.current[index] = el;
                     }
                   }}
-                  className={`absolute top-0 left-1/2 ${index >= courses.length ? "z-1 pointer-events-none" : "z-10"}`}
+                  className={`absolute top-0 left-1/2 ${index >= courses.length ? "z-1 pointer-events-none" : "z-10 hover:z-20 hover:mt-[-10px] transition-[margin] transition-[filter]"} `}
                   style={{
                     transform: `translateX(${translateX}px) translateY(${translateY}px) rotate(${rotate}deg)`,
                     transformOrigin: "center top",
