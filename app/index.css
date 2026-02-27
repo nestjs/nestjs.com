@@ -9,6 +9,7 @@
   --primary-color: #ea2845;
   --animate-shine: shine 3s linear infinite;
   --animate-blob: blob 30s linear infinite;
+  --animate-grid-move-left: grid-move-left 10s linear infinite;
 
   @keyframes shine {
     0% {
@@ -16,6 +17,15 @@
     }
     100% {
       background-position: -100%;
+    }
+  }
+
+  @keyframes grid-move-left {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -50px -50px;
     }
   }
 

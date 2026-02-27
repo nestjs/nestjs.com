@@ -19,6 +19,7 @@ import { StaticCodeEditor } from "../components/static-code-editor/static-code-e
 import { TransparentButton } from "../components/transparent-button/transparent-button";
 import { WordByWord } from "../components/word-by-word/word-by-word";
 import { BrandsSection } from "../sections/brands-section";
+import { CoursesSection } from "../sections/courses-section";
 import { EnterpriseSection } from "../sections/enterprise-section";
 import type { Route } from "./+types/home";
 import classes from "./home.module.scss";
@@ -335,7 +336,7 @@ export default function Home() {
       <StackedCards />
       <div className="width-full h-[50vh] relative"></div>
       <EnterpriseSection />
-      <div className="flex justify-center mt-30 mb-80">
+      <div className="flex justify-center mt-30 mb-30">
         <div className="container relative">
           <div className="grid grid-cols-[40%_10%_50%] gap-0">
             <div>
@@ -365,39 +366,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center">
-        <div className="container relative centered justify-center items-center flex flex-col">
-          <BlurIn duration={0.5}>
-            <SectionSubheading>Courses</SectionSubheading>
-          </BlurIn>
-          <ScrollReveal
-            ElementTag="h2"
-            className="font-medium text-9xl text-center leading-[1.1]"
-            enableBlur
-          >
-            Become Nest Certified Expert
-          </ScrollReveal>
-          <ScrollReveal
-            className="font-mono text-sm opacity-70 leading-6 font-light pt-10 max-w-xl text-center"
-            ElementTag="p"
-            enableBlur
-          >
-            Over 20 courses. Learn everything you need to master NestJS and
-            tackle modern backend applications at any scale.
-          </ScrollReveal>
-          <BlurIn
-            className="mt-20 flex space-x-5 justify-center"
-            duration={0.5}
-          >
-            <PrimaryButton href="https://docs.nestjs.com/">
-              Get certified today
-            </PrimaryButton>
-            <TransparentButton href="https://docs.nestjs.com/">
-              Watch free lesson
-            </TransparentButton>
-          </BlurIn>
-        </div>
-      </div>
+      <CoursesSection />
       <div className="p-10 h-[1000px]"></div>
     </>
   );
