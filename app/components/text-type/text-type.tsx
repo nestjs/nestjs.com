@@ -30,6 +30,7 @@ interface TextTypeProps {
   onSentenceComplete?: (sentence: string, index: number) => void;
   startOnVisible?: boolean;
   reverseMode?: boolean;
+  threshold?: number;
 }
 
 const TextType = ({
@@ -51,6 +52,7 @@ const TextType = ({
   onSentenceComplete,
   startOnVisible = false,
   reverseMode = false,
+  threshold = 0.5,
   ...props
 }: TextTypeProps & React.HTMLAttributes<HTMLElement>) => {
   const [displayedText, setDisplayedText] = useState("");
@@ -88,7 +90,7 @@ const TextType = ({
           }
         });
       },
-      { threshold: 0.1 },
+      { threshold },
     );
 
     observer.observe(containerRef.current);

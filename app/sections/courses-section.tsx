@@ -201,9 +201,7 @@ export function CoursesSection() {
             }}
           ></div>
         </div>
-        <BlurIn duration={0.5}>
-          <SectionSubheading>Courses</SectionSubheading>
-        </BlurIn>
+        <SectionSubheading>Courses</SectionSubheading>
         <ScrollReveal
           ElementTag="h2"
           className="font-medium text-9xl text-center leading-[1.1]"

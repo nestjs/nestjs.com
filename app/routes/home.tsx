@@ -224,9 +224,7 @@ export default function Home() {
         <div className="container relative">
           <div className="grid grid-cols-[60%_10%_30%] gap-0">
             <div>
-              <BlurIn duration={0.5}>
-                <SectionSubheading>What is Nest</SectionSubheading>
-              </BlurIn>
+              <SectionSubheading>What is Nest</SectionSubheading>
               <ScrollReveal
                 ElementTag="h2"
                 className="font-medium text-5xl mb-4 leading-14"
@@ -340,9 +338,7 @@ export default function Home() {
         <div className="container relative">
           <div className="grid grid-cols-[40%_10%_50%] gap-0">
             <div>
-              <BlurIn duration={0.5}>
-                <SectionSubheading>Syntax</SectionSubheading>
-              </BlurIn>
+              <SectionSubheading>Syntax</SectionSubheading>
               <ScrollReveal
                 ElementTag="h2"
                 className="font-medium text-5xl mb-8 leading-14"

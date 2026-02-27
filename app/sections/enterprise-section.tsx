@@ -50,11 +50,7 @@ export function EnterpriseSection() {
         <div className="container relative">
           <div className="grid grid-cols-[50%_10%_40%] gap-0">
             <div>
-              <BlurIn duration={0.5}>
-                <SectionSubheading>
-                  Official Enterprise Support
-                </SectionSubheading>
-              </BlurIn>
+              <SectionSubheading>Official Enterprise Support</SectionSubheading>
               <ScrollReveal
                 ElementTag="h2"
                 className="font-medium text-5xl mb-4 leading-14"
