@@ -97,7 +97,7 @@ export function CourseCard({
           [-webkit-mask-image:radial-gradient(circle_at_center,black_30%,transparent_70%)]"
         ></div>
         <div
-          className="p-4 rounded-[24px] text-white mb-4 min-h-[190px] min-w-[224px] 
+          className="p-4 rounded-[20px] text-white mb-4 min-h-[190px] min-w-[224px] 
         border border-solid border-[rgba(255,255,255,0.2)] relative overflow-hidden"
         >
           <div

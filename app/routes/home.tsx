@@ -365,7 +365,7 @@ export default function Home() {
       </div>
       <CoursesSection />
       <div className="p-10 mt-50">
-        <header
+        <div
           ref={headerRef}
           className="flex justify-center overflow-hidden relative py-30 px-8 rounded-[32px] 
           bg-gradient-to-r from-[#050303] 
@@ -385,42 +385,86 @@ export default function Home() {
           <div className="container relative z-10">
             <div className="grid grid-cols-[60%_30%] gap-0">
               <div className="centered text-left pt-30 pb-40 flex flex-col">
-                <h3 className="text-7xl leading-[1.1] font-medium max-w-4xl">
-                  Nine lives. <br />
-                  Infinite impact.
-                </h3>
+                <BlurIn delay={0.1}>
+                  <h3 className="text-7xl leading-[1.1] font-medium max-w-4xl">
+                    Nine lives. <br />
+                    Infinite impact.
+                  </h3>
+                </BlurIn>
               </div>
               <div className="relative flex flex-col">
-                <div className="flex flex-col">
-                  <span className="text-[160px] font-medium leading-[1.2]">
-                    <CountUp to={13.3} from={0} duration={1} separator="," />m
-                  </span>
-                  <span className="font-mono text-xs font-light">
-                    Monthly downloads
-                  </span>
-                </div>
+                <BlurIn delay={0.2}>
+                  <div className="flex flex-col">
+                    <span className="text-[160px] font-medium leading-[1.2]">
+                      <CountUp to={13.3} from={0} duration={1} separator="," />m
+                    </span>
+                    <span className="font-mono text-xs font-light">
+                      Monthly downloads
+                    </span>
+                  </div>
+                </BlurIn>
                 <div className="flex flex-row mt-20">
-                  <div className="flex flex-col text-left flex-grow-1">
-                    <span className="text-5xl font-medium">
-                      <CountUp to={73.1} from={0} duration={1} separator="," />k
-                    </span>
-                    <span className="font-mono text-xs leading-6 font-light mt-2">
-                      Github Stars
-                    </span>
-                  </div>
-                  <div className="flex flex-col ml-20 text-left flex-grow-1">
-                    <span className="text-5xl font-medium">
-                      <CountUp to={138} from={0} duration={1} separator="," />
-                    </span>
-                    <span className="font-mono text-xs leading-6 font-light mt-2">
-                      Releases
-                    </span>
-                  </div>
+                  <BlurIn delay={0.1}>
+                    <div className="flex flex-col text-left flex-grow-1">
+                      <span className="text-5xl font-medium">
+                        <CountUp
+                          to={73.1}
+                          from={0}
+                          duration={1}
+                          separator=","
+                        />
+                        k
+                      </span>
+                      <span className="font-mono text-xs leading-6 font-light mt-2">
+                        Github Stars
+                      </span>
+                    </div>
+                  </BlurIn>
+                  <BlurIn delay={0.2}>
+                    <div className="flex flex-col ml-20 text-left flex-grow-1">
+                      <span className="text-5xl font-medium">
+                        <CountUp to={138} from={0} duration={1} separator="," />
+                      </span>
+                      <span className="font-mono text-xs leading-6 font-light mt-2">
+                        Releases
+                      </span>
+                    </div>
+                  </BlurIn>
                 </div>
               </div>
             </div>
           </div>
-        </header>
+        </div>
+      </div>
+      <div className="width-full relative flex items-center justify-center text-center my-40">
+        <div className="container ">
+          <SectionSubheading>Testimonials</SectionSubheading>
+          <ScrollReveal
+            ElementTag="h3"
+            className="font-medium text-8xl text-center leading-[1.1]"
+            enableBlur
+          >
+            Built for teams that can't afford mistakes
+          </ScrollReveal>
+          <div className="border border-solid border-[rgba(255,255,255,0.1)] rounded-[24px] mt-20 p-3 relative max-w-[1100px] mx-auto">
+            <div
+              className="rounded-[20px] border border-[rgba(255,255,255,0.1)] p-20 relative z-10"
+              style={{
+                background: `radial-gradient(circle at top center, rgba(255, 255, 255, 0.1), rgba(9, 9, 9, 1) 40%)`,
+              }}
+            >
+              <div className="noise" />
+              <p className="text-xl leading-8 text-left">
+                NestJS has been a game-changer for our development process. The
+                modular architecture and built-in features have allowed us to
+                build scalable and maintainable applications with ease. NestJS
+                has been a game-changer for our development process. The modular
+                architecture and built-in features have allowed us to build
+                scalable and maintainable applications with ease.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="flex justify-center mt-50 mb-50">
         <div
