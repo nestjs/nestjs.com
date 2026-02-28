@@ -5,6 +5,7 @@ import Aurora from "../components/aurora-header/aurora-header";
 import { BlurIn } from "../components/blur-in/blur-in";
 import BounceCards from "../components/bounce-cards/bounce-cards";
 import CountUp from "../components/count-up/count-up";
+import FlashlightText from "../components/flashlight-text/flashlight-text";
 import LazyRender from "../components/lazy-render/lazy-render";
 import { LettersReveal } from "../components/letters-reveal/letters-reveal";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
@@ -323,7 +324,7 @@ export default function Home() {
         <ScrollReveal
           ElementTag="h4"
           className="text-sm font-mono opacity-80 max-w-2xl leading-8 font-light p-10"
-          wordAnimationEnd="bottom 60%"
+          wordAnimationEnd="bottom 40%"
           enableBlur
         >
           Explore our tools built to supercharge your Nest workflow. Discover
@@ -363,6 +364,24 @@ export default function Home() {
         </div>
       </div>
       <CoursesSection />
+      <div className="flex justify-center mt-30 mb-30">
+        <div
+          className="container relative cursor-pointer text-center"
+          onClick={() => {
+            navigator.clipboard.writeText(
+              `$ npm i -g @nestjs/cli\n$ nest new project-name`,
+            );
+          }}
+        >
+          <FlashlightText
+            text="$ npm i -g @nestjs/cli
+              <br />$ nest new project-name"
+          />
+          <div className="mt-15 opacity-75">
+            <SectionSubheading>Click. Copy. Build</SectionSubheading>
+          </div>
+        </div>
+      </div>
       <div className="p-10 h-[1000px]"></div>
     </>
   );
