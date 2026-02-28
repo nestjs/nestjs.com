@@ -35,11 +35,11 @@ const FlashlightText: React.FC<Props> = ({ text, radius = 400 }) => {
       className="relative w-full flex items-center justify-center overflow-hidden text-center"
     >
       <span
-        className="text-8xl text-white/5 select-none leading-[1.3]"
+        className="text-8xl text-white/5 select-none leading-[1.2]"
         dangerouslySetInnerHTML={{ __html: text }}
       />
       <span
-        className="absolute text-8xl text-white select-none leading-[1.3] text-center"
+        className="absolute text-8xl text-white select-none leading-[1.2] text-center"
         style={{
           WebkitMaskImage: radialGradient,
           WebkitMaskRepeat: "no-repeat",
@@ -51,7 +51,7 @@ const FlashlightText: React.FC<Props> = ({ text, radius = 400 }) => {
           maskSize: "cover",
           opacity: isHovering ? 1 : 0,
           transition:
-            "mask-position 0.05s linear, -webkit-mask-position 0.05s linear, opacity 0.5s ease",
+            "mask-position 0.05s linear, -webkit-mask-position 0.05s linear, opacity 0.25s ease",
         }}
         dangerouslySetInnerHTML={{ __html: text }}
       ></span>

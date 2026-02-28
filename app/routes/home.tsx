@@ -364,7 +364,65 @@ export default function Home() {
         </div>
       </div>
       <CoursesSection />
-      <div className="flex justify-center mt-30 mb-30">
+      <div className="p-10 mt-50">
+        <header
+          ref={headerRef}
+          className="flex justify-center overflow-hidden relative py-30 px-8 rounded-[32px] 
+          bg-gradient-to-r from-[#050303] 
+          via-[#780f20] 
+          to-[#050303]"
+        >
+          <LazyRender
+            className="absolute inset-0 z-0 top-[0px] bottom-[0px] left-[0px] right-[0px] pointer-events-none"
+            threshold={0}
+            rootMargin="800px 0px 0px 0px"
+          >
+            <>
+              <Aurora />
+              <NoiseOverlay />
+            </>
+          </LazyRender>
+          <div className="container relative z-10">
+            <div className="grid grid-cols-[60%_30%] gap-0">
+              <div className="centered text-left pt-30 pb-40 flex flex-col">
+                <h3 className="text-7xl leading-[1.1] font-medium max-w-4xl">
+                  Nine lives. <br />
+                  Infinite impact.
+                </h3>
+              </div>
+              <div className="relative flex flex-col">
+                <div className="flex flex-col">
+                  <span className="text-[160px] font-medium leading-[1.2]">
+                    <CountUp to={13.3} from={0} duration={1} separator="," />m
+                  </span>
+                  <span className="font-mono text-xs font-light">
+                    Monthly downloads
+                  </span>
+                </div>
+                <div className="flex flex-row mt-20">
+                  <div className="flex flex-col text-left flex-grow-1">
+                    <span className="text-5xl font-medium">
+                      <CountUp to={73.1} from={0} duration={1} separator="," />k
+                    </span>
+                    <span className="font-mono text-xs leading-6 font-light mt-2">
+                      Github Stars
+                    </span>
+                  </div>
+                  <div className="flex flex-col ml-20 text-left flex-grow-1">
+                    <span className="text-5xl font-medium">
+                      <CountUp to={138} from={0} duration={1} separator="," />
+                    </span>
+                    <span className="font-mono text-xs leading-6 font-light mt-2">
+                      Releases
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+      <div className="flex justify-center mt-50 mb-50">
         <div
           className="container relative cursor-pointer text-center"
           onClick={() => {
