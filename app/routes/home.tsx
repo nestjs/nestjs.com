@@ -738,12 +738,29 @@ export default function Home() {
           </ScrollReveal>
           <div className="border border-solid border-[rgba(255,255,255,0.1)] rounded-[24px] mt-20 p-3 relative max-w-[1100px] mx-auto">
             <div
-              className="rounded-[20px] border border-[rgba(255,255,255,0.1)] p-20 relative z-10"
+              className="rounded-[20px] border border-[rgba(255,255,255,0.1)] p-20 relative z-10 overflow-hidden"
               style={{
-                background: `radial-gradient(circle at top center, rgba(255, 255, 255, 0.1), rgba(9, 9, 9, 1) 40%)`,
+                background: `radial-gradient(circle at top center, rgba(255, 255, 255, 0.15), rgba(9, 9, 9, 1) 40%)`,
               }}
             >
               <div className="noise" />
+              <span
+                className="quote-mark text-[1000px] leading-[650px] absolute right-0 top-0 bottom-0 font-medium text-transparent"
+                style={
+                  {
+                    textStroke: "2px #1A1A1A",
+                    "-webkitTextStroke": "2px #1A1A1A",
+                  } as React.CSSProperties
+                }
+              >
+                “
+              </span>
+              <div className="flex mb-10">
+                <div className="w-20 h-20 bg-[#141414] rounded-full border border-white/10 z-0" />
+                <div className="-ml-6 w-20 h-20 bg-[#141414] rounded-full border border-white/10 z-0" />
+                <div className="-ml-6 w-20 h-20 bg-[#141414] rounded-full border border-white/10 z-0" />
+                <div className="-ml-6 w-20 h-20 bg-[#141414] rounded-full border border-white/10 z-0" />
+              </div>
               <p className="text-xl leading-8 text-left">
                 NestJS has been a game-changer for our development process. The
                 modular architecture and built-in features have allowed us to

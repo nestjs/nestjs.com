@@ -51,7 +51,7 @@ const FlashlightText: React.FC<Props> = ({ text, radius = 400 }) => {
           maskSize: "cover",
           opacity: isHovering ? 1 : 0,
           transition:
-            "mask-position 0.05s linear, -webkit-mask-position 0.05s linear, opacity 0.25s ease",
+            "mask-position 0.05s linear, -webkit-mask-position 0.05s linear",
         }}
         dangerouslySetInnerHTML={{ __html: text }}
       ></span>
