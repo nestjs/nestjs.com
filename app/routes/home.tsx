@@ -774,6 +774,37 @@ export default function Home() {
         </div>
       </div>
       <div className="flex justify-center mt-50 mb-50">
+        <div className="container relative flex">
+          <div className="max-w-[800px]">
+            <SectionSubheading>Support</SectionSubheading>
+            <ScrollReveal
+              ElementTag="h2"
+              className="font-medium text-8xl leading-25"
+              enableBlur
+            >
+              Let's build Nest together
+            </ScrollReveal>
+            <ScrollReveal
+              className="font-mono text-sm opacity-70 leading-6 font-light pt-10"
+              ElementTag="p"
+              enableBlur
+            >
+              Support the ongoing development of Nest and help keep the
+              framework your product relies on actively maintained, evolving,
+              and giving back to the entire community.
+            </ScrollReveal>
+          </div>
+          <div className="w-[300px] justify-end flex flex-col items-center ml-auto">
+            <BlurIn>
+              <PrimaryButton href="https://docs.nestjs.com/" className="mt-10">
+                Become a sponsor
+              </PrimaryButton>
+            </BlurIn>
+          </div>
+          <span></span>
+        </div>
+      </div>
+      <div className="flex justify-center mt-50 mb-50">
         <div
           className="container relative cursor-pointer text-center"
           onClick={() => {
