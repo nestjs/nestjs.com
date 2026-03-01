@@ -68,7 +68,7 @@ export function LettersReveal({
       onUpdate: () => {
         const containerRect = container.getBoundingClientRect();
         const textRect = rootRef.current!.getBoundingClientRect();
-        const bottomOffset = textRect.height;
+        const bottomOffset = textRect.height + 200;
 
         const containerTop = Math.abs(containerRect.top);
         const containerHeight = containerRect.height;

@@ -8,6 +8,7 @@ import CountUp from "../components/count-up/count-up";
 import FlashlightText from "../components/flashlight-text/flashlight-text";
 import LazyRender from "../components/lazy-render/lazy-render";
 import { LettersReveal } from "../components/letters-reveal/letters-reveal";
+import LightRays from "../components/light-rays/light-rays";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
 import { PrimaryButton } from "../components/primary-button/primary-button";
 import ScrollReveal from "../components/scroll-reveal/scroll-reveal";
@@ -57,6 +58,26 @@ export default function Home() {
   const [hoveringTargetId, setHoveringTargetId] = useState<string | null>(null);
   const onMenuItemMouseLeave = () => {
     setHoveringTargetId(null);
+  };
+
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setTooltipPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
+
+  const handleMouseEnter = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
+    setShowTooltip(true);
+  };
+
+  const handleMouseLeave = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
+    setShowTooltip(false);
   };
 
   return (
@@ -332,7 +353,276 @@ export default function Home() {
           help you ship faster with greater confidence.
         </ScrollReveal>
       </div>
-      <StackedCards />
+      <StackedCards
+        cards={[
+          <div className="relative flex flex-col items-center h-[98vh] rounded-[24px] overflow-hidden">
+            <div className="relative flex flex-grow-1 w-full">
+              <div
+                className="text-center flex-grow-1 min-h-[250px] px-16 py-16 pb-0 relative z-10 overflow-hidden"
+                style={{
+                  background: `radial-gradient(circle at 50% 50%, rgba(40, 40, 40, 1), rgba(4, 4, 4, 1) 40%)`,
+                }}
+              >
+                <div className="relative z-10">
+                  <BlurIn duration={0.5} ease="power2.out">
+                    <h3 className="text-6xl font-medium mb-6">Deploy, mau!</h3>
+                  </BlurIn>
+                  <BlurIn delay={0.1} duration={0.5} ease="power2.out">
+                    <h5 className="font-mono text-sm font-light max-w-xl mx-auto leading-6">
+                      Provision and manage your infrastracture on AWS without
+                      the hassle and extra DevOps work.
+                    </h5>
+                  </BlurIn>
+                </div>
+                <BlurIn
+                  delay={0.2}
+                  duration={0.5}
+                  ease="power2.out"
+                  className="relative z-2 max-h-[35vh]"
+                >
+                  <div
+                    className="p-4 pb-0 max-w-[90%] relative mx-auto mt-10 z-2
+                border border-1 border-[rgba(255,255,255,0.1)] rounded-tl-[20px] rounded-tr-[20px]
+                after:absolute after:inset-0 after:border after:border-[rgba(255,255,255,0.1)] after:rounded-tl-[24px] after:rounded-tr-[24px] after:top-[-8px] after:left-[-8px] after:right-[-8px] after:bottom-[-8px] after:z-0
+                before:absolute before:inset-0 before:bg-gradient-to-t before:from-white/15 before:to-white/5 before:pointer-events-none before:top-[-8px] before:left-[-8px] before:right-[-8px] before:bottom-[-8px] before:rounded-tl-[24px] before:rounded-tr-[24px] before:z-0"
+                  >
+                    <div className="absolute inset-0 rounded-tl-[20px] rounded-tr-[20px] bg-gradient-to-t from-white/15 to-white/5 top-[-1px] left-[-1px] right-[-1px] bottom-[-1px] z-0"></div>
+                    <img
+                      src="/screenshots/mau.png"
+                      className="rounded-tl-[12px] rounded-tr-[12px] z-2 relative"
+                    />
+                  </div>
+                </BlurIn>
+                <div className="absolute inset-0 z-0 left-0 right-0 top-0 bottom-0 z-1">
+                  <LightRays
+                    raysOrigin="bottom-left"
+                    raysColor="#fff"
+                    raysSpeed={1}
+                    lightSpread={50}
+                    rayLength={25}
+                    followMouse={true}
+                    mouseInfluence={0.1}
+                    noiseAmount={0.25}
+                    distortion={0.05}
+                    opacity={0.4}
+                  />
+                </div>
+                <div className="absolute inset-0 z-0 left-0 right-0 top-0 bottom-0 z-3">
+                  <div
+                    className="absolute w-[40%] h-[20%] rotate-300 bg-gradient-to-r from-[#fff] to-[rgba(255,255,255,0.1)] 
+                  right-[-20%] bottom-[20%] scale-x-200 perspective-500 perspective-origin-top-left
+                  rounded-[80px] filter blur-3xl opacity-75
+                  animate-blob"
+                  />
+                </div>
+                <div
+                  className="absolute top-0 bottom-0 left-0 right-0 z-[101] cursor-none"
+                  onMouseMove={handleMouseMove}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={() => {}}
+                ></div>
+                <div
+                  className={`absolute rounded-full bg-white text-black w-[192px] h-[192px] 
+          z-100 flex items-center justify-center transform -translate-x-1/2
+          ${showTooltip ? "scale-100" : "scale-0"} transition-transform duration-200 pointer-events-none`}
+                  style={{ left: tooltipPos.x, top: tooltipPos.y }}
+                >
+                  <span
+                    className={`font-semibold text-base ${
+                      showTooltip ? "opacity-100" : "opacity-0"
+                    } transition-opacity duration-300 delay-200
+          `}
+                  >
+                    Check it out
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              className="flex flex-row p-14 w-full flex-grow-1"
+              style={{
+                background: `radial-gradient(circle at 75% 50%, rgba(40, 40, 40, 1), #191919 25%)`,
+              }}
+            >
+              <div className="grid grid-cols-3 gap-10 flex-grow-1 flex min-h-[100px] relative">
+                <div className="relative">
+                  <h4 className="text-xl font-medium mb-4">
+                    Track key metrics
+                  </h4>
+                  <p className="text-sm leading-6 font-light font-mono">
+                    Provision and manage your infrastracture on AWS without the
+                    hassle and extra DevOps work.
+                  </p>
+                  <div className="progress-bar mt-4 w-full bg-[rgba(255,255,255,0.1)] rounded-[4px] h-[2px] absolute bottom-0 left-0 right-0 overflow-hidden">
+                    <div
+                      className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#222] to-[#fff] rounded-[4px] h-[2px] animate-progressBar"
+                      style={{ width: "70%" }}
+                    />
+                  </div>
+                </div>
+                <div className="relative">
+                  <h4 className="text-xl font-medium mb-4 opacity-25">
+                    Stream your logs
+                  </h4>
+                  <p className="text-sm leading-6 font-light font-mono opacity-25">
+                    Get real-time visibility into log data, detect anomalies
+                    immediately, and respond swiftly.
+                  </p>
+                  <div className="progress-bar mt-4 w-full bg-[rgba(255,255,255,0.1)] rounded-[4px] h-[2px] absolute bottom-0 left-0 right-0 overflow-hidden">
+                    <div className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#222] to-[#fff] rounded-[4px] h-[2px] animate-progressBar" />
+                  </div>
+                </div>
+                <div className="relative">
+                  <h4 className="text-xl font-medium mb-4 opacity-25">
+                    Traffic insights
+                  </h4>
+                  <p className="text-sm leading-6 font-light font-mono opacity-25">
+                    Analyze traffic patterns, identify bottlenecks, and optimize
+                    performance with ease.
+                  </p>
+                  <div className="progress-bar mt-4 w-full bg-[rgba(255,255,255,0.1)] rounded-[4px] h-[2px] absolute bottom-0 left-0 right-0 overflow-hidden">
+                    <div className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#222] to-[#fff] rounded-[4px] h-[2px] animate-progressBar" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>,
+          <div className="relative flex flex-col items-center h-[98vh] rounded-[24px] overflow-hidden">
+            <div className="relative flex flex-grow-1 w-full">
+              <div
+                className="text-center flex-grow-1 min-h-[250px] px-16 py-16 pb-0 relative z-10 overflow-hidden"
+                style={{
+                  background: `radial-gradient(circle, rgb(234 51 79), rgb(110 0 16) 40%)`,
+                }}
+              >
+                <div className="relative z-10">
+                  <BlurIn duration={0.5} ease="power2.out">
+                    <h3 className="text-6xl font-medium mb-6">Devtools</h3>
+                  </BlurIn>
+                  <BlurIn delay={0.1} duration={0.5} ease="power2.out">
+                    <h5 className="font-mono text-sm font-light max-w-xl mx-auto leading-6">
+                      Provision and manage your infrastracture on AWS without
+                      the hassle and extra DevOps work.
+                    </h5>
+                  </BlurIn>
+                </div>
+                <BlurIn
+                  delay={0.2}
+                  duration={0.5}
+                  ease="power2.out"
+                  className="relative z-2 max-h-[35vh]"
+                >
+                  <div
+                    className="p-4 pb-0 max-w-[90%] relative mx-auto mt-10 z-2
+                border border-1 border-[rgba(255,255,255,0.1)] rounded-tl-[20px] rounded-tr-[20px]
+                after:absolute after:inset-0 after:border after:border-[rgba(255,255,255,0.1)] after:rounded-tl-[24px] after:rounded-tr-[24px] after:top-[-8px] after:left-[-8px] after:right-[-8px] after:bottom-[-8px] after:z-0
+                before:absolute before:inset-0 before:bg-gradient-to-t before:from-white/15 before:to-white/5 before:pointer-events-none before:top-[-8px] before:left-[-8px] before:right-[-8px] before:bottom-[-8px] before:rounded-tl-[24px] before:rounded-tr-[24px] before:z-0"
+                  >
+                    <div className="absolute inset-0 rounded-tl-[20px] rounded-tr-[20px] bg-gradient-to-t from-white/15 to-white/5 top-[-1px] left-[-1px] right-[-1px] bottom-[-1px] z-0"></div>
+                    <img
+                      src="/screenshots/devtools.png"
+                      className="rounded-tl-[12px] rounded-tr-[12px] z-2 relative"
+                    />
+                  </div>
+                </BlurIn>
+                <div className="absolute inset-0 z-0 left-0 right-0 top-0 bottom-0 z-1">
+                  <LightRays
+                    raysOrigin="bottom-left"
+                    raysColor="#fff"
+                    raysSpeed={1}
+                    lightSpread={50}
+                    rayLength={25}
+                    followMouse={true}
+                    mouseInfluence={0.1}
+                    noiseAmount={0.25}
+                    distortion={0.05}
+                    opacity={0.3}
+                  />
+                </div>
+                <div className="absolute inset-0 z-0 left-0 right-0 top-0 bottom-0 z-3">
+                  <div
+                    className="absolute w-[40%] h-[20%] rotate-300 bg-gradient-to-r from-[#fff] to-[rgba(255,255,255,0.1)] 
+                  right-[-20%] bottom-[20%] scale-x-200 perspective-500 perspective-origin-top-left
+                  rounded-[80px] filter blur-3xl opacity-75
+                  animate-blob"
+                  />
+                </div>
+                {/* <div
+                  className="absolute top-0 bottom-0 left-0 right-0 z-[101] cursor-none"
+                  onMouseMove={handleMouseMove}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={() => {}}
+                ></div> */}
+                {/* <div
+                  className={`absolute rounded-full bg-white text-black w-[192px] h-[192px] 
+          z-100 flex items-center justify-center transform -translate-x-1/2
+          ${showTooltip ? "scale-100" : "scale-0"} transition-transform duration-200 pointer-events-none`}
+                  style={{ left: tooltipPos.x, top: tooltipPos.y }}
+                >
+                  <span
+                    className={`font-semibold text-base ${
+                      showTooltip ? "opacity-100" : "opacity-0"
+                    } transition-opacity duration-300 delay-200
+          `}
+                  >
+                    Check it out
+                  </span>
+                </div> */}
+              </div>
+            </div>
+            <div
+              className="flex flex-row p-14 w-full flex-grow-1"
+              style={{
+                background: `radial-gradient(circle at 75% 50%, rgba(40, 40, 40, 1), #191919 25%)`,
+              }}
+            >
+              <div className="grid grid-cols-3 gap-10 flex-grow-1 flex min-h-[100px] relative">
+                <div className="relative">
+                  <h4 className="text-xl font-medium mb-4">
+                    Track key metrics
+                  </h4>
+                  <p className="text-sm leading-6 font-light font-mono">
+                    Provision and manage your infrastracture on AWS without the
+                    hassle and extra DevOps work.
+                  </p>
+                  <div className="progress-bar mt-4 w-full bg-[rgba(255,255,255,0.1)] rounded-[4px] h-[2px] absolute bottom-0 left-0 right-0 overflow-hidden">
+                    <div
+                      className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#222] to-[#fff] rounded-[4px] h-[2px] animate-progressBar"
+                      style={{ width: "70%" }}
+                    />
+                  </div>
+                </div>
+                <div className="relative">
+                  <h4 className="text-xl font-medium mb-4 opacity-25">
+                    Stream your logs
+                  </h4>
+                  <p className="text-sm leading-6 font-light font-mono opacity-25">
+                    Get real-time visibility into log data, detect anomalies
+                    immediately, and respond swiftly.
+                  </p>
+                  <div className="progress-bar mt-4 w-full bg-[rgba(255,255,255,0.1)] rounded-[4px] h-[2px] absolute bottom-0 left-0 right-0 overflow-hidden">
+                    <div className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#222] to-[#fff] rounded-[4px] h-[2px] animate-progressBar" />
+                  </div>
+                </div>
+                <div className="relative">
+                  <h4 className="text-xl font-medium mb-4 opacity-25">
+                    Traffic insights
+                  </h4>
+                  <p className="text-sm leading-6 font-light font-mono opacity-25">
+                    Analyze traffic patterns, identify bottlenecks, and optimize
+                    performance with ease.
+                  </p>
+                  <div className="progress-bar mt-4 w-full bg-[rgba(255,255,255,0.1)] rounded-[4px] h-[2px] absolute bottom-0 left-0 right-0 overflow-hidden">
+                    <div className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#222] to-[#fff] rounded-[4px] h-[2px] animate-progressBar" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>,
+        ]}
+      />
       <div className="width-full h-[50vh] relative"></div>
       <EnterpriseSection />
       <div className="flex justify-center mt-30 mb-30">

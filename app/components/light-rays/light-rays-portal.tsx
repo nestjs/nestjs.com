@@ -24,7 +24,7 @@ export function LightRaysPortal() {
       mouseInfluence={0.1}
       noiseAmount={0.05}
       distortion={0.05}
-      opacity={0.3}
+      opacity={0.7}
     />,
     document.getElementsByClassName("light-rays-portal")[0] as HTMLElement
   );

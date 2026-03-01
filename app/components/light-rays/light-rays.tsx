@@ -44,7 +44,7 @@ const hexToRgb = (hex: string): [number, number, number] => {
 const getAnchorAndDir = (
   origin: RaysOrigin,
   w: number,
-  h: number
+  h: number,
 ): { anchor: [number, number]; dir: [number, number] } => {
   const outside = 0.2;
   switch (origin) {
@@ -123,7 +123,7 @@ const LightRays: React.FC<LightRaysProps> = ({
         const entry = entries[0];
         setIsVisible(entry.isIntersecting);
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     observerRef.current.observe(containerRef.current);
@@ -244,29 +244,26 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
                rayStrength(rayPos, finalRayDir, coord, 22.3991, 18.0234,
                            1.1 * raysSpeed);
 
-  fragColor = rays1 * 0.5 + rays2 * 0.4;
+  float intensity = rays1.x * 0.5 + rays2.x * 0.4;
 
   if (noiseAmount > 0.0) {
     float n = noise(coord * 0.01 + iTime * 0.1);
-    fragColor.rgb *= (1.0 - noiseAmount + noiseAmount * n);
+    intensity *= (1.0 - noiseAmount + noiseAmount * n);
   }
 
-  float brightness = 1.0 - (coord.y / iResolution.y);
-  fragColor.x *= 0.1 + brightness * 0.8;
-  fragColor.y *= 0.3 + brightness * 0.6;
-  fragColor.z *= 0.5 + brightness * 0.5;
+  vec3 col = vec3(intensity);
 
   if (saturation != 1.0) {
-    float gray = dot(fragColor.rgb, vec3(0.299, 0.587, 0.114));
-    fragColor.rgb = mix(vec3(gray), fragColor.rgb, saturation);
+    float gray = dot(col, vec3(0.299, 0.587, 0.114));
+    col = mix(vec3(gray), col, saturation);
   }
 
-  fragColor.rgb *= raysColor;
+  vec3 rayColLinear = pow(raysColor, vec3(2.2));
+  col *= rayColLinear;
 
-  vec3 bgColor = vec3(0.0);
-  vec3 rayColLinear = pow(raysColor, vec3(2.2)); // linearization
-  fragColor.rgb = rayColLinear * fragColor.a + bgColor * (1.0 - fragColor.a);
-  fragColor.a = 1.0; // output opaque
+  // Boost intensity for visibility and output as premultiplied alpha
+  float alpha = clamp(intensity * 1.5, 0.0, 1.0);
+  fragColor = vec4(col * 1.8, alpha);
 }
 
 void main() {
