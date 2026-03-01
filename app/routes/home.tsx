@@ -360,7 +360,7 @@ export default function Home() {
               <div
                 className="text-center flex-grow-1 min-h-[250px] px-16 py-16 pb-0 relative z-10 overflow-hidden"
                 style={{
-                  background: `radial-gradient(circle at 50% 50%, rgba(40, 40, 40, 1), rgba(4, 4, 4, 1) 40%)`,
+                  background: `radial-gradient(circle at 50% 50%, rgba(90, 90, 90, 1), rgba(4, 4, 4, 1) 30%)`,
                 }}
               >
                 <div className="relative z-10">
@@ -493,7 +493,7 @@ export default function Home() {
               <div
                 className="text-center flex-grow-1 min-h-[250px] px-16 py-16 pb-0 relative z-10 overflow-hidden"
                 style={{
-                  background: `radial-gradient(circle, rgb(234 51 79), rgb(110 0 16) 40%)`,
+                  background: `radial-gradient(circle, rgb(255 118 139), rgb(110 0 16) 30%)`,
                 }}
               >
                 <div className="relative z-10">
