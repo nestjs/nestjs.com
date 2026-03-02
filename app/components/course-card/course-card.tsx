@@ -64,7 +64,7 @@ export function CourseCard({
             z-index: 0;
           }
 
-          .icon path {
+          .icon-course-card path {
             fill: #9B9A9A;
           }
         `}
@@ -112,11 +112,11 @@ export function CourseCard({
         </div>
         <div className="mb-4 font-mono text-[#9B9A9A] text-sm px-6 py-1 leading-8">
           <div className="flex flex-row items-center gap-2">
-            <PlayIcon className="icon w-[14px] h-[14px]" />
+            <PlayIcon className="icon-course-card w-[14px] h-[14px]" />
             <span>{lessonCount} lessons</span>
           </div>
           <div className="flex flex-row items-center gap-2">
-            <TimeIcon className="icon w-[16px] h-[16px] ml-[-2px]" />
+            <TimeIcon className="icon-course-card w-[16px] h-[16px] ml-[-2px]" />
             <span className="mr-4">{duration}</span>
           </div>
         </div>
