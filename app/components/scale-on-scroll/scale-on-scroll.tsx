@@ -1,6 +1,6 @@
 import { gsap } from "gsap/dist/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,7 +17,8 @@ export function ScaleOnScroll({
   background?: React.ReactNode;
 }) {
   const rootRef = useRef<HTMLDivElement | null>(null);
-  const [showBackground, setShowBackground] = useState(false);
+  const backgroundRef = useRef<HTMLDivElement | null>(null);
+  const showBackgroundRef = useRef(false);
 
   useEffect(() => {
     if (!rootRef.current) {
@@ -31,9 +32,11 @@ export function ScaleOnScroll({
       start: "top top",
       end: "bottom-=300px top",
       scrub: true,
-      // markers: true,
       onLeave: () => {
-        setShowBackground(false);
+        if (showBackgroundRef.current) {
+          showBackgroundRef.current = false;
+          if (backgroundRef.current) backgroundRef.current.style.opacity = "0";
+        }
       },
       onUpdate: () => {
         const containerRect = container.getBoundingClientRect();
@@ -65,7 +68,13 @@ export function ScaleOnScroll({
                   (endOffset - startOffset)
             )
           );
-        setShowBackground(scale > MIN_SCALE && opacity > MIN_OPACITY);
+        const shouldShow = scale > MIN_SCALE && opacity > MIN_OPACITY;
+        if (shouldShow !== showBackgroundRef.current) {
+          showBackgroundRef.current = shouldShow;
+          if (backgroundRef.current) {
+            backgroundRef.current.style.opacity = shouldShow ? "1" : "0";
+          }
+        }
 
         text.style.opacity = `${opacity}`;
         text.style.transform = `scale(${scale})`;
@@ -102,8 +111,9 @@ export function ScaleOnScroll({
           }}
         >
           <div
+            ref={backgroundRef}
             style={{
-              opacity: showBackground ? 1 : 0,
+              opacity: 0,
               transition: "opacity 0.35s ease-in-out",
             }}
           >

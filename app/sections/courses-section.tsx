@@ -222,7 +222,8 @@ export function CoursesSection() {
             Get certified today
           </PrimaryButton>
           <TransparentButton href="https://docs.nestjs.com/">
-            Watch free lesson
+            <img src="/icons/play.svg" className="w-4 h-4 mr-2" />
+            <span>Watch free lesson</span>
           </TransparentButton>
         </BlurIn>
       </div>

@@ -44,7 +44,7 @@ export function TransparentButton({
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
-        <span>{children}</span>
+        <span className="flex items-center">{children}</span>
         <span
           ref={circleRef}
           className="absolute rounded-full pointer-events-none w-5 h-5 

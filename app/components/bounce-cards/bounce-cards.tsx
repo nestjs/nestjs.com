@@ -41,16 +41,24 @@ export default function BounceCards({
   ];
   const [containerWidth, setContainerWidth] = useState<number | null>(null);
   const [transformStyles, setTransformStyles] = useState<string[]>(
-    DEFAULT_TRANSFORM_STYLES
+    DEFAULT_TRANSFORM_STYLES,
   );
   const DEFAULT_HOVERED_IDX = null;
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(
-    DEFAULT_HOVERED_IDX
+    DEFAULT_HOVERED_IDX,
   );
   const [lightRaysVisible, setLightRaysVisible] = useState<boolean[]>(
-    cards.map(() => false)
+    cards.map(() => false),
   );
   const hideLightRaysTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (hideLightRaysTimeoutRef.current) {
+        clearTimeout(hideLightRaysTimeoutRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -98,7 +106,7 @@ export default function BounceCards({
 
   const getPushedTransform = (
     baseTransform: string,
-    offsetX: number
+    offsetX: number,
   ): string => {
     const translateRegex = /translate\(([-0-9.]+)px\)/;
     const match = baseTransform.match(translateRegex);

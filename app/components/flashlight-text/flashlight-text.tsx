@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef } from "react";
 
 type Props = {
   text: string;
@@ -7,25 +7,28 @@ type Props = {
 
 const FlashlightText: React.FC<Props> = ({ text, radius = 400 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [pos, setPos] = useState({ x: -9999, y: -9999 });
-  const [isHovering, setIsHovering] = useState(false);
+  const maskRef = useRef<HTMLSpanElement>(null);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = containerRef.current?.getBoundingClientRect();
-    if (!rect) {
-      return;
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (!rect || !maskRef.current) return;
+
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const gradient = `radial-gradient(circle ${radius}px at ${x}px ${y}px, white 0%, transparent 90%)`;
+      maskRef.current.style.webkitMaskImage = gradient;
+      maskRef.current.style.maskImage = gradient;
+      maskRef.current.style.opacity = "1";
+    },
+    [radius],
+  );
+
+  const handleMouseLeave = useCallback(() => {
+    if (maskRef.current) {
+      maskRef.current.style.opacity = "0";
     }
-
-    setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-    setIsHovering(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovering(false);
-    setPos({ x: -9999, y: -9999 });
-  };
-
-  const radialGradient = `radial-gradient(circle ${radius}px at ${pos.x}px ${pos.y}px, white 0%, transparent 90%)`;
+  }, []);
 
   return (
     <div
@@ -39,17 +42,16 @@ const FlashlightText: React.FC<Props> = ({ text, radius = 400 }) => {
         dangerouslySetInnerHTML={{ __html: text }}
       />
       <span
+        ref={maskRef}
         className="absolute text-8xl text-white select-none leading-[1.2] text-center"
         style={{
-          WebkitMaskImage: radialGradient,
           WebkitMaskRepeat: "no-repeat",
           WebkitMaskPosition: "0 0",
           WebkitMaskSize: "cover",
-          maskImage: radialGradient,
           maskRepeat: "no-repeat",
           maskPosition: "0 0",
           maskSize: "cover",
-          opacity: isHovering ? 1 : 0,
+          opacity: 0,
           transition:
             "mask-position 0.05s linear, -webkit-mask-position 0.05s linear",
         }}

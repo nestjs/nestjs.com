@@ -23,9 +23,6 @@ const LazyRender = ({
           // For dynamic rendering, update visibility on each intersection change
           // that said, non-visible elements will be unmounted
           setIsVisible(entry.isIntersecting);
-          if (!entry.isIntersecting) {
-            console.log("Element out of view, unmounting children.");
-          }
         } else {
           if (entry.isIntersecting) {
             setIsVisible(true);

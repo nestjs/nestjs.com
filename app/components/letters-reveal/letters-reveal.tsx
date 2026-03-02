@@ -60,7 +60,7 @@ export function LettersReveal({
           const c = el as HTMLElement;
           gsap.to(c, {
             opacity: 0.2,
-            ease: "ease.inOut",
+            duration: 0.3,
             overwrite: true,
           });
         });
@@ -82,20 +82,20 @@ export function LettersReveal({
           const opacity = containerTop > charOffsetStart ? 1 : 0.2;
           gsap.to(c, {
             opacity,
-            ease: "ease.inOut",
+            duration: 0.3,
             overwrite: true,
           });
         });
 
         const isRevealComplete = containerTop > containerHeight - bottomOffset;
         if (isRevealComplete) {
-          // Just higlight 2 last words when we are below the text
+          // Just highlight 2 last words when we are below the text
           split.chars.forEach((el, index) => {
             const c = el as HTMLElement;
             const isLastTwoChars = index >= lastTwoWordsStartIndex;
             gsap.to(c, {
               opacity: isLastTwoChars ? 1 : 0.2,
-              ease: "ease.inOut",
+              duration: 0.3,
               overwrite: true,
             });
           });

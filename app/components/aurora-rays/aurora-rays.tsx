@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 type AuroraRaysProps = {
   className?: string;
@@ -15,7 +15,15 @@ const AuroraRays: React.FC<AuroraRaysProps> = ({
   intensity = 0.15,
   speed = 12,
 }) => {
-  const rays = Array.from({ length: rayCount });
+  const rayStyles = useMemo(
+    () =>
+      Array.from({ length: rayCount }, (_, i) => ({
+        delay: (i * speed) / rayCount,
+        width: 80 + Math.random() * 40,
+        left: Math.random() * 100,
+      })),
+    [rayCount, speed],
+  );
 
   return (
     <div
@@ -30,23 +38,19 @@ const AuroraRays: React.FC<AuroraRaysProps> = ({
         `}
       </style>
 
-      {rays.map((_, i) => {
-        const delay = (i * speed) / rayCount;
-        const width = 80 + Math.random() * 40;
-        const left = Math.random() * 100;
-
+      {rayStyles.map((ray, i) => {
         return (
           <div
             key={i}
             className="absolute top-[-20%] h-[140%] blur-2xl"
             style={{
-              left: `${left}%`,
-              width: `${width}px`,
+              left: `${ray.left}%`,
+              width: `${ray.width}px`,
               opacity: intensity,
               background: `linear-gradient(to bottom, rgba(${color},0.4), rgba(${color},0))`,
               transformOrigin: "bottom left",
               animation: `aurora-rays-rotate ${speed}s linear infinite`,
-              animationDelay: `-${delay}s`,
+              animationDelay: `-${ray.delay}s`,
             }}
           />
         );

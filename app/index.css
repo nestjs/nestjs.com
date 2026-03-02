@@ -10,7 +10,8 @@
   --animate-shine: shine 3s linear infinite;
   --animate-blob: blob 30s linear infinite;
   --animate-grid-move-left: grid-move-left 10s linear infinite;
-
+  --animate-spin-slow: spinSlow 20s linear infinite;
+  
   @keyframes shine {
     0% {
       background-position: 100%;
@@ -47,6 +48,15 @@
     }
     100% {
       transform: translate(0px, 0px) scaleY(1);
+    }
+  }
+
+  @keyframes spinSlow {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
     }
   }
 }

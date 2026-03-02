@@ -1,5 +1,5 @@
 import { Color, Mesh, Program, Renderer, Triangle } from "ogl";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const VERT = `#version 300 es
 in vec2 position;
@@ -7,6 +7,12 @@ void main() {
   gl_Position = vec4(position, 0.0, 1.0);
 }
 `;
+
+const parseColorStops = (stops: string[]): number[][] =>
+  stops.map((hex) => {
+    const c = new Color(hex);
+    return [c.r, c.g, c.b];
+  });
 
 const FRAG = `#version 300 es
 precision highp float;
@@ -123,6 +129,7 @@ interface AuroraProps {
   blend?: number;
   time?: number;
   speed?: number;
+  onReady?: () => void;
 }
 
 export default function Aurora(props: AuroraProps) {
@@ -136,17 +143,39 @@ export default function Aurora(props: AuroraProps) {
 
   const ctnDom = useRef<HTMLDivElement>(null);
   const mouse = useRef({ x: 0, y: 0 });
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Pre-parse color stops outside the render loop
+  const parsedStopsRef = useRef<number[][]>(parseColorStops(colorStops));
+
+  useEffect(() => {
+    parsedStopsRef.current = parseColorStops(
+      propsRef.current.colorStops ?? colorStops,
+    );
+  }, [colorStops]);
+
+  // IntersectionObserver — only animate when visible
+  useEffect(() => {
+    const ctn = ctnDom.current;
+    if (!ctn) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.05 },
+    );
+    observer.observe(ctn);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const ctn = ctnDom.current;
-    if (!ctn) {
-      return;
-    }
+    if (!ctn || !isVisible) return;
 
     const renderer = new Renderer({
       alpha: true,
       premultipliedAlpha: true,
-      antialias: true,
+      antialias: false,
+      dpr: Math.min(window.devicePixelRatio, 1.5),
     });
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
@@ -172,18 +201,13 @@ export default function Aurora(props: AuroraProps) {
       delete geometry.attributes.uv;
     }
 
-    const colorStopsArray = colorStops.map((hex) => {
-      const c = new Color(hex);
-      return [c.r, c.g, c.b];
-    });
-
     program = new Program(gl, {
       vertex: VERT,
       fragment: FRAG,
       uniforms: {
         uTime: { value: 0 },
         uAmplitude: { value: amplitude },
-        uColorStops: { value: colorStopsArray },
+        uColorStops: { value: parsedStopsRef.current },
         uResolution: { value: [ctn.offsetWidth, ctn.offsetHeight] },
         uBlend: { value: blend },
         uMouse: { value: [0, 0] },
@@ -198,7 +222,7 @@ export default function Aurora(props: AuroraProps) {
       mouse.current.x = e.clientX - rect.left;
       mouse.current.y = rect.height - (e.clientY - rect.top);
     };
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
     let animateId = 0;
     const update = (t: number) => {
@@ -208,11 +232,7 @@ export default function Aurora(props: AuroraProps) {
         program.uniforms.uTime.value = time * speed * 0.1;
         program.uniforms.uAmplitude.value = propsRef.current.amplitude ?? 1.0;
         program.uniforms.uBlend.value = propsRef.current.blend ?? blend;
-        const stops = propsRef.current.colorStops ?? colorStops;
-        program.uniforms.uColorStops.value = stops.map((hex: string) => {
-          const c = new Color(hex);
-          return [c.r, c.g, c.b];
-        });
+        program.uniforms.uColorStops.value = parsedStopsRef.current;
         program.uniforms.uMouse.value = [mouse.current.x, mouse.current.y];
         renderer.render({ scene: mesh });
       }
@@ -220,6 +240,8 @@ export default function Aurora(props: AuroraProps) {
     animateId = requestAnimationFrame(update);
 
     resize();
+
+    props.onReady?.();
 
     return () => {
       cancelAnimationFrame(animateId);
@@ -230,7 +252,7 @@ export default function Aurora(props: AuroraProps) {
       }
       gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
-  }, [amplitude]);
+  }, [isVisible]);
 
   return <div ref={ctnDom} className="w-full h-full absolute" />;
 }

@@ -1,5 +1,11 @@
 import gsap from "gsap";
-import React, { useCallback, useEffect, useRef } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 export interface BlobCursorProps {
   blobType?: "circle" | "square";
@@ -12,10 +18,11 @@ export interface BlobCursorProps {
   shadowBlur?: number;
   shadowOffsetX?: number;
   shadowOffsetY?: number;
-  filterId?: string;
   filterStdDeviation?: number;
   filterColorMatrixValues?: string;
   useFilter?: boolean;
+  /** Size of the single circle rendered on Safari as a fallback */
+  safariFallbackSize?: number;
   fastDuration?: number;
   slowDuration?: number;
   fastEase?: string;
@@ -23,6 +30,23 @@ export interface BlobCursorProps {
   zIndex?: number;
   innerText?: string;
   show?: boolean;
+}
+
+/**
+ * Build the gooey SVG filter as a data: URI.
+ */
+function buildGooeyFilterUrl(
+  stdDeviation: number,
+  colorMatrixValues: string,
+): string {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg"><filter id="goo"><feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="${stdDeviation}"/><feColorMatrix in="blur" type="matrix" values="${colorMatrixValues}"/></filter></svg>`;
+  return `url("data:image/svg+xml,${encodeURIComponent(svg)}#goo")`;
+}
+
+function getIsSafari(): boolean {
+  if (typeof navigator === "undefined") return false;
+  const ua = navigator.userAgent;
+  return /Safari/.test(ua) && !/Chrome|Chromium|Edg|OPR|Opera/.test(ua);
 }
 
 export default function BlobCursor({
@@ -37,10 +61,10 @@ export default function BlobCursor({
   shadowBlur = 5,
   shadowOffsetX = 10,
   shadowOffsetY = 10,
-  filterId = "blob",
   filterStdDeviation = 30,
   filterColorMatrixValues = "1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 35 -10",
   useFilter = true,
+  safariFallbackSize = 192,
   fastDuration = 0.1,
   slowDuration = 0.5,
   fastEase = "power3.out",
@@ -50,6 +74,19 @@ export default function BlobCursor({
   const containerRef = useRef<HTMLDivElement>(null);
   const blobsRef = useRef<(HTMLDivElement | null)[]>([]);
   const innerTextRef = useRef<HTMLDivElement>(null);
+  const [isSafari, setIsSafari] = useState(false);
+
+  useEffect(() => {
+    setIsSafari(getIsSafari());
+  }, []);
+
+  const filterValue = useMemo(
+    () =>
+      useFilter && !isSafari
+        ? buildGooeyFilterUrl(filterStdDeviation, filterColorMatrixValues)
+        : undefined,
+    [useFilter, isSafari, filterStdDeviation, filterColorMatrixValues],
+  );
 
   const updateOffset = useCallback(() => {
     if (!containerRef.current) return { left: 0, top: 0 };
@@ -65,16 +102,29 @@ export default function BlobCursor({
       const x = "clientX" in e ? e.clientX : e.touches[0].clientX;
       const y = "clientY" in e ? e.clientY : e.touches[0].clientY;
 
-      blobsRef.current.forEach((el, i) => {
-        if (!el) return;
-        const isLead = i === 0;
-        gsap.to(el, {
-          x: x - left,
-          y: y - top,
-          duration: isLead ? fastDuration : slowDuration,
-          ease: isLead ? fastEase : slowEase,
+      if (isSafari) {
+        // Only one blob on Safari
+        const el = blobsRef.current[0];
+        if (el) {
+          gsap.to(el, {
+            x: x - left,
+            y: y - top,
+            duration: fastDuration,
+            ease: fastEase,
+          });
+        }
+      } else {
+        blobsRef.current.forEach((el, i) => {
+          if (!el) return;
+          const isLead = i === 0;
+          gsap.to(el, {
+            x: x - left,
+            y: y - top,
+            duration: isLead ? fastDuration : slowDuration,
+            ease: isLead ? fastEase : slowEase,
+          });
         });
-      });
+      }
 
       if (innerTextRef.current) {
         const textX = x - left;
@@ -87,7 +137,7 @@ export default function BlobCursor({
         });
       }
     },
-    [updateOffset, fastDuration, slowDuration, fastEase, slowEase],
+    [updateOffset, isSafari, fastDuration, slowDuration, fastEase, slowEase],
   );
 
   // Scale down on click and scale back up on release
@@ -127,52 +177,58 @@ export default function BlobCursor({
       className={`absolute top-0 left-0 w-full h-full ${show ? "opacity-100" : "opacity-0"} transition-opacity duration-150`}
       style={{ zIndex }}
     >
-      {useFilter && (
-        <svg className="absolute w-0 h-0">
-          <filter id={filterId}>
-            <feGaussianBlur
-              in="SourceGraphic"
-              result="blur"
-              stdDeviation={filterStdDeviation}
-            />
-            <feColorMatrix in="blur" values={filterColorMatrixValues} />
-          </filter>
-        </svg>
-      )}
-
       <div
         className="pointer-events-none absolute inset-0 overflow-hidden select-none cursor-default"
-        style={{ filter: useFilter ? `url(#${filterId})` : undefined }}
+        style={{ filter: filterValue }}
       >
-        {Array.from({ length: trailCount }).map((_, i) => (
+        {isSafari ? (
+          /* Safari fallback: single large circle, no SVG filter */
           <div
-            key={i}
             ref={(el) => {
-              blobsRef.current[i] = el;
+              blobsRef.current[0] = el;
             }}
             className="absolute will-change-transform transform -translate-x-1/2 -translate-y-1/2"
             style={{
-              width: sizes[i],
-              height: sizes[i],
-              borderRadius: blobType === "circle" ? "50%" : "0",
+              width: safariFallbackSize,
+              height: safariFallbackSize,
+              borderRadius: "50%",
               backgroundColor: "#fff",
-              opacity: opacities[i],
-              boxShadow: `${shadowOffsetX}px ${shadowOffsetY}px ${shadowBlur}px 0 ${shadowColor}`,
             }}
-          >
+          />
+        ) : (
+          Array.from({ length: trailCount }).map((_, i) => (
             <div
-              className="absolute"
-              style={{
-                width: innerSizes[i],
-                height: innerSizes[i],
-                top: (sizes[i] - innerSizes[i]) / 2,
-                left: (sizes[i] - innerSizes[i]) / 2,
-                backgroundColor: "#fff",
-                borderRadius: blobType === "circle" ? "50%" : "0",
+              key={i}
+              ref={(el) => {
+                blobsRef.current[i] = el;
               }}
-            />
-          </div>
-        ))}
+              className="absolute will-change-transform transform -translate-x-1/2 -translate-y-1/2"
+              style={{
+                width: sizes[i],
+                height: sizes[i],
+                borderRadius: blobType === "circle" ? "50%" : "0",
+                backgroundColor: "#fff",
+                opacity: opacities[i],
+                boxShadow:
+                  shadowColor !== "none"
+                    ? `${shadowOffsetX}px ${shadowOffsetY}px ${shadowBlur}px 0 ${shadowColor}`
+                    : undefined,
+              }}
+            >
+              <div
+                className="absolute"
+                style={{
+                  width: innerSizes[i],
+                  height: innerSizes[i],
+                  top: (sizes[i] - innerSizes[i]) / 2,
+                  left: (sizes[i] - innerSizes[i]) / 2,
+                  backgroundColor: "#fff",
+                  borderRadius: blobType === "circle" ? "50%" : "0",
+                }}
+              />
+            </div>
+          ))
+        )}
       </div>
       {/** Inner text */}
       <div

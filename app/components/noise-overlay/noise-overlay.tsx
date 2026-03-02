@@ -1,84 +1,83 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 
-const NoiseOverlay: React.FC<{ opacity?: number }> = ({ opacity = 0.15 }) => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const animationRef = useRef<number>(null);
+const TILE_SIZE = 200;
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+/**
+ * Generate a small noise tile as a blob URL.
+ * Same pixel algorithm as the original (shade 0-19, 70% opaque).
+ */
+function generateNoiseTile(size: number): Promise<string> {
+  return new Promise((resolve) => {
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext("2d")!;
+    const imageData = ctx.createImageData(size, size);
+    const buffer = new Uint32Array(imageData.data.buffer);
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
-
-    const PREGENERATED_FRAME_COUNT = 6;
-    const pregenerated: OffscreenCanvas[] = [];
-
-    for (let i = 0; i < PREGENERATED_FRAME_COUNT; i++) {
-      const off = new OffscreenCanvas(window.innerWidth, window.innerHeight);
-      const octx = off.getContext("2d")!;
-      const imageData = octx!.createImageData(
-        window.innerWidth,
-        window.innerHeight
-      );
-      const buffer = new Uint32Array(imageData.data.buffer);
-
-      for (let p = 0; p < buffer.length; p++) {
-        const shade = Math.floor(Math.random() * 20);
-        const alpha = Math.random() < 0.7 ? 255 : 0;
-        buffer[p] = (alpha << 24) | (shade << 16) | (shade << 8) | shade;
-      }
-
-      octx.putImageData(imageData, 0, 0);
-      pregenerated.push(off);
+    for (let p = 0; p < buffer.length; p++) {
+      const shade = (Math.random() * 20) | 0;
+      const alpha = Math.random() < 0.7 ? 255 : 0;
+      buffer[p] = (alpha << 24) | (shade << 16) | (shade << 8) | shade;
     }
 
-    // const imageData = ctx.createImageData(canvas.width, canvas.height);
-    // const buffer = new Uint32Array(imageData.data.buffer);
+    ctx.putImageData(imageData, 0, 0);
+    canvas.toBlob((blob) => resolve(URL.createObjectURL(blob!)), "image/png");
+  });
+}
 
-    // const generateNoise = () => {
-    //   for (let i = 0; i < buffer.length; i++) {
-    //     const shade = Math.floor(Math.random() * 20);
-    //     const alpha = Math.random() < 0.7 ? 255 : 0;
-    //     buffer[i] = (alpha << 24) | (shade << 16) | (shade << 8) | shade;
-    //   }
-    //   ctx.putImageData(imageData, 0, 0);
-    // };
+const NoiseOverlay: React.FC<{ opacity?: number }> = ({ opacity = 0.15 }) => {
+  const [tileUrl, setTileUrl] = useState<string | null>(null);
 
-    const FRAME_SKIP = 5; // (4 ≈ 15fps noise)
-    let frame = 0;
+  useEffect(() => {
+    let url: string | null = null;
+    let cancelled = false;
 
-    const draw = () => {
-      frame++;
-      if (frame % FRAME_SKIP === 0) {
-        const pg = pregenerated[frame % PREGENERATED_FRAME_COUNT];
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(pg as unknown as CanvasImageSource, 0, 0);
+    generateNoiseTile(TILE_SIZE).then((blobUrl) => {
+      if (cancelled) {
+        URL.revokeObjectURL(blobUrl);
+        return;
       }
-      animationRef.current = requestAnimationFrame(draw);
-    };
-
-    draw();
+      url = blobUrl;
+      setTileUrl(blobUrl);
+    });
 
     return () => {
-      window.removeEventListener("resize", resizeCanvas);
-      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+      cancelled = true;
+      if (url) URL.revokeObjectURL(url);
     };
-  }, [opacity]);
+  }, []);
+
+  if (!tileUrl) return null;
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute top-0 left-0 w-full h-full pointer-events-none"
-      style={{ opacity }}
-    />
+    <>
+      <style>{`
+        @keyframes noiseShift {
+          0%   { transform: translate(0, 0) }
+          20%  { transform: translate(-${TILE_SIZE * 0.5}px, -${TILE_SIZE * 0.33}px) }
+          40%  { transform: translate(-${TILE_SIZE * 0.33}px, -${TILE_SIZE * 0.5}px) }
+          60%  { transform: translate(-${TILE_SIZE * 0.75}px, -${TILE_SIZE * 0.25}px) }
+          80%  { transform: translate(-${TILE_SIZE * 0.17}px, -${TILE_SIZE * 0.67}px) }
+          100% { transform: translate(0, 0) }
+        }
+      `}</style>
+      <div
+        className="absolute inset-0 pointer-events-none overflow-hidden"
+        style={{ opacity }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: -TILE_SIZE,
+            backgroundImage: `url(${tileUrl})`,
+            backgroundRepeat: "repeat",
+            animation: "noiseShift 0.5s steps(5) infinite",
+            willChange: "transform",
+          }}
+        />
+      </div>
+    </>
   );
 };
 
