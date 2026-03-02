@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { siDiscord, siGithub, siX } from "simple-icons";
 import AnimatedContent from "../components/animated-content/animated-content";
 import Aurora from "../components/aurora-header/aurora-header";
@@ -24,6 +24,7 @@ import { BrandsSection } from "../sections/brands-section";
 import { CoursesSection } from "../sections/courses-section";
 import { EnterpriseSection } from "../sections/enterprise-section";
 import { TestimonialsSection } from "../sections/testimonials-section";
+import { fetchNestStats, type NestStats } from "../services/nest-stats.service";
 import type { Route } from "./+types/home";
 import classes from "./home.module.scss";
 
@@ -58,9 +59,14 @@ export default function Home() {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [hoveringTargetId, setHoveringTargetId] = useState<string | null>(null);
   const [auroraReady, setAuroraReady] = useState(false);
+  const [stats, setStats] = useState<NestStats | null>(null);
   const onMenuItemMouseLeave = () => {
     setHoveringTargetId(null);
   };
+
+  useEffect(() => {
+    fetchNestStats().then(setStats);
+  }, []);
 
   return (
     <>
@@ -200,27 +206,34 @@ export default function Home() {
             </div>
           </div>
           <div className="absolute right-20 bottom-15 text-right leading-10 text-sm font-mono">
-            <BlurIn distance={5} delay={0.25} threshold={0.05}>
-              <>
-                <p>
-                  <span className="opacity-70 mr-4">Github stars</span>
-                  <CountUp to={73840} from={0} duration={2} separator="," />
-                </p>
-                <p>
-                  <span className="opacity-70 mr-4">Latest release</span> Aug 7
-                  / 11.1.9
-                </p>
-                <p>
-                  <span className="opacity-70 mr-4">Monthly downloads</span>{" "}
-                  <CountUp
-                    to={24200000}
-                    from={0}
-                    duration={0.5}
-                    separator=","
-                  />
-                </p>
-              </>
-            </BlurIn>
+            {stats && (
+              <BlurIn distance={5} delay={0.25} threshold={0.05}>
+                <>
+                  <p>
+                    <span className="opacity-70 mr-4">Github stars</span>
+                    <CountUp
+                      to={stats.githubStars}
+                      from={0}
+                      duration={2}
+                      separator=","
+                    />
+                  </p>
+                  <p>
+                    <span className="opacity-70 mr-4">Latest release</span>{" "}
+                    {stats.latestRelease.date} / {stats.latestRelease.version}
+                  </p>
+                  <p>
+                    <span className="opacity-70 mr-4">Monthly downloads</span>{" "}
+                    <CountUp
+                      to={stats.monthlyDownloads}
+                      from={0}
+                      duration={0.5}
+                      separator=","
+                    />
+                  </p>
+                </>
+              </BlurIn>
+            )}
           </div>
         </header>
       </div>
@@ -454,7 +467,17 @@ export default function Home() {
                 <BlurIn delay={0.2}>
                   <div className="flex flex-col">
                     <span className="text-[160px] font-medium leading-[1.2]">
-                      <CountUp to={13.3} from={0} duration={1} separator="," />m
+                      <CountUp
+                        to={
+                          stats
+                            ? Math.round(stats.monthlyDownloads / 100000) / 10
+                            : 0
+                        }
+                        from={0}
+                        duration={1}
+                        separator=","
+                      />
+                      m
                     </span>
                     <span className="font-mono text-xs font-light">
                       Monthly downloads
@@ -466,7 +489,9 @@ export default function Home() {
                     <div className="flex flex-col text-left flex-grow-1">
                       <span className="text-5xl font-medium">
                         <CountUp
-                          to={73.1}
+                          to={
+                            stats ? Math.round(stats.githubStars / 100) / 10 : 0
+                          }
                           from={0}
                           duration={1}
                           separator=","
@@ -481,7 +506,12 @@ export default function Home() {
                   <BlurIn delay={0.2}>
                     <div className="flex flex-col ml-20 text-left flex-grow-1">
                       <span className="text-5xl font-medium">
-                        <CountUp to={138} from={0} duration={1} separator="," />
+                        <CountUp
+                          to={stats ? stats.releasesCount : 0}
+                          from={0}
+                          duration={1}
+                          separator=","
+                        />
                       </span>
                       <span className="font-mono text-xs leading-6 font-light mt-2">
                         Releases
