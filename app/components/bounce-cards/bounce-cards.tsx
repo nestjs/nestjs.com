@@ -47,18 +47,8 @@ export default function BounceCards({
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(
     DEFAULT_HOVERED_IDX,
   );
-  const [lightRaysVisible, setLightRaysVisible] = useState<boolean[]>(
-    cards.map(() => false),
-  );
-  const hideLightRaysTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    return () => {
-      if (hideLightRaysTimeoutRef.current) {
-        clearTimeout(hideLightRaysTimeoutRef.current);
-      }
-    };
-  }, []);
+  const lightRaysRef = useRef<HTMLDivElement>(null);
+  const cardHostRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -126,13 +116,7 @@ export default function BounceCards({
       return;
     }
 
-    // Update current hovered index
     setHoveredIdx(hoveredIdx);
-
-    if (hideLightRaysTimeoutRef.current) {
-      clearTimeout(hideLightRaysTimeoutRef.current);
-    }
-    setLightRaysVisible((prev) => prev.map((_, idx) => idx === hoveredIdx));
 
     cards.forEach((_, i) => {
       const selector = `.card-${i}`;
@@ -148,6 +132,18 @@ export default function BounceCards({
           ease: "back.out(1.4)",
           overwrite: "auto",
         });
+
+        // Move LightRays into the hovered card
+        const host = cardHostRefs.current[hoveredIdx];
+        if (lightRaysRef.current && host) {
+          gsap.killTweensOf(lightRaysRef.current);
+          host.appendChild(lightRaysRef.current);
+          gsap.to(lightRaysRef.current, {
+            opacity: 0.7,
+            duration: duration * 0.5,
+            overwrite: "auto",
+          });
+        }
       } else {
         const offsetX = i < hoveredIdx ? -160 : 160;
         const pushedTransform = getPushedTransform(baseTransform, offsetX);
@@ -170,16 +166,15 @@ export default function BounceCards({
     if (!enableHover) {
       return;
     }
-    // Reset current hovered index
     setHoveredIdx(DEFAULT_HOVERED_IDX);
 
-    // Schedule after animation to hide all light rays
-    if (hideLightRaysTimeoutRef.current) {
-      clearTimeout(hideLightRaysTimeoutRef.current);
+    if (lightRaysRef.current) {
+      gsap.to(lightRaysRef.current, {
+        opacity: 0,
+        duration: duration * 0.5,
+        overwrite: "auto",
+      });
     }
-    hideLightRaysTimeoutRef.current = setTimeout(() => {
-      setLightRaysVisible(cards.map(() => false));
-    }, duration * 1000);
 
     cards.forEach((_, i) => {
       const selector = `.card-${i}`;
@@ -226,23 +221,9 @@ export default function BounceCards({
                 className={`${classes.cardContainer} flex relative w-full h-full rounded-[24px] overflow-hidden`}
               >
                 <div
-                  className={`light-rays-host absolute inset-0 pointer-events-none transition-opacity duration-300 ${idx === hoveredIdx ? "opacity-70" : "opacity-0"}`}
-                >
-                  {lightRaysVisible[idx] && (
-                    <LightRays
-                      raysOrigin="top-right"
-                      raysColor="#fff"
-                      raysSpeed={1.5}
-                      lightSpread={5}
-                      rayLength={4}
-                      followMouse={true}
-                      mouseInfluence={0.1}
-                      noiseAmount={0.05}
-                      distortion={0.05}
-                      opacity={0.3}
-                    />
-                  )}
-                </div>
+                  ref={(el) => { cardHostRefs.current[idx] = el; }}
+                  className="absolute inset-0 pointer-events-none"
+                />
                 <div
                   className={`flex flex-col justify-center w-full h-full text-white z-10 ${classes.cardContent}`}
                 >
@@ -259,6 +240,28 @@ export default function BounceCards({
           </BlurIn>
         </div>
       ))}
+
+      {/* Single shared LightRays – always mounted, reparented into hovered card */}
+      <div className="hidden">
+        <div
+          ref={lightRaysRef}
+          className="absolute inset-0 pointer-events-none rounded-[24px] overflow-hidden"
+          style={{ opacity: 0 }}
+        >
+          <LightRays
+            raysOrigin="top-right"
+            raysColor="#fff"
+            raysSpeed={1.5}
+            lightSpread={5}
+            rayLength={4}
+            followMouse={true}
+            mouseInfluence={0.1}
+            noiseAmount={0.05}
+            distortion={0.05}
+            opacity={0.3}
+          />
+        </div>
+      </div>
     </div>
   );
 }
