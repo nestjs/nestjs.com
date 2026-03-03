@@ -154,7 +154,7 @@ export function SponsorsSection() {
               className="font-medium text-2xl mb-8 leading-5"
               enableBlur
             >
-              Gold Sponsors
+              Gold Sponsor
             </ScrollReveal>
           </div>
           <div className="grid grid-cols-6 gap-0">
@@ -225,7 +225,7 @@ export function SponsorsSection() {
               className="font-medium text-2xl mb-8 leading-5"
               enableBlur
             >
-              Silver Sponsors
+              Silver Sponsor
             </ScrollReveal>
           </div>
           <div className="grid grid-cols-6 gap-0">
@@ -255,7 +255,7 @@ export function SponsorsSection() {
               className="font-medium text-2xl mb-8 leading-5"
               enableBlur
             >
-              Backers
+              Backer
             </ScrollReveal>
           </div>
           <div className="grid grid-cols-12 gap-0">
