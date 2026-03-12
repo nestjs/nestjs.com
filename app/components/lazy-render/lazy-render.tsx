@@ -30,7 +30,7 @@ const LazyRender = ({
           }
         }
       },
-      { threshold, rootMargin }
+      { threshold, rootMargin },
     );
 
     if (ref.current) {

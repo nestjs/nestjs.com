@@ -221,7 +221,9 @@ export default function BounceCards({
                 className={`${classes.cardContainer} flex relative w-full h-full rounded-[24px] overflow-hidden`}
               >
                 <div
-                  ref={(el) => { cardHostRefs.current[idx] = el; }}
+                  ref={(el) => {
+                    cardHostRefs.current[idx] = el;
+                  }}
                   className="absolute inset-0 pointer-events-none"
                 />
                 <div

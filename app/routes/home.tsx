@@ -405,7 +405,6 @@ export default function Home() {
           />,
         ]}
       />
-      <div className="width-full h-[50vh] relative"></div>
       <EnterpriseSection />
       <div className="flex justify-center mt-30 mb-30">
         <div className="container relative">

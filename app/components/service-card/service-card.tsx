@@ -168,19 +168,33 @@ export function ServiceCard({
         }}
       >
         <div className="grid grid-cols-3 gap-10 flex-grow-1 flex min-h-[100px] relative">
+          <style>
+            {`
+              .service-card-item h4 {
+                opacity: 0.25;
+              }
+              .service-card-item p {
+                opacity: 0.25;
+              }
+              .service-card-item:hover h4,
+              .service-card-item:hover p {
+                opacity: 1;
+              }
+            `}
+          </style>
           {cardItems.map((item, idx) => (
             <div
               key={idx}
-              className="relative cursor-pointer"
+              className="relative cursor-pointer service-card-item"
               onClick={() => handleItemClick(idx)}
             >
               <h4
-                className={`text-xl font-medium mb-4 ${activeCardItem === idx ? "opacity-100" : "opacity-25"} transition-opacity duration-150`}
+                className={`text-xl font-medium mb-4 ${activeCardItem === idx ? "!opacity-100" : ""} transition-opacity duration-150`}
               >
                 {item.title}
               </h4>
               <p
-                className={`text-sm leading-6 font-light font-mono ${activeCardItem === idx ? "opacity-100" : "opacity-25"} transition-opacity duration-150`}
+                className={`text-sm leading-6 font-light font-mono ${activeCardItem === idx ? "!opacity-100" : ""} transition-opacity duration-150`}
               >
                 {item.description}
               </p>

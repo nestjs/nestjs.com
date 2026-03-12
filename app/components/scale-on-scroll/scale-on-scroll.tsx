@@ -54,8 +54,8 @@ export function ScaleOnScroll({
             MIN_SCALE,
             MIN_SCALE +
               ((MAX_SCALE - MIN_SCALE) * (clampedTop - startOffset)) /
-                (endOffset - startOffset)
-          )
+                (endOffset - startOffset),
+          ),
         );
         const opacity =
           1 -
@@ -65,8 +65,8 @@ export function ScaleOnScroll({
               MIN_OPACITY,
               MIN_OPACITY +
                 ((MAX_OPACITY - MIN_OPACITY) * (clampedTop - startOffset)) /
-                  (endOffset - startOffset)
-            )
+                  (endOffset - startOffset),
+            ),
           );
         const shouldShow = scale > MIN_SCALE && opacity > MIN_OPACITY;
         if (shouldShow !== showBackgroundRef.current) {

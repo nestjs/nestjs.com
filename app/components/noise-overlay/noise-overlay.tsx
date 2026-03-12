@@ -26,7 +26,7 @@ function generateNoiseTile(size: number): Promise<string> {
   });
 }
 
-const NoiseOverlay: React.FC<{ opacity?: number }> = ({ opacity = 0.15 }) => {
+const NoiseOverlay: React.FC<{ opacity?: number }> = ({ opacity = 0.085 }) => {
   const [tileUrl, setTileUrl] = useState<string | null>(null);
 
   useEffect(() => {
@@ -72,7 +72,7 @@ const NoiseOverlay: React.FC<{ opacity?: number }> = ({ opacity = 0.15 }) => {
             inset: -TILE_SIZE,
             backgroundImage: `url(${tileUrl})`,
             backgroundRepeat: "repeat",
-            animation: "noiseShift 0.5s steps(5) infinite",
+            animation: "noiseShift 1.25s steps(5) infinite",
             willChange: "transform",
           }}
         />

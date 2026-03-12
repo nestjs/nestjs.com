@@ -18,7 +18,6 @@ export default function StackedCards({ cards }: StackedCardsProps) {
   useLayoutEffect(() => {
     const wrappers = cardWrappersRef.current;
     const cards = cardsRef.current;
-
     wrappers.forEach((wrapper, i) => {
       const card = cards[i];
       let scale = 1,
@@ -38,13 +37,48 @@ export default function StackedCards({ cards }: StackedCardsProps) {
         transformOrigin: "top center",
         ease: "power1.in",
         scrollTrigger: {
-          trigger: wrapper,
-          start: i === cards.length - 1 ? "top 25" : "top 20",
-          end: i === cards.length - 1 ? "bottom 550" : "bottom 0",
+          trigger: card,
+          start: "top 20",
+          end: "bottom 1000",
+          // markers: true,
           endTrigger: wrapperRef.current,
           scrub: true,
           pin: wrapper,
           pinSpacing: false,
+          id: i + 1,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const progressOffset = 0.6;
+            let adjustedProgress =
+              (self.progress - progressOffset) / (1 - progressOffset);
+            adjustedProgress = gsap.utils.clamp(0, 1, adjustedProgress);
+            const adjustedOpacity = gsap.utils.clamp(
+              0,
+              1,
+              (0.75 - self.progress) / (0.75 - 0.65),
+            );
+
+            gsap.set(card, {
+              scale: 1 + (scale - 1) * adjustedProgress,
+              rotationX: rotationX * adjustedProgress,
+              rotationY: rotationY * adjustedProgress,
+              opacity: i === cards.length - 1 ? 1 : adjustedOpacity,
+            });
+
+            const nextCard = cards[i + 1];
+            if (nextCard) {
+              const normalizedProgress = gsap.utils.clamp(
+                0,
+                1,
+                self.progress * cards.length,
+              );
+              const nextTranslateY = Math.max(
+                0,
+                window.innerHeight * (1 - normalizedProgress),
+              );
+              gsap.set(nextCard, { translateY: nextTranslateY });
+            }
+          },
         },
       });
     });
@@ -70,7 +104,7 @@ export default function StackedCards({ cards }: StackedCardsProps) {
           >
             <div
               ref={(el) => setCardRef(el, i)}
-              className="card rounded-[24px] bg-cover bg-center h-[98vh]"
+              className="card rounded-[24px] bg-cover bg-center h-[98vh] mb-[98vh]"
             >
               {node}
             </div>
