@@ -48,14 +48,14 @@ export default function StackedCards({ cards }: StackedCardsProps) {
           id: i + 1,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            const progressOffset = 0.6;
+            const progressOffset = 0.5;
             let adjustedProgress =
               (self.progress - progressOffset) / (1 - progressOffset);
             adjustedProgress = gsap.utils.clamp(0, 1, adjustedProgress);
             const adjustedOpacity = gsap.utils.clamp(
               0,
               1,
-              (0.75 - self.progress) / (0.75 - 0.65),
+              (0.85 - self.progress) / (0.85 - 0.75),
             );
 
             gsap.set(card, {
@@ -104,7 +104,7 @@ export default function StackedCards({ cards }: StackedCardsProps) {
           >
             <div
               ref={(el) => setCardRef(el, i)}
-              className="card rounded-[24px] bg-cover bg-center h-[98vh] mb-[98vh]"
+              className="card rounded-[24px] bg-cover bg-center h-[98vh] mb-[50vh]"
             >
               {node}
             </div>
