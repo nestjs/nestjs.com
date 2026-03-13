@@ -35,16 +35,17 @@
       transform: translate(0px, 0px) scaleY(1);
     }
     25% {
-      transform: translate(70px, 0) scaleY(1.6) rotate(50deg);
+      transform: translate(170px, 0) scaleY(1.6) rotate(50deg);
     }
     45% {
-      transform: translate(-30px, 0) scaleY(0.7) rotate(-10deg);
+      transform: translate(-130px, 0) scaleY(0.7) rotate(-10deg);
     }
     65% {
-      transform: translate(50px, 0) scaleY(1.2) rotate(30deg);
+      transform: translate(150px, 0) scaleY(1.2) rotate(30deg);
+      filter: blur(200px);
     }
     85% {
-      transform: translate(-20px, 0) scaleY(0.8) rotate(-20deg);
+      transform: translate(-120px, 0) scaleY(0.8) rotate(-20deg);
     }
     100% {
       transform: translate(0px, 0px) scaleY(1);

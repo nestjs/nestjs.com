@@ -429,7 +429,7 @@ export default function Home() {
               </BlurIn>
             </div>
             <span></span>
-            <AnimatedContent distance={50} initialOpacity={0}>
+            <AnimatedContent distance={250} delay={0.1} initialOpacity={0}>
               <StaticCodeEditor />
             </AnimatedContent>
           </div>
