@@ -92,7 +92,7 @@ export function CoursesSection() {
       opacity: 1,
       duration: 0.3,
       ease: "power2.out",
-      filter: "grayscale(100%)",
+      // filter: "grayscale(100%)",
     });
 
     // Step 2 - Other cards can fade in as they won't be visible anyway
@@ -111,7 +111,7 @@ export function CoursesSection() {
         tl.to(
           card,
           {
-            filter: "grayscale(0%)",
+            // filter: "grayscale(0%)",
             duration: 0.3,
           },
           "fadeInOthers",
