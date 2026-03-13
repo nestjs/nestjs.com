@@ -42,7 +42,7 @@
     }
     65% {
       transform: translate(150px, 0) scaleY(1.2) rotate(30deg);
-      filter: blur(200px);
+      filter: blur(100px);
     }
     85% {
       transform: translate(-120px, 0) scaleY(0.8) rotate(-20deg);
