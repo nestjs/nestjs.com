@@ -9,6 +9,7 @@ import FlashlightText from "../components/flashlight-text/flashlight-text";
 import LazyRender from "../components/lazy-render/lazy-render";
 import { LettersReveal } from "../components/letters-reveal/letters-reveal";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
+import Orb from "../components/orb/orb";
 import { PrimaryButton } from "../components/primary-button/primary-button";
 import ScrollReveal from "../components/scroll-reveal/scroll-reveal";
 import { SecondaryButton } from "../components/secondary-button/secondary-button";
@@ -543,6 +544,9 @@ export default function Home() {
             <SectionSubheading>Click. Copy. Build</SectionSubheading>
           </div>
         </div>
+      </div>
+      <div className="relative w-full h-[800px]">
+        <Orb />
       </div>
       <div className="p-10 h-[1000px]"></div>
     </>

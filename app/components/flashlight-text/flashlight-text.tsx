@@ -24,17 +24,17 @@ const FlashlightText: React.FC<Props> = ({ text, radius = 400 }) => {
     [radius],
   );
 
-  const handleMouseLeave = useCallback(() => {
-    if (maskRef.current) {
-      maskRef.current.style.opacity = "0";
-    }
-  }, []);
+  // const handleMouseLeave = useCallback(() => {
+  //   if (maskRef.current) {
+  // maskRef.current.style.opacity = "0";
+  //   }
+  // }, []);
 
   return (
     <div
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      // onMouseLeave={handleMouseLeave}
       className="relative w-full flex items-center justify-center overflow-hidden text-center"
     >
       <span
@@ -50,8 +50,10 @@ const FlashlightText: React.FC<Props> = ({ text, radius = 400 }) => {
           WebkitMaskSize: "cover",
           maskRepeat: "no-repeat",
           maskPosition: "0 0",
+          maskImage: `radial-gradient(circle ${radius}px at 50% 50%, white 0%, transparent 90%)`,
+          WebkitMaskImage: `radial-gradient(circle ${radius}px at 50% 50%, white 0%, transparent 90%)`,
           maskSize: "cover",
-          opacity: 0,
+          opacity: 1,
           transition:
             "mask-position 0.05s linear, -webkit-mask-position 0.05s linear",
         }}
