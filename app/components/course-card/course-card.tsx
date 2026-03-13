@@ -10,6 +10,7 @@ type CourseCardProps = {
   duration: string;
   lessonCount: number;
   color: string;
+  borderOpaque?: boolean;
 };
 
 export function CourseCard({
@@ -17,6 +18,7 @@ export function CourseCard({
   duration,
   lessonCount,
   color,
+  borderOpaque = false,
 }: CourseCardProps) {
   const meshRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -70,8 +72,8 @@ export function CourseCard({
         `}
       </style>
       <div
-        className="absolute inset-0 rounded-[24px] bg-gradient-to-b from-white/30 to-white/0 pointer-events-none
-        top-[-1px] left-[-1px] right-[-1px] bottom-[-1px]"
+        className={`absolute inset-0 rounded-[24px] ${borderOpaque ? "bg-gradient-to-b from-white/30 to-white/0" : "bg-gradient-to-b from-[#3e3e3e] to-[#050303]"} pointer-events-none
+        top-[-1px] left-[-1px] right-[-1px] bottom-[-1px]`}
       ></div>
       <div
         ref={cardRef}

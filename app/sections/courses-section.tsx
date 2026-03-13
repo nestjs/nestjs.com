@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BlurIn } from "../components/blur-in/blur-in";
 import { CourseCard } from "../components/course-card/course-card";
 import { PrimaryButton } from "../components/primary-button/primary-button";
@@ -56,6 +56,7 @@ export function CoursesSection() {
   const midIndex = (courses.length - 1) / 2;
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<HTMLDivElement[]>([]);
+  const [courseCardBorderOpaque, setCourseCardBorderOpaque] = useState(false);
 
   const allCards = [...courses, ...sideCards];
   useEffect(() => {
@@ -79,6 +80,9 @@ export function CoursesSection() {
         start: "top 50%",
         end: "top 30%",
         scrub: false,
+      },
+      onComplete: () => {
+        setCourseCardBorderOpaque(true);
       },
     });
 
@@ -156,7 +160,7 @@ export function CoursesSection() {
           duration: 0.8,
           ease: "power2.out",
         },
-        "fan", // <-- same position = simultaneous
+        "fan", // <-- same position = simultaneous,
       );
     });
   }, []);
@@ -189,7 +193,10 @@ export function CoursesSection() {
                     transformOrigin: "center top",
                   }}
                 >
-                  <CourseCard {...course} />
+                  <CourseCard
+                    {...course}
+                    borderOpaque={courseCardBorderOpaque}
+                  />
                 </div>
               );
             })}
