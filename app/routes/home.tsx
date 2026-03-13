@@ -76,7 +76,7 @@ export default function Home() {
         <header
           ref={headerRef}
           className={`flex justify-center overflow-hidden relative pb-16 rounded-[32px] 
-          bg-gradient-to-r from-[#050303] 
+          bg-gradient-to-r from-[#050303] h-[91vh] min-h-[780px]
           via-[#780f20] 
           to-[#050303]
           ${auroraReady ? "opacity-100" : "opacity-0"}`}
