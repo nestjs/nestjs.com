@@ -527,24 +527,10 @@ export default function Home() {
       </div>
       <TestimonialsSection />
       <SponsorsSection />
-      <div className="flex justify-center mt-50 mb-50">
-        <div
-          className="container relative cursor-pointer text-center"
-          onClick={() => {
-            navigator.clipboard.writeText(
-              `$ npm i -g @nestjs/cli\n$ nest new project-name`,
-            );
-          }}
-        >
-          <FlashlightText
-            text="$ npm i -g @nestjs/cli
-              <br />$ nest new project-name"
-          />
-          <div className="mt-15 opacity-75">
-            <SectionSubheading>Click. Copy. Build</SectionSubheading>
-          </div>
-        </div>
-      </div>
+      <FlashlightText
+        text="$ npm i -g @nestjs/cli
+          <br />$ nest new project-name"
+      />
       <div className="relative w-full h-[800px]">
         <Orb />
       </div>
