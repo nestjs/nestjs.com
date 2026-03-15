@@ -1,4 +1,5 @@
 import React, { useCallback, useRef } from "react";
+import ClickSpark from "../click-spark/click-spark";
 import { SectionSubheading } from "../section-subheading/section-subheading";
 
 type Props = {
@@ -58,37 +59,39 @@ const FlashlightText: React.FC<Props> = ({ text, radius = 400 }) => {
           );
         }}
       >
-        <div
-          ref={containerRef}
-          // onMouseLeave={handleMouseLeave}
-          className="relative w-full flex items-center justify-center overflow-hidden text-center"
-        >
-          <span
-            className="text-8xl text-white/5 select-none leading-[1.2]"
-            dangerouslySetInnerHTML={{ __html: text }}
-          />
-          <span
-            ref={maskRef}
-            className="absolute text-8xl text-white select-none leading-[1.2] text-center"
-            style={{
-              WebkitMaskRepeat: "no-repeat",
-              WebkitMaskPosition: "0 0",
-              WebkitMaskSize: "cover",
-              maskRepeat: "no-repeat",
-              maskPosition: "0 0",
-              maskImage: `radial-gradient(circle ${radius}px at 50% 50%, white 0%, transparent 90%)`,
-              WebkitMaskImage: `radial-gradient(circle ${radius}px at 50% 50%, white 0%, transparent 90%)`,
-              maskSize: "cover",
-              opacity: 1,
-              transition:
-                "mask-position 0.05s linear, -webkit-mask-position 0.05s linear",
-            }}
-            dangerouslySetInnerHTML={{ __html: text }}
-          ></span>
-        </div>
-        <div className="mt-15 opacity-75">
-          <SectionSubheading>Click. Copy. Build</SectionSubheading>
-        </div>
+        <ClickSpark sparkSize={25} sparkRadius={40}>
+          <div
+            ref={containerRef}
+            // onMouseLeave={handleMouseLeave}
+            className="relative w-full flex items-center justify-center overflow-hidden text-center"
+          >
+            <span
+              className="text-8xl text-white/5 select-none leading-[1.2]"
+              dangerouslySetInnerHTML={{ __html: text }}
+            />
+            <span
+              ref={maskRef}
+              className="absolute text-8xl text-white select-none leading-[1.2] text-center"
+              style={{
+                WebkitMaskRepeat: "no-repeat",
+                WebkitMaskPosition: "0 0",
+                WebkitMaskSize: "cover",
+                maskRepeat: "no-repeat",
+                maskPosition: "0 0",
+                maskImage: `radial-gradient(circle ${radius}px at 50% 50%, white 0%, transparent 90%)`,
+                WebkitMaskImage: `radial-gradient(circle ${radius}px at 50% 50%, white 0%, transparent 90%)`,
+                maskSize: "cover",
+                opacity: 1,
+                transition:
+                  "mask-position 0.05s linear, -webkit-mask-position 0.05s linear",
+              }}
+              dangerouslySetInnerHTML={{ __html: text }}
+            ></span>
+          </div>
+          <div className="mt-15 opacity-75">
+            <SectionSubheading>Click. Copy. Build</SectionSubheading>
+          </div>
+        </ClickSpark>
       </div>
     </div>
   );

@@ -9,7 +9,6 @@ import FlashlightText from "../components/flashlight-text/flashlight-text";
 import LazyRender from "../components/lazy-render/lazy-render";
 import { LettersReveal } from "../components/letters-reveal/letters-reveal";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
-import Orb from "../components/orb/orb";
 import { PrimaryButton } from "../components/primary-button/primary-button";
 import ScrollReveal from "../components/scroll-reveal/scroll-reveal";
 import { SecondaryButton } from "../components/secondary-button/secondary-button";
@@ -180,7 +179,7 @@ export default function Home() {
                 </SpotlightCard>
               </div>
             </BlurIn>
-            <div className="centered text-center pt-30 pb-40 flex flex-col items-center">
+            <div className="centered text-center pt-26 pb-40 flex flex-col items-center">
               <h1 className="text-[7rem] leading-[0.95] font-medium max-w-4xl self-center">
                 <WordByWord>More than just a Node framework</WordByWord>
               </h1>
@@ -531,9 +530,6 @@ export default function Home() {
         text="$ npm i -g @nestjs/cli
           <br />$ nest new project-name"
       />
-      <div className="relative w-full h-[800px]">
-        <Orb />
-      </div>
       <div className="p-10 h-[1000px]"></div>
     </>
   );

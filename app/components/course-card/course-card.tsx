@@ -72,7 +72,7 @@ export function CourseCard({
         `}
       </style>
       <div
-        className={`absolute inset-0 rounded-[24px] ${borderOpaque ? "bg-gradient-to-b from-white/30 to-white/0" : "bg-gradient-to-b from-[#504e4e] to-[#050303]"} pointer-events-none
+        className={`absolute inset-0 rounded-[24px] ${borderOpaque ? "bg-gradient-to-b from-white/30 to-white/0" : "bg-gradient-to-b from-[#504e4e] to-[#050303]"} transition-background pointer-events-none
         top-[-1px] left-[-1px] right-[-1px] bottom-[-1px]`}
       ></div>
       <div

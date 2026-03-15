@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import AnimatedContent from "../components/animated-content/animated-content";
 import { BlurIn } from "../components/blur-in/blur-in";
-import ScrollReveal from "../components/scroll-reveal/scroll-reveal";
+import Orb from "../components/orb/orb";
 import { SectionSubheading } from "../components/section-subheading/section-subheading";
 
 const CARD_CHANGE_INTERVAL = 15000;
@@ -71,17 +72,64 @@ export function TestimonialsSection() {
   }, []);
 
   return (
-    <div className="width-full relative flex items-center justify-center text-center my-40">
-      <div className="container ">
+    <div className="width-full relative flex items-center justify-center text-left my-80">
+      <AnimatedContent
+        className="absolute top-0 left-0 right-0 bottom-0 z-0"
+        ease="elastic.out"
+        duration={10}
+      >
+        <div className="absolute top-[-30%] right-0 bottom-0 z-0 w-[1000px] h-[1000px]">
+          <Orb />
+          <div
+            className="absolute left-0 right-0 bottom-0 h-full pointer-events-none z-10"
+            style={{
+              background:
+                "linear-gradient(to top right, #050303 40%, transparent 55%, transparent)",
+            }}
+          ></div>
+        </div>
+      </AnimatedContent>
+      <div className="container">
         <SectionSubheading>Testimonials</SectionSubheading>
-        <ScrollReveal
-          ElementTag="h3"
-          className="font-medium text-8xl text-center leading-[1.1]"
-          enableBlur
-        >
-          Built for teams that can't afford mistakes
-        </ScrollReveal>
-        <BlurIn duration={0.8} distance={20} ease="power2.out">
+        <BlurIn duration={0.8} delay={0.6} distance={20} ease="power2.out">
+          <h3 className="font-medium text-8xl text-left leading-[1.1] max-w-5xl">
+            Built for teams that can't afford mistakes
+          </h3>
+        </BlurIn>
+        <BlurIn duration={0.8} delay={1} distance={20} ease="power2.out">
+          <div className="flex flex-col mb-10 mt-40 relative w-full">
+            <span className="text-[130px] leading-[0.1]">“</span>
+            <div className="relative h-[250px]">
+              {TESTIMONIALS.map((_, idx) => (
+                <div
+                  className="absolute top-0 left-0 right-0 transition-opacity duration-1000"
+                  key={idx}
+                  style={{ opacity: idx === activeTestimonial ? 1 : 0 }}
+                >
+                  <p className="text-xl leading-8 text-left max-w-5xl">
+                    {TESTIMONIALS[idx].text}
+                  </p>
+                  <div className="flex items-center gap-4 mt-10 justify-between max-w-5xl">
+                    <div className="flex flex-col text-left">
+                      <span className="text-lg leading-[1.6]">
+                        {TESTIMONIALS[idx].author}
+                      </span>
+                      <span className="text-sm text-[rgba(255,255,255,0.75)] font-mono font-light">
+                        {TESTIMONIALS[idx].title}
+                      </span>
+                    </div>
+                    <div className="text-sm text-[rgba(255,255,255,0.75)] font-mono font-light">
+                      <span>
+                        {idx + 1} / {TESTIMONIALS.length}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </BlurIn>
+        {/* <BlurIn duration={0.8} distance={20} ease="power2.out">
           <div className="border border-solid border-[rgba(255,255,255,0.1)] rounded-[24px] mt-20 p-3 relative max-w-[1100px] mx-auto">
             <div
               className="rounded-[20px] border border-[rgba(255,255,255,0.1)] p-20 relative z-10 overflow-hidden"
@@ -197,7 +245,7 @@ export function TestimonialsSection() {
               </div>
             </div>
           </div>
-        </BlurIn>
+        </BlurIn> */}
       </div>
     </div>
   );
