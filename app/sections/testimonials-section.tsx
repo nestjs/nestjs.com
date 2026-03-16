@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import AnimatedArrow from "../components/animated-arrow/animated-arrow";
 import AnimatedContent from "../components/animated-content/animated-content";
 import { BlurIn } from "../components/blur-in/blur-in";
 import Orb from "../components/orb/orb";
@@ -38,21 +39,6 @@ export function TestimonialsSection() {
     null,
   );
   const itemUpdateIntervalRef = useRef<NodeJS.Timeout | null>(null);
-  const handleItemClick = useCallback(
-    (idx: number) => {
-      setActiveTestimonial(idx);
-      if (itemUpdateIntervalRef.current) {
-        clearInterval(itemUpdateIntervalRef.current);
-      }
-      itemUpdateIntervalRef.current = setInterval(() => {
-        setActiveTestimonial((prev) =>
-          prev === null ? 0 : (prev + 1) % TESTIMONIALS.length,
-        );
-      }, CARD_CHANGE_INTERVAL);
-    },
-    [TESTIMONIALS.length],
-  );
-
   useEffect(() => {
     // Initial setup to start cycling through testimonials
     setActiveTestimonial(0);
@@ -109,19 +95,52 @@ export function TestimonialsSection() {
                   <p className="text-xl leading-8 text-left max-w-5xl">
                     {TESTIMONIALS[idx].text}
                   </p>
-                  <div className="flex items-center gap-4 mt-10 justify-between max-w-5xl">
-                    <div className="flex flex-col text-left">
-                      <span className="text-lg leading-[1.6]">
-                        {TESTIMONIALS[idx].author}
-                      </span>
-                      <span className="text-sm text-[rgba(255,255,255,0.75)] font-mono font-light">
-                        {TESTIMONIALS[idx].title}
-                      </span>
+                  <div className="flex items-center gap-4 mt-20 justify-between max-w-5xl">
+                    <div className="relative rounded-[60px] bg-gradient-to-br from-[#959595] to-[#1d1b1b] w-[300px]">
+                      <div className="absolute top-[1px] left-[1px] right-[1px] bottom-[1px] bg-[var(--color-bg)] rounded-[60px]" />
+                      <div className="relative z-10 py-5 pr-5 pl-32">
+                        <div className="absolute p-7 top-0 bottom-0 left-0 aspect-square rounded-full overflow-hidden border border-solid border-[rgba(255,255,255,0.2)]">
+                          <img
+                            src={TESTIMONIALS[idx].logo}
+                            className="w-full h-full object-contain rounded-full"
+                          />
+                        </div>
+                        <div className="flex flex-col text-left">
+                          <span className="text-lg leading-[1.6]">
+                            {TESTIMONIALS[idx].author}
+                          </span>
+                          <span className="text-sm text-[rgba(255,255,255,0.5)] font-mono font-light">
+                            {TESTIMONIALS[idx].title}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="text-sm text-[rgba(255,255,255,0.75)] font-mono font-light">
+                    <div className="text-sm text-[rgba(255,255,255,0.75)] font-mono font-light tracking-[0.5em] flex items-center gap-2 flex-row">
+                      <AnimatedArrow
+                        width={75}
+                        reverse
+                        onClick={() => {
+                          setActiveTestimonial((prev) =>
+                            prev === null
+                              ? 0
+                              : (prev - 1 + TESTIMONIALS.length) %
+                                TESTIMONIALS.length,
+                          );
+                        }}
+                      />
                       <span>
                         {idx + 1} / {TESTIMONIALS.length}
                       </span>
+                      <AnimatedArrow
+                        width={75}
+                        onClick={() => {
+                          setActiveTestimonial((prev) =>
+                            prev === null
+                              ? 0
+                              : (prev + 1) % TESTIMONIALS.length,
+                          );
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
