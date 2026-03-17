@@ -211,7 +211,7 @@ export function CoursesSection() {
         <SectionSubheading>Courses</SectionSubheading>
         <ScrollReveal
           ElementTag="h2"
-          className="font-medium text-9xl text-center leading-[1.1]"
+          className="font-medium md:text-9xl text-5xl text-center leading-[1.1]"
           enableBlur
         >
           Become Nest Certified Expert

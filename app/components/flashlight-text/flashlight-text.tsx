@@ -70,12 +70,12 @@ const FlashlightText: React.FC<Props> = ({ text, radius = 400 }) => {
             className="relative w-full flex items-center justify-center overflow-hidden text-center"
           >
             <span
-              className="text-8xl text-white/5 select-none leading-[1.2]"
+              className="xl:text-8xl lg:text-7xl md:text-6xl text-5xl text-white/5 select-none leading-[1.2]"
               dangerouslySetInnerHTML={{ __html: text }}
             />
             <span
               ref={maskRef}
-              className="absolute text-8xl text-white select-none leading-[1.2] text-center"
+              className="absolute xl:text-8xl lg:text-7xl md:text-6xl text-5xl text-white select-none leading-[1.2] text-center"
               style={{
                 WebkitMaskRepeat: "no-repeat",
                 WebkitMaskPosition: "0 0",

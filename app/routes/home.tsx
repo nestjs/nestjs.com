@@ -75,7 +75,7 @@ export default function Home() {
         <header
           ref={headerRef}
           className={`flex justify-center overflow-hidden relative pb-16 rounded-[32px] 
-          bg-gradient-to-r from-[#050303] h-[91vh] min-h-[780px] max-h-[920px]
+          bg-gradient-to-r from-[#050303] xl:h-[91vh] min-h-[780px] xl:max-h-[920px]
           via-[#780f20] 
           to-[#050303]
           ${auroraReady ? "opacity-100" : "opacity-0"}`}
@@ -180,11 +180,11 @@ export default function Home() {
               </div>
             </BlurIn>
             <div className="centered text-center pt-26 pb-40 flex flex-col items-center">
-              <h1 className="text-[7rem] leading-[0.95] font-medium max-w-4xl self-center">
+              <h1 className="lg:text-[7rem] text-5xl md:text-7xl lg:leading-[0.95] leading-[1.1] font-medium max-w-4xl self-center px-4 sm:px-0">
                 <WordByWord>More than just a Node framework</WordByWord>
               </h1>
               <BlurIn delay={0.7}>
-                <p className="mt-4 text-sm font-light font-mono opacity-80 max-w-2xl leading-[24px]">
+                <p className="mt-4 sm:text-sm text-[0.8rem] font-light font-mono opacity-80 max-w-2xl sm:leading-[24px] leading-[22px] lg:p-0 px-8">
                   Nest - the world's fastest-growing Node framework for building
                   efficient, reliable and scalable server-side applications.
                 </p>
@@ -206,7 +206,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="absolute right-20 bottom-15 text-right leading-10 text-sm font-mono">
+          <div className="absolute right-20 bottom-15 text-right sm:leading-10 leading-8 font-mono sm:text-sm text-xs">
             {stats && (
               <BlurIn distance={5} delay={0.25} threshold={0.05}>
                 <>
@@ -238,17 +238,17 @@ export default function Home() {
           </div>
         </header>
       </div>
-      <div className="flex justify-center mt-20 mb-0">
+      <div className="flex justify-center md:mt-20 mt-8 mb-0">
         <BrandsSection />
       </div>
       <div className="flex justify-center mt-30">
-        <div className="container relative">
-          <div className="grid grid-cols-[60%_10%_30%] gap-0">
+        <div className="container relative md:px-0 px-5">
+          <div className="grid md:grid-cols-[60%_10%_30%] sm:grid-cols-[60%_5%_35%] grid-rows-[auto] gap-0">
             <div>
               <SectionSubheading>What is Nest</SectionSubheading>
               <ScrollReveal
                 ElementTag="h2"
-                className="font-medium text-5xl mb-4 leading-14"
+                className="font-medium md:text-5xl sm:text-3xl text-4xl mb-4 md:leading-14 sm:leading-10 leading-12"
                 enableBlur
               >
                 Nest is a modern framework designed to build efficient, scalable
@@ -257,7 +257,7 @@ export default function Home() {
             </div>
             <span></span>
             <ScrollReveal
-              className="font-mono text-sm opacity-70 leading-6 font-light pt-10"
+              className="font-mono text-sm opacity-70 leading-6 font-light sm:pt-10 pt-4"
               ElementTag="p"
               enableBlur
             >
@@ -324,7 +324,7 @@ export default function Home() {
       <LettersReveal ElementTag="h4">
         <section className="px-20">
           <BlurIn distance={10} duration={2} ease="elastic.out(1, 0.5)">
-            <h4 className="text-9xl font-medium text-center flex">
+            <h4 className="xl:text-9xl lg:text-8xl md:text-6xl sm:text-5xl text-5xl font-medium text-center flex">
               When&nbsp;there's&nbsp;no&nbsp;yarn
             </h4>
           </BlurIn>
@@ -334,7 +334,7 @@ export default function Home() {
             delay={0.2}
             ease="elastic.out(1, 0.5)"
           >
-            <h4 className="text-9xl font-medium text-center flex">
+            <h4 className="xl:text-9xl lg:text-8xl md:text-6xl sm:text-5xl text-5xl font-medium text-center flex">
               we&nbsp;build&nbsp;our&nbsp;own&nbsp;toys
             </h4>
           </BlurIn>
@@ -408,12 +408,12 @@ export default function Home() {
       <EnterpriseSection />
       <div className="flex justify-center mt-30 mb-30">
         <div className="container relative">
-          <div className="grid grid-cols-[40%_10%_50%] gap-0">
+          <div className="grid grid-rows-[auto] md:grid-cols-[40%_10%_50%] md:gap-0 gap-8">
             <div>
               <SectionSubheading>Syntax</SectionSubheading>
               <ScrollReveal
                 ElementTag="h2"
-                className="font-medium text-5xl mb-8 leading-14"
+                className="font-medium lg:text-5xl md:text-4xl text-5xl mb-8 lg:leading-14 md:leading-12 leading-14"
                 enableBlur
               >
                 Build your app with most elegant and intuitive syntax.
@@ -438,7 +438,7 @@ export default function Home() {
       <div className="p-10 mt-50">
         <div
           ref={headerRef}
-          className="flex justify-center overflow-hidden relative py-30 px-8 rounded-[32px] 
+          className="flex justify-center overflow-hidden relative md:py-30 py-16 px-8 rounded-[32px] 
           bg-gradient-to-r from-[#050303] 
           via-[#780f20] 
           to-[#050303]"
@@ -454,8 +454,8 @@ export default function Home() {
             </>
           </LazyRender>
           <div className="container relative z-10">
-            <div className="grid grid-cols-[60%_30%] gap-0">
-              <div className="centered text-left pt-30 pb-40 flex flex-col">
+            <div className="grid md:grid-cols-[60%_30%] grid-rows-[auto] md:gap-0 gap-8">
+              <div className="centered text-left md:pt-30 md:pb-40 pt-16 pb-20 flex flex-col">
                 <BlurIn delay={0.1}>
                   <h3 className="text-7xl leading-[1.1] font-medium max-w-4xl">
                     Nine lives. <br />
@@ -466,7 +466,7 @@ export default function Home() {
               <div className="relative flex flex-col">
                 <BlurIn delay={0.2}>
                   <div className="flex flex-col">
-                    <span className="text-[160px] font-medium leading-[1.2]">
+                    <span className="md:text-[160px] text-[100px] font-medium leading-[1.2]">
                       <CountUp
                         to={
                           stats

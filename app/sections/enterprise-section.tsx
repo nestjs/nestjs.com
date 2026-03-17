@@ -47,13 +47,13 @@ export function EnterpriseSection() {
   return (
     <>
       <div className="flex justify-center mt-30">
-        <div className="container relative">
-          <div className="grid grid-cols-[50%_10%_40%] gap-0">
+        <div className="container relative md:px-0 px-5">
+          <div className="grid md:grid-cols-[60%_10%_30%] sm:grid-cols-[60%_5%_35%] grid-rows-[auto] gap-0">
             <div>
               <SectionSubheading>Official Enterprise Support</SectionSubheading>
               <ScrollReveal
                 ElementTag="h2"
-                className="font-medium text-5xl mb-4 leading-14"
+                className="font-medium md:text-5xl sm:text-3xl text-4xl mb-4 md:leading-14 sm:leading-10 leading-12"
                 enableBlur
               >
                 Scale your enterprise with official support from the experts
@@ -62,7 +62,7 @@ export function EnterpriseSection() {
             </div>
             <span></span>
             <ScrollReveal
-              className="font-mono text-sm opacity-70 leading-6 font-light pt-10"
+              className="font-mono text-sm opacity-70 leading-6 font-light sm:pt-10 pt-4"
               ElementTag="p"
               enableBlur
             >
@@ -75,8 +75,8 @@ export function EnterpriseSection() {
         </div>
       </div>
       <div className="flex justify-center">
-        <div className="container relative">
-          <div className="card-responsive grid grid-cols-3 gap-0 mt-20">
+        <div className="container relative md:px-0 px-5">
+          <div className="card-responsive grid lg:grid-cols-3 grid-cols-2 gap-0 mt-20">
             <style>
               {`
                 .enterprise-card {
@@ -116,6 +116,28 @@ export function EnterpriseSection() {
                 .enterprise-card:nth-of-type(6) {
                   border-right-width: 1px;
                 }
+
+                @media (max-width: 1024px) {
+                 .enterprise-card:nth-of-type(2) {
+                    border-right-width: 1px;
+                    border-top-right-radius: var(--border-radius);
+                  }
+
+                  .enterprise-card:nth-of-type(3) {
+                    border-top-right-radius: 0;
+                    border-right-width: 0;
+                  }
+
+                  .enterprise-card:nth-of-type(4) {
+                    border-bottom-left-radius: 0;
+                    border-right-width: 1px;
+                    border-bottom-width: 0;
+                  }
+
+                  .enterprise-card:nth-of-type(5) {
+                    border-bottom-left-radius: var(--border-radius);
+                  }
+                }
               `}
             </style>
             {CARDS.map((card, index) => (
@@ -126,9 +148,11 @@ export function EnterpriseSection() {
                 distance={10}
                 className="enterprise-card"
               >
-                <div className="flex flex-col relative text-white flex-start h-full card flex flex-col justify-center relative aspect-[4/3] min-h-[200px] w-full max-w-full px-16 py-8">
+                <div className="flex flex-col relative text-white flex-start h-full card flex flex-col justify-center relative lg:aspect-[4/3] min-h-[200px] w-full max-w-full md:px-16 md:py-8 px-8 py-12">
                   {card.icon && <div className="mb-8">{card.icon}</div>}
-                  <h3 className={`text-left font-medium text-lg m-0 mb-1`}>
+                  <h3
+                    className={`text-left font-medium xl:text-lg text-md m-0 mb-1`}
+                  >
                     {card.title}
                   </h3>
                 </div>
