@@ -82,21 +82,35 @@ export function TestimonialsSection() {
             Built for teams that can't afford mistakes
           </h3>
         </BlurIn>
-        <BlurIn duration={0.8} delay={1} distance={20} ease="power2.out">
-          <div className="flex flex-col mb-10 mt-40 relative w-full">
+        <div className="flex flex-col mb-10 mt-40 relative w-full">
+          <BlurIn duration={0.8} delay={1} distance={20} ease="power2.out">
             <span className="text-[130px] leading-[0.1]">“</span>
-            <div className="relative h-[250px]">
-              {TESTIMONIALS.map((_, idx) => (
-                <div
-                  className="absolute top-0 left-0 right-0 transition-opacity duration-1000"
-                  key={idx}
-                  style={{ opacity: idx === activeTestimonial ? 1 : 0 }}
+          </BlurIn>
+          <div className="relative h-[250px]">
+            {TESTIMONIALS.map((_, idx) => (
+              <div
+                className="absolute top-0 left-0 right-0 transition-opacity duration-1000"
+                key={idx}
+                style={{ opacity: idx === activeTestimonial ? 1 : 0 }}
+              >
+                <BlurIn
+                  duration={0.8}
+                  delay={1.25}
+                  distance={20}
+                  ease="power2.out"
                 >
-                  <p className="text-xl leading-8 text-left max-w-5xl">
+                  <p className="text-xl leading-8 text-left max-w-5xl min-h-[180px]">
                     {TESTIMONIALS[idx].text}
                   </p>
-                  <div className="flex items-center gap-4 mt-20 justify-between max-w-5xl">
-                    <div className="relative rounded-[60px] bg-gradient-to-br from-[#959595] to-[#1d1b1b] w-[300px]">
+                </BlurIn>
+                <div className="flex items-center gap-4 mt-4 justify-between max-w-5xl">
+                  <BlurIn
+                    duration={0.8}
+                    delay={1.5}
+                    distance={20}
+                    ease="power2.out"
+                  >
+                    <div className="relative rounded-[60px] bg-gradient-to-br from-[#959595] to-[#1d1b1b] w-[340px]">
                       <div className="absolute top-[1px] left-[1px] right-[1px] bottom-[1px] bg-[var(--color-bg)] rounded-[60px]" />
                       <div className="relative z-10 py-5 pr-5 pl-32">
                         <div className="absolute p-7 top-0 bottom-0 left-0 aspect-square rounded-full overflow-hidden border border-solid border-[rgba(255,255,255,0.2)]">
@@ -115,9 +129,21 @@ export function TestimonialsSection() {
                         </div>
                       </div>
                     </div>
-                    <div className="text-sm text-[rgba(255,255,255,0.75)] font-mono font-light tracking-[0.5em] flex items-center gap-2 flex-row">
+                  </BlurIn>
+                  <div className="text-sm text-[rgba(255,255,255,0.75)] font-mono font-light tracking-[0.5em] flex items-center gap-2 flex-row relative z-10">
+                    <span
+                      onClick={() => {
+                        setActiveTestimonial((prev) =>
+                          prev === null
+                            ? 0
+                            : (prev - 1 + TESTIMONIALS.length) %
+                              TESTIMONIALS.length,
+                        );
+                      }}
+                      className="p-4 opacity-50 hover:opacity-100 transition-opacity cursor-pointer mr-2"
+                    >
                       <AnimatedArrow
-                        width={75}
+                        width={40}
                         reverse
                         onClick={() => {
                           setActiveTestimonial((prev) =>
@@ -128,26 +154,33 @@ export function TestimonialsSection() {
                           );
                         }}
                       />
+                    </span>
+                    <BlurIn
+                      duration={0.8}
+                      delay={1}
+                      distance={20}
+                      ease="power2.out"
+                    >
                       <span>
                         {idx + 1} / {TESTIMONIALS.length}
                       </span>
-                      <AnimatedArrow
-                        width={75}
-                        onClick={() => {
-                          setActiveTestimonial((prev) =>
-                            prev === null
-                              ? 0
-                              : (prev + 1) % TESTIMONIALS.length,
-                          );
-                        }}
-                      />
-                    </div>
+                    </BlurIn>
+                    <span
+                      onClick={() => {
+                        setActiveTestimonial((prev) =>
+                          prev === null ? 0 : (prev + 1) % TESTIMONIALS.length,
+                        );
+                      }}
+                      className="p-4 opacity-50 hover:opacity-100 transition-opacity cursor-pointer"
+                    >
+                      <AnimatedArrow width={40} />
+                    </span>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        </BlurIn>
+        </div>
         {/* <BlurIn duration={0.8} distance={20} ease="power2.out">
           <div className="border border-solid border-[rgba(255,255,255,0.1)] rounded-[24px] mt-20 p-3 relative max-w-[1100px] mx-auto">
             <div

@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import ClickSpark from "../click-spark/click-spark";
 import { SectionSubheading } from "../section-subheading/section-subheading";
 
@@ -8,6 +8,7 @@ type Props = {
 };
 
 const FlashlightText: React.FC<Props> = ({ text, radius = 400 }) => {
+  const [subheading, setSubheading] = useState<"COPY" | "COPIED">("COPY");
   const containerRef = useRef<HTMLDivElement>(null);
   const maskRef = useRef<HTMLSpanElement>(null);
   const outerRef = useRef<HTMLDivElement>(null);
@@ -54,9 +55,12 @@ const FlashlightText: React.FC<Props> = ({ text, radius = 400 }) => {
       <div
         className="container relative cursor-pointer text-center"
         onClick={() => {
+          console.log("CLICK");
           navigator.clipboard.writeText(
             `$ npm i -g @nestjs/cli\n$ nest new project-name`,
           );
+          setSubheading("COPIED");
+          setTimeout(() => setSubheading("COPY"), 5000);
         }}
       >
         <ClickSpark sparkSize={25} sparkRadius={40}>
@@ -89,7 +93,13 @@ const FlashlightText: React.FC<Props> = ({ text, radius = 400 }) => {
             ></span>
           </div>
           <div className="mt-15 opacity-75">
-            <SectionSubheading>Click. Copy. Build</SectionSubheading>
+            {subheading === "COPY" ? (
+              <SectionSubheading key="copy">
+                Click. Copy. Build
+              </SectionSubheading>
+            ) : (
+              <SectionSubheading key="copied">Copied!</SectionSubheading>
+            )}
           </div>
         </ClickSpark>
       </div>

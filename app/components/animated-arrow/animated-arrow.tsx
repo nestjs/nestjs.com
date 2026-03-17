@@ -4,10 +4,12 @@ export default function AnimatedArrow({
   width,
   reverse,
   onClick,
+  className = "",
 }: {
   width?: number;
   reverse?: boolean;
   onClick?: () => void;
+  className?: string;
 }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -23,7 +25,7 @@ export default function AnimatedArrow({
           observer.disconnect();
         }
       },
-      { rootMargin: "-100px" },
+      // { rootMargin: "-100px" },
     );
 
     observer.observe(el);
@@ -33,39 +35,35 @@ export default function AnimatedArrow({
 
   return (
     <div
-      className="flex items-center justify-center opacity-75 hover:opacity-100 transition-opacity cursor-pointer"
+      className={`flex items-center justify-center ${className}`}
       style={{
         width: width ? `${width}px` : "auto",
         transform: reverse ? "rotate(180deg)" : "",
       }}
       onClick={onClick}
     >
-      <svg ref={ref} viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <marker
-            id="arrow"
-            markerWidth="6"
-            markerHeight="6"
-            refX="5"
-            refY="3"
-            orient="auto"
-          >
-            <path d="M0,0 L6,3 L0,6 Z" fill="white" />
-          </marker>
-        </defs>
-
+      <svg ref={ref} viewBox="0 0 175 30">
         <line
-          x1="100"
-          y1="50"
-          x2="300"
-          y2="50"
+          x1="0"
+          y1="15"
+          x2="150"
+          y2="15"
           stroke="white"
           strokeWidth="4"
-          markerEnd="url(#arrow)"
           style={{
-            strokeDasharray: 360,
-            strokeDashoffset: visible ? 0 : 360,
-            transition: "stroke-dashoffset 1.2s ease-out",
+            strokeDasharray: 150,
+            strokeDashoffset: visible ? 0 : 150,
+            transition: "stroke-dashoffset 0.75s ease-out 2s",
+          }}
+        />
+
+        <path
+          d="M175 15 L151 3 L151 27 Z"
+          fill="white"
+          style={{
+            transform: visible ? "scale(1)" : "scale(0)",
+            transformOrigin: "150px 15px",
+            transition: "transform 0.5s ease-out 2.8s",
           }}
         />
       </svg>
