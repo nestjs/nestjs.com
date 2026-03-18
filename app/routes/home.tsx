@@ -413,7 +413,7 @@ export default function Home() {
               <SectionSubheading>Syntax</SectionSubheading>
               <ScrollReveal
                 ElementTag="h2"
-                className="font-medium lg:text-5xl md:text-4xl text-5xl mb-8 lg:leading-14 md:leading-12 leading-14"
+                className="font-medium lg:text-5xl md:text-4xl sm:text-5xl text-[2.75rem] mb-8 lg:leading-14 sm:leading-12 leading-12"
                 enableBlur
               >
                 Build your app with most elegant and intuitive syntax.

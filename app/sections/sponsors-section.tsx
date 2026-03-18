@@ -71,7 +71,7 @@ export function SponsorsSection() {
           <SectionSubheading>Support</SectionSubheading>
           <ScrollReveal
             ElementTag="h2"
-            className="font-medium lg:text-8xl md:text-7xl text-6xl md:leading-25 leading-[1]"
+            className="font-medium lg:text-8xl md:text-7xl sm:text-6xl text-[2.75rem] md:leading-25 sm:leading-[1] leading-[1.1]"
             enableBlur
           >
             Let's build Nest together
