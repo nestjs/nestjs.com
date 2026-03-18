@@ -83,8 +83,10 @@ export function TestimonialsSection() {
           </h3>
         </BlurIn>
         <div className="flex flex-col mb-10 mt-40 relative w-full">
-          <BlurIn duration={0.8} delay={1} distance={20} ease="power2.out">
-            <span className="text-[130px] leading-[0.1]">“</span>
+          <BlurIn duration={0.8} delay={0.8} distance={20} ease="power2.out">
+            <span className="text-[130px] leading-[20px] block ml-[-5px]">
+              “
+            </span>
           </BlurIn>
           <div className="relative h-[250px]">
             {TESTIMONIALS.map((_, idx) => (
@@ -95,18 +97,18 @@ export function TestimonialsSection() {
               >
                 <BlurIn
                   duration={0.8}
-                  delay={1.25}
+                  delay={1}
                   distance={20}
                   ease="power2.out"
                 >
-                  <p className="text-xl leading-8 text-left max-w-5xl min-h-[180px]">
+                  <p className="text-xl leading-8 text-left max-w-5xl min-h-[160px]">
                     {TESTIMONIALS[idx].text}
                   </p>
                 </BlurIn>
                 <div className="flex items-center gap-4 mt-4 justify-between max-w-5xl">
                   <BlurIn
                     duration={0.8}
-                    delay={1.5}
+                    delay={1.2}
                     distance={20}
                     ease="power2.out"
                   >

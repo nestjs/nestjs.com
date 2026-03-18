@@ -40,6 +40,18 @@ const FlashlightText: React.FC<Props> = ({ text, radius = 400 }) => {
     [radius],
   );
 
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const handleClick = useCallback(() => {
+    navigator.clipboard.writeText(
+      `$ npm i -g @nestjs/cli\n$ nest new project-name`,
+    );
+    setSubheading("COPIED");
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    timeoutRef.current = setTimeout(() => setSubheading("COPY"), 5000);
+  }, []);
+
   // const handleMouseLeave = useCallback(() => {
   //   if (maskRef.current) {
   // maskRef.current.style.opacity = "0";
@@ -54,14 +66,7 @@ const FlashlightText: React.FC<Props> = ({ text, radius = 400 }) => {
     >
       <div
         className="container relative cursor-pointer text-center"
-        onClick={() => {
-          console.log("CLICK");
-          navigator.clipboard.writeText(
-            `$ npm i -g @nestjs/cli\n$ nest new project-name`,
-          );
-          setSubheading("COPIED");
-          setTimeout(() => setSubheading("COPY"), 5000);
-        }}
+        onClick={handleClick}
       >
         <ClickSpark sparkSize={25} sparkRadius={40}>
           <div
