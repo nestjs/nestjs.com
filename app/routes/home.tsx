@@ -268,7 +268,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="mt-50 mb-40 flex justify-center">
+      <div className="pt-50 pb-40 flex justify-center overflow-hidden">
         <BounceCards
           className="custom-bounceCards"
           cards={[
@@ -406,7 +406,7 @@ export default function Home() {
         ]}
       />
       <EnterpriseSection />
-      <div className="flex justify-center mt-30 mb-30">
+      <div className="flex justify-center my-30 overflow-hidden">
         <div className="container relative md:px-0 px-8">
           <div className="grid grid-rows-[auto] md:grid-cols-[40%_10%_50%] md:gap-0 gap-8">
             <div>

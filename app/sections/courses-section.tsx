@@ -166,7 +166,7 @@ export function CoursesSection() {
   }, []);
 
   return (
-    <div className="flex justify-center md:px-0 px-8">
+    <div className="flex justify-center md:px-0 px-8 pt-30 overflow-hidden">
       <div className="container relative centered justify-center items-center flex flex-col ">
         <div
           className="relative min-h-[400px] w-full flex justify-center items-start"

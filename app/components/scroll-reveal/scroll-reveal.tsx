@@ -77,7 +77,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
           scrub: true,
           once: true,
         },
-      }
+      },
     );
 
     const wordElements = el.querySelectorAll<HTMLElement>(".word");
@@ -97,7 +97,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
           scrub: true,
           once: true,
         },
-      }
+      },
     );
 
     let blurTween: GSAPTween | null = null;
@@ -117,7 +117,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
             scrub: true,
             once: true,
           },
-        }
+        },
       );
     }
 
@@ -137,6 +137,33 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
     wordAnimationEnd,
     blurStrength,
   ]);
+
+  // useEffect(() => {
+  //   const handler = () => ScrollTrigger.refresh();
+
+  //   window.addEventListener("resize", handler);
+  //   window.addEventListener("orientationchange", handler);
+
+  //   return () => {
+  //     window.removeEventListener("resize", handler);
+  //     window.removeEventListener("orientationchange", handler);
+  //   };
+  // }, []);
+
+  const refreshScrollRef = useRef<NodeJS.Timeout | null>(null);
+  useEffect(() => {
+    const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+    if (isMobile) {
+      // This is required to fix a bug where the animation doesn't trigger on mobile until the user scrolls a bit.
+      // Reason - other elements on the page might have different heights on mobile, which can cause ScrollTrigger's calculations to be off.
+      if (refreshScrollRef.current) {
+        clearTimeout(refreshScrollRef.current);
+      }
+      refreshScrollRef.current = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 1000);
+    }
+  }, []);
 
   return (
     <div ref={containerRef} className={`${containerClassName}`}>
