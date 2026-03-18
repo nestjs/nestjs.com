@@ -78,7 +78,7 @@ export function TestimonialsSection() {
       <div className="container md:px-0 px-8">
         <SectionSubheading>Testimonials</SectionSubheading>
         <BlurIn duration={0.8} delay={0.6} distance={20} ease="power2.out">
-          <h3 className="font-medium md:text-8xl sm:text-7xl text-6xl text-left leading-[1.1] max-w-5xl">
+          <h3 className="font-medium md:text-8xl sm:text-7xl text-[3.5rem] text-left leading-[1.1] max-w-5xl">
             Built for teams that can't afford mistakes
           </h3>
         </BlurIn>

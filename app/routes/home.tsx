@@ -324,7 +324,7 @@ export default function Home() {
       <LettersReveal ElementTag="h4">
         <section className="px-20">
           <BlurIn distance={10} duration={2} ease="elastic.out(1, 0.5)">
-            <h4 className="xl:text-9xl lg:text-8xl md:text-6xl sm:text-5xl text-5xl font-medium text-center flex">
+            <h4 className="xl:text-9xl lg:text-8xl md:text-7xl sm:text-[4rem] sm:leading-[1.15] text-5xl leading-[1.15] font-medium text-center flex">
               When&nbsp;there's&nbsp;no&nbsp;yarn
             </h4>
           </BlurIn>
@@ -334,7 +334,7 @@ export default function Home() {
             delay={0.2}
             ease="elastic.out(1, 0.5)"
           >
-            <h4 className="xl:text-9xl lg:text-8xl md:text-6xl sm:text-5xl text-5xl font-medium text-center flex">
+            <h4 className="xl:text-9xl lg:text-8xl md:text-7xl sm:text-[4rem] sm:leading-[1.15] text-5xl leading-[1.15] font-medium text-center flex">
               we&nbsp;build&nbsp;our&nbsp;own&nbsp;toys
             </h4>
           </BlurIn>
@@ -408,7 +408,7 @@ export default function Home() {
       <EnterpriseSection />
       <div className="flex justify-center my-30 overflow-hidden">
         <div className="container relative md:px-0 px-8">
-          <div className="grid grid-rows-[auto] md:grid-cols-[40%_10%_50%] md:gap-0 gap-8">
+          <div className="grid grid-rows-[auto] md:grid-cols-[40%_10%_50%] grid-cols-[100%_100%] md:gap-0 gap-16">
             <div>
               <SectionSubheading>Syntax</SectionSubheading>
               <ScrollReveal
@@ -438,7 +438,7 @@ export default function Home() {
       <div className="p-10 mt-50">
         <div
           ref={headerRef}
-          className="flex justify-center overflow-hidden relative md:py-30 py-16 px-8 rounded-[32px] 
+          className="flex justify-center overflow-hidden relative lg:py-30 md:py-20 py-16 px-8 rounded-[32px] 
           bg-gradient-to-r from-[#050303] 
           via-[#780f20] 
           to-[#050303]"
@@ -454,8 +454,8 @@ export default function Home() {
             </>
           </LazyRender>
           <div className="container relative z-10">
-            <div className="grid md:grid-cols-[60%_30%] grid-rows-[auto] md:gap-0 gap-8">
-              <div className="centered text-left md:pt-30 md:pb-40 pt-8 pb-12 flex flex-col">
+            <div className="grid lg:grid-cols-[60%_30%] grid-rows-[auto] md:gap-0 gap-8">
+              <div className="centered text-left lg:pt-30 lg:pb-40 pt-8 pb-12 flex flex-col">
                 <BlurIn delay={0.1}>
                   <h3 className="md:text-7xl text-6xl leading-[1.1] font-medium max-w-4xl">
                     Nine lives. <br />
@@ -466,7 +466,7 @@ export default function Home() {
               <div className="relative flex flex-col">
                 <BlurIn delay={0.2}>
                   <div className="flex flex-col">
-                    <span className="md:text-[160px] text-[100px] font-medium leading-[1.2]">
+                    <span className="xl:text-[160px] text-[100px] font-medium leading-[1.2]">
                       <CountUp
                         to={
                           stats
