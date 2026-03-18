@@ -75,14 +75,14 @@ export function TestimonialsSection() {
           ></div>
         </div>
       </AnimatedContent>
-      <div className="container">
+      <div className="container md:px-0 px-8">
         <SectionSubheading>Testimonials</SectionSubheading>
         <BlurIn duration={0.8} delay={0.6} distance={20} ease="power2.out">
-          <h3 className="font-medium text-8xl text-left leading-[1.1] max-w-5xl">
+          <h3 className="font-medium md:text-8xl sm:text-7xl text-6xl text-left leading-[1.1] max-w-5xl">
             Built for teams that can't afford mistakes
           </h3>
         </BlurIn>
-        <div className="flex flex-col mb-10 mt-40 relative w-full">
+        <div className="flex flex-col mb-10 md:mt-40 mt-30 relative w-full">
           <BlurIn duration={0.8} delay={0.8} distance={20} ease="power2.out">
             <span className="text-[130px] leading-[20px] block ml-[-5px]">
               “
@@ -101,11 +101,11 @@ export function TestimonialsSection() {
                   distance={20}
                   ease="power2.out"
                 >
-                  <p className="text-xl leading-8 text-left max-w-5xl min-h-[160px]">
+                  <p className="md:text-xl text-[1.1rem] leading-8 text-left max-w-5xl md:min-h-[160px] min-h-[240px]">
                     {TESTIMONIALS[idx].text}
                   </p>
                 </BlurIn>
-                <div className="flex items-center gap-4 mt-4 justify-between max-w-5xl">
+                <div className="flex items-center gap-4 mt-4 justify-between max-w-5xl md:flex-row flex-col">
                   <BlurIn
                     duration={0.8}
                     delay={1.2}
@@ -132,7 +132,7 @@ export function TestimonialsSection() {
                       </div>
                     </div>
                   </BlurIn>
-                  <div className="text-sm text-[rgba(255,255,255,0.75)] font-mono font-light tracking-[0.5em] flex items-center gap-2 flex-row relative z-10">
+                  <div className="text-sm text-[rgba(255,255,255,0.75)] font-mono font-light tracking-[0.5em] flex items-center gap-2 flex-row relative z-10 md:mt-0 mt-4">
                     <span
                       onClick={() => {
                         setActiveTestimonial((prev) =>

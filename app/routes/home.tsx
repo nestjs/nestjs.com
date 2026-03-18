@@ -179,7 +179,7 @@ export default function Home() {
                 </SpotlightCard>
               </div>
             </BlurIn>
-            <div className="centered text-center pt-26 pb-40 flex flex-col items-center">
+            <div className="centered text-center pt-26 2xl:pt-32 pb-40 flex flex-col items-center">
               <h1 className="lg:text-[7rem] text-5xl md:text-7xl lg:leading-[0.95] leading-[1.1] font-medium max-w-4xl self-center px-4 sm:px-0">
                 <WordByWord>More than just a Node framework</WordByWord>
               </h1>
@@ -189,7 +189,7 @@ export default function Home() {
                   efficient, reliable and scalable server-side applications.
                 </p>
               </BlurIn>
-              <div className="mt-24">
+              <div className="mt-24 2xl:mt-20">
                 <BlurIn delay={1} distance={10}>
                   <>
                     <PrimaryButton
@@ -407,7 +407,7 @@ export default function Home() {
       />
       <EnterpriseSection />
       <div className="flex justify-center mt-30 mb-30">
-        <div className="container relative">
+        <div className="container relative md:px-0 px-8">
           <div className="grid grid-rows-[auto] md:grid-cols-[40%_10%_50%] md:gap-0 gap-8">
             <div>
               <SectionSubheading>Syntax</SectionSubheading>
@@ -455,9 +455,9 @@ export default function Home() {
           </LazyRender>
           <div className="container relative z-10">
             <div className="grid md:grid-cols-[60%_30%] grid-rows-[auto] md:gap-0 gap-8">
-              <div className="centered text-left md:pt-30 md:pb-40 pt-16 pb-20 flex flex-col">
+              <div className="centered text-left md:pt-30 md:pb-40 pt-8 pb-12 flex flex-col">
                 <BlurIn delay={0.1}>
-                  <h3 className="text-7xl leading-[1.1] font-medium max-w-4xl">
+                  <h3 className="md:text-7xl text-6xl leading-[1.1] font-medium max-w-4xl">
                     Nine lives. <br />
                     Infinite impact.
                   </h3>

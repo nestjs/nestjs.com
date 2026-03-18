@@ -60,7 +60,7 @@ const FlashlightText: React.FC<Props> = ({ text, radius = 400 }) => {
 
   return (
     <div
-      className="flex justify-center pt-50 pb-50"
+      className="flex justify-center xl:py-50 lg:py-32 md:py-24 py-12"
       onMouseMove={handleMouseMove}
       ref={outerRef}
     >

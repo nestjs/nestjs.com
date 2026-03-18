@@ -166,8 +166,8 @@ export function CoursesSection() {
   }, []);
 
   return (
-    <div className="flex justify-center">
-      <div className="container relative centered justify-center items-center flex flex-col">
+    <div className="flex justify-center md:px-0 px-8">
+      <div className="container relative centered justify-center items-center flex flex-col ">
         <div
           className="relative min-h-[400px] w-full flex justify-center items-start"
           ref={containerRef}
@@ -211,7 +211,7 @@ export function CoursesSection() {
         <SectionSubheading>Courses</SectionSubheading>
         <ScrollReveal
           ElementTag="h2"
-          className="font-medium md:text-9xl text-5xl text-center leading-[1.1]"
+          className="font-medium xl:text-9xl lg:text-8xl sm:text-7xl text-5xl text-center leading-[1.1]"
           enableBlur
         >
           Become Nest Certified Expert
