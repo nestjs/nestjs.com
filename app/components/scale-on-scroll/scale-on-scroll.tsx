@@ -20,7 +20,7 @@ export function ScaleOnScroll({
   children,
   start = "top bottom",
   end = "top top",
-  scaleFrom = 0.95,
+  scaleFrom = 0.9,
   scaleTo = 1,
   stagger = 0,
   className = "",
@@ -51,5 +51,9 @@ export function ScaleOnScroll({
     return () => ctx.revert();
   }, [start, end, scaleFrom, scaleTo, stagger]);
 
-  return <div ref={containerRef}>{children}</div>;
+  return (
+    <div ref={containerRef} className={className}>
+      {children}
+    </div>
+  );
 }
