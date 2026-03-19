@@ -10,6 +10,7 @@ import LazyRender from "../components/lazy-render/lazy-render";
 import { LettersReveal } from "../components/letters-reveal/letters-reveal";
 import NoiseOverlay from "../components/noise-overlay/noise-overlay";
 import { PrimaryButton } from "../components/primary-button/primary-button";
+import { ScaleOnScroll } from "../components/scale-on-scroll/scale-on-scroll";
 import ScrollReveal from "../components/scroll-reveal/scroll-reveal";
 import { SecondaryButton } from "../components/secondary-button/secondary-button";
 import { SectionSubheading } from "../components/section-subheading/section-subheading";
@@ -438,21 +439,20 @@ export default function Home() {
       <div className="p-10 mt-50">
         <div
           ref={headerRef}
-          className="flex justify-center overflow-hidden relative lg:py-30 md:py-20 py-16 px-8 rounded-[32px] 
-          bg-gradient-to-r from-[#050303] 
-          via-[#780f20] 
-          to-[#050303]"
+          className="flex justify-center overflow-hidden relative lg:py-30 md:py-20 py-16 px-8 rounded-[32px]"
         >
-          <LazyRender
-            className="absolute inset-0 z-0 top-[0px] bottom-[0px] left-[0px] right-[0px] pointer-events-none"
-            threshold={0}
-            rootMargin="800px 0px 0px 0px"
-          >
-            <>
-              <Aurora />
-              <NoiseOverlay />
-            </>
-          </LazyRender>
+          <ScaleOnScroll className="absolute inset-0 z-0 top-0 bottom-0 left-0 right-0 pointer-events-none">
+            <LazyRender
+              className="absolute inset-0 z-0 top-0 bottom-0 left-0 right-0 pointer-events-none"
+              threshold={0}
+              rootMargin="1200px 0px 0px 0px"
+            >
+              <div className="bg-gradient-to-r from-[#050303] via-[#780f20] to-[#050303] absolute inset-0 z-0 top-0 bottom-0 left-0 right-0 rounded-[32px] overflow-hidden">
+                <Aurora />
+                <NoiseOverlay />
+              </div>
+            </LazyRender>
+          </ScaleOnScroll>
           <div className="container relative z-10">
             <div className="grid lg:grid-cols-[60%_30%] grid-rows-[auto] md:gap-0 gap-8">
               <div className="centered text-left lg:pt-30 lg:pb-40 pt-8 pb-12 flex flex-col">

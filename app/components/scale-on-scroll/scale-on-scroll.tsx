@@ -1,141 +1,55 @@
-import { gsap } from "gsap/dist/gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { useEffect, useRef } from "react";
+// @ts-ignore
+import { gsap } from "gsap/dist/gsap.js";
+// @ts-ignore
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger.js";
+import { type ReactNode, useEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const MIN_SCALE = 1;
-const MAX_SCALE = 10;
-const MIN_OPACITY = 0;
-const MAX_OPACITY = 1;
+type ScaleOnScrollProps = {
+  children: ReactNode;
+  start?: string; // optional ScrollTrigger start
+  end?: string; // optional ScrollTrigger end
+  scaleFrom?: number;
+  scaleTo?: number;
+  stagger?: number;
+  className?: string;
+};
 
 export function ScaleOnScroll({
   children,
-  background,
-}: {
-  children: React.ReactNode;
-  background?: React.ReactNode;
-}) {
-  const rootRef = useRef<HTMLDivElement | null>(null);
-  const backgroundRef = useRef<HTMLDivElement | null>(null);
-  const showBackgroundRef = useRef(false);
+  start = "top bottom",
+  end = "top top",
+  scaleFrom = 0.95,
+  scaleTo = 1,
+  stagger = 0,
+  className = "",
+}: ScaleOnScrollProps) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!rootRef.current) {
-      return;
-    }
-    const text = rootRef.current;
-    const container = document.querySelector(".scale-on-scroll")!;
+    if (!containerRef.current) return;
 
-    const trigger = ScrollTrigger.create({
-      trigger: container,
-      start: "top top",
-      end: "bottom-=300px top",
-      scrub: true,
-      onLeave: () => {
-        if (showBackgroundRef.current) {
-          showBackgroundRef.current = false;
-          if (backgroundRef.current) backgroundRef.current.style.opacity = "0";
-        }
-      },
-      onUpdate: () => {
-        const containerRect = container.getBoundingClientRect();
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        containerRef.current!.children,
+        { scale: scaleFrom },
+        {
+          scale: scaleTo,
+          ease: "none",
+          stagger,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start,
+            end,
+            scrub: true,
+          },
+        },
+      );
+    }, containerRef);
 
-        const containerTop = containerRect.top;
-        const containerHeight = containerRect.height;
+    return () => ctx.revert();
+  }, [start, end, scaleFrom, scaleTo, stagger]);
 
-        const startOffset = 500;
-        const endOffset = containerHeight * 0.75;
-        const clampedTop = Math.min(Math.abs(containerTop), endOffset);
-
-        const scale = Math.min(
-          MAX_SCALE,
-          Math.max(
-            MIN_SCALE,
-            MIN_SCALE +
-              ((MAX_SCALE - MIN_SCALE) * (clampedTop - startOffset)) /
-                (endOffset - startOffset),
-          ),
-        );
-        const opacity =
-          1 -
-          Math.min(
-            MAX_OPACITY,
-            Math.max(
-              MIN_OPACITY,
-              MIN_OPACITY +
-                ((MAX_OPACITY - MIN_OPACITY) * (clampedTop - startOffset)) /
-                  (endOffset - startOffset),
-            ),
-          );
-        const shouldShow = scale > MIN_SCALE && opacity > MIN_OPACITY;
-        if (shouldShow !== showBackgroundRef.current) {
-          showBackgroundRef.current = shouldShow;
-          if (backgroundRef.current) {
-            backgroundRef.current.style.opacity = shouldShow ? "1" : "0";
-          }
-        }
-
-        text.style.opacity = `${opacity}`;
-        text.style.transform = `scale(${scale})`;
-      },
-    });
-    return () => {
-      trigger.kill();
-    };
-  }, []);
-  return (
-    <div
-      className="scale-on-scroll will-change-transform"
-      style={{
-        height: "400vh",
-        position: "relative",
-        // marginTop: "-20vh",
-      }}
-    >
-      <div
-        style={{
-          width: "100%",
-          height: "100vh",
-          position: "sticky",
-          overflow: "hidden",
-          top: 0,
-        }}
-      >
-        <div
-          style={{
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            overflow: "hidden",
-          }}
-        >
-          <div
-            ref={backgroundRef}
-            style={{
-              opacity: 0,
-              transition: "opacity 0.35s ease-in-out",
-            }}
-          >
-            {background}
-          </div>
-          <div
-            ref={rootRef}
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
-              position: "relative",
-              transform: `scale(${MIN_SCALE})`,
-            }}
-          >
-            {children}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  return <div ref={containerRef}>{children}</div>;
 }

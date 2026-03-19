@@ -24,6 +24,7 @@ interface AnimatedContentProps extends React.HTMLAttributes<HTMLDivElement> {
   disappearEase?: string;
   onComplete?: () => void;
   onDisappearanceComplete?: () => void;
+  once?: boolean;
 }
 
 const AnimatedContent: React.FC<AnimatedContentProps> = ({
@@ -39,6 +40,7 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
   scale = 1,
   threshold = 0.1,
   delay = 0,
+  once = true,
   disappearAfter = 0,
   disappearDuration = 0.5,
   disappearEase = "power3.in",
@@ -104,8 +106,18 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
       trigger: el,
       scroller: scrollerTarget || window,
       start: `top ${startPct}%`,
-      once: true,
-      onEnter: () => tl.play(),
+      ...(once
+        ? {
+            once: true,
+            onEnter: () => tl.play(),
+          }
+        : {
+            once: false,
+            onEnter: () => tl.play(),
+            onEnterBack: () => tl.play(),
+            onLeave: () => tl.reverse(),
+            onLeaveBack: () => tl.reverse(),
+          }),
     });
 
     return () => {

@@ -161,7 +161,7 @@ export default function Aurora(props: AuroraProps) {
 
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.05 },
+      { threshold: 0.05, rootMargin: "0px 0px 100px 0px" },
     );
     observer.observe(ctn);
     return () => observer.disconnect();
