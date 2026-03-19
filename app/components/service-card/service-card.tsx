@@ -77,7 +77,7 @@ export function ServiceCard({
   }, []);
 
   return (
-    <div className="relative flex flex-col items-center h-[98vh] rounded-[24px] overflow-hidden">
+    <div className="relative flex flex-col items-center h-[calc(100vh-80px)] rounded-[24px] overflow-hidden">
       <div className="relative flex flex-grow-1 w-full">
         <div
           className="text-center flex-grow-1 min-h-[250px] px-16 py-16 pb-0 relative z-10 overflow-hidden"
@@ -90,7 +90,7 @@ export function ServiceCard({
               <h3 className="text-6xl font-medium mb-6">{title}</h3>
             </BlurIn>
             <BlurIn delay={0.1} duration={0.5} ease="power2.out">
-              <h5 className="font-mono text-sm font-light max-w-xl mx-auto leading-6">
+              <h5 className="font-mono text-sm font-light leading-6">
                 {description}
               </h5>
             </BlurIn>
@@ -162,12 +162,12 @@ export function ServiceCard({
         </div>
       </div>
       <div
-        className="flex flex-row p-14 w-full flex-grow-1"
+        className="flex flex-row py-10 px-12 2xl:py-14 2xl:px-20 w-full flex-grow-1"
         style={{
           background: itemsBackground,
         }}
       >
-        <div className="grid grid-cols-3 gap-10 flex-grow-1 flex min-h-[100px] relative">
+        <div className="grid md:grid-cols-3 grid-rows gap-16 flex-grow-1 flex min-h-[100px] relative">
           <style>
             {`
               .service-card-item h4 {

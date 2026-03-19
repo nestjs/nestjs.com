@@ -139,7 +139,7 @@ export default function Home() {
                       <a
                         href="https://github.com/nestjs/nest"
                         target="_blank"
-                        className="icon m-l-30"
+                        className="icon m-l-30 hover:opacity-60 transition-opacity"
                       >
                         <svg
                           role="img"
@@ -152,7 +152,7 @@ export default function Home() {
                       <a
                         href="https://twitter.com/nestframework"
                         target="_blank"
-                        className="icon"
+                        className="icon hover:opacity-60 transition-opacity"
                       >
                         <svg
                           role="img"
@@ -165,7 +165,7 @@ export default function Home() {
                       <a
                         href="https://linkedin.com/company/19078346"
                         target="_blank"
-                        className="icon"
+                        className="icon hover:opacity-60 transition-opacity"
                       >
                         <svg
                           role="img"
@@ -439,7 +439,7 @@ export default function Home() {
       <div className="p-10 mt-50">
         <div
           ref={headerRef}
-          className="flex justify-center overflow-hidden relative lg:py-30 md:py-20 py-16 px-8 rounded-[32px]"
+          className="flex justify-center relative lg:py-30 md:py-20 py-16 px-8 rounded-[32px]"
         >
           <ScaleOnScroll className="absolute inset-0 z-0 top-0 bottom-0 left-0 right-0 pointer-events-none">
             <LazyRender
