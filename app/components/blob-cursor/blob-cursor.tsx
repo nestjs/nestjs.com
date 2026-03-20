@@ -74,6 +74,7 @@ export default function BlobCursor({
   const containerRef = useRef<HTMLDivElement>(null);
   const blobsRef = useRef<(HTMLDivElement | null)[]>([]);
   const innerTextRef = useRef<HTMLDivElement>(null);
+  const [innerTextXPadding, setInnerTextXPadding] = useState(0);
   const [isSafari, setIsSafari] = useState(false);
 
   useEffect(() => {
@@ -102,6 +103,7 @@ export default function BlobCursor({
       const x = "clientX" in e ? e.clientX : e.touches[0].clientX;
       const y = "clientY" in e ? e.clientY : e.touches[0].clientY;
 
+      console.log({ x, y, left, top });
       if (isSafari) {
         // Only one blob on Safari
         const el = blobsRef.current[0];
@@ -135,6 +137,13 @@ export default function BlobCursor({
           duration: fastDuration,
           ease: fastEase,
         });
+
+        const minPadding = 50;
+        if (textX < minPadding) {
+          setInnerTextXPadding(minPadding - textX + 15);
+        } else {
+          setInnerTextXPadding(0);
+        }
       }
     },
     [updateOffset, isSafari, fastDuration, slowDuration, fastEase, slowEase],
@@ -236,7 +245,10 @@ export default function BlobCursor({
         className={`absolute text-black font-semibold text-base pointer-events-none
           ${show ? "opacity-100" : "opacity-0"} transition-opacity duration-150 delay-150`}
       >
-        <span className="absolute -top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <span
+          className="absolute -top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 whitespace-nowrap transition-padding duration-150"
+          style={{ paddingLeft: innerTextXPadding }}
+        >
           {innerText}
         </span>
       </div>
