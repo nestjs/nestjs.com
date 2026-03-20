@@ -408,7 +408,7 @@ export default function Home() {
         ]}
       />
       <EnterpriseSection />
-      <div className="flex justify-center my-30 overflow-hidden">
+      <div className="flex justify-center my-30 overflow-hidden pt-2">
         <div className="container relative md:px-0 px-8">
           <div className="grid grid-rows-[auto] md:grid-cols-[40%_10%_50%] grid-cols-[100%_100%] md:gap-0 gap-16">
             <div>
