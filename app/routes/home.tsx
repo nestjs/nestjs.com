@@ -66,9 +66,38 @@ export default function Home() {
   const onMenuItemMouseLeave = () => {
     setHoveringTargetId(null);
   };
+  const easterEggRef = useRef<HTMLDivElement | null>(null);
+  const footerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     fetchNestStats().then(setStats);
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (!footerRef.current || !easterEggRef.current) {
+        return;
+      }
+      const easterEggRect = easterEggRef.current.getBoundingClientRect();
+      if (easterEggRect.height !== 0) {
+        return;
+      }
+
+      const elementBottom =
+        footerRef.current.offsetTop + footerRef.current.offsetHeight;
+      const scrollBottom = window.scrollY + window.innerHeight;
+
+      if (scrollBottom + 1 >= elementBottom) {
+        easterEggRef.current.style.height = "240px";
+        const images = easterEggRef.current.querySelectorAll("img");
+        const randomIndex = Math.floor(Math.random() * images.length);
+        images[randomIndex].classList.remove("hidden");
+      }
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (
@@ -527,8 +556,12 @@ export default function Home() {
       </div>
       <TestimonialsSection />
       <SponsorsSection />
-      <footer className="p-10 pb-100 mt-20 relative" id="footer">
-        <div className="absolute inset-0 z-0 top-[30%] bottom-0 left-0 right-0 pointer-events-none">
+      <footer
+        className="p-10 mt-20 relative overflow-hidden"
+        id="footer"
+        ref={footerRef}
+      >
+        <div className="absolute inset-0 z-0 top-[30%] bottom-[-200px] left-0 right-0 pointer-events-none">
           <div className="bg-gradient-to-r from-[#ea2845] via-[#780f20] to-[#050303] absolute inset-0 z-0 top-0 bottom-0 left-0 right-0 overflow-hidden">
             <Aurora />
             <NoiseOverlay />
@@ -738,6 +771,16 @@ export default function Home() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+        <div
+          ref={easterEggRef}
+          className="z-10 relative flex justify-center items-center flex w-full overflow-hidden h-0 transition-all duration-1000"
+        >
+          <div className="p-24 pb-14">
+            <img src={`/gifs/1.gif`} alt="Easter Egg" className="w-25 hidden" />
+            <img src={`/gifs/2.gif`} alt="Easter Egg" className="w-25 hidden" />
+            <img src={`/gifs/3.gif`} alt="Easter Egg" className="w-25 hidden" />
           </div>
         </div>
       </footer>
