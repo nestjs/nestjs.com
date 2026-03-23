@@ -1,7 +1,7 @@
 .card {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   
-  &:hover .cardContainer {
+  &:hover .cardContainer, &.hovered .cardContainer {
     background: linear-gradient(to bottom, #353535, #0e0e0e);
   }
 }
@@ -18,7 +18,7 @@
     pointer-events: none;
   }
 
-  &:hover p {
+  &:hover p, &.hovered p {
     transition: max-height 0.3s ease-in-out 0.15s, opacity 0.2s ease-in-out, filter 0.2s ease-in-out 0s;
     // max-height: 200px;
     opacity: 1;

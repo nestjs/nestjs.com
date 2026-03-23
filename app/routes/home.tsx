@@ -321,7 +321,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="pt-50 pb-40 flex justify-center overflow-hidden">
+      <div className="lg:pt-50 lg:pb-40 pt-40 pb-16 flex justify-center overflow-hidden">
         <BounceCards
           className="custom-bounceCards"
           cards={[

@@ -86,7 +86,7 @@ export function SponsorsSection() {
             back to the entire community.
           </ScrollReveal>
         </div>
-        <div className="w-[300px] justify-end flex flex-col items-center ml-auto">
+        <div className="w-[300px] justify-end flex flex-col items-center md:ml-auto">
           <BlurIn>
             <PrimaryButton href="https://docs.nestjs.com/" className="mt-10">
               Become a sponsor

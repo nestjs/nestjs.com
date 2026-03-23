@@ -1,5 +1,10 @@
+import { type EmblaCarouselType, type EmblaEventType } from "embla-carousel";
+import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel from "embla-carousel-react";
 import { gsap } from "gsap";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import useMediaQuery from "../../hooks/use-media-query";
 import { debounce } from "../../utils/debounce";
 import { BlurIn } from "../blur-in/blur-in";
 import LightRays from "../light-rays/light-rays";
@@ -30,6 +35,14 @@ export default function BounceCards({
   duration = 0.4,
   enableHover = false,
 }: BounceCardsProps) {
+  const isMobile = useMediaQuery("(max-width: 1080px)");
+  const [emblaRef, embla] = useEmblaCarousel({ loop: true }, [
+    Autoplay({ delay: 2500 }),
+  ]);
+  const [selectedSnap, setSelectedSnap] = useState(0);
+  const [snapCount, setSnapCount] = useState(0);
+  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
+  const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
   const DEFAULT_TRANSFORM_STYLES = [
     "rotate(-5deg) translate(-600px)",
     "rotate(0deg) translate(-400px)",
@@ -49,6 +62,7 @@ export default function BounceCards({
   );
   const lightRaysRef = useRef<HTMLDivElement>(null);
   const cardHostRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const mobileCardHostRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -59,10 +73,16 @@ export default function BounceCards({
       const width = window.innerWidth;
       setContainerWidth(width);
 
+      let xOffset = 300;
+      if (width < 1500) {
+        xOffset = 100;
+      } else if (width < 1200) {
+        xOffset = 200;
+      }
+
       // Generate transform styles based on number of cards and container width
       const styles: string[] = [];
       const centerIdx = Math.floor(cards.length / 2);
-      const xOffset = 300;
       const spacing = (width - xOffset) / (cards.length + 1);
 
       const rotations = [0, -5, 5];
@@ -190,59 +210,173 @@ export default function BounceCards({
     });
   };
 
+  const scrollPrev = () => embla && embla.scrollPrev();
+  const scrollNext = () => embla && embla.scrollNext();
+
+  const onSelect = (emblaApi: EmblaCarouselType, evt: EmblaEventType) => {
+    if (!embla) {
+      return;
+    }
+    const selectedIndex = emblaApi.selectedScrollSnap();
+    setHoveredIdx(selectedIndex);
+
+    // Move LightRays into the hovered card
+    const host = mobileCardHostRefs.current[selectedIndex];
+    if (lightRaysRef.current && host) {
+      gsap.killTweensOf(lightRaysRef.current);
+      host.appendChild(lightRaysRef.current);
+      gsap.to(lightRaysRef.current, {
+        opacity: 0.7,
+        duration: duration * 0.5,
+        overwrite: "auto",
+      });
+    }
+
+    setPrevBtnEnabled(embla.canScrollPrev());
+    setNextBtnEnabled(embla.canScrollNext());
+    setSelectedSnap(selectedIndex);
+    setSnapCount(embla.scrollSnapList().length);
+  };
+
+  useEffect(() => {
+    if (!embla) {
+      return;
+    }
+    if (!isMobile) {
+      return;
+    }
+    embla.on("select", onSelect);
+    onSelect(embla, null as any); // Set initial state based on first selected item
+  }, [embla, isMobile]);
+
   return (
     <div
       className={`relative flex items-center justify-center ${className}`}
       style={{
-        width: containerWidth ?? "100%",
-        height: containerHeight,
+        width: isMobile ? "100%" : (containerWidth ?? "100%"),
+        height: isMobile ? "100%" : containerHeight,
       }}
     >
-      {cards.map((card, idx) => (
-        <div
-          key={idx}
-          className={`${classes.card} card-${idx} absolute w-[350px] aspect-square overflow-hidden text-center`}
-          style={{
-            transform: transformStyles[idx] || "none",
-          }}
-          onMouseEnter={() => pushSiblings(idx)}
-          onMouseLeave={resetSiblings}
-        >
-          <BlurIn
-            className="flex w-full h-full"
-            delay={idx * 0.1}
-            distance={100}
-            duration={0.4}
+      {!isMobile &&
+        cards.map((card, idx) => (
+          <div
+            key={idx}
+            className={`${classes.card} card-${idx} absolute w-[350px] aspect-square overflow-hidden text-center`}
+            style={{
+              transform: transformStyles[idx] || "none",
+            }}
+            onMouseEnter={() => pushSiblings(idx)}
+            onMouseLeave={resetSiblings}
           >
-            <div
-              className={`${classes.borderGlow} flex w-full h-full rounded-[24px]`}
+            <BlurIn
+              className="flex w-full h-full"
+              delay={idx * 0.1}
+              distance={100}
+              duration={0.4}
             >
               <div
-                className={`${classes.cardContainer} flex relative w-full h-full rounded-[24px] overflow-hidden`}
+                className={`${classes.borderGlow} flex w-full h-full rounded-[24px]`}
               >
                 <div
-                  ref={(el) => {
-                    cardHostRefs.current[idx] = el;
-                  }}
-                  className="absolute inset-0 pointer-events-none"
-                />
-                <div
-                  className={`flex flex-col justify-center w-full h-full text-white z-10 ${classes.cardContent}`}
+                  className={`${classes.cardContainer} flex relative w-full h-full rounded-[24px] overflow-hidden`}
                 >
-                  <div className="w-[75px] h-[75px] aspect-square self-center mb-5 mt-5">
-                    {card.icon}
+                  <div
+                    ref={(el) => {
+                      cardHostRefs.current[idx] = el;
+                    }}
+                    className="absolute inset-0 pointer-events-none"
+                  />
+                  <div
+                    className={`flex flex-col justify-center w-full h-full text-white z-10 ${classes.cardContent}`}
+                  >
+                    <div className="w-[75px] h-[75px] aspect-square self-center mb-5 mt-5">
+                      {card.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
+                    <p className="opacity-80 text-sm font-mono leading-6 font-light">
+                      {card.description}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
-                  <p className="opacity-80 text-sm font-mono leading-6 font-light">
-                    {card.description}
-                  </p>
                 </div>
               </div>
+            </BlurIn>
+          </div>
+        ))}
+      {isMobile && (
+        <div className="relative w-full h-full mx-auto">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex touch-pan-x">
+              {cards.map((card, index) => (
+                <div
+                  className="flex-none p-2 md:max-w-[460px] sm:max-w-[400px] max-w-[380px] w-full"
+                  key={index}
+                >
+                  <div
+                    className={`${classes.card} ${hoveredIdx === index ? classes.hovered : "opacity-60"} card-${index} 
+                    flex w-full aspect-square overflow-hidden text-center rounded-[24px] transition-opacity duration-300`}
+                  >
+                    <div
+                      className={`${classes.borderGlow} flex w-full h-full rounded-[24px]`}
+                    >
+                      <div
+                        className={`${classes.cardContainer} flex relative w-full h-full rounded-[24px] overflow-hidden`}
+                      >
+                        <div
+                          ref={(el) => {
+                            mobileCardHostRefs.current[index] = el;
+                          }}
+                          className="absolute inset-0 pointer-events-none"
+                        />
+                        <div
+                          className={`flex flex-col justify-center w-full h-full text-white z-10 
+                            ${classes.cardContent} ${hoveredIdx === index ? classes.hovered : ""} transition-opacity duration-300`}
+                        >
+                          <div className="w-[75px] h-[75px] aspect-square self-center mb-5 mt-5">
+                            {card.icon}
+                          </div>
+                          <h3 className="text-xl font-semibold mb-2">
+                            {card.title}
+                          </h3>
+                          <p className="opacity-80 text-sm font-mono leading-6 font-light">
+                            {card.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-          </BlurIn>
+          </div>
+          <div className="flex justify-between items-center mt-4 px-8">
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={scrollPrev}
+                disabled={!prevBtnEnabled}
+                className="border-1 border-white/20 rounded-full cursor-pointer hover:bg-white/10 transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                <ChevronLeftIcon
+                  className="w-8 h-8 p-2"
+                  stroke="currentColor"
+                />
+              </button>
+              <button
+                onClick={scrollNext}
+                disabled={!nextBtnEnabled}
+                className="border-1 border-white/20 rounded-full cursor-pointer hover:bg-white/10 transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                <ChevronRightIcon
+                  className="w-8 h-8 p-2"
+                  stroke="currentColor"
+                />
+              </button>
+            </div>
+            <div className="font-mono text-sm opacity-50">
+              {selectedSnap + 1} / {snapCount}
+            </div>
+          </div>
         </div>
-      ))}
-
+      )}
       {/* Single shared LightRays – always mounted, reparented into hovered card */}
       <div className="hidden">
         <div
