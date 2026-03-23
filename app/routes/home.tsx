@@ -102,7 +102,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="p-10">
+      <div className="sm:p-10 p-5">
         <header
           ref={headerRef}
           className={`flex justify-center overflow-hidden relative pb-16 rounded-[32px] 
@@ -122,13 +122,13 @@ export default function Home() {
             </>
           </LazyRender>
           <div
-            className={`container relative z-10 transition-opacity duration-500`}
+            className={`container relative z-10 transition-opacity duration-500 2xl:px-0 md:px-8 px-6`}
           >
             <BlurIn delay={0.1}>
-              <div className="rounded-[32px] mt-16 relative overflow-hidden">
+              <div className="rounded-[32px] xl:mt-16 lg:mt-10 mt-7 relative overflow-hidden">
                 <SpotlightCard>
                   <div
-                    className={`${classes.navPanel} flex items-center p-5 bg-black/60 rounded-[32px]`}
+                    className={`${classes.navPanel} flex items-center p-5 bg-black/60 rounded-[32px] justify-between lg:justify-start`}
                   >
                     <div className="flex justify-start">
                       <a href="https://nestjs.com">
@@ -141,7 +141,7 @@ export default function Home() {
                     </div>
 
                     <nav
-                      className={`flex justify-center space-x-10 font-medium text-base flex-1`}
+                      className={`lg:flex hidden justify-center space-x-10 font-medium text-base flex-1`}
                     >
                       {MENU_ITEMS.map((item) => (
                         <a
@@ -165,7 +165,7 @@ export default function Home() {
                       ))}
                     </nav>
 
-                    <div className="flex justify-end space-x-5">
+                    <div className="lg:flex hidden justify-end space-x-5">
                       <a
                         href="https://github.com/nestjs/nest"
                         target="_blank"
@@ -206,12 +206,34 @@ export default function Home() {
                         </svg>
                       </a>
                     </div>
+
+                    <div className="lg:hidden flex justify-end">
+                      <div
+                        className={`${classes.mobileMenu} relative w-6 h-5 cursor-pointer`}
+                        onClick={() => {
+                          // Todo
+                        }}
+                        onMouseEnter={() => setHoveringTargetId("menu")}
+                        onMouseLeave={onMenuItemMouseLeave}
+                      >
+                        <div
+                          className={`${classes.mobileMenuLine} absolute top-1/2 left-0 right-0 w-full h-[2px] bg-white rounded transition-transform duration-300`}
+                        >
+                          <div
+                            className={`${classes.mobileMenuLineBefore} absolute top-[-8px] left-0 right-0 w-full h-[2px] bg-white rounded transition-transform duration-300`}
+                          ></div>
+                          <div
+                            className={`${classes.mobileMenuLineAfter} absolute top-[8px] left-0 right-0 w-full h-[2px] bg-white rounded transition-transform duration-300`}
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </SpotlightCard>
               </div>
             </BlurIn>
             <div className="centered text-center pt-26 2xl:pt-32 pb-40 flex flex-col items-center">
-              <h1 className="lg:text-[7rem] text-5xl md:text-7xl lg:leading-[0.95] leading-[1.1] font-medium max-w-4xl self-center px-4 sm:px-0">
+              <h1 className="lg:text-[7rem] text-5xl md:text-7xl lg:leading-[0.95] leading-[1.1] font-medium max-w-4xl self-center px-6 sm:px-0">
                 <WordByWord>More than just a Node framework</WordByWord>
               </h1>
               <BlurIn delay={0.7}>
@@ -237,7 +259,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="absolute right-20 bottom-15 text-right sm:leading-10 leading-8 font-mono sm:text-sm text-xs">
+          <div className="absolute right-20 bottom-15 sm:leading-10 leading-8 font-mono sm:text-sm text-xs sm:text-right text-center">
             {stats && (
               <BlurIn distance={5} delay={0.25} threshold={0.05}>
                 <>
@@ -355,7 +377,7 @@ export default function Home() {
       <LettersReveal ElementTag="h4">
         <section className="px-20">
           <BlurIn distance={10} duration={2} ease="elastic.out(1, 0.5)">
-            <h4 className="xl:text-9xl lg:text-8xl md:text-7xl sm:text-[4rem] sm:leading-[1.15] text-5xl leading-[1.15] font-medium text-center flex">
+            <h4 className="xl:text-9xl lg:text-8xl md:text-7xl sm:text-[4rem] sm:leading-[1.15] text-4xl leading-[1.15] font-medium text-center flex">
               When&nbsp;there's&nbsp;no&nbsp;yarn
             </h4>
           </BlurIn>
@@ -365,7 +387,7 @@ export default function Home() {
             delay={0.2}
             ease="elastic.out(1, 0.5)"
           >
-            <h4 className="xl:text-9xl lg:text-8xl md:text-7xl sm:text-[4rem] sm:leading-[1.15] text-5xl leading-[1.15] font-medium text-center flex">
+            <h4 className="xl:text-9xl lg:text-8xl md:text-7xl sm:text-[4rem] sm:leading-[1.15] text-4xl leading-[1.15] font-medium text-center flex">
               we&nbsp;build&nbsp;our&nbsp;own&nbsp;toys
             </h4>
           </BlurIn>
@@ -466,10 +488,10 @@ export default function Home() {
         </div>
       </div>
       <CoursesSection />
-      <div className="p-10 mt-50">
+      <div className="sm:p-10 sm:mt-50 mt-20 p-5">
         <div
           ref={headerRef}
-          className="flex justify-center relative lg:py-30 md:py-20 py-16 px-8 rounded-[32px]"
+          className="flex justify-center relative lg:py-30 md:py-20 sm:py-16 py-12 sm:px-8 px-12 rounded-[32px]"
         >
           <ScaleOnScroll className="absolute inset-0 z-0 top-0 bottom-0 left-0 right-0 pointer-events-none">
             <LazyRender
@@ -485,9 +507,9 @@ export default function Home() {
           </ScaleOnScroll>
           <div className="container relative z-10">
             <div className="grid lg:grid-cols-[60%_30%] grid-rows-[auto] md:gap-0 gap-8">
-              <div className="centered text-left lg:pt-30 lg:pb-40 pt-8 pb-12 flex flex-col">
+              <div className="centered text-left lg:pt-30 lg:pb-40 sm:pt-8 sm:pb-12 pb-4 pt-4 flex flex-col">
                 <BlurIn delay={0.1}>
-                  <h3 className="md:text-7xl text-6xl leading-[1.1] font-medium max-w-4xl">
+                  <h3 className="md:text-7xl sm:text-6xl text-5xl leading-[1.1] font-medium sm:max-w-4xl max-w-full">
                     Nine lives. <br />
                     Infinite impact.
                   </h3>
@@ -496,7 +518,7 @@ export default function Home() {
               <div className="relative flex flex-col">
                 <BlurIn delay={0.2}>
                   <div className="flex flex-col">
-                    <span className="xl:text-[160px] text-[100px] font-medium leading-[1.2]">
+                    <span className="xl:text-[160px] sm:text-[100px] text-[60px] font-medium leading-[1.2]">
                       <CountUp
                         to={
                           stats
@@ -574,7 +596,7 @@ export default function Home() {
           <div className="grid xl:grid-cols-[30%_70%] md:grid-cols-[50%_50%] grid-cols-1 relative z-10 border-t border-[#262626]">
             <section
               id="newsletter"
-              className="py-30 px-20 border-r border-[#262626] w-full flex flex-col relative md:align-self-center lg:align-self-start"
+              className="sm:py-30 sm:px-20 px-8 py-12 border-r border-[#262626] w-full flex flex-col relative md:align-self-center lg:align-self-start"
             >
               <div className="absolute inset-0 left-0 right-0 top-0 bottom-0 z-0 overflow-hidden">
                 <LineWaves speed={0.1} />
@@ -604,8 +626,8 @@ export default function Home() {
                 </button>
               </form>
             </section>
-            <div className="px-20 flex flex-col justify-between py-12 md:border-none border-t border-[#262626]">
-              <div className="grid xl:grid-cols-4 grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-4xl text-sm pt-20 pb-30">
+            <div className="sm:px-20 px-8 flex flex-col justify-between sm:py-12 md:border-none border-t border-[#262626] py-8 px-8">
+              <div className="grid xl:grid-cols-4 grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-4xl text-sm sm:pt-20 sm:pb-30 pt-6 pb-6">
                 <div>
                   <span className="font-mono uppercase text-[#9B9A9A] text-xs mb-6 block">
                     Resources
@@ -739,9 +761,12 @@ export default function Home() {
                   </ul>
                 </div>
               </div>
-              <div className="flex flex-row items-center text-xs font-mono justify-between uppercase mt-10">
-                <p className="text-[#9B9A9A]">
-                  Released under the MIT License <span className="mx-3">/</span>{" "}
+              <div className="flex sm:flex-row flex-col items-center text-xs font-mono justify-between uppercase mt-10">
+                <p className="text-[#9B9A9A] sm:text-left text-center">
+                  Released under the MIT License{" "}
+                  <span className="mx-3 sm:inline block sm:opacity-100 opacity-0">
+                    /
+                  </span>{" "}
                   Copyright © 2017 - {new Date().getFullYear()}{" "}
                   <a
                     href="https://github.com/kamilmysliwiec"
@@ -751,7 +776,7 @@ export default function Home() {
                     Kamil Mysliwiec
                   </a>
                 </p>
-                <p className="text-[#9B9A9A]">
+                <p className="text-[#9B9A9A] sm:mt-0 mt-4 text-center sm:text-left">
                   Designed by{" "}
                   <a
                     href="#"
@@ -760,7 +785,10 @@ export default function Home() {
                   >
                     Jakub Staron
                   </a>{" "}
-                  <span className="mx-3">/</span> Hosted by{" "}
+                  <span className="mx-3 sm:inline block sm:opacity-100 opacity-0">
+                    /
+                  </span>{" "}
+                  Hosted by{" "}
                   <a
                     href="https://netlify.com"
                     target="_blank"

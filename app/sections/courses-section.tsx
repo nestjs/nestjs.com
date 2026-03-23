@@ -169,7 +169,7 @@ export function CoursesSection() {
   }, []);
 
   return (
-    <div className="flex justify-center md:px-0 px-8 pt-30 overflow-hidden">
+    <div className="flex justify-center md:px-0 px-8 sm:pt-30 pt-0 overflow-hidden">
       <div className="container relative centered justify-center items-center flex flex-col ">
         <div
           className="relative min-h-[400px] w-full flex justify-center items-start"
@@ -227,7 +227,10 @@ export function CoursesSection() {
           Over 20 courses. Learn everything you need to master NestJS and tackle
           modern backend applications at any scale.
         </ScrollReveal>
-        <BlurIn className="mt-20 flex space-x-5 justify-center" duration={0.5}>
+        <BlurIn
+          className="mt-20 flex sm:space-x-5 justify-center sm:flex-row flex-col items-center space-y-4 sm:space-y-0"
+          duration={0.5}
+        >
           <PrimaryButton href="https://docs.nestjs.com/">
             Get certified today
           </PrimaryButton>

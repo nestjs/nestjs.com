@@ -3,6 +3,7 @@ import { gsap } from "gsap/dist/gsap.js";
 // @ts-ignore
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger.js";
 import React, { useLayoutEffect, useRef } from "react";
+import useMediaQuery from "../../hooks/use-media-query";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,6 +12,7 @@ type StackedCardsProps = {
 };
 
 export default function StackedCards({ cards }: StackedCardsProps) {
+  const isMobile = useMediaQuery("(max-width: 992px)");
   const wrapperRef = useRef<HTMLDivElement>(null);
   const cardWrappersRef = useRef<HTMLDivElement[]>([]);
   const cardsRef = useRef<HTMLDivElement[]>([]);
@@ -38,7 +40,7 @@ export default function StackedCards({ cards }: StackedCardsProps) {
         ease: "power1.in",
         scrollTrigger: {
           trigger: card,
-          start: "top 40",
+          start: window.innerWidth <= 992 ? "top 20" : "top 40",
           end: "bottom 1000",
           // markers: true,
           endTrigger: wrapperRef.current,

@@ -75,12 +75,12 @@ const FlashlightText: React.FC<Props> = ({ text, radius = 400 }) => {
             className="relative w-full flex items-center justify-center overflow-hidden text-center"
           >
             <span
-              className="xl:text-8xl lg:text-7xl md:text-6xl text-5xl text-white/5 select-none leading-[1.2]"
+              className="xl:text-8xl lg:text-7xl md:text-6xl sm:text-5xl text-2xl text-white/5 select-none leading-[1.2]"
               dangerouslySetInnerHTML={{ __html: text }}
             />
             <span
               ref={maskRef}
-              className="absolute xl:text-8xl lg:text-7xl md:text-6xl text-5xl text-white select-none leading-[1.2] text-center"
+              className="absolute xl:text-8xl lg:text-7xl md:text-6xl sm:text-5xl text-2xl text-white select-none leading-[1.2] text-center"
               style={{
                 WebkitMaskRepeat: "no-repeat",
                 WebkitMaskPosition: "0 0",
@@ -97,7 +97,7 @@ const FlashlightText: React.FC<Props> = ({ text, radius = 400 }) => {
               dangerouslySetInnerHTML={{ __html: text }}
             ></span>
           </div>
-          <div className="mt-15 opacity-75">
+          <div className="sm:mt-15 mt-4 opacity-75">
             {subheading === "COPY" ? (
               <SectionSubheading key="copy">
                 Click. Copy. Build

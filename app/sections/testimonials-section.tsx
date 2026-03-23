@@ -58,7 +58,7 @@ export function TestimonialsSection() {
   }, []);
 
   return (
-    <div className="width-full relative flex items-center justify-center text-left my-80">
+    <div className="width-full relative flex items-center justify-center text-left sm:my-80 my-40">
       <AnimatedContent
         className="absolute top-0 left-0 right-0 bottom-0 z-0"
         ease="elastic.out"

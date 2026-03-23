@@ -65,7 +65,7 @@ export function SponsorsSection() {
   }
 
   return (
-    <div className="px-8">
+    <div className="px-8 sm:py-0 py-24">
       <div className="container relative flex mx-auto md:flex-row flex-col items-center">
         <div className="max-w-[800px]">
           <SectionSubheading>Support</SectionSubheading>

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import useMediaQuery from "../../hooks/use-media-query";
 import { BlurIn } from "../blur-in/blur-in";
 import LightRays from "../light-rays/light-rays";
 
@@ -26,6 +27,7 @@ export function ServiceCard({
   background = "radial-gradient(circle at 50% 50%, rgba(90, 90, 90, 1), rgba(4, 4, 4, 1) 30%)",
   itemsBackground = `radial-gradient(circle at 75% 50%, rgba(40, 40, 40, 1), #191919 25%)`,
 }: ServiceCardProps) {
+  const isMobile = useMediaQuery("(max-width: 992px)");
   const [activeCardItem, setActiveCardItem] = useState<number>(0);
   const [showTooltip, setShowTooltip] = useState(false);
   const tooltipRef = useRef<HTMLDivElement>(null);
@@ -77,17 +79,17 @@ export function ServiceCard({
   }, []);
 
   return (
-    <div className="relative flex flex-col items-center h-[calc(100vh-80px)] rounded-[24px] overflow-hidden">
+    <div className="relative flex flex-col items-center lg:h-[calc(100vh-80px)] h-[calc(100vh-40px)] rounded-[24px] overflow-hidden">
       <div className="relative flex flex-grow-1 w-full">
         <div
-          className="text-center flex-grow-1 min-h-[250px] px-16 py-16 pb-0 relative z-10 overflow-hidden"
+          className="flex md:block flex-col text-center min-h-[250px] sm:px-16 sm:pt-14 px-12 pt-12 pb-0 relative z-10 overflow-hidden"
           style={{
             background,
           }}
         >
           <div className="relative z-10">
             <BlurIn duration={0.5} ease="power2.out">
-              <h3 className="text-6xl font-medium mb-6">{title}</h3>
+              <h3 className="sm:text-6xl text-4xl font-medium mb-6">{title}</h3>
             </BlurIn>
             <BlurIn delay={0.1} duration={0.5} ease="power2.out">
               <h5 className="font-mono text-sm font-light leading-6">
@@ -99,7 +101,7 @@ export function ServiceCard({
             delay={0.2}
             duration={0.5}
             ease="power2.out"
-            className="relative z-2 max-h-[35vh]"
+            className="relative z-2 max-h-[35vh] sm:mt-0 mt-auto sm:w-auto w-[300%]"
           >
             <div
               className="p-4 pb-0 max-w-[90%] relative mx-auto mt-10 z-2
@@ -162,12 +164,12 @@ export function ServiceCard({
         </div>
       </div>
       <div
-        className="flex flex-row py-10 px-12 2xl:py-14 2xl:px-20 w-full flex-grow-1"
+        className="flex flex-row py-10 px-12 2xl:py-14 2xl:px-20 w-full flex-grow-1 sm:min-h-auto min-h-[300px]"
         style={{
           background: itemsBackground,
         }}
       >
-        <div className="grid md:grid-cols-3 grid-rows gap-16 flex-grow-1 flex min-h-[100px] relative">
+        <div className="grid md:grid-cols-3 grid-rows gap-16 flex-grow-1 flex xl:min-h-[100px] lg:min-h-[160px] md:min-h-[180px] relative">
           <style>
             {`
               .service-card-item h4 {
@@ -185,7 +187,7 @@ export function ServiceCard({
           {cardItems.map((item, idx) => (
             <div
               key={idx}
-              className="relative cursor-pointer service-card-item"
+              className={`cursor-pointer service-card-item ${isMobile ? (activeCardItem === idx ? "absolute opacity-100 bottom-0 top-0" : "absolute opacity-0") : "relative"}`}
               onClick={() => handleItemClick(idx)}
             >
               <h4
