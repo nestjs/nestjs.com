@@ -102,10 +102,10 @@ export default function Home() {
 
   return (
     <>
-      <div className="sm:p-10 p-5">
+      <div className="sm:p-10 p-4">
         <header
           ref={headerRef}
-          className={`flex justify-center overflow-hidden relative pb-16 rounded-[32px] 
+          className={`flex justify-center overflow-hidden relative pb-16 sm:rounded-[32px] rounded-[16px] 
           bg-gradient-to-r from-[#050303] xl:h-[91vh] min-h-[780px] xl:max-h-[920px]
           via-[#780f20] 
           to-[#050303]
@@ -125,10 +125,10 @@ export default function Home() {
             className={`container relative z-10 transition-opacity duration-500 2xl:px-0 md:px-8 px-6`}
           >
             <BlurIn delay={0.1}>
-              <div className="rounded-[32px] xl:mt-16 lg:mt-10 mt-7 relative overflow-hidden">
+              <div className="sm:rounded-[32px] rounded-[16px] xl:mt-16 lg:mt-10 mt-7 relative overflow-hidden">
                 <SpotlightCard>
                   <div
-                    className={`${classes.navPanel} flex items-center p-5 bg-black/60 rounded-[32px] justify-between lg:justify-start`}
+                    className={`${classes.navPanel} flex items-center p-5 bg-black/60 sm:rounded-[32px] rounded-[16px] justify-between lg:justify-start`}
                   >
                     <div className="flex justify-start">
                       <a href="https://nestjs.com">
@@ -233,7 +233,7 @@ export default function Home() {
               </div>
             </BlurIn>
             <div className="centered text-center pt-26 2xl:pt-32 pb-40 flex flex-col items-center">
-              <h1 className="lg:text-[7rem] text-5xl md:text-7xl lg:leading-[0.95] leading-[1.1] font-medium max-w-4xl self-center px-6 sm:px-0">
+              <h1 className="lg:text-[7rem] text-5xl md:text-7xl lg:leading-[0.95] leading-[1.1] font-medium max-w-4xl self-center px-4 sm:px-0">
                 <WordByWord>More than just a Node framework</WordByWord>
               </h1>
               <BlurIn delay={0.7}>
@@ -460,7 +460,7 @@ export default function Home() {
       />
       <EnterpriseSection />
       <div className="flex justify-center my-30 overflow-hidden pt-2">
-        <div className="container relative md:px-0 px-8">
+        <div className="container relative md:px-0 sm:px-8 px-5">
           <div className="grid grid-rows-[auto] md:grid-cols-[40%_10%_50%] grid-cols-[100%_100%] md:gap-0 gap-16">
             <div>
               <SectionSubheading>Syntax</SectionSubheading>
@@ -488,7 +488,7 @@ export default function Home() {
         </div>
       </div>
       <CoursesSection />
-      <div className="sm:p-10 sm:mt-50 mt-20 p-5">
+      <div className="sm:p-10 sm:mt-50 mt-20 p-4">
         <div
           ref={headerRef}
           className="flex justify-center relative lg:py-30 md:py-20 sm:py-16 py-12 sm:px-8 px-12 rounded-[32px]"
@@ -499,7 +499,7 @@ export default function Home() {
               threshold={0}
               rootMargin="1200px 0px 0px 0px"
             >
-              <div className="bg-gradient-to-r from-[#050303] via-[#780f20] to-[#050303] absolute inset-0 z-0 top-0 bottom-0 left-0 right-0 rounded-[32px] overflow-hidden">
+              <div className="bg-gradient-to-r from-[#050303] via-[#780f20] to-[#050303] absolute inset-0 z-0 top-0 bottom-0 left-0 right-0 sm:rounded-[32px] rounded-[16px] overflow-hidden">
                 <Aurora />
                 <NoiseOverlay />
               </div>
@@ -579,7 +579,7 @@ export default function Home() {
       <TestimonialsSection />
       <SponsorsSection />
       <footer
-        className="p-10 mt-20 relative overflow-hidden"
+        className="sm:p-10 p-5 mt-20 relative overflow-hidden"
         id="footer"
         ref={footerRef}
       >
@@ -590,7 +590,7 @@ export default function Home() {
             <div className="bg-gradient-to-t from-transparent from-0% via-transparent via-60% to-[var(--color-bg)] to-100% absolute inset-0 z-0 t-0 b-0 r-0 l-0"></div>
           </div>
         </div>
-        <div className="bg-[#0b0b0b] rounded-[32px] border border-[#262626] relative overflow-hidden">
+        <div className="bg-[#0b0b0b] sm:rounded-[32px] rounded-[16px] border border-[#262626] relative overflow-hidden">
           <div className="noise" />
           <FlashlightText text="$ npm i -g @nestjs/cli<br />$ nest new project-name" />
           <div className="grid xl:grid-cols-[30%_70%] md:grid-cols-[50%_50%] grid-cols-1 relative z-10 border-t border-[#262626]">

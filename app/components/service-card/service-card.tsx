@@ -79,7 +79,7 @@ export function ServiceCard({
   }, []);
 
   return (
-    <div className="relative flex flex-col items-center lg:h-[calc(100vh-80px)] h-[calc(100vh-40px)] rounded-[24px] overflow-hidden">
+    <div className="relative flex flex-col items-center lg:h-[calc(100vh-80px)] h-[calc(100vh-40px)] sm:rounded-[24px] rounded-[16px] overflow-hidden">
       <div className="relative flex flex-grow-1 w-full">
         <div
           className="flex md:block flex-col text-center min-h-[250px] sm:px-16 sm:pt-14 px-12 pt-12 pb-0 relative z-10 overflow-hidden"
@@ -101,7 +101,7 @@ export function ServiceCard({
             delay={0.2}
             duration={0.5}
             ease="power2.out"
-            className="relative z-2 max-h-[35vh] sm:mt-0 mt-auto sm:w-auto w-[300%]"
+            className="relative z-2 max-h-[35vh] sm:mt-0 mt-auto sm:w-auto w-[300%] sm:h-auto h-[200px]"
           >
             <div
               className="p-4 pb-0 max-w-[90%] relative mx-auto mt-10 z-2
@@ -164,12 +164,12 @@ export function ServiceCard({
         </div>
       </div>
       <div
-        className="flex flex-row py-10 px-12 2xl:py-14 2xl:px-20 w-full flex-grow-1 sm:min-h-auto min-h-[300px]"
+        className="flex flex-row sm:py-10 sm:px-12 py-6 px-8 2xl:py-14 2xl:px-20 w-full flex-grow-1"
         style={{
           background: itemsBackground,
         }}
       >
-        <div className="grid md:grid-cols-3 grid-rows gap-16 flex-grow-1 flex xl:min-h-[100px] lg:min-h-[160px] md:min-h-[180px] relative">
+        <div className="grid md:grid-cols-3 grid-rows gap-16 flex-grow-1 flex xl:min-h-[100px] lg:min-h-[160px] md:min-h-[180px] min-h-[170px] relative">
           <style>
             {`
               .service-card-item h4 {
@@ -191,12 +191,12 @@ export function ServiceCard({
               onClick={() => handleItemClick(idx)}
             >
               <h4
-                className={`text-xl font-medium mb-4 ${activeCardItem === idx ? "!opacity-100" : ""} transition-opacity duration-150`}
+                className={`sm:text-xl text-lg font-medium mb-4 ${activeCardItem === idx ? "!opacity-100" : ""} transition-opacity duration-150`}
               >
                 {item.title}
               </h4>
               <p
-                className={`text-sm leading-6 font-light font-mono ${activeCardItem === idx ? "!opacity-100" : ""} transition-opacity duration-150`}
+                className={`sm:text-sm text-xs leading-6 font-light font-mono ${activeCardItem === idx ? "!opacity-100" : ""} transition-opacity duration-150`}
               >
                 {item.description}
               </p>

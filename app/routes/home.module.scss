@@ -17,6 +17,10 @@
   top: 0;
   bottom: 0;
   height: 100%;
+  
+  @media (max-width: 639px) {
+    border-radius: 16px;
+  }
 }
 
 .navPanel::before {

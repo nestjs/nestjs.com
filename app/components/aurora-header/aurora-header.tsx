@@ -187,7 +187,7 @@ export default function Aurora(props: AuroraProps) {
 
     function resize() {
       if (!ctn) return;
-      const width = ctn.offsetWidth;
+      const width = Math.max(ctn.offsetWidth, 800);
       const height = ctn.offsetHeight;
       renderer.setSize(width, height);
       if (program) {

@@ -65,7 +65,7 @@ export function SponsorsSection() {
   }
 
   return (
-    <div className="px-8 sm:py-0 py-24">
+    <div className="px-5 sm:py-0 py-24">
       <div className="container relative flex mx-auto md:flex-row flex-col items-center">
         <div className="max-w-[800px]">
           <SectionSubheading>Support</SectionSubheading>
@@ -249,7 +249,8 @@ export function SponsorsSection() {
             {silverSponsors.map((sponsor, index) => (
               <BlurIn key={sponsor.MemberId} duration={0.5} ease="power2.out">
                 <div
-                  className={`cell lg:w-[160px] lg:h-[160px] aspect-square w-full border border-[#1e1d1d] flex items-center ${index > 0 ? `ml-[-${index}px]` : ""}`}
+                  className={`cell lg:w-[160px] lg:h-[160px] aspect-square w-full border border-[#1e1d1d] flex items-center`}
+                  style={{ marginLeft: index > 0 ? `-${index}px` : undefined }}
                 >
                   <a
                     href={sponsor.website || "#"}

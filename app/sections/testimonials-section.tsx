@@ -75,7 +75,7 @@ export function TestimonialsSection() {
           ></div>
         </div>
       </AnimatedContent>
-      <div className="container md:px-0 px-8">
+      <div className="container md:px-0 sm:px-8 px-5">
         <SectionSubheading>Testimonials</SectionSubheading>
         <BlurIn duration={0.8} delay={0.25} distance={20} ease="power2.out">
           <h3 className="font-medium md:text-8xl sm:text-7xl text-[3rem] text-left leading-[1.1] max-w-5xl">

@@ -22,8 +22,8 @@ export function WordByWord({ children }: { children: string }) {
       y: 0,
       stagger: 0.15, // delay between words
       duration: 0.75,
-      filter: "blur(25px)",
-      scale: 0.95,
+      filter: "blur(20px)",
+      scale: 0.97,
       ease: "power3.out",
     });
   }, []);

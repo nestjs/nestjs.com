@@ -97,7 +97,7 @@ export default function StackedCards({ cards }: StackedCardsProps) {
 
   return (
     <div ref={wrapperRef} className="wrapper py-24 w-full min-h-screen">
-      <div className="cards mx-auto w-full px-5 md:px-8 lg:px-10 flex flex-col gap-12">
+      <div className="cards mx-auto w-full px-4 sm:px-5 md:px-8 lg:px-10 flex flex-col gap-12">
         {cards!.map((node, i) => (
           <div
             key={i}
