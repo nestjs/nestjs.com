@@ -32,6 +32,7 @@ function SponsorCell({
 }
 
 export function SponsorsSection() {
+  const isXL = useMediaQuery("(max-width: 1280px)");
   const isLg = useMediaQuery("(max-width: 1024px)");
   const isMd = useMediaQuery("(max-width: 768px)");
   const isSm = useMediaQuery("(max-width: 640px)");
@@ -52,15 +53,22 @@ export function SponsorsSection() {
   }, []);
 
   let backersGrid = 12;
+  let silverSponsorsGrid = 6;
   switch (true) {
     case isSm:
       backersGrid = 4;
+      silverSponsorsGrid = 2;
       break;
     case isMd:
       backersGrid = 6;
+      silverSponsorsGrid = 2;
       break;
     case isLg:
       backersGrid = 8;
+      silverSponsorsGrid = 2;
+      break;
+    case isXL:
+      silverSponsorsGrid = 4;
       break;
   }
 
@@ -187,7 +195,7 @@ export function SponsorsSection() {
                 />
               </a>
             </SponsorCell>
-            <SponsorCell className="ml-[-1px]">
+            <SponsorCell className="lg:ml-[-1px] lg:mt-[0px] md:ml-[0px] md:mt-[-1px]">
               <a href="https://www.sanofi.com" className={CELL_COMMON_CLASSES}>
                 <img
                   src="/sponsors/gold/sanofi.png"
@@ -196,7 +204,7 @@ export function SponsorsSection() {
                 />
               </a>
             </SponsorCell>
-            <SponsorCell className="ml-[-2px]">
+            <SponsorCell className="lg:ml-[-2px] lg:mt-[0px] md:ml-[0px] md:mt-[-1px]">
               <a
                 href="https://www.movavi.com"
                 className={`${CELL_COMMON_CLASSES} brightness-10000 hover:brightness-100`}
@@ -208,7 +216,7 @@ export function SponsorsSection() {
                 />
               </a>
             </SponsorCell>
-            <SponsorCell className="ml-[-3px]">
+            <SponsorCell className="lg:ml-[-3px] lg:mt-[0px] md:ml-[0px] md:mt-[-1px]">
               <a
                 href="https://www.jetbrains.com"
                 className={`${CELL_COMMON_CLASSES}`}
@@ -220,7 +228,7 @@ export function SponsorsSection() {
                 />
               </a>
             </SponsorCell>
-            <SponsorCell className="lg:ml-[-4px] lg:mt-[0px] ml-[0px] mt-[-1px]">
+            <SponsorCell className="lg:ml-[-4px] lg:mt-[0px] md:ml-[0px] md:mt-[-1px]">
               <a
                 href="https://www.snyk.io"
                 className={`${CELL_COMMON_CLASSES}`}
@@ -249,8 +257,8 @@ export function SponsorsSection() {
             {silverSponsors.map((sponsor, index) => (
               <BlurIn key={sponsor.MemberId} duration={0.5} ease="power2.out">
                 <div
-                  className={`cell lg:w-[160px] lg:h-[160px] aspect-square w-full border border-[#1e1d1d] flex items-center`}
-                  style={{ marginLeft: index > 0 ? `-${index}px` : undefined }}
+                  className={`cell lg:w-[160px] lg:h-[160px] aspect-square w-full border border-[#1e1d1d] flex items-center
+                      ${index % silverSponsorsGrid === 0 ? `border-l-1` : "border-l-0"} ${index < silverSponsorsGrid ? `border-t-1` : "border-t-0"}`}
                 >
                   <a
                     href={sponsor.website || "#"}

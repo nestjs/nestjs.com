@@ -169,7 +169,7 @@ export function CoursesSection({ className }: { className?: string }) {
   }, []);
 
   return (
-    <div className="flex justify-center overflow-hidden">
+    <div className="flex justify-center overflow-hidden pt-35">
       <div className="container relative centered justify-center items-center flex flex-col">
         <div
           className="relative min-h-[400px] w-full flex justify-center items-start"

@@ -93,13 +93,7 @@ export function ServiceCard({
               ease="power2.in"
               className="absolute left-0 top-0 bottom-0 right-0 z-0"
             >
-              <div
-                style={{
-                  background:
-                    "radial-gradient(circle at 50% 60%, rgba(255, 255, 255, 1), transparent 30%)",
-                }}
-                className="absolute inset-0 z-0 left-0 right-0 top-0 bottom-0 z-1 opacity-90 blur-xl"
-              />
+              <div className="md:bg-[radial-gradient(circle_at_50%_60%,rgba(255,255,255,1),transparent_30%)] bg-[radial-gradient(circle_at_50%_80%,rgba(255,255,255,0.9),transparent_30%)] absolute inset-0 z-0 left-0 right-0 top-0 bottom-0 z-1 opacity-90 blur-xl" />
             </BlurIn>
             <NoiseOverlay />
           </div>
