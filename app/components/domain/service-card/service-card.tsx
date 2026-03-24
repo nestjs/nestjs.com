@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import useMediaQuery from "../../../hooks/use-media-query";
 import { BlurIn } from "../../animations/blur-in/blur-in";
-import Grainient from "../../backgrounds/grainient/grainient";
+import NoiseOverlay from "../../backgrounds/noise-overlay/noise-overlay";
 
 const CARD_CHANGE_INTERVAL = 8000;
 
@@ -81,25 +81,27 @@ export function ServiceCard({
       <div className="relative flex flex-grow-1 w-full">
         <div className="flex md:block flex-col text-center min-h-[250px] sm:px-16 sm:pt-14 px-12 pt-12 pb-0 relative z-10 overflow-hidden">
           <div className="absolute inset-0 z-0 left-0 right-0 top-0 bottom-0 z-1">
-            <Grainient
-              color1={colors[0]}
-              color2={colors[1]}
-              color3={colors[2]}
-              timeSpeed={1.25}
-              blendSoftness={0.2}
-              rotationAmount={300}
-              grainAmount={0.2}
-              grainScale={2}
-              grainAnimated
-              contrast={1}
-            />
             <div
+              className="absolute left-0 top-0 bottom-0 right-0 z-0"
               style={{
-                background:
-                  "radial-gradient(circle at 50% 60%, rgba(255, 255, 255, 1), transparent 30%)",
+                background: `linear-gradient(135deg, ${colors[0]} 0%, ${colors[1]} 50%, ${colors[2]} 100%)`,
               }}
-              className="absolute inset-0 z-0 left-0 right-0 top-0 bottom-0 z-1 opacity-40"
             />
+            <BlurIn
+              duration={0.9}
+              delay={0.7}
+              ease="power2.in"
+              className="absolute left-0 top-0 bottom-0 right-0 z-0"
+            >
+              <div
+                style={{
+                  background:
+                    "radial-gradient(circle at 50% 60%, rgba(255, 255, 255, 1), transparent 30%)",
+                }}
+                className="absolute inset-0 z-0 left-0 right-0 top-0 bottom-0 z-1 opacity-90 blur-xl"
+              />
+            </BlurIn>
+            <NoiseOverlay />
           </div>
           <div className="relative z-10">
             <BlurIn duration={0.5} ease="power2.out">
@@ -133,7 +135,13 @@ export function ServiceCard({
           <div className="absolute inset-0 z-0 left-0 right-0 top-0 bottom-0 z-3">
             <div
               className="absolute w-[40%] h-[20%] rotate-300 bg-gradient-to-r from-[#fff] to-[rgba(255,255,255,0.5)] 
-                  right-[-20%] bottom-[20%] scale-x-200 perspective-500 perspective-origin-top-left
+                  right-[-20%] bottom-[10%] scale-x-200 perspective-500 perspective-origin-top-left
+                  rounded-[80px] filter blur-2xl opacity-100
+                  animate-blob"
+            />
+            <div
+              className="absolute w-[20%] h-[10%] rotate-180 bg-gradient-to-r from-[#fff] to-[rgba(255,255,255,0.5)] 
+                  left-[-10%] bottom-[0%] scale-y-200 perspective-500 perspective-origin-top-left
                   rounded-[80px] filter blur-2xl opacity-100
                   animate-blob"
             />
