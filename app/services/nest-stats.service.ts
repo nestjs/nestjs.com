@@ -94,14 +94,18 @@ async function fetchNpmDownloads(): Promise<number> {
   const res = await fetch(
     "https://api.npmjs.org/downloads/point/last-month/@nestjs/core",
   );
-  if (!res.ok) throw new Error("NPM API request failed");
+  if (!res.ok) {
+    throw new Error("NPM API request failed");
+  }
   const data = await res.json();
   return data.downloads;
 }
 
 export async function fetchNestStats(): Promise<NestStats> {
   const cached = getCachedStats();
-  if (cached) return cached;
+  if (cached) {
+    return cached;
+  }
 
   try {
     const [github, downloads] = await Promise.all([
