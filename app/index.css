@@ -8,7 +8,7 @@
   --color-text: #ffffff;
   --primary-color: #ea2845;
   --animate-shine: shine 3s linear infinite;
-  --animate-blob: blob 30s linear infinite;
+  --animate-blob: blob 30s linear infinite alternate;
   --animate-grid-move-left: grid-move-left 10s linear infinite;
   --animate-spin-slow: spinSlow 20s linear infinite;
   

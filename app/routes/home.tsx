@@ -161,7 +161,7 @@ export default function Home() {
             title="Deploy, mau!"
             description="Provision and manage your infrastracture on AWS without the hassle and extra DevOps work."
             screenshotUrl="/screenshots/mau.png"
-            background="radial-gradient(circle at 50% 50%, rgba(90, 90, 90, 1), rgba(4, 4, 4, 1) 30%)"
+            colors={["#111111", "#3d3d3d", "#131313"]}
             itemsBackground="radial-gradient(circle at 75% 50%, rgba(40, 40, 40, 1), #191919 25%)"
             cardItems={[
               {
@@ -185,8 +185,6 @@ export default function Home() {
             title="Devtools"
             description="Provision and manage your infrastracture on AWS without the hassle and extra DevOps work."
             screenshotUrl="/screenshots/devtools.png"
-            background="radial-gradient(circle, rgb(255, 77, 104), rgb(129 6 24) 30%)"
-            lightsOpacity={0.2}
             itemsBackground="radial-gradient(circle at 75% 50%, rgba(40, 40, 40, 1), #191919 25%)"
             cardItems={[
               {
