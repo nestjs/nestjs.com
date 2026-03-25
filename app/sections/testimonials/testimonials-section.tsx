@@ -123,7 +123,7 @@ export function TestimonialsSection() {
                     <div className="relative rounded-[60px] bg-gradient-to-br from-[#959595] to-[#1d1b1b] w-[340px]">
                       <div className="absolute top-[1px] left-[1px] right-[1px] bottom-[1px] bg-[var(--color-bg)] rounded-[60px]" />
                       <div className="relative z-10 py-5 pr-5 pl-32">
-                        <div className="absolute p-7 top-0 bottom-0 left-0 aspect-square rounded-full overflow-hidden border border-solid border-[rgba(255,255,255,0.2)]">
+                        <div className="absolute p-7 w-[88px] top-0 bottom-0 left-0 aspect-square rounded-full overflow-hidden border border-solid border-[rgba(255,255,255,0.2)]">
                           <img
                             src={TESTIMONIALS[idx].logo}
                             className="w-full h-full object-contain rounded-full"
