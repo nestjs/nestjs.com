@@ -137,8 +137,6 @@ export function Header({ stats }: { stats: NestStats | null }) {
         if (relatedTarget.classList.contains("submenu")) {
           return;
         }
-
-        return;
       }
 
       if (!item.children) {
