@@ -406,13 +406,13 @@ export function Header({ stats }: { stats: NestStats | null }) {
             <a
               key={child.id}
               href={child.href}
-              className="block p-4 rounded-[20px] hover:bg-white/10 transition-colors flex-1"
+              className="group block p-4 rounded-[20px] hover:bg-white/10 transition-colors flex-1"
             >
               <div className="rounded-[16px] overflow-hidden mb-5 shadow-lg">
                 <img
                   src={child.thumbnail}
                   alt={child.label}
-                  className="w-full"
+                  className="w-full group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <div className="font-medium text-lg mb-1">{child.label}</div>
