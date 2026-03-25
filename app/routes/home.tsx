@@ -161,7 +161,7 @@ export default function Home() {
             title="Deploy, mau!"
             description="Provision and manage your infrastracture on AWS without the hassle and extra DevOps work."
             screenshotUrl="/screenshots/mau.png"
-            colors={["#111111", "#3d3d3d", "#131313"]}
+            colors={["#111111", "#202020", "#111"]}
             itemsBackground="radial-gradient(circle at 75% 50%, rgba(40, 40, 40, 1), #191919 25%)"
             cardItems={[
               {
