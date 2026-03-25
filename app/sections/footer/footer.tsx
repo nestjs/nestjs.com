@@ -13,8 +13,12 @@ export function Footer({ className }: { className?: string }) {
       if (!footerRef.current || !easterEggRef.current) {
         return;
       }
+      const targetHeight = "240px";
       const easterEggRect = easterEggRef.current.getBoundingClientRect();
-      if (easterEggRect.height !== 0) {
+      if (
+        easterEggRect.height !== 0 ||
+        easterEggRef.current.style.height === targetHeight
+      ) {
         return;
       }
 
@@ -23,7 +27,7 @@ export function Footer({ className }: { className?: string }) {
       const scrollBottom = window.scrollY + window.innerHeight;
 
       if (scrollBottom + 1 >= elementBottom) {
-        easterEggRef.current.style.height = "240px";
+        easterEggRef.current.style.height = targetHeight;
         const images = easterEggRef.current.querySelectorAll("img");
         const randomIndex = Math.floor(Math.random() * images.length);
         images[randomIndex].classList.remove("hidden");
