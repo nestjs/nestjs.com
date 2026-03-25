@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import useMediaQuery from "../../../hooks/use-media-query";
+import { useSwipe } from "../../../hooks/use-swipe";
 import { BlurIn } from "../../animations/blur-in/blur-in";
 import NoiseOverlay from "../../backgrounds/noise-overlay/noise-overlay";
 
@@ -27,6 +28,14 @@ export function ServiceCard({
 }: ServiceCardProps) {
   const isMobile = useMediaQuery("(max-width: 992px)");
   const [activeCardItem, setActiveCardItem] = useState<number>(0);
+  const swipe = useSwipe({
+    onSwipeLeft: () =>
+      setActiveCardItem((prev) => (prev + 1) % cardItems.length),
+    onSwipeRight: () =>
+      setActiveCardItem(
+        (prev) => (prev - 1 + cardItems.length) % cardItems.length,
+      ),
+  });
   const [showTooltip, setShowTooltip] = useState(false);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const itemUpdateIntervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -188,14 +197,18 @@ export function ServiceCard({
           </style>
           {cardItems.map((item, idx) => (
             <div
+              {...swipe}
               key={idx}
               className={`cursor-pointer service-card-item ${isMobile ? (activeCardItem === idx ? "absolute opacity-100 bottom-0 top-0" : "absolute opacity-0") : "relative"}`}
               onClick={() => handleItemClick(idx)}
             >
               <h4
-                className={`sm:text-xl text-lg font-medium mb-4 ${activeCardItem === idx ? "!opacity-100" : ""} transition-opacity duration-150`}
+                className={`sm:text-xl flex justify-between items-center text-lg font-medium mb-4 ${activeCardItem === idx ? "!opacity-100" : ""} transition-opacity duration-150`}
               >
-                {item.title}
+                <span>{item.title}</span>
+                <span className="ml-2 sm:hidden font-mono font-light text-sm opacity-50">
+                  ({idx + 1}/{cardItems.length})
+                </span>
               </h4>
               <p
                 className={`sm:text-sm text-xs leading-6 font-light font-mono ${activeCardItem === idx ? "!opacity-100" : ""} transition-opacity duration-150`}
