@@ -98,7 +98,7 @@ export function ServiceCard({
             />
             <BlurIn
               duration={0.9}
-              delay={0.7}
+              delay={0.2}
               ease="power2.in"
               className="absolute left-0 top-0 bottom-0 right-0 z-0"
             >

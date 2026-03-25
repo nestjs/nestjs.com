@@ -5,11 +5,13 @@ export function TransparentButton({
   href = "#",
   onClick,
   className = "",
+  target,
 }: {
   children: React.ReactNode;
   onClick?: () => void;
   className?: string;
   href?: string;
+  target?: string;
 }) {
   const circleRef = useRef<HTMLSpanElement>(null);
   const handleMouseMove = (
@@ -43,6 +45,7 @@ export function TransparentButton({
         onClick={onClick}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
+        target={target}
       >
         <span className="flex items-center">{children}</span>
         <span

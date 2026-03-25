@@ -54,7 +54,7 @@ export function Footer({ className }: { className?: string }) {
         <div className="grid xl:grid-cols-[30%_70%] md:grid-cols-[50%_50%] grid-cols-1 relative z-10 border-t border-[#262626]">
           <section
             id="newsletter"
-            className="sm:py-30 sm:px-20 px-8 py-12 border-r border-[#262626] w-full flex flex-col relative md:align-self-center lg:align-self-start"
+            className="md:py-20 lg:py-30 sm:py-30 sm:px-20 md:px-8 lg:px-20 px-8 py-12 border-r border-[#262626] w-full flex flex-col relative md:align-self-center lg:align-self-start"
           >
             <div className="absolute inset-0 left-0 right-0 top-0 bottom-0 z-0 overflow-hidden">
               <LineWaves speed={0.1} />
@@ -84,8 +84,8 @@ export function Footer({ className }: { className?: string }) {
               </button>
             </form>
           </section>
-          <div className="sm:px-20 px-8 flex flex-col justify-between sm:py-12 md:border-none border-t border-[#262626] py-8 px-8">
-            <div className="grid xl:grid-cols-4 grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-4xl text-sm sm:pt-20 sm:pb-30 pt-6 pb-6">
+          <div className="sm:px-20 md:px-10 lg:px-20 px-8 flex flex-col justify-between sm:py-12 md:border-none border-t border-[#262626] py-8 px-8">
+            <div className="grid xl:grid-cols-4 grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-4xl text-sm sm:pt-20 lg:pt-20 md:pt-10 sm:pb-30 pt-6 pb-6">
               <div>
                 <span className="font-mono uppercase text-[#9B9A9A] text-xs mb-6 block">
                   Resources
@@ -155,8 +155,9 @@ export function Footer({ className }: { className?: string }) {
                 <ul className="leading-9">
                   <li>
                     <a
-                      href="https://github.com/nestjs/nest"
+                      href="https://github.com/nestjs"
                       className="font-semibold hover:underline hover:underline-offset-4 hover:opacity-80"
+                      target="_blank"
                     >
                       Github
                     </a>
@@ -165,14 +166,16 @@ export function Footer({ className }: { className?: string }) {
                     <a
                       href="https://linkedin.com/company/19078346"
                       className="font-semibold hover:underline hover:underline-offset-4 hover:opacity-80"
+                      target="_blank"
                     >
-                      Linedin
+                      Linkedin
                     </a>
                   </li>
                   <li>
                     <a
                       href="https://twitter.com/nestframework"
                       className="font-semibold hover:underline hover:underline-offset-4 hover:opacity-80"
+                      target="_blank"
                     >
                       X (Twitter)
                     </a>
@@ -181,6 +184,7 @@ export function Footer({ className }: { className?: string }) {
                     <a
                       href="https://discord.com/invite/G7Qnnhy"
                       className="font-semibold hover:underline hover:underline-offset-4 hover:opacity-80"
+                      target="_blank"
                     >
                       Discord
                     </a>
@@ -219,10 +223,10 @@ export function Footer({ className }: { className?: string }) {
                 </ul>
               </div>
             </div>
-            <div className="flex sm:flex-row flex-col items-center text-xs font-mono justify-between uppercase mt-10">
-              <p className="text-[#9B9A9A] sm:text-left text-center">
+            <div className="flex lg:flex-row flex-col items-center text-xs font-mono justify-between uppercase mt-10">
+              <p className="text-[#9B9A9A] lg:text-left text-center">
                 Released under the MIT License{" "}
-                <span className="mx-3 sm:inline block sm:opacity-100 opacity-0">
+                <span className="mx-3 xl:inline block xl:opacity-100 opacity-0">
                   /
                 </span>{" "}
                 Copyright © 2017 - {new Date().getFullYear()}{" "}
@@ -234,7 +238,7 @@ export function Footer({ className }: { className?: string }) {
                   Kamil Mysliwiec
                 </a>
               </p>
-              <p className="text-[#9B9A9A] sm:mt-0 mt-4 text-center sm:text-left">
+              <p className="text-[#9B9A9A] lg:mt-0 mt-4 text-center lg:text-left">
                 Designed by{" "}
                 <a
                   href="#"
@@ -243,7 +247,7 @@ export function Footer({ className }: { className?: string }) {
                 >
                   Jakub Staron
                 </a>{" "}
-                <span className="mx-3 sm:inline block sm:opacity-100 opacity-0">
+                <span className="mx-3 xl:inline block xl:opacity-100 opacity-0">
                   /
                 </span>{" "}
                 Hosted by{" "}
