@@ -77,13 +77,13 @@ export function TestimonialsSection() {
       </AnimatedContent>
       <div className="container md:px-0 sm:px-8 px-5">
         <SectionSubheading>Testimonials</SectionSubheading>
-        <BlurIn duration={0.8} delay={0.25} distance={20} ease="power2.out">
+        <BlurIn duration={0.8} delay={0.15} distance={20} ease="power2.out">
           <h3 className="font-medium md:text-8xl sm:text-7xl text-[3rem] text-left leading-[1.1] max-w-5xl">
             Built for teams that can't afford mistakes
           </h3>
         </BlurIn>
         <div className="flex flex-col mb-10 md:mt-40 mt-30 relative w-full">
-          <BlurIn duration={0.8} delay={0.4} distance={20} ease="power2.out">
+          <BlurIn duration={0.8} delay={0.3} distance={20} ease="power2.out">
             <span className="text-[130px] leading-[20px] block ml-[-5px]">
               “
             </span>
@@ -105,7 +105,7 @@ export function TestimonialsSection() {
               >
                 <BlurIn
                   duration={0.4}
-                  delay={1}
+                  delay={0.5}
                   distance={20}
                   ease="power2.out"
                 >
@@ -116,7 +116,7 @@ export function TestimonialsSection() {
                 <div className="flex items-center gap-4 mt-4 justify-between max-w-5xl md:flex-row flex-col">
                   <BlurIn
                     duration={0.4}
-                    delay={1.2}
+                    delay={0.75}
                     distance={20}
                     ease="power2.out"
                   >

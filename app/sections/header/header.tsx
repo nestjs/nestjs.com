@@ -303,14 +303,14 @@ export function Header({ stats }: { stats: NestStats | null }) {
             <h1 className="lg:text-[7rem] text-5xl md:text-7xl lg:leading-[0.95] leading-[1.1] font-medium max-w-4xl self-center px-4 sm:px-0">
               <WordByWord>More than just a Node framework</WordByWord>
             </h1>
-            <BlurIn delay={0.7}>
+            <BlurIn delay={0.35}>
               <p className="mt-4 sm:text-sm text-[0.8rem] font-light font-mono opacity-80 max-w-2xl sm:leading-[24px] leading-[22px] lg:p-0 px-8">
                 Nest - the world's fastest-growing Node framework for building
                 efficient, reliable and scalable server-side applications.
               </p>
             </BlurIn>
             <div className="mt-24 2xl:mt-20">
-              <BlurIn delay={1} distance={10}>
+              <BlurIn delay={0.7} distance={10}>
                 <>
                   <PrimaryButton
                     href="https://docs.nestjs.com/"
