@@ -171,7 +171,7 @@ export default function Home() {
               {
                 title: "One-click deployment",
                 description:
-                  "Provision and manage your infrastracture on AWS without the hassle and extra DevOps work.",
+                  "Deploy your Nest application to AWS with a single command and let us handle the rest.",
               },
               {
                 title: "Stream your logs",
@@ -187,7 +187,7 @@ export default function Home() {
           />,
           <ServiceCard
             title="Devtools"
-            description="Provision and manage your infrastracture on AWS without the hassle and extra DevOps work."
+            description="Enhance your development workflow with powerful tools designed to streamline your Nest application development."
             screenshots={[
               "/screenshots/devtools_1.png",
               "/screenshots/devtools_2.png",

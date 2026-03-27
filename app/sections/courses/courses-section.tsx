@@ -231,10 +231,10 @@ export function CoursesSection({ className }: { className?: string }) {
           className="mt-20 flex sm:space-x-5 justify-center sm:flex-row flex-col items-center space-y-4 sm:space-y-0"
           duration={0.5}
         >
-          <PrimaryButton href="https://docs.nestjs.com/">
+          <PrimaryButton href="https://courses.nestjs.com/">
             Get certified today
           </PrimaryButton>
-          <TransparentButton href="https://docs.nestjs.com/">
+          <TransparentButton href="https://courses.nestjs.com/">
             <img src="/icons/play.svg" className="w-4 h-4 mr-2" />
             <span>Watch free lesson</span>
           </TransparentButton>

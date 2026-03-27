@@ -66,10 +66,9 @@ export function EnterpriseSection({ className }: { className?: string }) {
               ElementTag="p"
               enableBlur
             >
-              Implementing Nest in our company was a turning point for how we
-              manage energy and operations. The system is intuitive, reliable,
-              and has given us clear visibility into our consumption and savings
-              from day one.
+              Our enterprise support program offers direct access to the core
+              NestJS team, providing expert guidance, architectural reviews, and
+              long-term support to ensure your success at scale.
             </ScrollReveal>
           </div>
         </div>
@@ -161,7 +160,9 @@ export function EnterpriseSection({ className }: { className?: string }) {
           </div>
           <div className="my-20 justify-center flex">
             <BlurIn duration={0.5} delay={0.5}>
-              <PrimaryButton>Request enterprise support</PrimaryButton>
+              <PrimaryButton href="mailto:enterprise@nestjs.com">
+                Request enterprise support
+              </PrimaryButton>
             </BlurIn>
           </div>
         </div>
