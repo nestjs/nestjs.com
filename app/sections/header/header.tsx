@@ -212,10 +212,13 @@ export function Header({ stats }: { stats: NestStats | null }) {
                           )}
                         </a>
                         {item.children && (
-                          <ChevronDown
-                            className={`inline-block w-4 h-4 ml-2 transition-opacity duration-300
-                              ${item === hoveringTarget ? "opacity-60 cursor-pointer" : hoveringTarget === null ? "opacity-100" : "opacity-30 blur-[1px]"}`}
-                          />
+                          <span
+                            className={`pl-2 ${item === hoveringTarget ? "opacity-60 cursor-pointer" : hoveringTarget === null ? "opacity-100" : "opacity-30 blur-[1px]"} transition-opacity duration-300`}
+                          >
+                            <ChevronDown
+                              className={`inline-block w-4 h-4 transition-opacity duration-300`}
+                            />
+                          </span>
                         )}
                       </div>
                     ))}

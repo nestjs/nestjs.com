@@ -70,7 +70,7 @@ export function MobileMenu({ open, close, items }: MobileMenuProps) {
           <div key={index} className="mb-2">
             <a
               href={item.href}
-              className="mb-6 will-change-transform"
+              className="flex will-change-transform items-end"
               ref={addLinkRef}
             >
               <span>{item.label}</span>

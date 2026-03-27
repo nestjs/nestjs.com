@@ -1,12 +1,40 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Aurora from "../../components/backgrounds/aurora-background/aurora-background";
 import LineWaves from "../../components/backgrounds/line-waves/line-waves";
 import NoiseOverlay from "../../components/backgrounds/noise-overlay/noise-overlay";
 import FlashlightText from "../../components/effects/flashlight-text/flashlight-text";
+import Checkmark from "../../components/misc/checkmark/checkmark";
+import { Spinner } from "../../components/misc/spinner/spinner";
+import { subscribeToNewsletter } from "../../services/newsletter.service";
 
 export function Footer({ className }: { className?: string }) {
   const footerRef = useRef<HTMLDivElement>(null);
   const easterEggRef = useRef<HTMLDivElement | null>(null);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const [subscribeBtn, setSubscribeBtn] = useState<{
+    state: "idle" | "loading" | "success" | "error";
+    error?: string;
+  }>({ state: "idle" });
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!emailInputRef.current) {
+      return;
+    }
+    if (subscribeBtn.state === "loading") {
+      return;
+    }
+    setSubscribeBtn({ state: "loading" });
+
+    const email = emailInputRef.current.value;
+    subscribeToNewsletter(email)
+      .then(() => {
+        setSubscribeBtn({ state: "success" });
+      })
+      .catch(() => {
+        setSubscribeBtn({ state: "error" });
+      });
+  };
 
   useEffect(() => {
     const onScroll = () => {
@@ -73,20 +101,47 @@ export function Footer({ className }: { className?: string }) {
             </p>
             <form className="flex flex-col sm:flex-row items-center gap-4 mt-2 relative z-10">
               <input
+                ref={emailInputRef}
                 type="email"
                 placeholder="Enter your e-mail"
-                className="px-5 py-6 uppercase font-mono text-xs rounded-[24px] bg-white/12 border border-white/12 focus:outline-none focus:ring-2 focus:ring-[#780f20] w-full"
+                className="px-5 py-6 uppercase font-mono text-xs rounded-[24px] bg-white/12 border border-white/12 focus:outline-none focus:ring-1 focus:ring-white/40 w-full"
               />
               <button
+                onClick={handleSubscribe}
                 type="submit"
                 className="absolute bg-[#4e4e4e] top-[3px] bottom-[3px] right-[3px] w-[120px] rounded-[22px] text-sm font-semibold cursor-pointer overflow-hidden
                     before:content-[''] before:absolute before:inset-0 before:w-[25px] before:h-[25px] before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:bg-white/10 before:rounded-full before:scale-0 before:opacity-0 before:transition-transform before:duration-700 before:transition-opacity
                     after:content-[''] after:absolute after:inset-0 after:w-[25px] after:h-[25px] after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-white/10 after:rounded-full after:scale-0 after:opacity-0 after:transition-transform after:duration-700 after:delay-150 after:transition-opacity
                     hover:before:scale-500 hover:before:opacity-100 hover:after:scale-500 hover:after:opacity-100"
               >
-                <span className="relative z-10">Subscribe</span>
+                <span className="relative z-10">
+                  {(subscribeBtn.state === "idle" ||
+                    subscribeBtn.state === "error") &&
+                    "Subscribe"}
+                  {subscribeBtn.state === "loading" && (
+                    <div
+                      role="status"
+                      className="flex items-center justify-center"
+                    >
+                      <Spinner />
+                      <span className="sr-only">Loading...</span>
+                    </div>
+                  )}
+                  {subscribeBtn.state === "success" && (
+                    <div className="flex items-center justify-center gap-2">
+                      <span>Done</span>
+                      <Checkmark size={18} />
+                    </div>
+                  )}
+                </span>
               </button>
             </form>
+            {subscribeBtn.state === "error" && (
+              <p className="text-[var(--primary-color)] font-mono text-sm p-2 mt-2 z-10 relative">
+                {subscribeBtn.error ??
+                  "Something went wrong. Please try again."}
+              </p>
+            )}
           </section>
           <div className="sm:px-20 md:px-10 lg:px-20 px-8 flex flex-col justify-between sm:py-12 md:border-none border-t border-[#262626] py-8 px-8">
             <div className="grid xl:grid-cols-4 grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-4xl text-sm sm:pt-20 lg:pt-20 md:pt-10 sm:pb-30 pt-6 pb-6">

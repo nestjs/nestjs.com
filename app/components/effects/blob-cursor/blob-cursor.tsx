@@ -103,7 +103,6 @@ export default function BlobCursor({
       const x = "clientX" in e ? e.clientX : e.touches[0].clientX;
       const y = "clientY" in e ? e.clientY : e.touches[0].clientY;
 
-      console.log({ x, y, left, top });
       if (isSafari) {
         // Only one blob on Safari
         const el = blobsRef.current[0];

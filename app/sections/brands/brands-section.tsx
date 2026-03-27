@@ -146,8 +146,10 @@ export function BrandsSection() {
   };
 
   return (
-    <div className="container relative text-center">
-      <SectionSubheading>Used by the world's finest brands</SectionSubheading>
+    <div className="container relative lg:text-center">
+      <div className="sm:p-0 px-5">
+        <SectionSubheading>Used by the world's finest brands</SectionSubheading>
+      </div>
       {isSmallScreen ? (
         <LogoLoop logos={LOGOS} speed={50} />
       ) : (
