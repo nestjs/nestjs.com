@@ -160,12 +160,16 @@ export default function Home() {
           <ServiceCard
             title="Deploy, mau!"
             description="Provision and manage your infrastracture on AWS without the hassle and extra DevOps work."
-            screenshotUrl="/screenshots/mau.png"
+            screenshots={[
+              "/screenshots/mau_1.png",
+              "/screenshots/mau_3.png",
+              "/screenshots/mau_2.png",
+            ]}
             colors={["#111111", "#202020", "#111"]}
             itemsBackground="radial-gradient(circle at 75% 50%, rgba(40, 40, 40, 1), #191919 25%)"
             cardItems={[
               {
-                title: "Track key metrics",
+                title: "One-click deployment",
                 description:
                   "Provision and manage your infrastracture on AWS without the hassle and extra DevOps work.",
               },
@@ -175,32 +179,36 @@ export default function Home() {
                   "Get real-time visibility into log data, detect anomalies immediately, and respond swiftly.",
               },
               {
-                title: "One-click deployment",
+                title: "Track your metrics",
                 description:
-                  "Deploy right from your terminal with our intuitive CLI, designed to seamlessly integrate into your workflow.",
+                  "Monitor key performance indicators to ensure optimal application performance.",
               },
             ]}
           />,
           <ServiceCard
             title="Devtools"
             description="Provision and manage your infrastracture on AWS without the hassle and extra DevOps work."
-            screenshotUrl="/screenshots/devtools.png"
+            screenshots={[
+              "/screenshots/devtools_1.png",
+              "/screenshots/devtools_2.png",
+              "/screenshots/devtools_3.png",
+            ]}
             itemsBackground="radial-gradient(circle at 75% 50%, rgba(40, 40, 40, 1), #191919 25%)"
             cardItems={[
               {
-                title: "Intuitive CLI",
+                title: "Explore your graph",
                 description:
-                  "Easily manage your Nest applications with a powerful and user-friendly command-line interface.",
+                  "Visualize your application's architecture and dependencies with an interactive graph.",
               },
               {
-                title: "Real-time monitoring",
+                title: "Code playground",
                 description:
-                  "Gain insights into your application's performance and health with real-time monitoring and logging.",
+                  "Experiment with your code in a safe, sandboxed environment without affecting your main codebase.",
               },
               {
-                title: "Seamless integration",
+                title: "CI/CD integration",
                 description:
-                  "Integrate effortlessly with popular development tools and platforms to enhance your workflow.",
+                  "Seamlessly integrate with your CI/CD pipeline to detect issues early.",
               },
             ]}
           />,

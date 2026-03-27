@@ -9,7 +9,7 @@ const CARD_CHANGE_INTERVAL = 8000;
 type ServiceCardProps = {
   title: string;
   description: string;
-  screenshotUrl: string;
+  screenshots: string[];
   itemsBackground?: string;
   colors?: [string, string, string];
   cardItems: Array<{
@@ -21,7 +21,7 @@ type ServiceCardProps = {
 export function ServiceCard({
   title,
   description,
-  screenshotUrl,
+  screenshots,
   cardItems,
   itemsBackground = `radial-gradient(circle at 75% 50%, rgba(40, 40, 40, 1), #191919 25%)`,
   colors = ["#890f21", "#c5374a", "#890f21"],
@@ -130,7 +130,7 @@ export function ServiceCard({
             >
               <div className="absolute inset-0 rounded-tl-[20px] rounded-tr-[20px] bg-gradient-to-t from-white/15 to-white/5 top-[-1px] left-[-1px] right-[-1px] bottom-[-1px] z-0"></div>
               <img
-                src={screenshotUrl}
+                src={screenshots[activeCardItem]}
                 className="rounded-tl-[12px] rounded-tr-[12px] z-2 relative"
               />
             </div>
