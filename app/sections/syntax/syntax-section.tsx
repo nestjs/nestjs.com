@@ -7,7 +7,7 @@ import { StaticCodeEditor } from "../../components/domain/static-code-editor/sta
 
 export function SyntaxSection({ className }: { className?: string }) {
   return (
-    <div className={`flex justify-center overflow-hidden ${className}`}>
+    <div className={`flex justify-center ${className}`}>
       <div className="container relative md:px-0 sm:px-8 px-5">
         <div className="grid grid-rows-[auto] md:grid-cols-[40%_10%_50%] grid-cols-[100%_100%] md:gap-0 gap-16">
           <div>
