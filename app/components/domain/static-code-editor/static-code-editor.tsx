@@ -37,7 +37,7 @@ async function bootstrap() {
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();`,
-    Controller: `import { Module } from '@nestjs/common';
+    Module: `import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -47,17 +47,22 @@ import { AppService } from './app.service';
   providers: [AppService],
 })
 export class AppModule {}`,
-    Module: `# Sample Project
+    Controller: `import { Controller, Get } from '@nestjs/common';
 
-This is a demo project to show a custom editor component
-with multiple tabs and syntax highlighting.`,
+@Controller('cats')
+export class CatsController {
+  @Get()
+  findAll(): string {
+    return 'This action returns all cats';
+  }
+}`,
   });
 
   const [activeTab, setActiveTab] = useState("Bootstrap");
   const editorRef = useRef<HTMLDivElement>(null);
 
   const highlightCode = (text: string) => {
-    const keywords = /\b(import|from|async|function|const|await)\b/g;
+    const keywords = /\b(import|from|async|function|export|const|await)\b/g;
     const methodEndings = /(\w+)(?=\()/g;
     const braces = /({|})/g;
     const strings = /('[^']*'|`[^`]*`)/g;

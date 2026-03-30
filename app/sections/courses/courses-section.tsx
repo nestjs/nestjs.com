@@ -28,25 +28,25 @@ const sideCards = [
 const courses = [
   {
     title: "Advanced Architecture",
-    duration: "12 hours",
-    lessonCount: 120,
+    duration: "2,5 hours",
+    lessonCount: 21,
     color: "192,13,39",
   },
   {
     title: "Authentication & Authorization",
-    duration: "4 hours",
-    lessonCount: 80,
+    duration: "2 hours",
+    lessonCount: 19,
     color: "166,13,116",
   },
   {
     title: "Microservices",
-    duration: "3 hours",
-    lessonCount: 30,
+    duration: "2 hours",
+    lessonCount: 20,
     color: "0,108,128",
   },
   {
     title: "Fundamentals",
-    duration: "15 hours",
+    duration: "5 hours",
     lessonCount: 80,
     color: "121,32,205",
   },
@@ -224,8 +224,8 @@ export function CoursesSection({ className }: { className?: string }) {
           ElementTag="p"
           enableBlur
         >
-          Over 20 courses. Learn everything you need to master NestJS and tackle
-          modern backend applications at any scale.
+          Over 200 lessons. Learn everything you need to master NestJS and
+          tackle modern backend applications at any scale.
         </ScrollReveal>
         <BlurIn
           className="mt-20 flex sm:space-x-5 justify-center sm:flex-row flex-col items-center space-y-4 sm:space-y-0"
@@ -234,7 +234,7 @@ export function CoursesSection({ className }: { className?: string }) {
           <PrimaryButton href="https://courses.nestjs.com/">
             Get certified today
           </PrimaryButton>
-          <TransparentButton href="https://courses.nestjs.com/">
+          <TransparentButton href="https://courses.nestjs.com/#featured">
             <img src="/icons/play.svg" className="w-4 h-4 mr-2" />
             <span>Watch free lesson</span>
           </TransparentButton>

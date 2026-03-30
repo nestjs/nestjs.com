@@ -160,7 +160,7 @@ export function EnterpriseSection({ className }: { className?: string }) {
           </div>
           <div className="my-20 justify-center flex">
             <BlurIn duration={0.5} delay={0.5}>
-              <PrimaryButton href="mailto:enterprise@nestjs.com">
+              <PrimaryButton href="mailto:support@nestjs.com">
                 Request enterprise support
               </PrimaryButton>
             </BlurIn>

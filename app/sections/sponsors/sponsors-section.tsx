@@ -96,7 +96,10 @@ export function SponsorsSection() {
         </div>
         <div className="w-[300px] justify-end flex flex-col items-center md:ml-auto">
           <BlurIn>
-            <PrimaryButton href="https://docs.nestjs.com/" className="mt-10">
+            <PrimaryButton
+              href="https://docs.nestjs.com/support"
+              className="mt-10"
+            >
               Become a sponsor
             </PrimaryButton>
           </BlurIn>
