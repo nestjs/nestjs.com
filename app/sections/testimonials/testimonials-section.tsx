@@ -1,4 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import ClipboardLogo from "../../assets/testimonials/clipboard/logo.png";
+import MunichReLogo from "../../assets/testimonials/munichre/logo.png";
+import PlotlyLogo from "../../assets/testimonials/plotly/logo.png";
 import AnimatedArrow from "../../components/animations/animated-arrow/animated-arrow";
 import AnimatedContent from "../../components/animations/animated-content/animated-content";
 import { BlurIn } from "../../components/animations/blur-in/blur-in";
@@ -9,28 +12,22 @@ const CARD_CHANGE_INTERVAL = 15000;
 
 const TESTIMONIALS = [
   {
-    logo: "/logos/mercedes.png",
-    text: "NestJS has truly revolutionized our development workflow. The framework’s modular architecture and extensive built-in features have made it possible for us to build highly scalable and easily maintainable applications without compromising speed or quality.",
-    author: "Adam Nash",
-    title: "CTO, Valor Software",
+    logo: ClipboardLogo,
+    text: "We use NestJS as the backbone of our healthcare and education staffing marketplace, powering over 30 microservices across a 3.5-million-line TypeScript codebase. NestJS's opinionated module system and structured conventions help maintain consistency as we scale agent workflows. NestJS gave us an architecture that scales for humans and AI.",
+    author: "Rocky Warren",
+    title: "Senior Staff Engineer, Clipboard Health",
   },
   {
-    logo: "/logos/bmw.png",
-    text: "Using NestJS has had a transformative impact on our development process. Its modular design and powerful built-in tools enable us to create scalable, maintainable applications efficiently, streamlining our workflow and improving overall productivity.",
-    author: "John Doe",
-    title: "CTO, BMW",
+    logo: MunichReLogo,
+    text: "When developing modern software solutions for mobile and web, it is crucial to put them on top of loosely coupled, testable and easy maintainable backend systems. To achieve this goal we use since recently the NestJS framework that provides us with an out of the box backend application architecture. Inspired by Angular and written in TypeScript, NestJS fits ideally in our development tool stack. Modularity, dependency injection and custom providers are only some of many useful features we benefit from when using NestJS.",
+    author: "Josef Schiestl",
+    title: "Global Mobile Solutions, Munich Re",
   },
   {
-    logo: "/logos/ibm.png",
-    text: "NestJS has been instrumental in enhancing how we develop applications. With its modular structure and robust built-in features, we are able to build scalable and maintainable software solutions with much greater ease and consistency.",
-    author: "Jane Smith",
-    title: "CTO, IBM",
-  },
-  {
-    logo: "/logos/roche.png",
-    text: "Adopting NestJS has completely changed the way we approach development. The framework’s modular architecture, paired with its comprehensive built-in features, allows us to build scalable, maintainable applications smoothly while reducing complexity and overhead.",
-    author: "Emily Johnson",
-    title: "CTO, Roche",
+    logo: PlotlyLogo,
+    text: "Plotly chose NestJS as one of the technologies for a major new product initiative. In fact, the move to Node for some of our backend services was a new shift for the engineering team. Trilon was invaluable training the team, establishing best practices early and helping navigate the many dependencies we assembled to deliver a quality build and product.",
+    author: "Ben Postlethwaite",
+    title: "VP Engineering, Plotly",
   },
 ];
 
@@ -109,7 +106,7 @@ export function TestimonialsSection() {
                   distance={20}
                   ease="power2.out"
                 >
-                  <p className="md:text-xl text-[1.1rem] leading-8 text-left max-w-5xl md:min-h-[160px] min-h-[240px]">
+                  <p className="md:text-xl text-[1.1rem] leading-8 text-left max-w-5xl md:min-h-[205px] min-h-[280px]">
                     {TESTIMONIALS[idx].text}
                   </p>
                 </BlurIn>
@@ -120,13 +117,13 @@ export function TestimonialsSection() {
                     distance={20}
                     ease="power2.out"
                   >
-                    <div className="relative rounded-[60px] bg-gradient-to-br from-[#959595] to-[#1d1b1b] w-[340px]">
+                    <div className="relative rounded-[60px] bg-gradient-to-br from-[#959595] to-[#1d1b1b]">
                       <div className="absolute top-[1px] left-[1px] right-[1px] bottom-[1px] bg-[var(--color-bg)] rounded-[60px]" />
-                      <div className="relative z-10 py-5 pr-5 pl-32">
-                        <div className="absolute p-7 w-[88px] top-0 bottom-0 left-0 aspect-square rounded-full overflow-hidden border border-solid border-[rgba(255,255,255,0.2)]">
+                      <div className="relative z-10 py-5 pr-8 pl-30">
+                        <div className="absolute p-6 w-[88px] top-0 bottom-0 left-0 aspect-square rounded-full border border-solid border-[rgba(255,255,255,0.2)]">
                           <img
                             src={TESTIMONIALS[idx].logo}
-                            className="w-full h-full object-contain rounded-full"
+                            className="w-full h-full object-contain"
                           />
                         </div>
                         <div className="flex flex-col text-left">
