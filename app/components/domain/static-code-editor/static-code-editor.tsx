@@ -88,7 +88,7 @@ export class CatsController {
   };
 
   return (
-    <div className="border-16 border-[rgba(255,255,255,0.15)] rounded-[24px] w-[140%] relative">
+    <div className="border-16 border-[rgba(255,255,255,0.15)] rounded-[24px] w-[140%] xl:w-[65vw] relative">
       <style>
         {`
           .outer-border {
