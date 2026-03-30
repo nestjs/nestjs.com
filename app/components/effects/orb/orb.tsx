@@ -14,7 +14,7 @@ export default function Orb({
   hoverIntensity = 0.2,
   rotateOnHover = true,
   forceHoverState = false,
-  backgroundColor = "#000000",
+  backgroundColor = "#050303",
 }: OrbProps) {
   const ctnDom = useRef<HTMLDivElement>(null);
 

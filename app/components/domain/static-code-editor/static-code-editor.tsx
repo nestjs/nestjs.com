@@ -184,8 +184,8 @@ export class CatsController {
         z-[10] w-[calc(100%+60px)] h-[300px] translate-y-7"
       />
       <div
-        className="absolute right-0 top-[-50px] bottom-0 bg-gradient-to-l from-[var(--color-bg)] to-transparent
-        z-[10] w-[300px] h-full translate-y-7"
+        className="absolute right-[-100px] top-[-50px] bottom-[-500px] bg-gradient-to-l from-[var(--color-bg)] to-transparent
+        z-[10] w-[300px] translate-y-7"
       />
       {/* <div
         ref={tooltipRef}
