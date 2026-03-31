@@ -11,6 +11,7 @@ type ServiceCardProps = {
   description: string;
   screenshots: string[];
   itemsBackground?: string;
+  onClick: () => void;
   colors?: [string, string, string];
   cardItems: Array<{
     title: string;
@@ -23,6 +24,7 @@ export function ServiceCard({
   description,
   screenshots,
   cardItems,
+  onClick,
   itemsBackground = `radial-gradient(circle at 75% 50%, rgba(40, 40, 40, 1), #191919 25%)`,
   colors = ["#890f21", "#c5374a", "#890f21"],
 }: ServiceCardProps) {
@@ -154,7 +156,7 @@ export function ServiceCard({
             onMouseMove={handleMouseMove}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            onClick={() => {}}
+            onClick={onClick}
           ></div>
           <div
             ref={tooltipRef}

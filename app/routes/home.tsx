@@ -165,6 +165,9 @@ export default function Home() {
               "/screenshots/mau_3.png",
               "/screenshots/mau_2.png",
             ]}
+            onClick={() => {
+              window.open("https://mau.nestjs.com/", "_blank");
+            }}
             colors={["#111111", "#202020", "#111"]}
             itemsBackground="radial-gradient(circle at 75% 50%, rgba(40, 40, 40, 1), #191919 25%)"
             cardItems={[
@@ -193,6 +196,9 @@ export default function Home() {
               "/screenshots/devtools_2.png",
               "/screenshots/devtools_3.png",
             ]}
+            onClick={() => {
+              window.open("https://devtools.nestjs.com/", "_blank");
+            }}
             itemsBackground="radial-gradient(circle at 75% 50%, rgba(40, 40, 40, 1), #191919 25%)"
             cardItems={[
               {

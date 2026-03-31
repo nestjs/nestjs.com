@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import ClipboardLogo from "../../assets/testimonials/clipboard/logo.png";
 import MunichReLogo from "../../assets/testimonials/munichre/logo.png";
+import O2Logo from "../../assets/testimonials/o2/logo.svg";
 import PlotlyLogo from "../../assets/testimonials/plotly/logo.png";
 import AnimatedArrow from "../../components/animations/animated-arrow/animated-arrow";
 import AnimatedContent from "../../components/animations/animated-content/animated-content";
@@ -11,6 +12,12 @@ import Orb from "../../components/effects/orb/orb";
 const CARD_CHANGE_INTERVAL = 15000;
 
 const TESTIMONIALS = [
+  {
+    logo: O2Logo,
+    text: "We use NestJS as the backbone of our internal applications at O2 Czech Republic. It enables us to build scalable backend services quickly while maintaining consistent architecture and standards across teams. With seamless integration across multiple databases and a strong focus on clean architecture, NestJS has significantly improved both our development speed and code quality.",
+    author: "Pavla Ďuranová",
+    title: "Team Leader, O2",
+  },
   {
     logo: ClipboardLogo,
     text: "We use NestJS as the backbone of our healthcare and education staffing marketplace, powering over 30 microservices across a 3.5-million-line TypeScript codebase. NestJS's opinionated module system and structured conventions help maintain consistency as we scale agent workflows. NestJS gave us an architecture that scales for humans and AI.",
