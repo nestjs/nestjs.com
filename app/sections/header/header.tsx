@@ -158,15 +158,15 @@ export function Header({ stats }: { stats: NestStats | null }) {
           relative xl:h-[91vh] min-h-[780px] xl:max-h-[920px] overflow-hidden
           ${auroraReady ? "opacity-100" : "opacity-0"}`}
       >
-        <div
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050303] via-[#780f20] to-[#050303]"></div>
+        {/* <div
           className="absolute inset-0 bg-gradient-to-r from-[#050303] via-[#780f20] to-[#050303]
               animate-fade-out"
         ></div>
-
         <div
           className="absolute inset-0 bg-gradient-to-r from-[#050303] via-[#7b0c57] to-[#050303]
               opacity-0 animate-fade-in"
-        ></div>
+        ></div> */}
         <LazyRender
           className="absolute inset-0 z-0 top-[0px] bottom-[0px] left-[0px] right-[0px] pointer-events-none"
           threshold={0}
@@ -175,11 +175,11 @@ export function Header({ stats }: { stats: NestStats | null }) {
           <>
             <Aurora
               onReady={() => setAuroraReady(true)}
-              transitionColorStops={{
-                desktop: ["#630b47", "#050303", "#2e0420"],
-                mobile: ["#7b0c57", "#7b0c57", "#7f0d59"],
-              }}
-              glowColor="#7b0c57"
+              // transitionColorStops={{
+              //   desktop: ["#630b47", "#050303", "#2e0420"],
+              //   mobile: ["#7b0c57", "#7b0c57", "#7f0d59"],
+              // }}
+              // glowColor="#7b0c57"
             />
             <NoiseOverlay />
           </>

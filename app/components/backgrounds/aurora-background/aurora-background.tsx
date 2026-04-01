@@ -170,7 +170,10 @@ export default function Aurora(props: AuroraProps) {
 
   const parsedARef = useRef<number[][]>(parseColorStops(defaultA));
   const parsedBRef = useRef<number[][]>(parseColorStops(defaultB!));
-  const parsedGlowColorRef = useRef<number[]>(parseColor(DEFAULT_GLOW));
+  const glowARef = useRef<number[]>(parseColor(DEFAULT_GLOW));
+  const glowBRef = useRef<number[]>(
+    parseColor(props.glowColor ?? DEFAULT_GLOW),
+  );
 
   const paletteMix = useRef(0);
   const paletteStart = useRef<number | null>(null);
@@ -181,12 +184,7 @@ export default function Aurora(props: AuroraProps) {
   }, [defaultA, defaultB]);
 
   useEffect(() => {
-    // Update glow color when background color changes to "transitionColorStops"
-    // meaning, wait 3 seconds before changing the glow color to match the new palette, to avoid harsh color jumps
-    const ref = setTimeout(() => {
-      parsedGlowColorRef.current = parseColor(props.glowColor ?? DEFAULT_GLOW);
-    }, 3000);
-    return () => clearTimeout(ref);
+    glowBRef.current = parseColor(props.glowColor ?? DEFAULT_GLOW);
   }, [props.glowColor]);
 
   useEffect(() => {
@@ -248,7 +246,7 @@ export default function Aurora(props: AuroraProps) {
         uColorStopsA: { value: parsedARef.current },
         uColorStopsB: { value: parsedBRef.current },
         uPaletteMix: { value: 0 },
-        uGlowColor: { value: parsedGlowColorRef.current },
+        uGlowColor: { value: glowARef.current },
         uResolution: { value: [ctn.offsetWidth, ctn.offsetHeight] },
         uBlend: { value: blend },
         uMouse: { value: [0, 0] },
@@ -282,7 +280,16 @@ export default function Aurora(props: AuroraProps) {
       program.uniforms.uTime.value = time * speed * 0.1;
       program.uniforms.uAmplitude.value = propsRef.current.amplitude ?? 1.0;
       program.uniforms.uBlend.value = propsRef.current.blend ?? blend;
-      program.uniforms.uGlowColor.value = parsedGlowColorRef.current;
+
+      const mix = paletteMix.current;
+
+      const glow = [
+        glowARef.current[0] * (1 - mix) + glowBRef.current[0] * mix,
+        glowARef.current[1] * (1 - mix) + glowBRef.current[1] * mix,
+        glowARef.current[2] * (1 - mix) + glowBRef.current[2] * mix,
+      ];
+
+      program.uniforms.uGlowColor.value = glow;
       program.uniforms.uPaletteMix.value = paletteMix.current;
 
       program.uniforms.uColorStopsA.value = parsedARef.current;
