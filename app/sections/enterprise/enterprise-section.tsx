@@ -1,3 +1,4 @@
+import EnterpriseTestimonialAvatar from "../../assets/testimonials/otg/author.jpeg";
 import { BlurIn } from "../../components/animations/blur-in/blur-in";
 import ScrollReveal from "../../components/animations/scroll-reveal/scroll-reveal";
 import { PrimaryButton } from "../../components/buttons/primary-button/primary-button";
@@ -61,15 +62,34 @@ export function EnterpriseSection({ className }: { className?: string }) {
               </ScrollReveal>
             </div>
             <span></span>
-            <ScrollReveal
-              className="font-mono text-sm opacity-70 leading-6 font-light sm:pt-10 pt-4"
-              ElementTag="p"
-              enableBlur
-            >
-              Our enterprise support program offers direct access to the core
-              NestJS team, providing expert guidance, architectural reviews, and
-              long-term support to ensure your success at scale.
-            </ScrollReveal>
+            <div className="relative">
+              <ScrollReveal
+                className="font-mono text-sm opacity-90 leading-6 font-light sm:pt-10 pt-4"
+                ElementTag="p"
+                enableBlur
+              >
+                “At the onset of a new project, we were looking for experts to
+                help us understand a new tech stack and implement it quickly and
+                seamlessly. We sought out NestJS as the experts in the space and
+                were thrilled we did so.”
+              </ScrollReveal>
+              <BlurIn delay={0.1} duration={0.8} distance={10}>
+                <div className="flex mt-6 items-center">
+                  <div className="rounded-[13px] w-[48px] h-[48px] overflow-hidden">
+                    <img
+                      src={EnterpriseTestimonialAvatar}
+                      alt="Natalie Mazza"
+                    />
+                  </div>
+                  <div className="ml-4">
+                    <h6 className="font-medium text-lg">Natalie Mazza</h6>
+                    <p className="text-sm opacity-50 font-mono font-normal">
+                      Partner, CPO @ OTG Management
+                    </p>
+                  </div>
+                </div>
+              </BlurIn>
+            </div>
           </div>
         </div>
       </div>

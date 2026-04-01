@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import ClipboardLogo from "../../assets/testimonials/clipboard/logo.png";
 import MunichReLogo from "../../assets/testimonials/munichre/logo.png";
 import O2Logo from "../../assets/testimonials/o2/logo.svg";
@@ -39,27 +39,10 @@ const TESTIMONIALS = [
 ];
 
 export function TestimonialsSection() {
+  const randomInitialIndex = Math.floor(Math.random() * TESTIMONIALS.length);
   const [activeTestimonial, setActiveTestimonial] = useState<number | null>(
-    null,
+    randomInitialIndex,
   );
-  const itemUpdateIntervalRef = useRef<NodeJS.Timeout | null>(null);
-  useEffect(() => {
-    // Initial setup to start cycling through testimonials
-    setActiveTestimonial(0);
-
-    const interval = setInterval(() => {
-      setActiveTestimonial((prev) =>
-        prev === null ? 0 : (prev + 1) % TESTIMONIALS.length,
-      );
-    }, CARD_CHANGE_INTERVAL);
-
-    itemUpdateIntervalRef.current = interval;
-    return () => {
-      if (itemUpdateIntervalRef.current) {
-        clearInterval(itemUpdateIntervalRef.current);
-      }
-    };
-  }, []);
 
   return (
     <div className="width-full relative flex items-center justify-center text-left sm:my-80 my-40">
@@ -126,7 +109,7 @@ export function TestimonialsSection() {
                   >
                     <div className="relative rounded-[60px] bg-gradient-to-br from-[#959595] to-[#1d1b1b]">
                       <div className="absolute top-[1px] left-[1px] right-[1px] bottom-[1px] bg-[var(--color-bg)] rounded-[60px]" />
-                      <div className="relative z-10 py-5 pr-8 pl-30">
+                      <div className="relative z-10 py-5 pr-16 pl-28">
                         <div className="absolute p-6 w-[88px] top-0 bottom-0 left-0 aspect-square rounded-full border border-solid border-[rgba(255,255,255,0.2)]">
                           <img
                             src={TESTIMONIALS[idx].logo}
