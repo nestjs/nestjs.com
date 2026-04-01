@@ -16,6 +16,7 @@ export function LettersReveal({
 }) {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const subComponentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!rootRef.current) {
@@ -99,6 +100,22 @@ export function LettersReveal({
               overwrite: true,
             });
           });
+
+          gsap.to(subComponentRef.current, {
+            opacity: 1,
+            duration: 0.5,
+            ease: "power2.out",
+            filter: "blur(0px)",
+            overwrite: true,
+          });
+        } else {
+          gsap.to(subComponentRef.current, {
+            opacity: 0,
+            duration: 0.5,
+            ease: "power2.out",
+            filter: "blur(10px)",
+            overwrite: true,
+          });
         }
       },
     });
@@ -120,6 +137,14 @@ export function LettersReveal({
           >
             {children}
           </div>
+          {subComponent && (
+            <div
+              className="absolute top-1/2 left-0 right-0 opacity-0 blur-xl xl:translate-y-[75%] md:translate-y-[50%] translate-y-[25%] will-change-opacity will-change-filter"
+              ref={subComponentRef}
+            >
+              {subComponent}
+            </div>
+          )}
         </div>
       </div>
     </div>

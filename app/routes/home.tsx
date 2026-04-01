@@ -124,7 +124,18 @@ export default function Home() {
           enableHover
         />
       </div>
-      <LettersReveal ElementTag="h4">
+      <LettersReveal
+        ElementTag="h4"
+        subComponent={
+          <div className="relative centered text-center flex items-center flex-col">
+            <h4 className="text-sm font-mono opacity-80 max-w-2xl leading-8 font-light p-10">
+              Explore our tools built to supercharge your Nest workflow.
+              Discover solutions we created to streamline development, automate
+              tasks, and help you ship faster with greater confidence.
+            </h4>
+          </div>
+        }
+      >
         <section className="px-20">
           <BlurIn distance={10} duration={2} ease="elastic.out(1, 0.5)">
             <h4 className="xl:text-9xl lg:text-8xl md:text-7xl sm:text-[4rem] sm:leading-[1.15] text-4xl leading-[1.15] font-medium text-center flex">
@@ -143,18 +154,6 @@ export default function Home() {
           </BlurIn>
         </section>
       </LettersReveal>
-      <div className="relative centered text-center flex items-center flex-col">
-        <ScrollReveal
-          ElementTag="h4"
-          className="text-sm font-mono opacity-80 max-w-2xl leading-8 font-light p-10"
-          wordAnimationEnd="bottom 40%"
-          enableBlur
-        >
-          Explore our tools built to supercharge your Nest workflow. Discover
-          solutions we created to streamline development, automate tasks, and
-          help you ship faster with greater confidence.
-        </ScrollReveal>
-      </div>
       <StackedCards
         cards={[
           <ServiceCard
