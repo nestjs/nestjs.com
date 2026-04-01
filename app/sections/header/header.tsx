@@ -155,18 +155,32 @@ export function Header({ stats }: { stats: NestStats | null }) {
       <div
         ref={headerRef}
         className={`flex justify-center overflow-hidden relative pb-16 sm:rounded-[32px] rounded-[16px] 
-          bg-gradient-to-r from-[#050303] xl:h-[91vh] min-h-[780px] xl:max-h-[920px]
-          via-[#780f20] 
-          to-[#050303]
+          relative xl:h-[91vh] min-h-[780px] xl:max-h-[920px] overflow-hidden
           ${auroraReady ? "opacity-100" : "opacity-0"}`}
       >
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-[#050303] via-[#780f20] to-[#050303]
+              animate-fade-out"
+        ></div>
+
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-[#050303] via-[#7b0c57] to-[#050303]
+              opacity-0 animate-fade-in"
+        ></div>
         <LazyRender
           className="absolute inset-0 z-0 top-[0px] bottom-[0px] left-[0px] right-[0px] pointer-events-none"
           threshold={0}
           rootMargin="800px 0px 0px 0px"
         >
           <>
-            <Aurora onReady={() => setAuroraReady(true)} />
+            <Aurora
+              onReady={() => setAuroraReady(true)}
+              transitionColorStops={{
+                desktop: ["#630b47", "#050303", "#2e0420"],
+                mobile: ["#7b0c57", "#7b0c57", "#7f0d59"],
+              }}
+              glowColor="#7b0c57"
+            />
             <NoiseOverlay />
           </>
         </LazyRender>

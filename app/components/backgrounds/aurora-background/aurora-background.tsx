@@ -1,12 +1,18 @@
 import { Color, Mesh, Program, Renderer, Triangle } from "ogl";
 import { useEffect, useRef, useState } from "react";
 
+const DEFAULT_GLOW = "#e0234e";
 const VERT = `#version 300 es
 in vec2 position;
 void main() {
   gl_Position = vec4(position, 0.0, 1.0);
 }
 `;
+
+const parseColor = (hex: string): number[] => {
+  const c = new Color(hex);
+  return [c.r, c.g, c.b];
+};
 
 const parseColorStops = (stops: string[]): number[][] =>
   stops.map((hex) => {
@@ -19,10 +25,13 @@ precision highp float;
 
 uniform float uTime;
 uniform float uAmplitude;
-uniform vec3 uColorStops[3];
+uniform vec3 uColorStopsA[3];
+uniform vec3 uColorStopsB[3];
+uniform float uPaletteMix;
 uniform vec2 uResolution;
 uniform float uBlend;
 uniform vec2 uMouse;
+uniform vec3 uGlowColor;
 
 out vec4 fragColor;
 
@@ -92,10 +101,14 @@ struct ColorStop {
 void main() {
   vec2 uv = gl_FragCoord.xy / uResolution;
   
+  vec3 c0 = mix(uColorStopsA[0], uColorStopsB[0], uPaletteMix);
+  vec3 c1 = mix(uColorStopsA[1], uColorStopsB[1], uPaletteMix);
+  vec3 c2 = mix(uColorStopsA[2], uColorStopsB[2], uPaletteMix);
+
   ColorStop colors[3];
-  colors[0] = ColorStop(uColorStops[0], 0.0);
-  colors[1] = ColorStop(uColorStops[1], 0.5);
-  colors[2] = ColorStop(uColorStops[2], 1.0);
+  colors[0] = ColorStop(c0, 0.0);
+  colors[1] = ColorStop(c1, 0.5);
+  colors[2] = ColorStop(c2, 1.0);
   
   vec3 rampColor;
   COLOR_RAMP(colors, uv.x, rampColor);
@@ -105,7 +118,6 @@ void main() {
   height = (uv.y * 3.5 - height + 0.2);
   float intensity = 0.6 * height;
   
-  // Existing aurora intensity and alpha
   float midPoint = 0.20;
   float auroraAlpha = smoothstep(midPoint - uBlend * 0.5, midPoint + uBlend * 0.5, intensity);
   vec3 auroraColor = intensity * rampColor;
@@ -115,8 +127,7 @@ void main() {
   float dist = distance(uv, mouseUV);
   float cursorEffect = smoothstep(0.6, 0.0, dist);
 
-  vec3 glowColor = vec3(0.878, 0.137, 0.306); // #e0234e
-  vec3 finalColor = mix(auroraColor, glowColor, cursorEffect * 0.3); 
+  vec3 finalColor = mix(auroraColor, uGlowColor, cursorEffect * 0.3); 
   float finalAlpha = max(auroraAlpha, cursorEffect * 0.5);
 
   fragColor = vec4(finalColor, finalAlpha);
@@ -124,39 +135,60 @@ void main() {
 `;
 
 interface AuroraProps {
-  colorStops?: string[];
+  transitionColorStops?: {
+    desktop: string[];
+    mobile: string[];
+  };
+  glowColor?: string;
   amplitude?: number;
   blend?: number;
-  time?: number;
   speed?: number;
+  time?: number;
   onReady?: () => void;
 }
 
 export default function Aurora(props: AuroraProps) {
-  const {
-    colorStops = typeof window !== "undefined" && window.innerWidth > 1024
-      ? ["#780f20", "#050303", "#5a0b18"]
-      : ["#780f20", "#510712", "#5a0b18"],
-    amplitude = 1.0,
-    blend = 0.5,
-  } = props;
-  const propsRef = useRef<AuroraProps>(props);
+  const { amplitude = 1.0, blend = 0.5 } = props;
+
+  const propsRef = useRef(props);
   propsRef.current = props;
 
   const ctnDom = useRef<HTMLDivElement>(null);
   const mouse = useRef({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
 
-  // Pre-parse color stops outside the render loop
-  const parsedStopsRef = useRef<number[][]>(parseColorStops(colorStops));
+  const defaultA =
+    typeof window !== "undefined" && window.innerWidth > 1024
+      ? ["#780f20", "#050303", "#5a0b18"]
+      : ["#780f20", "#510712", "#5a0b18"];
+
+  const defaultB = props.transitionColorStops
+    ? typeof window !== "undefined" && window.innerWidth > 1024
+      ? props.transitionColorStops.desktop
+      : props.transitionColorStops.mobile
+    : defaultA;
+
+  const parsedARef = useRef<number[][]>(parseColorStops(defaultA));
+  const parsedBRef = useRef<number[][]>(parseColorStops(defaultB!));
+  const parsedGlowColorRef = useRef<number[]>(parseColor(DEFAULT_GLOW));
+
+  const paletteMix = useRef(0);
+  const paletteStart = useRef<number | null>(null);
 
   useEffect(() => {
-    parsedStopsRef.current = parseColorStops(
-      propsRef.current.colorStops ?? colorStops,
-    );
-  }, [colorStops]);
+    parsedARef.current = parseColorStops(defaultA);
+    parsedBRef.current = parseColorStops(defaultB!);
+  }, [defaultA, defaultB]);
 
-  // IntersectionObserver — only animate when visible
+  useEffect(() => {
+    // Update glow color when background color changes to "transitionColorStops"
+    // meaning, wait 3 seconds before changing the glow color to match the new palette, to avoid harsh color jumps
+    const ref = setTimeout(() => {
+      parsedGlowColorRef.current = parseColor(props.glowColor ?? DEFAULT_GLOW);
+    }, 3000);
+    return () => clearTimeout(ref);
+  }, [props.glowColor]);
+
   useEffect(() => {
     const ctn = ctnDom.current;
     if (!ctn) return;
@@ -165,6 +197,7 @@ export default function Aurora(props: AuroraProps) {
       ([entry]) => setIsVisible(entry.isIntersecting),
       { threshold: 0.05, rootMargin: "0px 0px 100px 0px" },
     );
+
     observer.observe(ctn);
     return () => observer.disconnect();
   }, []);
@@ -179,6 +212,7 @@ export default function Aurora(props: AuroraProps) {
       antialias: false,
       dpr: Math.min(window.devicePixelRatio, 1.5),
     });
+
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
     gl.enable(gl.BLEND);
@@ -192,10 +226,12 @@ export default function Aurora(props: AuroraProps) {
       const width = Math.max(ctn.offsetWidth, 800);
       const height = ctn.offsetHeight;
       renderer.setSize(width, height);
+
       if (program) {
         program.uniforms.uResolution.value = [width, height];
       }
     }
+
     window.addEventListener("resize", resize);
 
     const geometry = new Triangle(gl);
@@ -209,7 +245,10 @@ export default function Aurora(props: AuroraProps) {
       uniforms: {
         uTime: { value: 0 },
         uAmplitude: { value: amplitude },
-        uColorStops: { value: parsedStopsRef.current },
+        uColorStopsA: { value: parsedARef.current },
+        uColorStopsB: { value: parsedBRef.current },
+        uPaletteMix: { value: 0 },
+        uGlowColor: { value: parsedGlowColorRef.current },
         uResolution: { value: [ctn.offsetWidth, ctn.offsetHeight] },
         uBlend: { value: blend },
         uMouse: { value: [0, 0] },
@@ -224,34 +263,46 @@ export default function Aurora(props: AuroraProps) {
       mouse.current.x = e.clientX - rect.left;
       mouse.current.y = rect.height - (e.clientY - rect.top);
     };
+
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
-    let animateId = 0;
+    let raf = 0;
+
     const update = (t: number) => {
-      animateId = requestAnimationFrame(update);
+      raf = requestAnimationFrame(update);
+
+      if (paletteStart.current === null) paletteStart.current = t;
+
+      const duration = 3000;
+      paletteMix.current = Math.min((t - paletteStart.current) / duration, 1);
+
       const { time = t * 0.01, speed = 1.0 } = propsRef.current;
-      if (program) {
-        program.uniforms.uTime.value = time * speed * 0.1;
-        program.uniforms.uAmplitude.value = propsRef.current.amplitude ?? 1.0;
-        program.uniforms.uBlend.value = propsRef.current.blend ?? blend;
-        program.uniforms.uColorStops.value = parsedStopsRef.current;
-        program.uniforms.uMouse.value = [mouse.current.x, mouse.current.y];
-        renderer.render({ scene: mesh });
-      }
+
+      if (!program) return;
+      program.uniforms.uTime.value = time * speed * 0.1;
+      program.uniforms.uAmplitude.value = propsRef.current.amplitude ?? 1.0;
+      program.uniforms.uBlend.value = propsRef.current.blend ?? blend;
+      program.uniforms.uGlowColor.value = parsedGlowColorRef.current;
+      program.uniforms.uPaletteMix.value = paletteMix.current;
+
+      program.uniforms.uColorStopsA.value = parsedARef.current;
+      program.uniforms.uColorStopsB.value = parsedBRef.current;
+
+      program.uniforms.uMouse.value = [mouse.current.x, mouse.current.y];
+
+      renderer.render({ scene: mesh });
     };
-    animateId = requestAnimationFrame(update);
+
+    raf = requestAnimationFrame(update);
 
     resize();
-
     props.onReady?.();
 
     return () => {
-      cancelAnimationFrame(animateId);
+      cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", handleMouseMove);
-      if (ctn && gl.canvas.parentNode === ctn) {
-        ctn.removeChild(gl.canvas);
-      }
+      if (ctn && gl.canvas.parentNode === ctn) ctn.removeChild(gl.canvas);
       gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
   }, [isVisible]);
