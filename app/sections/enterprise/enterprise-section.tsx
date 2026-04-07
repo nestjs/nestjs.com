@@ -44,51 +44,85 @@ const CARDS = [
   },
 ];
 
-export function EnterpriseSection({ className }: { className?: string }) {
+export function EnterpriseSection({
+  primaryText = "Scale your enterprise with official support from the experts behind Nest",
+  variant = "quote",
+  subheading = "Official Enterprise Support",
+  className,
+  secondaryText,
+}: {
+  className?: string;
+  subheading?: string;
+  primaryText?: string;
+  secondaryText?: string;
+  variant?: "quote" | "description";
+}) {
   return (
     <>
       <div className={`flex justify-center ${className}`}>
         <div className="container relative md:px-0 px-5">
           <div className="grid md:grid-cols-[60%_10%_30%] sm:grid-cols-[60%_5%_35%] grid-rows-[auto] gap-0">
             <div>
-              <SectionSubheading>Official Enterprise Support</SectionSubheading>
+              <SectionSubheading>{subheading}</SectionSubheading>
               <ScrollReveal
                 ElementTag="h2"
                 className="font-medium md:text-5xl sm:text-3xl text-4xl mb-4 md:leading-14 sm:leading-10 leading-12"
                 enableBlur
               >
-                Scale your enterprise with official support from the experts
-                behind Nest
+                {primaryText}
               </ScrollReveal>
+              {secondaryText && (
+                <ScrollReveal
+                  ElementTag="p"
+                  className="text-xl leading-8 font-normal mt-6"
+                  enableBlur
+                >
+                  {secondaryText}
+                </ScrollReveal>
+              )}
             </div>
             <span></span>
             <div className="relative">
-              <ScrollReveal
-                className="font-mono text-sm opacity-90 leading-6 font-light sm:pt-10 pt-4"
-                ElementTag="p"
-                enableBlur
-              >
-                “At the onset of a new project, we were looking for experts to
-                help us understand a new tech stack and implement it quickly and
-                seamlessly. We sought out NestJS as the experts in the space and
-                were thrilled we did so.”
-              </ScrollReveal>
-              <BlurIn delay={0.1} duration={0.8} distance={10}>
-                <div className="flex mt-6 items-center">
-                  <div className="rounded-[13px] w-[48px] h-[48px] overflow-hidden">
-                    <img
-                      src={EnterpriseTestimonialAvatar}
-                      alt="Natalie Mazza"
-                    />
-                  </div>
-                  <div className="ml-4">
-                    <h6 className="font-medium text-lg">Natalie Mazza</h6>
-                    <p className="text-sm opacity-50 font-mono font-normal">
-                      Partner, CPO @ OTG Management
-                    </p>
-                  </div>
-                </div>
-              </BlurIn>
+              {variant === "quote" ? (
+                <>
+                  <ScrollReveal
+                    className="font-mono text-sm opacity-90 leading-6 font-light sm:pt-10 pt-4"
+                    ElementTag="p"
+                    enableBlur
+                  >
+                    “At the onset of a new project, we were looking for experts
+                    to help us understand a new tech stack and implement it
+                    quickly and seamlessly. We sought out NestJS as the experts
+                    in the space and were thrilled we did so.”
+                  </ScrollReveal>
+                  <BlurIn delay={0.1} duration={0.8} distance={10}>
+                    <div className="flex mt-6 items-center">
+                      <div className="rounded-[13px] w-[48px] h-[48px] overflow-hidden">
+                        <img
+                          src={EnterpriseTestimonialAvatar}
+                          alt="Natalie Mazza"
+                        />
+                      </div>
+                      <div className="ml-4">
+                        <h6 className="font-medium text-lg">Natalie Mazza</h6>
+                        <p className="text-sm opacity-50 font-mono font-normal">
+                          Partner, CPO @ OTG Management
+                        </p>
+                      </div>
+                    </div>
+                  </BlurIn>
+                </>
+              ) : (
+                <ScrollReveal
+                  className="font-mono text-sm opacity-90 leading-6 font-light sm:pt-10 pt-4"
+                  ElementTag="p"
+                  enableBlur
+                >
+                  Our goal is to help you get to market faster. Nest core team
+                  members will help you utilize best practices and choose the
+                  right strategy for unique goals.
+                </ScrollReveal>
+              )}
             </div>
           </div>
         </div>

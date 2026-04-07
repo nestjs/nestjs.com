@@ -57,73 +57,72 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
       return;
     }
 
-    let scrollerTarget: Element | string | null =
-      container || document.getElementById("snap-main-container") || null;
+    const ctx = gsap.context(() => {
+      let scrollerTarget: Element | string | null =
+        container || document.getElementById("snap-main-container") || null;
 
-    if (typeof scrollerTarget === "string") {
-      scrollerTarget = document.querySelector(scrollerTarget);
-    }
+      if (typeof scrollerTarget === "string") {
+        scrollerTarget = document.querySelector(scrollerTarget);
+      }
 
-    const axis = direction === "horizontal" ? "x" : "y";
-    const offset = reverse ? -distance : distance;
-    const startPct = (1 - threshold) * 100;
+      const axis = direction === "horizontal" ? "x" : "y";
+      const offset = reverse ? -distance : distance;
+      const startPct = (1 - threshold) * 100;
 
-    gsap.set(el, {
-      [axis]: offset,
-      scale,
-      opacity: animateOpacity ? initialOpacity : 1,
-      visibility: "visible",
-    });
+      gsap.set(el, {
+        [axis]: offset,
+        scale,
+        opacity: animateOpacity ? initialOpacity : 1,
+        visibility: "visible",
+      });
 
-    const tl = gsap.timeline({
-      paused: true,
-      delay,
-      onComplete: () => {
-        if (onComplete) onComplete();
-        if (disappearAfter > 0) {
-          gsap.to(el, {
-            [axis]: reverse ? distance : -distance,
-            scale: 0.8,
-            opacity: animateOpacity ? initialOpacity : 0,
-            delay: disappearAfter,
-            duration: disappearDuration,
-            ease: disappearEase,
-            onComplete: () => onDisappearanceComplete?.(),
-          });
-        }
-      },
-    });
-
-    tl.to(el, {
-      [axis]: 0,
-      scale: 1,
-      opacity: 1,
-      duration,
-      ease,
-    });
-
-    const st = ScrollTrigger.create({
-      trigger: el,
-      scroller: scrollerTarget || window,
-      start: `top ${startPct}%`,
-      ...(once
-        ? {
-            once: true,
-            onEnter: () => tl.play(),
+      const tl = gsap.timeline({
+        paused: true,
+        delay,
+        onComplete: () => {
+          if (onComplete) onComplete();
+          if (disappearAfter > 0) {
+            gsap.to(el, {
+              [axis]: reverse ? distance : -distance,
+              scale: 0.8,
+              opacity: animateOpacity ? initialOpacity : 0,
+              delay: disappearAfter,
+              duration: disappearDuration,
+              ease: disappearEase,
+              onComplete: () => onDisappearanceComplete?.(),
+            });
           }
-        : {
-            once: false,
-            onEnter: () => tl.play(),
-            onEnterBack: () => tl.play(),
-            onLeave: () => tl.reverse(),
-            onLeaveBack: () => tl.reverse(),
-          }),
-    });
+        },
+      });
 
-    return () => {
-      st.kill();
-      tl.kill();
-    };
+      tl.to(el, {
+        [axis]: 0,
+        scale: 1,
+        opacity: 1,
+        duration,
+        ease,
+      });
+
+      ScrollTrigger.create({
+        trigger: el,
+        scroller: scrollerTarget || window,
+        start: `top ${startPct}%`,
+        ...(once
+          ? {
+              once: true,
+              onEnter: () => tl.play(),
+            }
+          : {
+              once: false,
+              onEnter: () => tl.play(),
+              onEnterBack: () => tl.play(),
+              onLeave: () => tl.reverse(),
+              onLeaveBack: () => tl.reverse(),
+            }),
+      });
+    }, el);
+
+    return () => ctx.revert();
   }, [
     container,
     distance,

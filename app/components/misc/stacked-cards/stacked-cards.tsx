@@ -18,72 +18,76 @@ export default function StackedCards({ cards }: StackedCardsProps) {
   useLayoutEffect(() => {
     const wrappers = cardWrappersRef.current;
     const cards = cardsRef.current;
-    wrappers.forEach((wrapper, i) => {
-      const card = cards[i];
-      let scale = 1,
-        rotationX = 0,
-        rotationY = 0;
 
-      if (i !== cards.length - 1) {
-        scale = 0;
-        rotationX = 30;
-        rotationY = i % 2 === 0 ? -10 : 10;
-      }
+    const ctx = gsap.context(() => {
+      wrappers.forEach((wrapper, i) => {
+        const card = cards[i];
+        let scale = 1,
+          rotationX = 0,
+          rotationY = 0;
 
-      gsap.to(card, {
-        scale,
-        rotationX,
-        rotationY,
-        transformOrigin: "top center",
-        ease: "power1.in",
-        scrollTrigger: {
-          trigger: card,
-          start: window.innerWidth <= 992 ? "top 20" : "top 40",
-          end: "bottom 1000",
-          // markers: true,
-          endTrigger: wrapperRef.current,
-          scrub: true,
-          pin: wrapper,
-          pinSpacing: false,
-          id: i + 1,
-          invalidateOnRefresh: true,
-          onUpdate: (self: gsap.core.Tween) => {
-            const progressOffset = 0.5;
-            let adjustedProgress =
-              (self.progress - progressOffset) / (1 - progressOffset);
-            adjustedProgress = gsap.utils.clamp(0, 1, adjustedProgress);
-            const adjustedOpacity = gsap.utils.clamp(
-              0,
-              1,
-              (0.85 - self.progress) / (0.85 - 0.75),
-            );
+        if (i !== cards.length - 1) {
+          scale = 0;
+          rotationX = 30;
+          rotationY = i % 2 === 0 ? -10 : 10;
+        }
 
-            gsap.set(card, {
-              scale: 1 + (scale - 1) * adjustedProgress,
-              rotationX: rotationX * adjustedProgress,
-              rotationY: rotationY * adjustedProgress,
-              opacity: i === cards.length - 1 ? 1 : adjustedOpacity,
-            });
-
-            const nextCard = cards[i + 1];
-            if (nextCard) {
-              const normalizedProgress = gsap.utils.clamp(
+        gsap.to(card, {
+          scale,
+          rotationX,
+          rotationY,
+          transformOrigin: "top center",
+          ease: "power1.in",
+          scrollTrigger: {
+            trigger: card,
+            start: window.innerWidth <= 992 ? "top 20" : "top 40",
+            end: "bottom 1000",
+            endTrigger: wrapperRef.current,
+            scrub: true,
+            pin: wrapper,
+            pinSpacing: false,
+            id: i + 1,
+            invalidateOnRefresh: true,
+            onUpdate: (self: gsap.core.Tween) => {
+              const progressOffset = 0.5;
+              let adjustedProgress =
+                (self.progress - progressOffset) / (1 - progressOffset);
+              adjustedProgress = gsap.utils.clamp(0, 1, adjustedProgress);
+              const adjustedOpacity = gsap.utils.clamp(
                 0,
                 1,
-                self.progress * cards.length,
+                (0.85 - self.progress) / (0.85 - 0.75),
               );
-              const nextTranslateY = Math.max(
-                0,
-                window.innerHeight * (1 - normalizedProgress),
-              );
-              gsap.set(nextCard, { translateY: nextTranslateY });
-            }
-          },
-        },
-      });
-    });
 
-    ScrollTrigger.refresh();
+              gsap.set(card, {
+                scale: 1 + (scale - 1) * adjustedProgress,
+                rotationX: rotationX * adjustedProgress,
+                rotationY: rotationY * adjustedProgress,
+                opacity: i === cards.length - 1 ? 1 : adjustedOpacity,
+              });
+
+              const nextCard = cards[i + 1];
+              if (nextCard) {
+                const normalizedProgress = gsap.utils.clamp(
+                  0,
+                  1,
+                  self.progress * cards.length,
+                );
+                const nextTranslateY = Math.max(
+                  0,
+                  window.innerHeight * (1 - normalizedProgress),
+                );
+                gsap.set(nextCard, { translateY: nextTranslateY });
+              }
+            },
+          },
+        });
+      });
+
+      ScrollTrigger.refresh();
+    }, wrapperRef);
+
+    return () => ctx.revert();
   }, []);
 
   const setWrapperRef = (el: HTMLDivElement | null, index: number) => {

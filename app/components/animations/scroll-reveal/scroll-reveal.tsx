@@ -5,8 +5,8 @@ import React, {
   type ReactNode,
   type RefObject,
   useEffect,
-  useMemo,
   useRef,
+  useMemo,
 } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -63,51 +63,32 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
         ? scrollContainerRef.current
         : window;
 
-    const rotationTween = gsap.fromTo(
-      el,
-      { transformOrigin: "0% 50%", rotate: baseRotation },
-      {
-        ease: "none",
-        rotate: 0,
-        scrollTrigger: {
-          trigger: el,
-          scroller,
-          start: "top bottom",
-          end: rotationEnd,
-          scrub: true,
-          once: true,
-        },
-      },
-    );
-
-    const wordElements = el.querySelectorAll<HTMLElement>(".word");
-
-    const opacityTween = gsap.fromTo(
-      wordElements,
-      { opacity: baseOpacity, willChange: "opacity" },
-      {
-        ease: "none",
-        opacity: 1,
-        stagger: 0.05,
-        scrollTrigger: {
-          trigger: el,
-          scroller,
-          start: "top bottom-=20%",
-          end: wordAnimationEnd,
-          scrub: true,
-          once: true,
-        },
-      },
-    );
-
-    let blurTween: GSAPTween | null = null;
-    if (enableBlur) {
-      blurTween = gsap.fromTo(
-        wordElements,
-        { filter: `blur(${blurStrength}px)` },
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        el,
+        { transformOrigin: "0% 50%", rotate: baseRotation },
         {
           ease: "none",
-          filter: "blur(0px)",
+          rotate: 0,
+          scrollTrigger: {
+            trigger: el,
+            scroller,
+            start: "top bottom",
+            end: rotationEnd,
+            scrub: true,
+            once: true,
+          },
+        },
+      );
+
+      const wordElements = el.querySelectorAll<HTMLElement>(".word");
+
+      gsap.fromTo(
+        wordElements,
+        { opacity: baseOpacity, willChange: "opacity" },
+        {
+          ease: "none",
+          opacity: 1,
           stagger: 0.05,
           scrollTrigger: {
             trigger: el,
@@ -119,15 +100,29 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
           },
         },
       );
-    }
 
-    return () => {
-      rotationTween.kill();
-      opacityTween.kill();
-      if (blurTween) {
-        blurTween.kill();
+      if (enableBlur) {
+        gsap.fromTo(
+          wordElements,
+          { filter: `blur(${blurStrength}px)` },
+          {
+            ease: "none",
+            filter: "blur(0px)",
+            stagger: 0.05,
+            scrollTrigger: {
+              trigger: el,
+              scroller,
+              start: "top bottom-=20%",
+              end: wordAnimationEnd,
+              scrub: true,
+              once: true,
+            },
+          },
+        );
       }
-    };
+    }, el);
+
+    return () => ctx.revert();
   }, [
     scrollContainerRef,
     enableBlur,
@@ -137,18 +132,6 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
     wordAnimationEnd,
     blurStrength,
   ]);
-
-  // useEffect(() => {
-  //   const handler = () => ScrollTrigger.refresh();
-
-  //   window.addEventListener("resize", handler);
-  //   window.addEventListener("orientationchange", handler);
-
-  //   return () => {
-  //     window.removeEventListener("resize", handler);
-  //     window.removeEventListener("orientationchange", handler);
-  //   };
-  // }, []);
 
   const refreshScrollRef = useRef<NodeJS.Timeout | null>(null);
   useEffect(() => {

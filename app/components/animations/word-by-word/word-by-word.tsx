@@ -14,18 +14,23 @@ export function WordByWord({ children }: { children: string }) {
     if (!containerRef.current) {
       return;
     }
-    const wordSpans = containerRef.current.querySelectorAll(".word");
 
-    // Animate each word
-    gsap.from(wordSpans, {
-      opacity: 0,
-      y: 0,
-      stagger: 0.15, // delay between words
-      duration: 0.75,
-      filter: "blur(20px)",
-      scale: 0.97,
-      ease: "power3.out",
-    });
+    const ctx = gsap.context(() => {
+      const wordSpans = containerRef.current!.querySelectorAll(".word");
+
+      // Animate each word
+      gsap.from(wordSpans, {
+        opacity: 0,
+        y: 0,
+        stagger: 0.15, // delay between words
+        duration: 0.75,
+        filter: "blur(20px)",
+        scale: 0.97,
+        ease: "power3.out",
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (

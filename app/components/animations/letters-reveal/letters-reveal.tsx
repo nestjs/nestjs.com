@@ -23,105 +23,106 @@ export function LettersReveal({
       return;
     }
     const container = containerRef.current!;
-    const split = SplitText.create(
-      rootRef.current.querySelectorAll(ElementTag),
-      {
-        type: "chars",
-        charsClass: "inline-block will-change-transform opacity-20",
-        reduceWhiteSpace: false,
-      },
-    );
+    const ctx = gsap.context(() => {
+      const split = SplitText.create(
+        rootRef.current!.querySelectorAll(ElementTag),
+        {
+          type: "chars",
+          charsClass: "inline-block will-change-transform opacity-20",
+          reduceWhiteSpace: false,
+        },
+      );
 
-    split.chars.forEach((el) => {
-      const c = el as HTMLElement;
-      gsap.set(c, { attr: { "data-content": c.innerHTML } });
-    });
+      split.chars.forEach((el) => {
+        const c = el as HTMLElement;
+        gsap.set(c, { attr: { "data-content": c.innerHTML } });
+      });
 
-    // Find index of a 2nd word from the end
-    const chars = split.chars as HTMLElement[];
-    let lastTwoWordsStartIndex = chars.length - 1;
-    let spaceCount = 0;
-    for (let i = chars.length - 1; i >= 0; i--) {
-      if (chars[i].textContent.trim() === "") {
-        lastTwoWordsStartIndex = i + 1;
-        spaceCount++;
-        if (spaceCount === 2) {
-          break;
+      // Find index of a 2nd word from the end
+      const chars = split.chars as HTMLElement[];
+      let lastTwoWordsStartIndex = chars.length - 1;
+      let spaceCount = 0;
+      for (let i = chars.length - 1; i >= 0; i--) {
+        if (chars[i].textContent.trim() === "") {
+          lastTwoWordsStartIndex = i + 1;
+          spaceCount++;
+          if (spaceCount === 2) {
+            break;
+          }
         }
       }
-    }
 
-    const trigger = ScrollTrigger.create({
-      trigger: container,
-      start: "top top",
-      end: `bottom top`,
-      scrub: true,
-      onLeaveBack: () => {
-        split.chars.forEach((el) => {
-          const c = el as HTMLElement;
-          gsap.to(c, {
-            opacity: 0.2,
-            duration: 0.3,
-            overwrite: true,
+      ScrollTrigger.create({
+        trigger: container,
+        start: "top top",
+        end: `bottom top`,
+        scrub: true,
+        onLeaveBack: () => {
+          split.chars.forEach((el) => {
+            const c = el as HTMLElement;
+            gsap.to(c, {
+              opacity: 0.2,
+              duration: 0.3,
+              overwrite: true,
+            });
           });
-        });
-      },
-      onUpdate: () => {
-        const containerRect = container.getBoundingClientRect();
-        const textRect = rootRef.current!.getBoundingClientRect();
-        const bottomOffset = textRect.height + 200;
+        },
+        onUpdate: () => {
+          const containerRect = container.getBoundingClientRect();
+          const textRect = rootRef.current!.getBoundingClientRect();
+          const bottomOffset = textRect.height + 200;
 
-        const containerTop = Math.abs(containerRect.top);
-        const containerHeight = containerRect.height;
+          const containerTop = Math.abs(containerRect.top);
+          const containerHeight = containerRect.height;
 
-        const chartsCount = split.chars.length;
-        const offsetPerChar = (containerHeight - bottomOffset) / chartsCount;
+          const chartsCount = split.chars.length;
+          const offsetPerChar = (containerHeight - bottomOffset) / chartsCount;
 
-        split.chars.forEach((el, index) => {
-          const c = el as HTMLElement;
-          const charOffsetStart = index * offsetPerChar;
-          const opacity = containerTop > charOffsetStart ? 1 : 0.2;
-          gsap.to(c, {
-            opacity,
-            duration: 0.3,
-            overwrite: true,
-          });
-        });
-
-        const isRevealComplete = containerTop > containerHeight - bottomOffset;
-        if (isRevealComplete) {
-          // Just highlight 2 last words when we are below the text
           split.chars.forEach((el, index) => {
             const c = el as HTMLElement;
-            const isLastTwoChars = index >= lastTwoWordsStartIndex;
+            const charOffsetStart = index * offsetPerChar;
+            const opacity = containerTop > charOffsetStart ? 1 : 0.2;
             gsap.to(c, {
-              opacity: isLastTwoChars ? 1 : 0.2,
+              opacity,
               duration: 0.3,
               overwrite: true,
             });
           });
 
-          gsap.to(subComponentRef.current, {
-            opacity: 1,
-            duration: 0.5,
-            ease: "power2.out",
-            filter: "blur(0px)",
-            overwrite: true,
-          });
-        } else {
-          gsap.to(subComponentRef.current, {
-            opacity: 0,
-            duration: 0.5,
-            ease: "power2.out",
-            filter: "blur(10px)",
-            overwrite: true,
-          });
-        }
-      },
-    });
-    return () => {
-      trigger.kill();
-    };
+          const isRevealComplete = containerTop > containerHeight - bottomOffset;
+          if (isRevealComplete) {
+            // Just highlight 2 last words when we are below the text
+            split.chars.forEach((el, index) => {
+              const c = el as HTMLElement;
+              const isLastTwoChars = index >= lastTwoWordsStartIndex;
+              gsap.to(c, {
+                opacity: isLastTwoChars ? 1 : 0.2,
+                duration: 0.3,
+                overwrite: true,
+              });
+            });
+
+            gsap.to(subComponentRef.current, {
+              opacity: 1,
+              duration: 0.5,
+              ease: "power2.out",
+              filter: "blur(0px)",
+              overwrite: true,
+            });
+          } else {
+            gsap.to(subComponentRef.current, {
+              opacity: 0,
+              duration: 0.5,
+              ease: "power2.out",
+              filter: "blur(10px)",
+              overwrite: true,
+            });
+          }
+        },
+      });
+    }, container);
+
+    return () => ctx.revert();
   }, []);
 
   return (

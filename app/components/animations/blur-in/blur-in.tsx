@@ -54,64 +54,63 @@ export function BlurIn({
     if (!el) {
       return;
     }
-    let scrollerTarget: Element | string | null =
-      document.getElementById("snap-main-container") || null;
 
-    if (typeof scrollerTarget === "string") {
-      scrollerTarget = document.querySelector(scrollerTarget);
-    }
-    const axis = direction === "horizontal" ? "x" : "y";
-    const offset = reverse ? -distance : distance;
-    const startPct = (1 - threshold) * 100;
+    const ctx = gsap.context(() => {
+      let scrollerTarget: Element | string | null =
+        document.getElementById("snap-main-container") || null;
 
-    gsap.set(el, {
-      [axis]: offset,
-      scale,
-      opacity: animateOpacity ? initialOpacity : 1,
-      visibility: "visible",
-      filter: "blur(10px)",
-    });
+      if (typeof scrollerTarget === "string") {
+        scrollerTarget = document.querySelector(scrollerTarget);
+      }
+      const axis = direction === "horizontal" ? "x" : "y";
+      const offset = reverse ? -distance : distance;
+      const startPct = (1 - threshold) * 100;
 
-    const tl = gsap.timeline({
-      paused: true,
-      delay,
-      onComplete: () => {
-        if (onComplete) onComplete();
-        if (disappearAfter > 0) {
-          gsap.to(el, {
-            [axis]: reverse ? distance : -distance,
-            // scale: 0.8,
-            opacity: animateOpacity ? initialOpacity : 0,
-            delay: disappearAfter,
-            duration: disappearDuration,
-            ease: disappearEase,
-            onComplete: () => onDisappearanceComplete?.(),
-          });
-        }
-      },
-    });
+      gsap.set(el, {
+        [axis]: offset,
+        scale,
+        opacity: animateOpacity ? initialOpacity : 1,
+        visibility: "visible",
+        filter: "blur(10px)",
+      });
 
-    tl.to(el, {
-      [axis]: 0,
-      scale: 1,
-      opacity: 1,
-      duration,
-      filter: "blur(0px)",
-      ease,
-    });
+      const tl = gsap.timeline({
+        paused: true,
+        delay,
+        onComplete: () => {
+          if (onComplete) onComplete();
+          if (disappearAfter > 0) {
+            gsap.to(el, {
+              [axis]: reverse ? distance : -distance,
+              opacity: animateOpacity ? initialOpacity : 0,
+              delay: disappearAfter,
+              duration: disappearDuration,
+              ease: disappearEase,
+              onComplete: () => onDisappearanceComplete?.(),
+            });
+          }
+        },
+      });
 
-    const st = ScrollTrigger.create({
-      trigger: el,
-      scroller: scrollerTarget || window,
-      start: `top ${startPct}%`,
-      once: true,
-      onEnter: () => tl.play(),
-    });
+      tl.to(el, {
+        [axis]: 0,
+        scale: 1,
+        opacity: 1,
+        duration,
+        filter: "blur(0px)",
+        ease,
+      });
 
-    return () => {
-      st.kill();
-      tl.kill();
-    };
+      ScrollTrigger.create({
+        trigger: el,
+        scroller: scrollerTarget || window,
+        start: `top ${startPct}%`,
+        once: true,
+        onEnter: () => tl.play(),
+      });
+    }, el);
+
+    return () => ctx.revert();
   }, [
     container,
     distance,

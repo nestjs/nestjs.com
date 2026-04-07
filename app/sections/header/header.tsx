@@ -2,8 +2,6 @@ import { ChevronDown } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
 import { siDiscord, siGithub, siX } from "simple-icons";
 import LinkedinIcon from "../../assets/icons/linkedin.svg";
-import DevtoolsThumbnail from "../../assets/thumbnails/devtools.png";
-import MauThumbnail from "../../assets/thumbnails/mau.png";
 import { BlurIn } from "../../components/animations/blur-in/blur-in";
 import CountUp from "../../components/animations/count-up/count-up";
 import { WordByWord } from "../../components/animations/word-by-word/word-by-word";
@@ -12,13 +10,14 @@ import NoiseOverlay from "../../components/backgrounds/noise-overlay/noise-overl
 import { PrimaryButton } from "../../components/buttons/primary-button/primary-button";
 import { TransparentButton } from "../../components/buttons/transparent-button/transparent-button";
 import { MobileMenu } from "../../components/domain/mobile-menu/mobile-menu";
+import { SectionSubheading } from "../../components/domain/section-subheading/section-subheading";
 import { ShineText } from "../../components/effects/shine-text/shine-text";
 import SpotlightCard from "../../components/effects/spotlight-card/spotlight-card";
 import LazyRender from "../../components/misc/lazy-render/lazy-render";
 import { type NestStats } from "../../services/nest-stats.service";
 import classes from "./header.module.scss";
 
-type MenuItem = {
+export type MenuItem = {
   id: string;
   label: string;
   href: string;
@@ -31,54 +30,43 @@ type MenuItem = {
   }[];
 };
 
-const MENU_ITEMS: Array<MenuItem> = [
-  { id: "docs", label: "Docs", href: "https://docs.nestjs.com" },
-  {
-    id: "enterprise",
-    label: "Enterprise",
-    href: "https://enterprise.nestjs.com",
-  },
-  {
-    id: "courses",
-    label: "Courses",
-    href: "https://courses.nestjs.com",
-  },
-  {
-    id: "tools",
-    label: "Tools",
-    href: "#",
-    children: [
-      {
-        id: "devtools",
-        label: "Devtools",
-        href: "https://devtools.nestjs.com",
-        description: "Identify dependencies and connections between modules.",
-        thumbnail: DevtoolsThumbnail,
-      },
-      {
-        id: "mau",
-        label: "Deploy, Mau!",
-        href: "https://mau.nestjs.com",
-        description: "Provision and manage your infrastructure on AWS.",
-        thumbnail: MauThumbnail,
-      },
-    ],
-  },
-  { id: "jobs", label: "Jobs", href: "https://jobs.nestjs.com" },
-];
-
 const HIDE_SUBMENU_DELAY = 2000; // ms
 const INITIAL_SUBMENU_STATE = {
   state: "hidden",
   coords: { x: 0, y: 0 },
   items: null,
 } as const;
-// const INITIAL_SUBMENU_STATE = {
-//   coords: { x: 900, y: 150 },
-//   items: MENU_ITEMS[3].children || null,
-// };
 
-export function Header({ stats }: { stats: NestStats | null }) {
+export function Header({
+  stats,
+  menuItems,
+  shrink = true,
+  heading = "More than just a Node framework",
+  subheading = "Nest - the world's fastest-growing Node framework for building efficient, reliable and scalable server-side applications.",
+  breadcrumb,
+  actions = (
+    <>
+      <PrimaryButton
+        href="https://docs.nestjs.com/"
+        className="mr-5"
+        target="_blank"
+      >
+        Get started
+      </PrimaryButton>
+      <TransparentButton href="https://github.com/nestjs" target="_blank">
+        Github
+      </TransparentButton>
+    </>
+  ),
+}: {
+  stats: NestStats | null;
+  heading?: string;
+  subheading?: string;
+  breadcrumb?: string;
+  actions?: React.ReactNode;
+  shrink?: boolean;
+  menuItems: Array<MenuItem>;
+}) {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [hoveringTarget, setHoveringTarget] = useState<MenuItem | null>(null);
   const [submenu, setSubmenu] = useState<{
@@ -155,8 +143,8 @@ export function Header({ stats }: { stats: NestStats | null }) {
       <div
         ref={headerRef}
         className={`flex justify-center overflow-hidden relative pb-16 sm:rounded-[32px] rounded-[16px] 
-          relative xl:h-[91vh] min-h-[780px] xl:max-h-[920px] overflow-hidden
-          ${auroraReady ? "opacity-100" : "opacity-0"}`}
+          ${auroraReady ? "opacity-100" : "opacity-0"}
+          ${shrink ? "xl:h-[91vh] min-h-[780px] xl:max-h-[920px]" : "xl:h-[85vh] min-h-[680px] xl:max-h-[920px]"}`}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-[#050303] via-[#780f20] to-[#050303]"></div>
         {/* <div
@@ -202,7 +190,7 @@ export function Header({ stats }: { stats: NestStats | null }) {
                   <nav
                     className={`lg:flex hidden justify-center font-medium text-base flex-1`}
                   >
-                    {MENU_ITEMS.map((item) => (
+                    {menuItems.map((item) => (
                       <div
                         key={item.id}
                         onMouseEnter={(e) => onMenuItemMouseEnter(item, e)}
@@ -315,32 +303,30 @@ export function Header({ stats }: { stats: NestStats | null }) {
             </div>
           </BlurIn>
           <div className="centered text-center pt-26 2xl:pt-32 pb-40 flex flex-col items-center">
-            <h1 className="lg:text-[7rem] text-5xl md:text-7xl lg:leading-[0.95] leading-[1.1] font-medium max-w-4xl self-center px-4 sm:px-0">
-              <WordByWord>More than just a Node framework</WordByWord>
+            {breadcrumb && (
+              <BlurIn>
+                <SectionSubheading>{breadcrumb}</SectionSubheading>
+              </BlurIn>
+            )}
+            <h1
+              className={`
+              ${
+                shrink
+                  ? "lg:text-[7rem] lg:leading-[0.95] text-5xl md:text-7xl leading-[1.1]"
+                  : "lg:text-[4rem] lg:leading-[1.15] text-4xl md:text-5xl leading-[1]"
+              } font-medium max-w-4xl self-center px-4 sm:px-0
+            `}
+            >
+              <WordByWord>{heading}</WordByWord>
             </h1>
             <BlurIn delay={0.35}>
               <p className="mt-4 sm:text-sm text-[0.8rem] font-light font-mono opacity-80 max-w-2xl sm:leading-[24px] leading-[22px] lg:p-0 px-8">
-                Nest - the world's fastest-growing Node framework for building
-                efficient, reliable and scalable server-side applications.
+                {subheading}
               </p>
             </BlurIn>
-            <div className="mt-24 2xl:mt-20">
+            <div className={`${shrink ? "mt-24 2xl:mt-20" : "mt-10"}`}>
               <BlurIn delay={0.7} distance={10}>
-                <>
-                  <PrimaryButton
-                    href="https://docs.nestjs.com/"
-                    className="mr-5"
-                    target="_blank"
-                  >
-                    Get started
-                  </PrimaryButton>
-                  <TransparentButton
-                    href="https://github.com/nestjs"
-                    target="_blank"
-                  >
-                    Github
-                  </TransparentButton>
-                </>
+                {actions}
               </BlurIn>
             </div>
           </div>
@@ -441,7 +427,7 @@ export function Header({ stats }: { stats: NestStats | null }) {
       <MobileMenu
         open={mobileMenuOpen}
         close={() => setMobileMenuOpen(false)}
-        items={MENU_ITEMS}
+        items={menuItems}
       />
     </header>
   );

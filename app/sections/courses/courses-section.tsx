@@ -65,29 +65,30 @@ export function CoursesSection({ className }: { className?: string }) {
     }
     const midIndex = (courses.length - 1) / 2;
 
-    // Initial states
-    cardRefs.current.forEach((card, index) => {
-      if (index === courses.length - 1) {
-        gsap.set(card, { x: 0, y: FIRST_CARD_OFFSET_Y, rotate: 0, opacity: 0 });
-      } else {
-        gsap.set(card, { x: 0, y: 0, rotate: 0, opacity: 0 });
-      }
-    });
+    const ctx = gsap.context(() => {
+      // Initial states
+      cardRefs.current.forEach((card, index) => {
+        if (index === courses.length - 1) {
+          gsap.set(card, { x: 0, y: FIRST_CARD_OFFSET_Y, rotate: 0, opacity: 0 });
+        } else {
+          gsap.set(card, { x: 0, y: 0, rotate: 0, opacity: 0 });
+        }
+      });
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 50%",
-        end: "top 30%",
-        scrub: false,
-      },
-      onComplete: () => {
-        setCourseCardBorderOpaque(true);
-        cardRefs.current.forEach((card) => {
-          card.style.pointerEvents = "auto";
-        });
-      },
-    });
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 50%",
+          end: "top 30%",
+          scrub: false,
+        },
+        onComplete: () => {
+          setCourseCardBorderOpaque(true);
+          cardRefs.current.forEach((card) => {
+            card.style.pointerEvents = "auto";
+          });
+        },
+      });
 
     // Step 1 — First card enters (centered)
     tl.to(cardRefs.current[courses.length - 1], {
@@ -166,6 +167,9 @@ export function CoursesSection({ className }: { className?: string }) {
         "fan", // <-- same position = simultaneous,
       );
     });
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
