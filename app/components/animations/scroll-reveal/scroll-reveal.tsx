@@ -5,8 +5,8 @@ import React, {
   type ReactNode,
   type RefObject,
   useEffect,
-  useRef,
   useMemo,
+  useRef,
 } from "react";
 
 gsap.registerPlugin(ScrollTrigger);

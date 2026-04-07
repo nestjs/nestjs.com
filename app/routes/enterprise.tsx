@@ -3,11 +3,13 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap/dist/gsap.js";
 // @ts-ignore
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger.js";
+import Conference from "../assets/marketing/conferences.png";
 import Chart from "../assets/misc/chart.svg?react";
 import EnterpriseTestimonialAvatar from "../assets/testimonials/otg/author.jpeg";
 import DevtoolsThumbnail from "../assets/thumbnails/devtools.png";
 import MauThumbnail from "../assets/thumbnails/mau.png";
 import AnimatedContent from "../components/animations/animated-content/animated-content";
+import { BlurIn } from "../components/animations/blur-in/blur-in";
 import LightRays from "../components/animations/light-rays/light-rays";
 import ScrollReveal from "../components/animations/scroll-reveal/scroll-reveal";
 import NoiseOverlay from "../components/backgrounds/noise-overlay/noise-overlay";
@@ -88,12 +90,14 @@ export default function Enterprise() {
         scaleY: 0,
         opacity: 0,
         transformOrigin: "bottom center",
+        filter: "hue-rotate(90deg) brightness(0.2)",
       });
       gsap.set(chartRef.current, { opacity: 1 });
 
       gsap.to(bars, {
         scaleY: 1,
         opacity: 1,
+        filter: "hue-rotate(0deg) brightness(1)",
         duration: 3,
         stagger: {
           each: 0.008,
@@ -235,6 +239,52 @@ export default function Enterprise() {
               basis to help take your project to the next-level. Let us partner
               with you and your team to develop the most ambitious projects.
             </ScrollReveal>
+          </div>
+        </div>
+      </div>
+      <div className="px-5 py-8 mb-30 relative">
+        <div className="container relative flex mx-auto md:flex-row flex-col items-center">
+          <div className="grid md:grid-cols-[50%_10%_40%] grid-rows-[auto] gap-0 place-items-center">
+            <div>
+              <SectionSubheading>Expertise</SectionSubheading>
+              <ScrollReveal
+                ElementTag="h2"
+                className="font-medium sm:text-5xl text-[2.75rem] leading-[1.1]"
+                enableBlur
+              >
+                Maximize Performance. Minimize Risk.
+              </ScrollReveal>
+              <ScrollReveal
+                className="font-mono text-sm opacity-70 leading-6 font-light pt-10"
+                ElementTag="p"
+                enableBlur
+              >
+                Our enterprise NestJS support proactively identifies bottlenecks
+                and improves system performance across complex environments. We
+                help you maintain stability and reduce risk even under heavy
+                production load.
+              </ScrollReveal>
+              <div className="mt-10">
+                <BlurIn distance={20} delay={0.1} initialOpacity={0}>
+                  <PrimaryButton
+                    href="mailto:support@nestjs.com"
+                    target="_blank"
+                  >
+                    Contact us
+                  </PrimaryButton>
+                </BlurIn>
+              </div>
+            </div>
+            <span />
+            <div>
+              <BlurIn distance={20} delay={0.1} initialOpacity={0}>
+                <img
+                  src={Conference}
+                  alt="Conference"
+                  className="rounded-[20px] w-full"
+                />
+              </BlurIn>
+            </div>
           </div>
         </div>
       </div>

@@ -12,9 +12,9 @@ import { useState } from "react";
 import type { Route } from "./+types/root";
 import { BlurIn } from "./components/animations/blur-in/blur-in";
 import Aurora from "./components/backgrounds/aurora-background/aurora-background";
-import { GsapRouteHandler } from "./components/gsap-route-handler";
 import NoiseOverlay from "./components/backgrounds/noise-overlay/noise-overlay";
 import { PrimaryButton } from "./components/buttons/primary-button/primary-button";
+import { GsapRouteHandler } from "./components/gsap-route-handler";
 import LazyRender from "./components/misc/lazy-render/lazy-render";
 import "./index.css";
 

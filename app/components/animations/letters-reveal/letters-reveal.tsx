@@ -89,7 +89,8 @@ export function LettersReveal({
             });
           });
 
-          const isRevealComplete = containerTop > containerHeight - bottomOffset;
+          const isRevealComplete =
+            containerTop > containerHeight - bottomOffset;
           if (isRevealComplete) {
             // Just highlight 2 last words when we are below the text
             split.chars.forEach((el, index) => {

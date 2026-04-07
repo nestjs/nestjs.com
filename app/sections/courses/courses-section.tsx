@@ -69,7 +69,12 @@ export function CoursesSection({ className }: { className?: string }) {
       // Initial states
       cardRefs.current.forEach((card, index) => {
         if (index === courses.length - 1) {
-          gsap.set(card, { x: 0, y: FIRST_CARD_OFFSET_Y, rotate: 0, opacity: 0 });
+          gsap.set(card, {
+            x: 0,
+            y: FIRST_CARD_OFFSET_Y,
+            rotate: 0,
+            opacity: 0,
+          });
         } else {
           gsap.set(card, { x: 0, y: 0, rotate: 0, opacity: 0 });
         }
@@ -90,83 +95,83 @@ export function CoursesSection({ className }: { className?: string }) {
         },
       });
 
-    // Step 1 — First card enters (centered)
-    tl.to(cardRefs.current[courses.length - 1], {
-      y: 0,
-      opacity: 1,
-      duration: 0.3,
-      ease: "power2.out",
-      // filter: "grayscale(100%)",
-    });
+      // Step 1 — First card enters (centered)
+      tl.to(cardRefs.current[courses.length - 1], {
+        y: 0,
+        opacity: 1,
+        duration: 0.3,
+        ease: "power2.out",
+        // filter: "grayscale(100%)",
+      });
 
-    // Step 2 - Other cards can fade in as they won't be visible anyway
-    cardRefs.current.forEach((card, index) => {
-      if (index !== courses.length - 1) {
+      // Step 2 - Other cards can fade in as they won't be visible anyway
+      cardRefs.current.forEach((card, index) => {
+        if (index !== courses.length - 1) {
+          tl.to(
+            card,
+            {
+              opacity: 1,
+              duration: 0.3,
+              ease: "power2.out",
+            },
+            "fadeInOthers",
+          );
+        } else {
+          tl.to(
+            card,
+            {
+              // filter: "grayscale(0%)",
+              duration: 0.3,
+            },
+            "fadeInOthers",
+          );
+        }
+      });
+
+      // Prepare final fan values
+      const fanAnimations = cardRefs.current.map((card, index) => {
+        // Calculate offset from center, different for side cards
+        const offset =
+          index === courses.length
+            ? -midIndex - 1
+            : index === courses.length + 1
+              ? midIndex + 1
+              : index - midIndex;
+
+        return index >= courses.length
+          ? {
+              target: card,
+              vars: {
+                opacity: SIDE_CARD_OPACITY,
+                x: BASE_TRANSLATE_X * 0.75 * offset,
+                y: Math.abs(offset) * BASE_TRANSLATE_Y,
+                rotate: BASE_ROTATION * offset,
+              },
+            }
+          : {
+              target: card,
+              vars: {
+                x: BASE_TRANSLATE_X * offset,
+                y: Math.abs(offset) * BASE_TRANSLATE_Y,
+                rotate: BASE_ROTATION * offset,
+              },
+            };
+      });
+
+      // Step 3 — All cards fan out at the SAME time
+      tl.addLabel("fan");
+
+      fanAnimations.forEach(({ target, vars }) => {
         tl.to(
-          card,
+          target,
           {
-            opacity: 1,
-            duration: 0.3,
+            ...vars,
+            duration: 0.8,
             ease: "power2.out",
           },
-          "fadeInOthers",
+          "fan", // <-- same position = simultaneous,
         );
-      } else {
-        tl.to(
-          card,
-          {
-            // filter: "grayscale(0%)",
-            duration: 0.3,
-          },
-          "fadeInOthers",
-        );
-      }
-    });
-
-    // Prepare final fan values
-    const fanAnimations = cardRefs.current.map((card, index) => {
-      // Calculate offset from center, different for side cards
-      const offset =
-        index === courses.length
-          ? -midIndex - 1
-          : index === courses.length + 1
-            ? midIndex + 1
-            : index - midIndex;
-
-      return index >= courses.length
-        ? {
-            target: card,
-            vars: {
-              opacity: SIDE_CARD_OPACITY,
-              x: BASE_TRANSLATE_X * 0.75 * offset,
-              y: Math.abs(offset) * BASE_TRANSLATE_Y,
-              rotate: BASE_ROTATION * offset,
-            },
-          }
-        : {
-            target: card,
-            vars: {
-              x: BASE_TRANSLATE_X * offset,
-              y: Math.abs(offset) * BASE_TRANSLATE_Y,
-              rotate: BASE_ROTATION * offset,
-            },
-          };
-    });
-
-    // Step 3 — All cards fan out at the SAME time
-    tl.addLabel("fan");
-
-    fanAnimations.forEach(({ target, vars }) => {
-      tl.to(
-        target,
-        {
-          ...vars,
-          duration: 0.8,
-          ease: "power2.out",
-        },
-        "fan", // <-- same position = simultaneous,
-      );
-    });
+      });
     }, containerRef);
 
     return () => ctx.revert();
