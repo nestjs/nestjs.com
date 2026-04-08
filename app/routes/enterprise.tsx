@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react";
-// @ts-ignore
-import { gsap } from "gsap/dist/gsap.js";
-// @ts-ignore
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger.js";
 import Conference from "../assets/marketing/conferences.png";
 import EnterpriseTestimonialAvatar from "../assets/testimonials/otg/author.jpeg";
 import DevtoolsThumbnail from "../assets/thumbnails/devtools.png";
 import MauThumbnail from "../assets/thumbnails/mau.png";
 import AnimatedContent from "../components/animations/animated-content/animated-content";
-import { BlurIn } from "../components/animations/blur-in/blur-in";
 import LightRays from "../components/animations/light-rays/light-rays";
 import ScrollReveal from "../components/animations/scroll-reveal/scroll-reveal";
 import AnimatedChart from "../components/backgrounds/animated-chart/animated-chart";
@@ -20,12 +15,11 @@ import { CoursesSection } from "../sections/courses/courses-section";
 import { EnterpriseSection } from "../sections/enterprise/enterprise-section";
 import { Footer } from "../sections/footer/footer";
 import { Header, type MenuItem } from "../sections/header/header";
+import PhotoSection from "../sections/photo/photo-section";
 import { StatsSection } from "../sections/stats/stats-section";
 import { TestimonialsSection } from "../sections/testimonials/testimonials-section";
 import { fetchNestStats, type NestStats } from "../services/nest-stats.service";
 import type { Route } from "./+types/home";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const MENU_ITEMS: Array<MenuItem> = [
   { id: "home", label: "Home", href: "/" },
@@ -33,7 +27,7 @@ const MENU_ITEMS: Array<MenuItem> = [
   {
     id: "courses",
     label: "Courses",
-    href: "https://courses.nestjs.com",
+    href: "/courses",
   },
   {
     id: "tools",
@@ -204,56 +198,29 @@ export default function Enterprise() {
           </div>
         </div>
       </div>
-      <div className="px-5 py-8 mb-30 relative">
-        <div className="container relative flex mx-auto md:flex-row flex-col items-center">
-          <div className="grid md:grid-cols-[50%_10%_40%] grid-rows-[auto] gap-0 place-items-center">
-            <div className="md:order-1 order-3 md:mt-0 mt-12">
-              <SectionSubheading>Expertise</SectionSubheading>
-              <ScrollReveal
-                ElementTag="h2"
-                className="font-medium sm:text-5xl text-[2.3rem] leading-[1.1]"
-                enableBlur
-              >
-                Maximize Performance. Minimize Risk.
-              </ScrollReveal>
-              <ScrollReveal
-                className="font-mono text-sm opacity-70 leading-6 font-light pt-10"
-                ElementTag="p"
-                enableBlur
-              >
-                Our enterprise NestJS support proactively identifies bottlenecks
-                and improves system performance across complex environments. We
-                help you maintain stability and reduce risk even under heavy
-                production load.
-              </ScrollReveal>
-              <div className="mt-10">
-                <BlurIn distance={20} delay={0.1} initialOpacity={0}>
-                  <PrimaryButton
-                    href="mailto:support@nestjs.com"
-                    target="_blank"
-                  >
-                    Contact us
-                  </PrimaryButton>
-                </BlurIn>
-              </div>
-            </div>
-            <span className="md:order-2 order-2" />
-            <div className="md:order-3 order-1 w-full">
-              <BlurIn distance={20} delay={0.1} initialOpacity={0}>
-                <img
-                  src={Conference}
-                  alt="Conference"
-                  className="rounded-[20px] w-full"
-                />
-              </BlurIn>
-            </div>
-          </div>
-        </div>
-      </div>
+      <PhotoSection
+        subheading="Expertise"
+        heading="Maximize Performance. Minimize Risk."
+        text="Our enterprise NestJS support proactively identifies bottlenecks and improves system performance across complex environments. We help you maintain stability and reduce risk even under heavy production load."
+        cta={
+          <PrimaryButton href="mailto:support@nestjs.com" target="_blank">
+            Contact us
+          </PrimaryButton>
+        }
+        image={
+          <img
+            src={Conference}
+            alt="Conference"
+            className="rounded-[20px] w-full"
+          />
+        }
+        className="px-5 py-8 mb-30"
+      />
       <CoursesSection
         className="sm:pt-30 pt-0"
         heading="Upskill your team"
         description="Give your team access to 200+ lessons to master NestJS and confidently build secure, scalable, enterprise-grade backend systems."
+        ctaText="Browse courses"
       />
       <div className="sm:p-10 sm:mt-50 mt-20 p-4">
         <StatsSection stats={stats} />

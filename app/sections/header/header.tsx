@@ -44,6 +44,7 @@ export function Header({
   heading = "More than just a Node framework",
   subheading = "Nest - the world's fastest-growing Node framework for building efficient, reliable and scalable server-side applications.",
   breadcrumb,
+  bottomPanel,
   actions = (
     <>
       <PrimaryButton
@@ -59,11 +60,12 @@ export function Header({
     </>
   ),
 }: {
-  stats: NestStats | null;
+  stats?: NestStats | null;
   heading?: string;
   subheading?: string;
   breadcrumb?: string;
   actions?: React.ReactNode;
+  bottomPanel?: React.ReactNode;
   shrink?: boolean;
   menuItems: Array<MenuItem>;
 }) {
@@ -144,7 +146,7 @@ export function Header({
         ref={headerRef}
         className={`flex justify-center overflow-hidden relative pb-16 sm:rounded-[32px] rounded-[16px] 
           ${auroraReady ? "opacity-100" : "opacity-0"}
-          ${shrink ? "xl:h-[91vh] min-h-[780px] xl:max-h-[920px]" : "xl:h-[85vh] min-h-[680px] xl:max-h-[920px]"}`}
+          ${shrink ? "xl:h-[91vh] min-h-[780px] xl:max-h-[920px]" : bottomPanel ? "min-h-[680px]" : "xl:h-[85vh] min-h-[680px] xl:max-h-[920px]"}`}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-[#050303] via-[#780f20] to-[#050303]"></div>
         {/* <div
@@ -302,7 +304,9 @@ export function Header({
               </SpotlightCard>
             </div>
           </BlurIn>
-          <div className="centered text-center pt-26 2xl:pt-32 pb-40 flex flex-col items-center">
+          <div
+            className={`centered text-center pt-26 2xl:pt-32 flex flex-col items-center ${bottomPanel ? "pb-0" : "pb-40"}`}
+          >
             {breadcrumb && (
               <BlurIn>
                 <SectionSubheading>{breadcrumb}</SectionSubheading>
@@ -324,11 +328,14 @@ export function Header({
                 {subheading}
               </p>
             </BlurIn>
-            <div className={`${shrink ? "mt-24 2xl:mt-20" : "mt-10"}`}>
-              <BlurIn delay={0.7} distance={10}>
-                {actions}
-              </BlurIn>
-            </div>
+            {actions && (
+              <div className={`${shrink ? "mt-24 2xl:mt-20" : "mt-10"}`}>
+                <BlurIn delay={0.7} distance={10}>
+                  {actions}
+                </BlurIn>
+              </div>
+            )}
+            {bottomPanel}
           </div>
         </div>
         <div className="absolute right-20 bottom-15 sm:leading-10 leading-8 font-mono sm:text-sm text-xs sm:text-right text-center">

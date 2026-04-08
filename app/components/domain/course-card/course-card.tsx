@@ -11,6 +11,7 @@ type CourseCardProps = {
   lessonCount: number;
   color: string;
   borderOpaque?: boolean;
+  shadowOnHover?: boolean;
 };
 
 export function CourseCard({
@@ -19,6 +20,7 @@ export function CourseCard({
   lessonCount,
   color,
   borderOpaque = false,
+  shadowOnHover = true,
 }: CourseCardProps) {
   const meshRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -34,7 +36,7 @@ export function CourseCard({
   const handleMouseEnter = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {
-    if (cardRef.current) {
+    if (cardRef.current && shadowOnHover) {
       cardRef.current.style.boxShadow = `0 -40px 100px rgba(${color}, 0.45)`;
     }
   };
@@ -42,7 +44,7 @@ export function CourseCard({
   const handleMouseLeave = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {
-    if (cardRef.current) {
+    if (cardRef.current && shadowOnHover) {
       cardRef.current.style.boxShadow = `none`;
     }
   };

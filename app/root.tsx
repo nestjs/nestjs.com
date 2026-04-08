@@ -116,7 +116,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
             <BlurIn>{message}</BlurIn>
           </h1>
           <BlurIn delay={0.35}>
-            <p className="mt-4 sm:text-sm text-[0.8rem] font-light font-mono opacity-80 max-w-2xl sm:leading-[24px] leading-[22px] lg:p-0 px-8">
+            <p className="mt-16 sm:text-sm text-[0.8rem] font-light font-mono opacity-80 max-w-2xl sm:leading-[24px] leading-[22px] lg:p-0 px-8">
               {details}
             </p>
           </BlurIn>

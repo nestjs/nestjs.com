@@ -3,17 +3,13 @@ import DevtoolsThumbnail from "../assets/thumbnails/devtools.png";
 import MauThumbnail from "../assets/thumbnails/mau.png";
 import { BlurIn } from "../components/animations/blur-in/blur-in";
 import { LettersReveal } from "../components/animations/letters-reveal/letters-reveal";
-import ScrollReveal from "../components/animations/scroll-reveal/scroll-reveal";
-import FeatureCards from "../components/domain/feature-cards/feature-cards";
-import { SectionSubheading } from "../components/domain/section-subheading/section-subheading";
+import { CoursesFan } from "../components/domain/courses-fan/courses-fan";
 import { ServiceCard } from "../components/domain/service-card/service-card";
 import StackedCards from "../components/misc/stacked-cards/stacked-cards";
 import { BrandsSection } from "../sections/brands/brands-section";
-import { CoursesSection } from "../sections/courses/courses-section";
 import { EnterpriseSection } from "../sections/enterprise/enterprise-section";
 import { Footer } from "../sections/footer/footer";
 import { Header, type MenuItem } from "../sections/header/header";
-import { SponsorsSection } from "../sections/sponsors/sponsors-section";
 import { StatsSection } from "../sections/stats/stats-section";
 import { SyntaxSection } from "../sections/syntax/syntax-section";
 import { TestimonialsSection } from "../sections/testimonials/testimonials-section";
@@ -21,16 +17,12 @@ import { fetchNestStats, type NestStats } from "../services/nest-stats.service";
 import type { Route } from "./+types/home";
 
 const MENU_ITEMS: Array<MenuItem> = [
+  { id: "home", label: "Home", href: "/" },
   { id: "docs", label: "Docs", href: "https://docs.nestjs.com" },
   {
     id: "enterprise",
     label: "Enterprise",
     href: "/enterprise",
-  },
-  {
-    id: "courses",
-    label: "Courses",
-    href: "/courses",
   },
   {
     id: "tools",
@@ -67,7 +59,7 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function Home() {
+export default function Enterprise() {
   const [stats, setStats] = useState<NestStats | null>(null);
 
   useEffect(() => {
@@ -78,89 +70,26 @@ export default function Home() {
 
   return (
     <>
-      <Header stats={stats} menuItems={MENU_ITEMS} />
+      <Header
+        menuItems={MENU_ITEMS}
+        breadcrumb="courses"
+        heading="Upskill your team with official NestJS courses"
+        subheading="Over 200 lessons. Learn everything you need to master NestJS and tackle modern backend applications at any scale."
+        bottomPanel={
+          <div className="pt-24 relative flex w-full h-full">
+            <CoursesFan
+              variant="mask"
+              shadowOnHover={false}
+              animationDelay={0.5}
+              animationStartTriggerValue="top 100%"
+            />
+          </div>
+        }
+        actions={null}
+        shrink={false}
+      />
       <div className="flex justify-center md:mt-20 mt-8 mb-0">
         <BrandsSection />
-      </div>
-      <div className="flex justify-center mt-30">
-        <div className="container relative md:px-0 px-5">
-          <div className="grid md:grid-cols-[60%_10%_30%] sm:grid-cols-[60%_5%_35%] grid-rows-[auto] gap-0">
-            <div>
-              <SectionSubheading>What is Nest</SectionSubheading>
-              <ScrollReveal
-                ElementTag="h2"
-                className="font-medium md:text-5xl sm:text-3xl text-4xl mb-4 md:leading-14 sm:leading-10 leading-12"
-                enableBlur
-              >
-                Nest is a modern framework designed to build efficient, scalable
-                web applications
-              </ScrollReveal>
-            </div>
-            <span></span>
-            <ScrollReveal
-              className="font-mono text-sm opacity-70 leading-6 font-light sm:pt-10 pt-4"
-              ElementTag="p"
-              enableBlur
-            >
-              Built on TypeScript and Node.js, Nest blends best programming
-              practices with a clean, modular architecture, keeping projects
-              organized and easy to maintain.
-            </ScrollReveal>
-          </div>
-        </div>
-      </div>
-      <div className="lg:pt-50 lg:pb-40 pt-40 pb-16 flex justify-center overflow-hidden">
-        <FeatureCards
-          className="custom-bounceCards"
-          cards={[
-            {
-              icon: <img src="/features-icons/modules.png" />,
-              title: "Modules",
-              description:
-                "Streamline upkeep by organizing applications into self-contained modules.",
-            },
-            {
-              icon: <img src="/features-icons/dependency.png" />,
-              title: "Dependency Injection",
-              description:
-                "Boost code maintainability and testability with built-in dependency injection.",
-            },
-            {
-              icon: <img src="/features-icons/typesafety.png" />,
-              title: "Type Safety",
-              description:
-                "Mitigate errors through the robust type safety features of TypeScript.",
-            },
-            {
-              icon: <img src="/features-icons/enterprise-ready.png" />,
-              title: "Enterprise Ready",
-              description:
-                "Trusted by thousands of leading companies and organizations worldwide.",
-            },
-            {
-              icon: <img src="/features-icons/scalability.png" />,
-              title: "Decorators",
-              description:
-                "Enhance code readability and structure with TypeScript decorators.",
-            },
-            {
-              icon: <img src="/features-icons/microservices.png" />,
-              title: "Microservices",
-              description:
-                "Build scalable and efficient microservice architectures with ease.",
-            },
-            {
-              icon: <img src="/features-icons/webapps.png" />,
-              title: "Web Apps",
-              description:
-                "Create dynamic and responsive web applications effortlessly.",
-            },
-          ]}
-          animationDelay={1}
-          animationStagger={0.08}
-          easeType="elastic.out(1, 0.5)"
-          enableHover
-        />
       </div>
       <LettersReveal
         ElementTag="h4"
@@ -259,12 +188,10 @@ export default function Home() {
       />
       <EnterpriseSection className="lg:mt-30 mt-0" />
       <SyntaxSection className="mt-30 pt-2 pb-30" />
-      <CoursesSection className="sm:pt-30 pt-0" />
       <div className="sm:p-10 sm:mt-50 mt-20 p-4">
         <StatsSection stats={stats} />
       </div>
       <TestimonialsSection />
-      <SponsorsSection />
       <Footer className="mt-20" />
     </>
   );
