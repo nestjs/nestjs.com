@@ -144,7 +144,7 @@ export function Header({
     <header className="sm:p-10 p-4">
       <div
         ref={headerRef}
-        className={`flex justify-center overflow-hidden relative pb-16 sm:rounded-[32px] rounded-[16px] 
+        className={`flex justify-center flex-col items-center overflow-hidden relative pb-16 sm:rounded-[32px] rounded-[16px] 
           ${auroraReady ? "opacity-100" : "opacity-0"}
           ${shrink ? "xl:h-[91vh] min-h-[780px] xl:max-h-[920px]" : bottomPanel ? "min-h-[680px]" : "xl:h-[85vh] min-h-[680px] xl:max-h-[920px]"}`}
       >
@@ -335,7 +335,6 @@ export function Header({
                 </BlurIn>
               </div>
             )}
-            {bottomPanel}
           </div>
         </div>
         <div className="absolute right-20 bottom-15 sm:leading-10 leading-8 font-mono sm:text-sm text-xs sm:text-right text-center">
@@ -368,7 +367,10 @@ export function Header({
             </BlurIn>
           )}
         </div>
+
+        {bottomPanel}
       </div>
+
       <div
         className="submenu absolute top-full z-100 pt-12 duration-600 transition"
         style={{

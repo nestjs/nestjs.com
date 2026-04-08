@@ -76,12 +76,30 @@ const getRandom = (min: number, max: number) =>
 
 function UsersMesh() {
   const avatars: Avatar[] = useMemo(() => {
-    const count = 30;
+    let count = 25,
+      cols = 5,
+      rows = 5,
+      xJitter = -15,
+      yJitter = -24;
 
-    // Create a loose grid to ensure even spacing
-    const cols = 6;
-    const rows = 5;
-
+    switch (true) {
+      case window.innerWidth > 1200:
+        break;
+      case window.innerWidth > 992:
+        count = 16;
+        cols = 4;
+        rows = 4;
+        xJitter = 10;
+        yJitter = 10;
+        break;
+      default:
+        count = 9;
+        cols = 3;
+        rows = 3;
+        xJitter = 5;
+        yJitter = 5;
+        break;
+    }
     const cellWidth = 100 / cols;
     const cellHeight = 100 / rows;
 
@@ -94,8 +112,8 @@ function UsersMesh() {
         if (id >= count) break;
 
         // jitter inside each cell for natural randomness
-        const x = c * cellWidth + getRandom(10, cellWidth - 15);
-        const y = r * cellHeight + getRandom(10, cellHeight - 24);
+        const x = c * cellWidth + getRandom(10, cellWidth + xJitter);
+        const y = r * cellHeight + getRandom(10, cellHeight + yJitter);
 
         const userId = Math.floor(getRandom(1, 1000));
 
@@ -112,7 +130,7 @@ function UsersMesh() {
     }
 
     return points;
-  }, []);
+  }, [window.innerWidth]);
 
   return (
     <div className="relative w-full h-screen mt-60">
@@ -135,10 +153,10 @@ function UsersMesh() {
       ))}
 
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="flex flex-col items-center text-center container mx-auto px-4 bg-[radial-gradient(circle,_rgba(0,0,0,1),_transparent_70%)] shadow-lg">
+        <div className="flex flex-col items-center text-center container mx-auto px-4 bg-[radial-gradient(circle,var(--color-bg),transparent)] shadow-lg">
           <ScrollReveal
             ElementTag="h2"
-            className="font-medium md:text-8xl sm:text-3xl text-4xl mb-4 md:leading-28 sm:leading-10 leading-12"
+            className="font-medium xl:text-8xl md:text-6xl sm:text-5xl text-4xl mb-4 xl:leading-28 md:leading-18 sm:leading-15 leading-12"
             enableBlur
           >
             Join our ever-growing community of students

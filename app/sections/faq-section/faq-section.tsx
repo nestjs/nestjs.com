@@ -71,14 +71,14 @@ function FaqListItem({
   const [open, setOpen] = useState(false);
   return (
     <div
-      className="container relative flex md:flex-row flex-col items-center border-t border-[#292929] py-14 cursor-pointer group"
+      className="container relative flex sm:flex-row flex-col sm:items-center items-left border-t border-[#292929] md:py-14 py-8 cursor-pointer group"
       onClick={() => setOpen((o) => !o)}
     >
       <span className="font-mono opacity-50 text-xs group-hover:opacity-80 transition-opacity">
         {index < 9 ? `0${index + 1}` : index + 1}
       </span>
-      <div className="md:ml-14 ml-0 mt-4 md:mt-0 group-hover:opacity-65 transition-opacity flex-1">
-        <h4 className="font-medium sm:text-2xl text-[1.5rem] leading-[1.1]">
+      <div className="sm:ml-14 ml-0 mt-4 sm:mt-0 group-hover:opacity-65 transition-opacity flex-1">
+        <h4 className="font-medium sm:text-2xl text-xl leading-[1.4]">
           {question}
         </h4>
         {open && (
@@ -94,7 +94,7 @@ function FaqListItem({
           </BlurIn>
         )}
       </div>
-      <div className="ml-auto pl-15">
+      <div className="sm:ml-auto sm:pl-15 sm:block hidden">
         <svg
           width="32"
           height="32"
@@ -116,7 +116,7 @@ function FaqListItem({
 export default function FaqSection() {
   return (
     <div className="px-5 pt-24 pb-24">
-      <div className="container relative flex mx-auto md:flex-row flex-col items-center">
+      <div className="container relative flex mx-auto flex-row items-center">
         <div className="relative">
           <SectionSubheading>Faq</SectionSubheading>
           <ScrollReveal
@@ -128,7 +128,7 @@ export default function FaqSection() {
           </ScrollReveal>
         </div>
       </div>
-      <div className="container relative flex flex-col mx-auto mt-24 border-b border-[#292929]">
+      <div className="container relative flex flex-col mx-auto sm:mt-24 mt-16 border-b border-[#292929]">
         {FAQ_ITEMS.map(({ question, answer }, index) => (
           <FaqListItem
             key={index}
