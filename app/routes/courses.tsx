@@ -8,6 +8,7 @@ import { ServiceCard } from "../components/domain/service-card/service-card";
 import StackedCards from "../components/misc/stacked-cards/stacked-cards";
 import { BrandsSection } from "../sections/brands/brands-section";
 import { EnterpriseSection } from "../sections/enterprise/enterprise-section";
+import FaqSection from "../sections/faq-section/faq-section";
 import { Footer } from "../sections/footer/footer";
 import { Header, type MenuItem } from "../sections/header/header";
 import { StatsSection } from "../sections/stats/stats-section";
@@ -59,6 +60,103 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
+import { useMemo } from "react";
+import ScrollReveal from "../components/animations/scroll-reveal/scroll-reveal";
+
+type Avatar = {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  url: string;
+};
+
+const getRandom = (min: number, max: number) =>
+  Math.random() * (max - min) + min;
+
+function UsersMesh() {
+  const avatars: Avatar[] = useMemo(() => {
+    const count = 30;
+
+    // Create a loose grid to ensure even spacing
+    const cols = 6;
+    const rows = 5;
+
+    const cellWidth = 100 / cols;
+    const cellHeight = 100 / rows;
+
+    const points: Avatar[] = [];
+
+    let id = 0;
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        if (id >= count) break;
+
+        // jitter inside each cell for natural randomness
+        const x = c * cellWidth + getRandom(10, cellWidth - 15);
+        const y = r * cellHeight + getRandom(10, cellHeight - 24);
+
+        const userId = Math.floor(getRandom(1, 1000));
+
+        points.push({
+          id,
+          x,
+          y,
+          size: 48,
+          url: `https://avatars.githubusercontent.com/u/${userId}?v=4`,
+        });
+
+        id++;
+      }
+    }
+
+    return points;
+  }, []);
+
+  return (
+    <div className="relative w-full h-screen mt-60">
+      {avatars.map((a) => (
+        <BlurIn
+          key={a.id}
+          className="absolute rounded-full object-cover shadow-md overflow-hidden"
+          style={{
+            top: `${a.y}%`,
+            left: `${a.x}%`,
+            width: `${a.size}px`,
+            height: `${a.size}px`,
+            transform: "translate(-50%, -50%)",
+          }}
+          delay={Math.random() * 1.25}
+          scale={0}
+        >
+          <img src={a.url} alt="avatar" className="grayscale opacity-30" />
+        </BlurIn>
+      ))}
+
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="flex flex-col items-center text-center container mx-auto px-4 bg-[radial-gradient(circle,_rgba(0,0,0,1),_transparent_70%)] shadow-lg">
+          <ScrollReveal
+            ElementTag="h2"
+            className="font-medium md:text-8xl sm:text-3xl text-4xl mb-4 md:leading-28 sm:leading-10 leading-12"
+            enableBlur
+          >
+            Join our ever-growing community of students
+          </ScrollReveal>
+          <ScrollReveal
+            className="font-mono text-sm opacity-70 leading-6 font-light pt-4 max-w-4xl"
+            ElementTag="p"
+            enableBlur
+          >
+            Our courses are trusted by over 100,000 students worldwide. Become a
+            part of our thriving community and start your NestJS journey today.
+          </ScrollReveal>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Enterprise() {
   const [stats, setStats] = useState<NestStats | null>(null);
 
@@ -76,12 +174,13 @@ export default function Enterprise() {
         heading="Upskill your team with official NestJS courses"
         subheading="Over 200 lessons. Learn everything you need to master NestJS and tackle modern backend applications at any scale."
         bottomPanel={
-          <div className="pt-24 relative flex w-full h-full">
+          <div className="pt-12 relative flex w-full h-full">
             <CoursesFan
               variant="mask"
               shadowOnHover={false}
               animationDelay={0.5}
               animationStartTriggerValue="top 100%"
+              reverse
             />
           </div>
         }
@@ -91,6 +190,8 @@ export default function Enterprise() {
       <div className="flex justify-center md:mt-20 mt-8 mb-0">
         <BrandsSection />
       </div>
+      <UsersMesh />
+      <FaqSection />
       <LettersReveal
         ElementTag="h4"
         subComponent={

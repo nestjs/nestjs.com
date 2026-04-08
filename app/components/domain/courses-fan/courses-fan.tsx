@@ -52,18 +52,23 @@ export function CoursesFan({
   shadowOnHover = true,
   animationDelay = 0,
   animationStartTriggerValue = "top 50%",
+  reverse = false,
 }: {
   variant?: "gradient" | "mask";
   shadowOnHover?: boolean;
   animationStartTriggerValue?: string;
   animationDelay?: number;
+  reverse?: boolean;
 }) {
   const midIndex = (courses.length - 1) / 2;
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<HTMLDivElement[]>([]);
   const [courseCardBorderOpaque, setCourseCardBorderOpaque] = useState(false);
 
-  const allCards = [...courses, ...sideCards];
+  const allCards = reverse
+    ? [...[...courses].reverse(), ...sideCards]
+    : [...courses, ...sideCards];
+
   useEffect(() => {
     if (!containerRef.current) {
       return;
@@ -185,7 +190,7 @@ export function CoursesFan({
 
   return (
     <div
-      className="relative min-h-[400px] w-full flex justify-center items-start"
+      className="relative min-h-[400px] w-full flex justify-center items-start "
       ref={containerRef}
       style={
         variant === "mask"
@@ -194,6 +199,7 @@ export function CoursesFan({
                 "linear-gradient(to bottom, black 50%, transparent 80%)",
               WebkitMaskImage:
                 "linear-gradient(to bottom, black 50%, transparent 80%)",
+              paddingTop: "24px",
             }
           : undefined
       }
