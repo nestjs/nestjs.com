@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 // @ts-ignore
 import { gsap } from "gsap/dist/gsap.js";
 // @ts-ignore
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger.js";
 import Conference from "../assets/marketing/conferences.png";
-import Chart from "../assets/misc/chart.svg?react";
 import EnterpriseTestimonialAvatar from "../assets/testimonials/otg/author.jpeg";
 import DevtoolsThumbnail from "../assets/thumbnails/devtools.png";
 import MauThumbnail from "../assets/thumbnails/mau.png";
@@ -12,6 +11,7 @@ import AnimatedContent from "../components/animations/animated-content/animated-
 import { BlurIn } from "../components/animations/blur-in/blur-in";
 import LightRays from "../components/animations/light-rays/light-rays";
 import ScrollReveal from "../components/animations/scroll-reveal/scroll-reveal";
+import AnimatedChart from "../components/backgrounds/animated-chart/animated-chart";
 import NoiseOverlay from "../components/backgrounds/noise-overlay/noise-overlay";
 import { PrimaryButton } from "../components/buttons/primary-button/primary-button";
 import { SectionSubheading } from "../components/domain/section-subheading/section-subheading";
@@ -72,47 +72,11 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Enterprise() {
   const [stats, setStats] = useState<NestStats | null>(null);
-  const chartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetchNestStats()
       .then(setStats)
       .catch(() => null);
-  }, []);
-
-  useEffect(() => {
-    if (!chartRef.current) return;
-
-    const ctx = gsap.context(() => {
-      const bars = chartRef.current!.querySelectorAll("rect");
-
-      gsap.set(bars, {
-        scaleY: 0,
-        opacity: 0,
-        transformOrigin: "bottom center",
-        filter: "hue-rotate(90deg) brightness(0.2)",
-      });
-      gsap.set(chartRef.current, { opacity: 1 });
-
-      gsap.to(bars, {
-        scaleY: 1,
-        opacity: 1,
-        filter: "hue-rotate(0deg) brightness(1)",
-        duration: 3,
-        stagger: {
-          each: 0.008,
-          from: "start",
-        },
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: chartRef.current,
-          start: "top 85%",
-          once: true,
-        },
-      });
-    }, chartRef);
-
-    return () => ctx.revert();
   }, []);
 
   return (
@@ -137,16 +101,19 @@ export default function Enterprise() {
         <BrandsSection />
       </div>
       <EnterpriseSection
-        className="lg:mt-30 mt-0"
+        className="lg:mt-30 mt-4"
         subheading="Enterprise Solutions"
         primaryText="Accelerate your development"
         secondaryText="We work alongside you to meet your deadlines while avoiding costly tech debt. Challenging issue? We've got you covered."
         variant="description"
       />
       <AnimatedContent distance={250} delay={0.1} initialOpacity={0}>
-        <section id="testimonial" className="flex justify-center my-24">
+        <section
+          id="testimonial"
+          className="flex justify-center md:my-24 my-12 px-4"
+        >
           <div className="rounded-[20px] border border-white/15 p-2 relative container">
-            <div className="bg-gradient-to-b from-[#1b1b1b] to-[#0e0e0e] rounded-[16px] py-42 relative z-10 overflow-hidden">
+            <div className="bg-gradient-to-b from-[#1b1b1b] to-[#0e0e0e] rounded-[16px] md:py-42 py-16 md:px-12 relative z-10 overflow-hidden">
               <NoiseOverlay opacity={0.1} />
               <div className="absolute scale-150 inset-0 pointer-events-none rounded-[16px]">
                 <LightRays
@@ -161,8 +128,8 @@ export default function Enterprise() {
                   opacity={0.3}
                 />
               </div>
-              <div className="flex items-start max-w-3xl mx-auto z-100 relative">
-                <div className="flex items-center flex-col">
+              <div className="flex md:items-start md:flex-row flex-col-reverse max-w-3xl mx-auto z-100 relative">
+                <div className="flex items-center flex-col md:mt-0 mt-12">
                   <AnimatedContent distance={20} delay={0.2} initialOpacity={0}>
                     <div className="rounded-[13px] w-[180px] h-[180px] overflow-hidden">
                       <img
@@ -171,7 +138,7 @@ export default function Enterprise() {
                       />
                     </div>
                   </AnimatedContent>
-                  <div className="mt-6">
+                  <div className="mt-6 md:text-left text-center">
                     <AnimatedContent
                       distance={20}
                       delay={0.3}
@@ -190,14 +157,14 @@ export default function Enterprise() {
                     </AnimatedContent>
                   </div>
                 </div>
-                <div className="relative ml-14">
+                <div className="relative md:ml-14 md:px-0 px-8 md:pt-0 pt-8">
                   <AnimatedContent distance={20} delay={0.5} initialOpacity={0}>
-                    <span className="absolute text-[6rem] -top-4 -left-2 leading-1">
+                    <span className="md:absolute text-[6rem] md:-top-4 -left-2 leading-1 block">
                       “
                     </span>
                   </AnimatedContent>
                   <AnimatedContent distance={20} delay={0.6} initialOpacity={0}>
-                    <p className="text-xl leading-9">
+                    <p className="md:text-xl md:leading-9 text-lg leading-8">
                       At the onset of a new project, we were looking for experts
                       to help us understand a new tech stack (with NestJS) and
                       implement it quickly and seamlessly. We sought out Trilon
@@ -213,19 +180,14 @@ export default function Enterprise() {
           </div>
         </section>
       </AnimatedContent>
-      <div className="px-5 pt-24 mt-80 relative pb-160">
-        <div
-          ref={chartRef}
-          className="absolute inset-0 l-0 r-0 -top-50 opacity-0"
-        >
-          <Chart className="opacity-20 w-full" height={1200} />
-        </div>
+      <div className="px-5 pt-24 md:mt-80 relative md:pb-160 pb-24">
+        <AnimatedChart />
         <div className="container relative flex mx-auto md:flex-row flex-col items-center">
           <div className="max-w-[800px]">
             <SectionSubheading>Consulting</SectionSubheading>
             <ScrollReveal
               ElementTag="h2"
-              className="font-medium sm:text-6xl text-[2.75rem] leading-[1.1]"
+              className="font-medium sm:text-6xl text-[2.3rem] leading-[1.1]"
               enableBlur
             >
               Team augmentation. By your side at every step
@@ -245,11 +207,11 @@ export default function Enterprise() {
       <div className="px-5 py-8 mb-30 relative">
         <div className="container relative flex mx-auto md:flex-row flex-col items-center">
           <div className="grid md:grid-cols-[50%_10%_40%] grid-rows-[auto] gap-0 place-items-center">
-            <div>
+            <div className="md:order-1 order-3 md:mt-0 mt-12">
               <SectionSubheading>Expertise</SectionSubheading>
               <ScrollReveal
                 ElementTag="h2"
-                className="font-medium sm:text-5xl text-[2.75rem] leading-[1.1]"
+                className="font-medium sm:text-5xl text-[2.3rem] leading-[1.1]"
                 enableBlur
               >
                 Maximize Performance. Minimize Risk.
@@ -275,8 +237,8 @@ export default function Enterprise() {
                 </BlurIn>
               </div>
             </div>
-            <span />
-            <div>
+            <span className="md:order-2 order-2" />
+            <div className="md:order-3 order-1 w-full">
               <BlurIn distance={20} delay={0.1} initialOpacity={0}>
                 <img
                   src={Conference}
@@ -288,7 +250,11 @@ export default function Enterprise() {
           </div>
         </div>
       </div>
-      <CoursesSection className="sm:pt-30 pt-0" />
+      <CoursesSection
+        className="sm:pt-30 pt-0"
+        heading="Upskill your team"
+        description="Give your team access to 200+ lessons to master NestJS and confidently build secure, scalable, enterprise-grade backend systems."
+      />
       <div className="sm:p-10 sm:mt-50 mt-20 p-4">
         <StatsSection stats={stats} />
       </div>

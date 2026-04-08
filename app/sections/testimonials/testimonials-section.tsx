@@ -45,7 +45,7 @@ export function TestimonialsSection() {
   );
 
   return (
-    <div className="width-full relative flex items-center justify-center text-left sm:my-80 my-40">
+    <div className="width-full relative flex items-center justify-center text-left sm:my-80 my-40 sm:pb-0 pb-8">
       <AnimatedContent
         className="absolute top-0 left-0 right-0 bottom-0 z-0"
         ease="elastic.out"
@@ -75,7 +75,7 @@ export function TestimonialsSection() {
               “
             </span>
           </BlurIn>
-          <div className="relative h-[250px]">
+          <div className="relative md:h-[250px] sm:h-[300px] h-[350px]">
             {TESTIMONIALS.map((_, idx) => (
               <div
                 className="absolute top-0 left-0 right-0 transition duration-1000"
@@ -100,7 +100,7 @@ export function TestimonialsSection() {
                     {TESTIMONIALS[idx].text}
                   </p>
                 </BlurIn>
-                <div className="flex items-center gap-4 mt-4 justify-between max-w-5xl md:flex-row flex-col">
+                <div className="flex items-center gap-4 sm:mt-4 mt-16 justify-between max-w-5xl md:flex-row flex-col">
                   <BlurIn
                     duration={0.4}
                     delay={0.75}

@@ -52,7 +52,14 @@ const courses = [
   },
 ];
 
-export function CoursesSection({ className }: { className?: string }) {
+export function CoursesSection({
+  className,
+  heading = "Become Nest Certified Expert",
+  description = "Over 200 lessons. Learn everything you need to master NestJS and tackle modern backend applications at any scale.",
+}: {
+  className?: string;
+  heading?: string;
+}) {
   const midIndex = (courses.length - 1) / 2;
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<HTMLDivElement[]>([]);
@@ -226,15 +233,14 @@ export function CoursesSection({ className }: { className?: string }) {
           className="font-medium xl:text-9xl lg:text-8xl sm:text-7xl text-[2.75rem] text-center leading-[1.1] md:px-0 px-4"
           enableBlur
         >
-          Become Nest Certified Expert
+          {heading}
         </ScrollReveal>
         <ScrollReveal
           className="font-mono text-sm opacity-70 leading-6 font-light pt-10 max-w-xl text-center md:px-0 px-4"
           ElementTag="p"
           enableBlur
         >
-          Over 200 lessons. Learn everything you need to master NestJS and
-          tackle modern backend applications at any scale.
+          {description}
         </ScrollReveal>
         <BlurIn
           className="mt-20 flex sm:space-x-5 justify-center sm:flex-row flex-col items-center space-y-4 sm:space-y-0"
