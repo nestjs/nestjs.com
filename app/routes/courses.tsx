@@ -62,6 +62,7 @@ export function meta({}: Route.MetaArgs) {
 
 import { useMemo } from "react";
 import ScrollReveal from "../components/animations/scroll-reveal/scroll-reveal";
+import { PrimaryButton } from "../components/buttons/primary-button/primary-button";
 
 type Avatar = {
   id: number;
@@ -76,11 +77,11 @@ const getRandom = (min: number, max: number) =>
 
 function UsersMesh() {
   const avatars: Avatar[] = useMemo(() => {
-    let count = 25,
-      cols = 5,
+    let count = 20,
+      cols = 4,
       rows = 5,
-      xJitter = -15,
-      yJitter = -24;
+      xJitter = 5,
+      yJitter = 4;
 
     switch (true) {
       case window.innerWidth > 1200:
@@ -89,15 +90,15 @@ function UsersMesh() {
         count = 16;
         cols = 4;
         rows = 4;
-        xJitter = 10;
-        yJitter = 10;
+        xJitter = 6;
+        yJitter = 6;
         break;
       default:
         count = 9;
         cols = 3;
         rows = 3;
-        xJitter = 5;
-        yJitter = 5;
+        xJitter = 4;
+        yJitter = 4;
         break;
     }
     const cellWidth = 100 / cols;
@@ -111,9 +112,9 @@ function UsersMesh() {
       for (let c = 0; c < cols; c++) {
         if (id >= count) break;
 
-        // jitter inside each cell for natural randomness
-        const x = c * cellWidth + getRandom(10, cellWidth + xJitter);
-        const y = r * cellHeight + getRandom(10, cellHeight + yJitter);
+        const sign = Math.random() > 0.5 ? 1 : -1;
+        const x = c * cellWidth + getRandom(10, cellWidth + xJitter * sign);
+        const y = r * cellHeight + getRandom(10, cellHeight + yJitter * sign);
 
         const userId = Math.floor(getRandom(1, 1000));
 
@@ -169,6 +170,11 @@ function UsersMesh() {
             Our courses are trusted by over 100,000 students worldwide. Become a
             part of our thriving community and start your NestJS journey today.
           </ScrollReveal>
+          <div className="mt-16">
+            <PrimaryButton href="https://courses.nestjs.com/" target="_blank">
+              Browse courses
+            </PrimaryButton>
+          </div>
         </div>
       </div>
     </div>

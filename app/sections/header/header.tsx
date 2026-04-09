@@ -144,9 +144,9 @@ export function Header({
     <header className="sm:p-10 p-4">
       <div
         ref={headerRef}
-        className={`flex justify-center flex-col items-center overflow-hidden relative pb-16 sm:rounded-[32px] rounded-[16px] 
+        className={`flex justify-center overflow-hidden relative pb-16 sm:rounded-[32px] rounded-[16px] 
           ${auroraReady ? "opacity-100" : "opacity-0"}
-          ${shrink ? "xl:h-[91vh] min-h-[780px] xl:max-h-[920px]" : bottomPanel ? "min-h-[680px]" : "xl:h-[85vh] min-h-[680px] xl:max-h-[920px]"}`}
+          ${shrink ? "xl:h-[91vh] min-h-[780px] xl:max-h-[920px]" : bottomPanel ? "min-h-[680px] flex-col items-center" : "xl:h-[85vh] min-h-[680px] xl:max-h-[920px]"}`}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-[#050303] via-[#780f20] to-[#050303]"></div>
         {/* <div
