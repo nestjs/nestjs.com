@@ -113,9 +113,9 @@ function FaqListItem({
   );
 }
 
-export default function FaqSection() {
+export default function FaqSection({ className }: { className?: string }) {
   return (
-    <div className="px-5 pt-24 pb-24">
+    <div className={`px-5 pt-24 pb-24 ${className}`}>
       <div className="container relative flex mx-auto flex-row items-center">
         <div className="relative">
           <SectionSubheading>Faq</SectionSubheading>

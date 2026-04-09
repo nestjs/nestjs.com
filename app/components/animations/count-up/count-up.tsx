@@ -12,6 +12,7 @@ interface CountUpProps {
   separator?: string;
   onStart?: () => void;
   onEnd?: () => void;
+  endChar?: string;
 }
 
 export default function CountUp({
@@ -23,6 +24,7 @@ export default function CountUp({
   className = "",
   startWhen = true,
   separator = "",
+  endChar = "",
   onStart,
   onEnd,
 }: CountUpProps) {
@@ -66,9 +68,11 @@ export default function CountUp({
         latest,
       );
 
-      return separator
+      const value = separator
         ? formattedNumber.replace(/,/g, separator)
         : formattedNumber;
+
+      return `${value}${endChar}`;
     },
     [maxDecimals, separator],
   );

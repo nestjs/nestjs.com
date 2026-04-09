@@ -219,7 +219,7 @@ export function CoursesFan({
                   cardRefs.current[index] = el;
                 }
               }}
-              className={`absolute top-0 left-1/2 pointer-events-none ${index >= courses.length ? "z-1" : "z-10 hover:z-20 hover:mt-[-10px] transition-[margin] transition-[filter]"} `}
+              className={`absolute top-0 left-1/2 pointer-events-none ${index >= courses.length ? "z-1" : "z-10 hover:z-20 hover:mt-[-10px] hover:pb-[10px] transition-[margin] transition-[filter]"} `}
               style={{
                 transform: `translateX(${translateX}px) translateY(${translateY}px) rotate(${rotate}deg)`,
                 transformOrigin: "center top",

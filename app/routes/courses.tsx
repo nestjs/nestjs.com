@@ -3,12 +3,15 @@ import DevtoolsThumbnail from "../assets/thumbnails/devtools.png";
 import MauThumbnail from "../assets/thumbnails/mau.png";
 import { BlurIn } from "../components/animations/blur-in/blur-in";
 import { LettersReveal } from "../components/animations/letters-reveal/letters-reveal";
+import { PrimaryButton } from "../components/buttons/primary-button/primary-button";
 import { CoursesFan } from "../components/domain/courses-fan/courses-fan";
 import { ServiceCard } from "../components/domain/service-card/service-card";
 import StackedCards from "../components/misc/stacked-cards/stacked-cards";
+import BarChartSection from "../sections/bar-chart/bar-chart-section";
 import { BrandsSection } from "../sections/brands/brands-section";
+import CommunitySection from "../sections/community/community-section";
 import { EnterpriseSection } from "../sections/enterprise/enterprise-section";
-import FaqSection from "../sections/faq-section/faq-section";
+import FaqSection from "../sections/faq/faq-section";
 import { Footer } from "../sections/footer/footer";
 import { Header, type MenuItem } from "../sections/header/header";
 import { StatsSection } from "../sections/stats/stats-section";
@@ -60,128 +63,7 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-import { useMemo } from "react";
-import ScrollReveal from "../components/animations/scroll-reveal/scroll-reveal";
-import { PrimaryButton } from "../components/buttons/primary-button/primary-button";
-
-type Avatar = {
-  id: number;
-  x: number;
-  y: number;
-  size: number;
-  url: string;
-};
-
-const getRandom = (min: number, max: number) =>
-  Math.random() * (max - min) + min;
-
-function UsersMesh() {
-  const avatars: Avatar[] = useMemo(() => {
-    let count = 20,
-      cols = 4,
-      rows = 5,
-      xJitter = 5,
-      yJitter = 4;
-
-    switch (true) {
-      case window.innerWidth > 1200:
-        break;
-      case window.innerWidth > 992:
-        count = 16;
-        cols = 4;
-        rows = 4;
-        xJitter = 6;
-        yJitter = 6;
-        break;
-      default:
-        count = 9;
-        cols = 3;
-        rows = 3;
-        xJitter = 4;
-        yJitter = 4;
-        break;
-    }
-    const cellWidth = 100 / cols;
-    const cellHeight = 100 / rows;
-
-    const points: Avatar[] = [];
-
-    let id = 0;
-
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        if (id >= count) break;
-
-        const sign = Math.random() > 0.5 ? 1 : -1;
-        const x = c * cellWidth + getRandom(10, cellWidth + xJitter * sign);
-        const y = r * cellHeight + getRandom(10, cellHeight + yJitter * sign);
-
-        const userId = Math.floor(getRandom(1, 1000));
-
-        points.push({
-          id,
-          x,
-          y,
-          size: 48,
-          url: `https://avatars.githubusercontent.com/u/${userId}?v=4`,
-        });
-
-        id++;
-      }
-    }
-
-    return points;
-  }, [window.innerWidth]);
-
-  return (
-    <div className="relative w-full h-screen mt-60">
-      {avatars.map((a) => (
-        <BlurIn
-          key={a.id}
-          className="absolute rounded-full object-cover shadow-md overflow-hidden"
-          style={{
-            top: `${a.y}%`,
-            left: `${a.x}%`,
-            width: `${a.size}px`,
-            height: `${a.size}px`,
-            transform: "translate(-50%, -50%)",
-          }}
-          delay={Math.random() * 1.25}
-          scale={0}
-        >
-          <img src={a.url} alt="avatar" className="grayscale opacity-30" />
-        </BlurIn>
-      ))}
-
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="flex flex-col items-center text-center container mx-auto px-4 bg-[radial-gradient(circle,var(--color-bg),transparent)] shadow-lg">
-          <ScrollReveal
-            ElementTag="h2"
-            className="font-medium xl:text-8xl md:text-6xl sm:text-5xl text-4xl mb-4 xl:leading-28 md:leading-18 sm:leading-15 leading-12"
-            enableBlur
-          >
-            Join our ever-growing community of students
-          </ScrollReveal>
-          <ScrollReveal
-            className="font-mono text-sm opacity-70 leading-6 font-light pt-4 max-w-4xl"
-            ElementTag="p"
-            enableBlur
-          >
-            Our courses are trusted by over 100,000 students worldwide. Become a
-            part of our thriving community and start your NestJS journey today.
-          </ScrollReveal>
-          <div className="mt-16">
-            <PrimaryButton href="https://courses.nestjs.com/" target="_blank">
-              Browse courses
-            </PrimaryButton>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default function Enterprise() {
+export default function Courses() {
   const [stats, setStats] = useState<NestStats | null>(null);
 
   useEffect(() => {
@@ -214,8 +96,26 @@ export default function Enterprise() {
       <div className="flex justify-center md:mt-20 mt-8 mb-0">
         <BrandsSection />
       </div>
-      <UsersMesh />
-      <FaqSection />
+      <BarChartSection
+        subheading="Hands-on"
+        heading="Less reading. More building."
+        text="Stop spending your learning time buried in documentation and passive reading. This course is designed to get you into the code immediately, building real projects from the very first lesson. You'll learn faster by doing, not by scrolling-turning concepts into working skills as you go."
+        cta={
+          <PrimaryButton href="#" target="_blank">
+            See courses
+          </PrimaryButton>
+        }
+        chart={{
+          aValue: 96,
+          bValue: 52,
+          xAxisLabel: "time spent coding",
+          aLabel: "After course completion",
+          bLabel: "No course",
+        }}
+        className="px-5 py-8 mt-50"
+      />
+      <CommunitySection />
+      <FaqSection className="mt-50" />
       <LettersReveal
         ElementTag="h4"
         subComponent={

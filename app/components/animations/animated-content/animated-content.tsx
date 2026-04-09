@@ -17,6 +17,7 @@ interface AnimatedContentProps extends React.HTMLAttributes<HTMLDivElement> {
   initialOpacity?: number;
   animateOpacity?: boolean;
   scale?: number;
+  scaleX?: number;
   threshold?: number;
   delay?: number;
   disappearAfter?: number;
@@ -38,6 +39,7 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
   initialOpacity = 0,
   animateOpacity = true,
   scale = 1,
+  scaleX = 1,
   threshold = 0.1,
   delay = 0,
   once = true,
@@ -70,9 +72,11 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
 
     gsap.set(el, {
       [axis]: offset,
-      scale,
       opacity: animateOpacity ? initialOpacity : 1,
       visibility: "visible",
+      ...(scaleX !== 1
+        ? { scaleX, transformOrigin: "left center" }
+        : { scale }),
     });
 
     const tl = gsap.timeline({
@@ -83,7 +87,7 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
         if (disappearAfter > 0) {
           gsap.to(el, {
             [axis]: reverse ? distance : -distance,
-            scale: 0.8,
+            ...(scaleX !== 1 ? { scaleX: 0.8 } : { scale: 0.8 }),
             opacity: animateOpacity ? initialOpacity : 0,
             delay: disappearAfter,
             duration: disappearDuration,
@@ -96,10 +100,12 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
 
     tl.to(el, {
       [axis]: 0,
-      scale: 1,
       opacity: 1,
       duration,
       ease,
+      ...(scaleX !== 1
+        ? { scaleX: 1, transformOrigin: "left center" }
+        : { scale: 1 }),
     });
 
     const st = ScrollTrigger.create({
@@ -134,6 +140,7 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
     initialOpacity,
     animateOpacity,
     scale,
+    scaleX,
     threshold,
     delay,
     disappearAfter,
