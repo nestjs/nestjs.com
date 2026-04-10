@@ -44,18 +44,6 @@ export default function Courses() {
         bottomPanel={
           <div className="pt-12 relative flex w-full h-full">
             <BlurIn
-              duration={0.9}
-              delay={0.2}
-              ease="power2.in"
-              className="absolute left-0 -top-40 bottom-0 right-0 z-0"
-            >
-              <div
-                className="md:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,1),transparent_45%)] bg-[radial-gradient(circle_at_50%_80%,rgba(255,255,255,0.9),transparent_30%)] 
-                before:absolute before:inset-0 before:left-0 before:right-0 before:top-0 before:bottom-0 before:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,1),transparent_30%)]
-                absolute inset-0 z-0 left-0 right-0 top-0 bottom-0 z-1 blur-xl [clip-path:inset(0_0_50%_0)]"
-              />
-            </BlurIn>
-            <BlurIn
               delay={0.2}
               duration={0.5}
               ease="power2.out"
@@ -71,7 +59,7 @@ export default function Courses() {
                 className="p-4 pb-0 max-w-[90%] relative mx-auto mt-10 z-2
                 border border-1 border-[rgba(255,255,255,0.1)] rounded-tl-[20px] rounded-tr-[20px]
                 after:absolute after:inset-0 after:border after:border-[rgba(255,255,255,0.1)] after:rounded-tl-[24px] after:rounded-tr-[24px] after:top-[-8px] after:left-[-8px] after:right-[-8px] after:bottom-[-8px] after:z-0
-                before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/15 before:to-white/5 before:via-white/40 before:pointer-events-none before:top-[-8px] before:left-[-8px] before:right-[-8px] before:bottom-[-8px] before:rounded-tl-[24px] before:rounded-tr-[24px] before:z-0"
+                before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/15 before:to-white/5 before:pointer-events-none before:top-[-8px] before:left-[-8px] before:right-[-8px] before:bottom-[-8px] before:rounded-tl-[24px] before:rounded-tr-[24px] before:z-0"
               >
                 <div className="absolute inset-0 rounded-tl-[20px] rounded-tr-[20px] bg-gradient-to-t from-white/15 to-white/5 top-[-1px] left-[-1px] right-[-1px] bottom-[-1px] z-0"></div>
                 <img

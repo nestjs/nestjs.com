@@ -103,7 +103,7 @@ function FaqListItem({
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d={open ? "M6 0V12M0 6H12" : "M0 6H12"}
+            d={open ? "M0 6H12" : "M6 0V12M0 6H12"}
             stroke="currentColor"
             strokeWidth="0.75"
           />
