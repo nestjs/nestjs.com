@@ -185,7 +185,7 @@ export function Header({
                 >
                   <div className="flex justify-start">
                     <a href="https://nestjs.com">
-                      <img src="logo.svg" alt="NestJS Logo" className="h-10" />
+                      <img src="/logo.svg" alt="NestJS Logo" className="h-10" />
                     </a>
                   </div>
 

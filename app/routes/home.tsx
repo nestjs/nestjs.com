@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import DevtoolsThumbnail from "../assets/thumbnails/devtools.png";
-import MauThumbnail from "../assets/thumbnails/mau.png";
+import { MENU_ITEMS } from "../common/menu";
 import { BlurIn } from "../components/animations/blur-in/blur-in";
 import { LettersReveal } from "../components/animations/letters-reveal/letters-reveal";
 import ScrollReveal from "../components/animations/scroll-reveal/scroll-reveal";
@@ -12,49 +11,13 @@ import { BrandsSection } from "../sections/brands/brands-section";
 import { CoursesSection } from "../sections/courses/courses-section";
 import { EnterpriseSection } from "../sections/enterprise/enterprise-section";
 import { Footer } from "../sections/footer/footer";
-import { Header, type MenuItem } from "../sections/header/header";
+import { Header } from "../sections/header/header";
 import { SponsorsSection } from "../sections/sponsors/sponsors-section";
 import { StatsSection } from "../sections/stats/stats-section";
 import { SyntaxSection } from "../sections/syntax/syntax-section";
 import { TestimonialsSection } from "../sections/testimonials/testimonials-section";
 import { fetchNestStats, type NestStats } from "../services/nest-stats.service";
 import type { Route } from "./+types/home";
-
-const MENU_ITEMS: Array<MenuItem> = [
-  { id: "docs", label: "Docs", href: "https://docs.nestjs.com" },
-  {
-    id: "enterprise",
-    label: "Enterprise",
-    href: "/enterprise",
-  },
-  {
-    id: "courses",
-    label: "Courses",
-    href: "/courses",
-  },
-  {
-    id: "tools",
-    label: "Tools",
-    href: "#",
-    children: [
-      {
-        id: "devtools",
-        label: "Devtools",
-        href: "https://devtools.nestjs.com",
-        description: "Identify dependencies and connections between modules.",
-        thumbnail: DevtoolsThumbnail,
-      },
-      {
-        id: "mau",
-        label: "Deploy, Mau!",
-        href: "https://mau.nestjs.com",
-        description: "Provision and manage your infrastructure on AWS.",
-        thumbnail: MauThumbnail,
-      },
-    ],
-  },
-  { id: "jobs", label: "Jobs", href: "https://jobs.nestjs.com" },
-];
 
 export function meta({}: Route.MetaArgs) {
   return [

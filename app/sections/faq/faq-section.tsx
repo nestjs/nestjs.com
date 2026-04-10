@@ -77,8 +77,8 @@ function FaqListItem({
       <span className="font-mono opacity-50 text-xs group-hover:opacity-80 transition-opacity">
         {index < 9 ? `0${index + 1}` : index + 1}
       </span>
-      <div className="sm:ml-14 ml-0 mt-4 sm:mt-0 group-hover:opacity-65 transition-opacity flex-1">
-        <h4 className="font-medium sm:text-2xl text-xl leading-[1.4]">
+      <div className="sm:ml-14 ml-0 mt-4 sm:mt-0 transition-opacity flex-1">
+        <h4 className="font-medium sm:text-2xl text-xl group-hover:opacity-65 leading-[1.4]">
           {question}
         </h4>
         {open && (
