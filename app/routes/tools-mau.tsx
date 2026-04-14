@@ -136,7 +136,7 @@ export default function Courses() {
                 <BlurIn delay={0.1} className="absolute inset-0">
                   <div
                     style={{ backgroundImage: `url(${MauCard1})` }}
-                    className="absolute top-0 left-0 bottom-0 right-0 w-full bg-cover lg:bg-center-left sm:bg-center"
+                    className="absolute top-0 left-0 bottom-0 right-0 w-full bg-cover lg:bg-position-[center_left] sm:bg-center"
                   />
                 </BlurIn>
                 <div className="absolute inset-0 bottom-0 left-0 right-0 pointer-events-none lg:p-10 p-6 top-auto lg:h-auto sm:h-[40%]">
@@ -144,7 +144,7 @@ export default function Courses() {
                     <h4 className="xl:text-3xl text-2xl">Track key metrics</h4>
                   </AnimatedContent>
                   <AnimatedContent delay={0.4} distance={15} duration={0.8}>
-                    <p className="mt-4 lg:text-[14px] md:text-xs opacity-70 font-mono font-thin leading-6">
+                    <p className="mt-4 lg:text-[14px] md:text-xs text-sm opacity-70 font-mono font-thin leading-6">
                       Providers are a core concept in Nest. Many of the basic
                       Nest classes, such as services, repositories, factories,
                       and helpers, can be treated as providers.
@@ -156,7 +156,7 @@ export default function Courses() {
                 <BlurIn delay={0.3} className="absolute inset-0">
                   <div
                     style={{ backgroundImage: `url(${MauCard2})` }}
-                    className="absolute top-0 left-0 bottom-0 right-0 w-full bg-cover lg:bg-center-left sm:bg-center"
+                    className="absolute top-0 left-0 bottom-0 right-0 w-full bg-cover lg:bg-position-[center_left] sm:bg-center"
                   />
                 </BlurIn>
                 <div className="absolute inset-0 bottom-0 left-0 right-0 pointer-events-none lg:p-10 p-6 top-auto lg:h-auto sm:h-[40%]">
@@ -164,7 +164,7 @@ export default function Courses() {
                     <h4 className="xl:text-3xl text-2xl">Stream your logs</h4>
                   </AnimatedContent>
                   <AnimatedContent delay={0.4} distance={15} duration={0.8}>
-                    <p className="mt-4 lg:text-[14px] md:text-xs opacity-70 font-mono font-thin leading-6">
+                    <p className="mt-4 lg:text-[14px] md:text-xs text-sm opacity-70 font-mono font-thin leading-6">
                       Get real-time visibility into log data, detect anomalies
                       immediately, and respond swiftly
                     </p>
@@ -175,7 +175,7 @@ export default function Courses() {
                 <BlurIn delay={0.3} className="absolute inset-0">
                   <div
                     style={{ backgroundImage: `url(${MauCard3})` }}
-                    className="absolute top-0 left-0 bottom-0 right-0 w-full bg-cover lg:bg-center-left sm:bg-center"
+                    className="absolute top-0 left-0 bottom-0 right-0 w-full bg-cover lg:bg-position-[center_left] sm:bg-center"
                   />
                 </BlurIn>
                 <div className="absolute inset-0 bottom-0 left-0 right-0 pointer-events-none lg:p-10 p-6 top-auto lg:h-auto sm:h-[40%]">
@@ -183,7 +183,7 @@ export default function Courses() {
                     <h4 className="xl:text-3xl text-2xl">Traffic insights</h4>
                   </AnimatedContent>
                   <AnimatedContent delay={0.4} distance={15} duration={0.8}>
-                    <p className="mt-4 lg:text-[14px] md:text-xs opacity-70 font-mono font-thin leading-6">
+                    <p className="mt-4 lg:text-[14px] md:text-xs text-sm opacity-70 font-mono font-thin leading-6">
                       Explore historical traffic data, assess response times,
                       and evaluate failure trends for informed decision-making.
                     </p>
