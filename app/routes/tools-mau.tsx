@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
+import MauCard1 from "../assets/mau-cards/card-1.png";
+import MauCard2 from "../assets/mau-cards/card-2.png";
+import MauCard3 from "../assets/mau-cards/card-3.png";
+import HeaderBlock1 from "../assets/mau-header/header-block-1.png";
+import HeaderBlock2 from "../assets/mau-header/header-block-2.png";
 import { MENU_ITEMS } from "../common/menu";
+import AnimatedContent from "../components/animations/animated-content/animated-content";
 import { BlurIn } from "../components/animations/blur-in/blur-in";
+import ScrollReveal from "../components/animations/scroll-reveal/scroll-reveal";
 import { PrimaryButton } from "../components/buttons/primary-button/primary-button";
+import { SectionSubheading } from "../components/domain/section-subheading/section-subheading";
 import { BrandsSection } from "../sections/brands/brands-section";
 import { CoursesSection } from "../sections/courses/courses-section";
 import { EnterpriseSection } from "../sections/enterprise/enterprise-section";
@@ -42,7 +50,7 @@ export default function Courses() {
         heading="Deploy, mau!"
         subheading="Provision and manage your infrastructure on AWS without the hassle and extra DevOps work or additional operational complexity overhead."
         bottomPanel={
-          <div className="pt-12 relative flex w-full h-full">
+          <div className="pt-12 relative flex max-w-[90%] mx-auto h-full">
             <BlurIn
               delay={0.2}
               duration={0.5}
@@ -55,6 +63,18 @@ export default function Courses() {
                   "linear-gradient(to bottom, black 60%, transparent 100%)",
               }}
             >
+              <BlurIn
+                className="absolute left-[20px] top-1/2 max-w-[12%] w-[200px] z-100"
+                delay={0.1}
+              >
+                <img src={HeaderBlock1} className="pointer-events-none" />
+              </BlurIn>
+              <BlurIn
+                className="absolute right-[20px] top-[15%] max-w-[12%] w-[200px] z-100"
+                delay={0.3}
+              >
+                <img src={HeaderBlock2} className="pointer-events-none" />
+              </BlurIn>
               <div
                 className="p-4 pb-0 max-w-[90%] relative mx-auto mt-10 z-2
                 border border-1 border-[rgba(255,255,255,0.1)] rounded-tl-[20px] rounded-tr-[20px]
@@ -84,7 +104,97 @@ export default function Courses() {
       <div className="flex justify-center md:mt-20 mt-8 mb-0">
         <BrandsSection />
       </div>
-      <FaqSection className="mt-50" />
+      <div className="flex justify-center flex-col px-5 pt-40 pb-20">
+        <div className="relative container mx-auto">
+          <div className="grid md:grid-cols-[60%_10%_30%] sm:grid-cols-[60%_5%_35%] grid-rows-[auto] gap-0">
+            <div>
+              <SectionSubheading>Infrastructure simplified</SectionSubheading>
+              <ScrollReveal
+                ElementTag="h2"
+                className="font-medium sm:text-6xl text-[2.3rem] leading-[1.1]"
+                enableBlur
+              >
+                Deploy your applications in seconds
+              </ScrollReveal>
+            </div>
+            <span></span>
+            <ScrollReveal
+              className="font-mono text-sm opacity-90 leading-6 font-light sm:pt-10 pt-4"
+              ElementTag="p"
+              enableBlur
+            >
+              Eliminate the burden of handling your infrastructure and instead
+              concentrate on what truly counts most: growing and scaling your
+              business.
+            </ScrollReveal>
+          </div>
+        </div>
+        <div className="relative lg:container mx-auto mt-30 w-full">
+          <div className="rounded-[32px] border border-white/8 bg-[#191717] w-full p-2 relative">
+            <div className="flex md:flex-row flex-col items-center justify-between gap-2">
+              <div className="flex items-center lg:h-[550px] md:h-[800px] h-[500px] md:flex-1 flex-auto w-full relative rounded-[24px] overflow-hidden border-white/12 border">
+                <BlurIn delay={0.1} className="absolute inset-0">
+                  <div
+                    style={{ backgroundImage: `url(${MauCard1})` }}
+                    className="absolute top-0 left-0 bottom-0 right-0 w-full bg-cover lg:bg-center-left sm:bg-center"
+                  />
+                </BlurIn>
+                <div className="absolute inset-0 bottom-0 left-0 right-0 pointer-events-none lg:p-10 p-6 top-auto lg:h-auto sm:h-[40%]">
+                  <AnimatedContent delay={0.2} distance={10} duration={0.8}>
+                    <h4 className="xl:text-3xl text-2xl">Track key metrics</h4>
+                  </AnimatedContent>
+                  <AnimatedContent delay={0.4} distance={15} duration={0.8}>
+                    <p className="mt-4 lg:text-[14px] md:text-xs opacity-70 font-mono font-thin leading-6">
+                      Providers are a core concept in Nest. Many of the basic
+                      Nest classes, such as services, repositories, factories,
+                      and helpers, can be treated as providers.
+                    </p>
+                  </AnimatedContent>
+                </div>
+              </div>
+              <div className="flex items-center lg:h-[550px] md:h-[800px] h-[500px] md:flex-1 flex-auto w-full relative rounded-[24px] overflow-hidden border-white/12 border">
+                <BlurIn delay={0.3} className="absolute inset-0">
+                  <div
+                    style={{ backgroundImage: `url(${MauCard2})` }}
+                    className="absolute top-0 left-0 bottom-0 right-0 w-full bg-cover lg:bg-center-left sm:bg-center"
+                  />
+                </BlurIn>
+                <div className="absolute inset-0 bottom-0 left-0 right-0 pointer-events-none lg:p-10 p-6 top-auto lg:h-auto sm:h-[40%]">
+                  <AnimatedContent delay={0.2} distance={10} duration={0.8}>
+                    <h4 className="xl:text-3xl text-2xl">Stream your logs</h4>
+                  </AnimatedContent>
+                  <AnimatedContent delay={0.4} distance={15} duration={0.8}>
+                    <p className="mt-4 lg:text-[14px] md:text-xs opacity-70 font-mono font-thin leading-6">
+                      Get real-time visibility into log data, detect anomalies
+                      immediately, and respond swiftly
+                    </p>
+                  </AnimatedContent>
+                </div>
+              </div>
+              <div className="flex items-center lg:h-[550px] md:h-[800px] h-[500px] md:flex-1 flex-auto w-full relative rounded-[24px] overflow-hidden border-white/12 border">
+                <BlurIn delay={0.3} className="absolute inset-0">
+                  <div
+                    style={{ backgroundImage: `url(${MauCard3})` }}
+                    className="absolute top-0 left-0 bottom-0 right-0 w-full bg-cover lg:bg-center-left sm:bg-center"
+                  />
+                </BlurIn>
+                <div className="absolute inset-0 bottom-0 left-0 right-0 pointer-events-none lg:p-10 p-6 top-auto lg:h-auto sm:h-[40%]">
+                  <AnimatedContent delay={0.2} distance={10} duration={0.8}>
+                    <h4 className="xl:text-3xl text-2xl">Traffic insights</h4>
+                  </AnimatedContent>
+                  <AnimatedContent delay={0.4} distance={15} duration={0.8}>
+                    <p className="mt-4 lg:text-[14px] md:text-xs opacity-70 font-mono font-thin leading-6">
+                      Explore historical traffic data, assess response times,
+                      and evaluate failure trends for informed decision-making.
+                    </p>
+                  </AnimatedContent>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <FaqSection />
       <EnterpriseSection className="lg:mt-30 mt-0" />
       <SyntaxSection className="mt-30 pt-2 pb-30" />
       <CoursesSection className="sm:pt-30 pt-0" />
