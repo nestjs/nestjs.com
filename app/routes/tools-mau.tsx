@@ -199,7 +199,7 @@ export default function Courses() {
             </div>
           </div>
           <div className="mt-20 grid md:grid-cols-4 md:grid-rows-1 grid-cols-2 grid-rows-2 md:gap-y-16 md:gap-x-16 gap-y-16 gap-x-4 mx-auto">
-            <div>
+            <AnimatedContent distance={20} delay={0.1} duration={0.8}>
               <div className="flex items-center gap-2">
                 <Hexagon size="18px" />
                 <h6 className="text-lg">Smart canvas</h6>
@@ -207,8 +207,8 @@ export default function Courses() {
               <p className="text-sm opacity-50 font-normal leading-6 mt-2">
                 An intuitive visual interface to manage your infrastructure.
               </p>
-            </div>
-            <div>
+            </AnimatedContent>
+            <AnimatedContent distance={20} delay={0.2} duration={0.8}>
               <div className="flex items-center gap-2">
                 <Rocket size="18px" />
                 <h6 className="text-lg">One-click deployment</h6>
@@ -216,8 +216,8 @@ export default function Courses() {
               <p className="text-sm opacity-50 font-normal leading-6 mt-2">
                 Deploy your Nest application to AWS with a single command.
               </p>
-            </div>
-            <div>
+            </AnimatedContent>
+            <AnimatedContent distance={20} delay={0.3} duration={0.8}>
               <div className="flex items-center gap-2">
                 <Star size="18px" />
                 <h6 className="text-lg">Real-time logs</h6>
@@ -226,8 +226,8 @@ export default function Courses() {
                 Get real-time visibility into log data and detect anomalies
                 immediately.
               </p>
-            </div>
-            <div>
+            </AnimatedContent>
+            <AnimatedContent distance={20} delay={0.4} duration={0.8}>
               <div className="flex items-center gap-2">
                 <PulseIcon size="18px" />
                 <h6 className="text-lg">Traffic insights</h6>
@@ -235,7 +235,7 @@ export default function Courses() {
               <p className="text-sm opacity-50 font-normal leading-6 mt-2">
                 Explore historical traffic data and evaluate failure trends.
               </p>
-            </div>
+            </AnimatedContent>
           </div>
         </div>
       </div>
