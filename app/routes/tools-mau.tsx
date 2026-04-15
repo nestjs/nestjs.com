@@ -1,4 +1,9 @@
-import { Activity, Hexagon, Rocket, Star } from "lucide-react";
+import {
+  HexagonIcon as Hexagon,
+  PulseIcon,
+  RocketIcon as Rocket,
+  StarIcon as Star,
+} from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 import MauCard1 from "../assets/mau-cards/card-1.png";
 import MauCard2 from "../assets/mau-cards/card-2.png";
@@ -224,7 +229,7 @@ export default function Courses() {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <Activity size="18px" />
+                <PulseIcon size="18px" />
                 <h6 className="text-lg">Traffic insights</h6>
               </div>
               <p className="text-sm opacity-50 font-normal leading-6 mt-2">

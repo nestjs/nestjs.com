@@ -8,6 +8,7 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
     "@react-router/node": "^7.9.2",
     "@react-router/serve": "^7.9.2",
     "babel-plugin-react-compiler": "^1.0.0",
