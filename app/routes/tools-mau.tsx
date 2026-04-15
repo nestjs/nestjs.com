@@ -1,3 +1,4 @@
+import { Activity, Hexagon, Rocket, Star } from "lucide-react";
 import { useEffect, useState } from "react";
 import MauCard1 from "../assets/mau-cards/card-1.png";
 import MauCard2 from "../assets/mau-cards/card-2.png";
@@ -129,7 +130,7 @@ export default function Courses() {
             </ScrollReveal>
           </div>
         </div>
-        <div className="relative lg:container mx-auto mt-30 w-full">
+        <div className="relative lg:container mx-auto mt-30 mb-15 w-full">
           <div className="rounded-[32px] border border-white/8 bg-[#191717] w-full p-2 relative">
             <div className="flex md:flex-row flex-col items-center justify-between gap-2">
               <div className="flex items-center lg:h-[550px] md:h-[800px] h-[500px] md:flex-1 flex-auto w-full relative rounded-[24px] overflow-hidden border-white/12 border">
@@ -190,6 +191,45 @@ export default function Courses() {
                   </AnimatedContent>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="mt-20 grid md:grid-cols-4 md:grid-rows-1 grid-cols-2 grid-rows-2 md:gap-y-16 md:gap-x-16 gap-y-16 gap-x-4 mx-auto">
+            <div>
+              <div className="flex items-center gap-2">
+                <Hexagon size="18px" />
+                <h6 className="text-lg">Smart canvas</h6>
+              </div>
+              <p className="text-sm opacity-50 font-normal leading-6 mt-2">
+                An intuitive visual interface to manage your infrastructure.
+              </p>
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <Rocket size="18px" />
+                <h6 className="text-lg">One-click deployment</h6>
+              </div>
+              <p className="text-sm opacity-50 font-normal leading-6 mt-2">
+                Deploy your Nest application to AWS with a single command.
+              </p>
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <Star size="18px" />
+                <h6 className="text-lg">Real-time logs</h6>
+              </div>
+              <p className="text-sm opacity-50 font-normal leading-6 mt-2">
+                Get real-time visibility into log data and detect anomalies
+                immediately.
+              </p>
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <Activity size="18px" />
+                <h6 className="text-lg">Traffic insights</h6>
+              </div>
+              <p className="text-sm opacity-50 font-normal leading-6 mt-2">
+                Explore historical traffic data and evaluate failure trends.
+              </p>
             </div>
           </div>
         </div>
