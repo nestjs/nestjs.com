@@ -55,14 +55,15 @@ export default function CommunitySection() {
         const x = c * cellWidth + getRandom(10, cellWidth + xJitter * sign);
         const y = r * cellHeight + getRandom(10, cellHeight + yJitter * sign);
 
-        const userId = Math.floor(getRandom(1, 1000));
+        const gender = Math.random() > 0.5 ? "men" : "women";
+        const userId = Math.floor(getRandom(1, 100));
 
         points.push({
           id,
           x,
           y,
           size: 48,
-          url: `https://avatars.githubusercontent.com/u/${userId}?v=4`,
+          url: `https://randomuser.me/api/portraits/${gender}/${userId}.jpg`,
         });
 
         id++;
