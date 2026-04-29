@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import Conference from "../assets/marketing/conferences.png";
+import Conference from "../assets/marketing/conferences.jpg";
+import Training from "../assets/marketing/trainings.jpg";
 import { MENU_ITEMS } from "../common/menu";
 import ScrollReveal from "../components/animations/scroll-reveal/scroll-reveal";
 import AnimatedChart from "../components/backgrounds/animated-chart/animated-chart";
@@ -66,7 +67,7 @@ export default function Enterprise() {
         variant="description"
       />
       <TiltedTestimonial />
-      <div className="px-5 pt-24 md:mt-80 relative md:pb-160 pb-24">
+      <div className="px-5 pt-24 md:mt-80 relative lg:pb-160 md:pb-120 pb-40">
         <AnimatedChart />
         <div className="container relative flex mx-auto md:flex-row flex-col items-center">
           <div className="max-w-[800px]">
@@ -90,10 +91,43 @@ export default function Enterprise() {
           </div>
         </div>
       </div>
+      <div className="flex justify-center">
+        <div className="container relative md:px-0 px-5 flex flex-col-reverse md:flex-col">
+          <div className="grid md:grid-cols-[50%_10%_40%] grid-rows-[auto] gap-0 md:mt-0 mt-12">
+            <div>
+              <SectionSubheading>Expertise</SectionSubheading>
+              <ScrollReveal
+                ElementTag="h2"
+                className="font-medium md:text-5xl sm:text-3xl text-4xl mb-4 md:leading-14 sm:leading-10 leading-12"
+                enableBlur
+              >
+                Maximize Performance. Minimize Risk.
+              </ScrollReveal>
+            </div>
+            <span></span>
+            <ScrollReveal
+              className="font-mono text-sm opacity-70 leading-6 font-light sm:pt-10 pt-4"
+              ElementTag="p"
+              enableBlur
+            >
+              Our enterprise NestJS support proactively identifies bottlenecks
+              and improves system performance across complex environments. We
+              help you maintain stability and reduce risk even under heavy
+              production load.
+            </ScrollReveal>
+          </div>
+          <div className="overflow-hidden rounded-[32px] mt-24">
+            <img src={Conference} alt="Conference" className="w-full" />
+          </div>
+        </div>
+      </div>
       <PhotoSection
-        subheading="Expertise"
-        heading="Maximize Performance. Minimize Risk."
-        text="Our enterprise NestJS support proactively identifies bottlenecks and improves system performance across complex environments. We help you maintain stability and reduce risk even under heavy production load."
+        subheading="Education"
+        heading="Hands-on workshops led by experienced engineers"
+        text="Focused, practical sessions that help teams build and scale with
+              NestJS. We cover core concepts, architecture, testing, and
+              performance through real-world examples - so your developers can
+              apply what they learn immediately."
         cta={
           <PrimaryButton href="mailto:support@nestjs.com" target="_blank">
             Contact us
@@ -101,12 +135,12 @@ export default function Enterprise() {
         }
         image={
           <img
-            src={Conference}
-            alt="Conference"
+            src={Training}
+            alt="Training"
             className="rounded-[20px] w-full"
           />
         }
-        className="px-5 py-8 mb-30"
+        className="px-5 py-8 md:mt-60 mt-30 md:mb-30 mb-12"
       />
       <CoursesSection
         className="sm:pt-30 pt-0"

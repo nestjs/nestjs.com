@@ -8,6 +8,10 @@ import { useEffect, useState } from "react";
 import MauCard1 from "../assets/mau-cards/card-1.png";
 import MauCard2 from "../assets/mau-cards/card-2.png";
 import MauCard3 from "../assets/mau-cards/card-3.png";
+import MauBackground from "../assets/mau-cards/card-bg.png";
+import MauIllustration1 from "../assets/mau-cards/illustration-1.png";
+import MauIllustration2 from "../assets/mau-cards/illustration-2.png";
+import MauIllustration3 from "../assets/mau-cards/illustration-3.png";
 import HeaderBlock1 from "../assets/mau-header/header-block-1.png";
 import HeaderBlock2 from "../assets/mau-header/header-block-2.png";
 import { MENU_ITEMS } from "../common/menu";
@@ -141,8 +145,16 @@ export default function Courses() {
               <div className="flex items-center lg:h-[550px] md:h-[800px] h-[500px] md:flex-1 flex-auto w-full relative rounded-[24px] overflow-hidden border-white/12 border">
                 <BlurIn delay={0.1} className="absolute inset-0">
                   <div
+                    style={{ backgroundImage: `url(${MauBackground})` }}
+                    className="absolute top-0 left-0 bottom-0 right-0 w-full bg-cover lg:bg-position-[center_left] sm:bg-center xl:block hidden"
+                  />
+                  <img
+                    src={MauIllustration1}
+                    className="absolute top-0 left-0 bottom-0 right-0 w-full pointer-events-none xl:block hidden"
+                  />
+                  <div
                     style={{ backgroundImage: `url(${MauCard1})` }}
-                    className="absolute top-0 left-0 bottom-0 right-0 w-full bg-cover lg:bg-position-[center_left] sm:bg-center"
+                    className="absolute top-0 left-0 bottom-0 right-0 w-full bg-cover lg:bg-position-[center_left] sm:bg-center xl:hidden block"
                   />
                 </BlurIn>
                 <div className="absolute inset-0 bottom-0 left-0 right-0 pointer-events-none lg:p-10 p-6 top-auto lg:h-auto sm:h-[40%]">
@@ -161,8 +173,18 @@ export default function Courses() {
               <div className="flex items-center lg:h-[550px] md:h-[800px] h-[500px] md:flex-1 flex-auto w-full relative rounded-[24px] overflow-hidden border-white/12 border">
                 <BlurIn delay={0.3} className="absolute inset-0">
                   <div
+                    style={{ backgroundImage: `url(${MauBackground})` }}
+                    className="absolute top-0 left-0 bottom-0 right-0 w-full bg-cover lg:bg-position-[center_left] sm:bg-center
+                    xl:block hidden"
+                  />
+                  <img
+                    src={MauIllustration2}
+                    className="absolute top-0 left-0 bottom-0 right-0 w-full pointer-events-none xl:block hidden"
+                  />
+                  <div
                     style={{ backgroundImage: `url(${MauCard2})` }}
-                    className="absolute top-0 left-0 bottom-0 right-0 w-full bg-cover lg:bg-position-[center_left] sm:bg-center"
+                    className="absolute top-0 left-0 bottom-0 right-0 w-full bg-cover lg:bg-position-[center_left] sm:bg-center
+                    xl:hidden block"
                   />
                 </BlurIn>
                 <div className="absolute inset-0 bottom-0 left-0 right-0 pointer-events-none lg:p-10 p-6 top-auto lg:h-auto sm:h-[40%]">
@@ -180,8 +202,16 @@ export default function Courses() {
               <div className="flex items-center lg:h-[550px] md:h-[800px] h-[500px] md:flex-1 flex-auto w-full relative rounded-[24px] overflow-hidden border-white/12 border">
                 <BlurIn delay={0.3} className="absolute inset-0">
                   <div
+                    style={{ backgroundImage: `url(${MauBackground})` }}
+                    className="absolute top-0 left-0 bottom-0 right-0 w-full bg-cover lg:bg-position-[center_left] sm:bg-center xl:block hidden"
+                  />
+                  <img
+                    src={MauIllustration3}
+                    className="absolute top-0 left-0 bottom-0 right-0 w-full pointer-events-none xl:block hidden"
+                  />
+                  <div
                     style={{ backgroundImage: `url(${MauCard3})` }}
-                    className="absolute top-0 left-0 bottom-0 right-0 w-full bg-cover lg:bg-position-[center_left] sm:bg-center"
+                    className="absolute top-0 left-0 bottom-0 right-0 w-full bg-cover lg:bg-position-[center_left] sm:bg-center xl:hidden block"
                   />
                 </BlurIn>
                 <div className="absolute inset-0 bottom-0 left-0 right-0 pointer-events-none lg:p-10 p-6 top-auto lg:h-auto sm:h-[40%]">
