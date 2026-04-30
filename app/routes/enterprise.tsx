@@ -13,7 +13,6 @@ import { EnterpriseSection } from "../sections/enterprise/enterprise-section";
 import { Footer } from "../sections/footer/footer";
 import { Header } from "../sections/header/header";
 import PhotoSection from "../sections/photo/photo-section";
-import { StatsSection } from "../sections/stats/stats-section";
 import { TestimonialsSection } from "../sections/testimonials/testimonials-section";
 import { fetchNestStats, type NestStats } from "../services/nest-stats.service";
 import type { Route } from "./+types/home";
@@ -148,9 +147,6 @@ export default function Enterprise() {
         description="Give your team access to 200+ lessons to master NestJS and confidently build secure, scalable, enterprise-grade backend systems."
         ctaText="Browse courses"
       />
-      <div className="sm:p-10 sm:mt-50 mt-20 p-4">
-        <StatsSection stats={stats} />
-      </div>
       <TestimonialsSection />
       <Footer className="mt-20" />
     </>
