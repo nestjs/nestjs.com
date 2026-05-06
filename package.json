@@ -15,13 +15,13 @@
     "@parcel/packager-xml": "^2.12.0",
     "@parcel/transformer-webmanifest": "^2.12.0",
     "@parcel/transformer-xml": "^2.12.0",
-    "parcel": "2.16.1"
+    "parcel": "2.16.4"
   },
   "dependencies": {
     "copyfiles": "2.4.1"
   },
   "optionalDependencies": {
-    "@parcel/watcher-linux-x64-glibc": "2.5.1",
+    "@parcel/watcher-linux-x64-glibc": "2.5.6",
     "@swc/core-linux-x64-gnu": "^1.7.40"
   }
 }
