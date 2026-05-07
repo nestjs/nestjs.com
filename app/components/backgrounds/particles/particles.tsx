@@ -130,6 +130,9 @@ const Particles: React.FC<ParticlesProps> = ({
     const gl = renderer.gl;
     container.appendChild(gl.canvas);
     gl.clearColor(0, 0, 0, 0);
+    gl.canvas.style.width = "100%";
+    gl.canvas.style.height = "100%";
+    gl.canvas.style.display = "block";
 
     const camera = new Camera(gl, { fov: 15 });
     camera.position.set(0, 0, cameraDistance);
@@ -137,10 +140,17 @@ const Particles: React.FC<ParticlesProps> = ({
     const resize = () => {
       const width = container.clientWidth;
       const height = container.clientHeight;
+
+      if (width === 0 || height === 0) {
+        return;
+      }
+
       renderer.setSize(width, height);
       camera.perspective({ aspect: gl.canvas.width / gl.canvas.height });
     };
+    const resizeObserver = new ResizeObserver(resize);
     window.addEventListener("resize", resize, false);
+    resizeObserver.observe(container);
     resize();
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -236,6 +246,7 @@ const Particles: React.FC<ParticlesProps> = ({
 
     return () => {
       window.removeEventListener("resize", resize);
+      resizeObserver.disconnect();
       if (moveParticlesOnHover) {
         container.removeEventListener("mousemove", handleMouseMove);
       }
