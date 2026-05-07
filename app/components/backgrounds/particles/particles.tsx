@@ -10,6 +10,7 @@ interface ParticlesProps {
   particleHoverFactor?: number;
   alphaParticles?: boolean;
   particleBaseSize?: number;
+  particleMaxSize?: number;
   sizeRandomness?: number;
   cameraDistance?: number;
   disableRotation?: boolean;
@@ -45,6 +46,7 @@ const vertex = /* glsl */ `
   uniform float uTime;
   uniform float uSpread;
   uniform float uBaseSize;
+  uniform float uMaxPointSize;
   uniform float uSizeRandomness;
   
   varying vec4 vRandom;
@@ -65,11 +67,10 @@ const vertex = /* glsl */ `
     
     vec4 mvPos = viewMatrix * mPos;
 
-    if (uSizeRandomness == 0.0) {
-      gl_PointSize = uBaseSize;
-    } else {
-      gl_PointSize = (uBaseSize * (1.0 + uSizeRandomness * (random.x - 0.5))) / length(mvPos.xyz);
-    }
+    float depth = max(abs(mvPos.z), 1.0);
+    float sizeVariance = mix(1.0 - 0.35 * uSizeRandomness, 1.0 + 0.35 * uSizeRandomness, random.x);
+    float pointSize = (uBaseSize * sizeVariance) / depth;
+    gl_PointSize = clamp(pointSize, 1.5, uMaxPointSize);
     
     gl_Position = projectionMatrix * mvPos;
     gl_Position = projectionMatrix * mvPos;
@@ -109,6 +110,7 @@ const Particles: React.FC<ParticlesProps> = ({
   particleHoverFactor = 1,
   alphaParticles = false,
   particleBaseSize = 100,
+  particleMaxSize = 6,
   sizeRandomness = 1,
   cameraDistance = 20,
   disableRotation = false,
@@ -204,6 +206,7 @@ const Particles: React.FC<ParticlesProps> = ({
         uTime: { value: 0 },
         uSpread: { value: particleSpread },
         uBaseSize: { value: particleBaseSize * pixelRatio },
+        uMaxPointSize: { value: particleMaxSize * pixelRatio },
         uSizeRandomness: { value: sizeRandomness },
         uAlphaParticles: { value: alphaParticles ? 1 : 0 },
       },
@@ -264,6 +267,7 @@ const Particles: React.FC<ParticlesProps> = ({
     particleHoverFactor,
     alphaParticles,
     particleBaseSize,
+    particleMaxSize,
     sizeRandomness,
     cameraDistance,
     disableRotation,

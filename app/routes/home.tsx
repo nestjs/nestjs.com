@@ -3,6 +3,7 @@ import { MENU_ITEMS } from "../common/menu";
 import { BlurIn } from "../components/animations/blur-in/blur-in";
 import { LettersReveal } from "../components/animations/letters-reveal/letters-reveal";
 import ScrollReveal from "../components/animations/scroll-reveal/scroll-reveal";
+import Particles from "../components/backgrounds/particles/particles";
 import FeatureCards from "../components/domain/feature-cards/feature-cards";
 import { SectionSubheading } from "../components/domain/section-subheading/section-subheading";
 import { ServiceCard } from "../components/domain/service-card/service-card";
@@ -137,6 +138,9 @@ export default function Home() {
           </div>
         }
       >
+        <div className="absolute inset-0 top-0 left-0 right-0 bottom-0 pointer-events-none">
+          <Particles alphaParticles speed={0.05} />
+        </div>
         <section className="px-20">
           <BlurIn distance={10} duration={2} ease="elastic.out(1, 0.5)">
             <h4 className="xl:text-9xl lg:text-8xl md:text-7xl sm:text-[4rem] sm:leading-[1.15] text-4xl leading-[1.15] font-medium text-center flex">
