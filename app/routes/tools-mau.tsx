@@ -132,8 +132,9 @@ export default function Courses() {
       <div className="flex justify-center md:mt-20 mt-8 mb-0">
         <BrandsSection />
       </div>
-      <div className="container relative mx-auto">
+      <div className="relative px-4">
         <img src={MauMockup} className="w-full pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-40% via-[#050303] to-[#050303] h-[60%] top-auto"></div>
       </div>
       <div className="flex justify-center flex-col px-5 pt-40 pb-20">
         <div className="relative container mx-auto">
@@ -329,25 +330,25 @@ export default function Courses() {
         reverse
         items={[
           {
-            icon: <Cloud size="42px" />,
+            icon: <Cloud size="42px" weight="fill" />,
             title: "Web applications",
             description:
               "Trust Mau to handle the deployment and management of your NestJS applications.",
           },
           {
-            icon: <Database size="42px" />,
+            icon: <Database size="42px" weight="fill" />,
             title: "Databases",
             description:
               "Whether it's PostgreSQL, MySQL, MongoDB, or Redis, Mau has got you covered.",
           },
           {
-            icon: <ClockClockwise size="42px" />,
+            icon: <ClockClockwise size="42px" weight="fill" />,
             title: "Task scheduling",
             description:
               "Easily schedule and manage your background tasks and cron jobs with Mau.",
           },
           {
-            icon: <SquaresFour size="42px" />,
+            icon: <SquaresFour size="42px" weight="fill" />,
             title: "Microservices",
             description:
               "Deploy and manage your microservices architecture with our intuitive interface.",
@@ -361,25 +362,25 @@ export default function Courses() {
         image={Box3}
         items={[
           {
-            icon: <Notebook size="42px" />,
+            icon: <Notebook size="42px" weight="fill" />,
             title: "Real-time logs",
             description:
               "Logs are streamlined and conveniently accessible directly from the Mau dashboard.",
           },
           {
-            icon: <Pulse size="42px" />,
+            icon: <Pulse size="42px" weight="fill" />,
             title: "Monitoring",
             description:
               "Keep an eye on your application's performance (CPU, memory, health) with real-time monitoring tools.",
           },
           {
-            icon: <HardDrive size="42px" />,
+            icon: <HardDrive size="42px" weight="fill" />,
             title: "Backups",
             description:
               "Automate your database backups with the Business plan and ensure your data is always safe and recoverable.",
           },
           {
-            icon: <Chats size="42px" />,
+            icon: <Chats size="42px" weight="fill" />,
             title: "Brokers",
             description:
               "Kafka, RabbitMQ, NATS - Mau supports a variety of message brokers to fit your application's needs.",
