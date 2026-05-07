@@ -1,10 +1,25 @@
 import {
+  ChatsIcon as Chats,
+  ClockClockwiseIcon as ClockClockwise,
+  CloudIcon as Cloud,
+  DatabaseIcon as Database,
+  HardDriveIcon as HardDrive,
   HexagonIcon as Hexagon,
+  NotebookIcon as Notebook,
+  PulseIcon as Pulse,
   PulseIcon,
   RocketIcon as Rocket,
+  SquaresFourIcon as SquaresFour,
   StarIcon as Star,
+  UsersThreeIcon as UsersThree,
 } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
+import AWSIcon from "../assets/icons/aws.svg";
+import CLIIcon from "../assets/icons/cli.svg";
+import NestIcon from "../assets/icons/nest.svg";
+import Box1 from "../assets/mau-cards/box-1.png";
+import Box2 from "../assets/mau-cards/box-2.png";
+import Box3 from "../assets/mau-cards/box-3.png";
 import MauCard1 from "../assets/mau-cards/card-1.png";
 import MauCard2 from "../assets/mau-cards/card-2.png";
 import MauCard3 from "../assets/mau-cards/card-3.png";
@@ -14,12 +29,15 @@ import MauIllustration2 from "../assets/mau-cards/illustration-2.png";
 import MauIllustration3 from "../assets/mau-cards/illustration-3.png";
 import HeaderBlock1 from "../assets/mau-header/header-block-1.png";
 import HeaderBlock2 from "../assets/mau-header/header-block-2.png";
+import MauMockup from "../assets/mau-mockup.png";
 import { MENU_ITEMS } from "../common/menu";
 import AnimatedContent from "../components/animations/animated-content/animated-content";
 import { BlurIn } from "../components/animations/blur-in/blur-in";
 import ScrollReveal from "../components/animations/scroll-reveal/scroll-reveal";
 import { PrimaryButton } from "../components/buttons/primary-button/primary-button";
+import { FeatureSection } from "../components/domain/feature-section/feature-section";
 import { SectionSubheading } from "../components/domain/section-subheading/section-subheading";
+import { TiltedText } from "../components/domain/tilted-text/tilted-text";
 import { BrandsSection } from "../sections/brands/brands-section";
 import { CoursesSection } from "../sections/courses/courses-section";
 import { EnterpriseSection } from "../sections/enterprise/enterprise-section";
@@ -113,6 +131,9 @@ export default function Courses() {
       />
       <div className="flex justify-center md:mt-20 mt-8 mb-0">
         <BrandsSection />
+      </div>
+      <div className="container relative mx-auto">
+        <img src={MauMockup} className="w-full pointer-events-none" />
       </div>
       <div className="flex justify-center flex-col px-5 pt-40 pb-20">
         <div className="relative container mx-auto">
@@ -269,6 +290,103 @@ export default function Courses() {
           </div>
         </div>
       </div>
+      <FeatureSection
+        subheading="Scale and grow"
+        title="Focus on building your product"
+        image={Box1}
+        items={[
+          {
+            icon: AWSIcon,
+            title: "AWS",
+            description:
+              "Deploy your infrastructure on AWS with a few clicks. No DevOps knowledge required.",
+          },
+          {
+            icon: NestIcon,
+            title: "Nest integrated",
+            description:
+              "Mau is built by the creator of NestJS, and makes provisioning your applications a breeze.",
+          },
+          {
+            icon: CLIIcon,
+            title: "CLI",
+            description:
+              "Deploy your applications with ease using our dedicated command line interface.",
+          },
+          {
+            icon: <UsersThree size="42px" />,
+            title: "Collaboration",
+            description:
+              "Invite your team members to collaborate on infrastructure management and share access to resources.",
+          },
+        ]}
+      />
+      <FeatureSection
+        className="mt-60"
+        subheading="Stability and reliability"
+        title="Server management made easy"
+        image={Box2}
+        reverse
+        items={[
+          {
+            icon: <Cloud size="42px" />,
+            title: "Web applications",
+            description:
+              "Trust Mau to handle the deployment and management of your NestJS applications.",
+          },
+          {
+            icon: <Database size="42px" />,
+            title: "Databases",
+            description:
+              "Whether it's PostgreSQL, MySQL, MongoDB, or Redis, Mau has got you covered.",
+          },
+          {
+            icon: <ClockClockwise size="42px" />,
+            title: "Task scheduling",
+            description:
+              "Easily schedule and manage your background tasks and cron jobs with Mau.",
+          },
+          {
+            icon: <SquaresFour size="42px" />,
+            title: "Microservices",
+            description:
+              "Deploy and manage your microservices architecture with our intuitive interface.",
+          },
+        ]}
+      />
+      <FeatureSection
+        className="mt-60"
+        subheading="Insights and visibility"
+        title="Monitor and optimize"
+        image={Box3}
+        items={[
+          {
+            icon: <Notebook size="42px" />,
+            title: "Real-time logs",
+            description:
+              "Logs are streamlined and conveniently accessible directly from the Mau dashboard.",
+          },
+          {
+            icon: <Pulse size="42px" />,
+            title: "Monitoring",
+            description:
+              "Keep an eye on your application's performance (CPU, memory, health) with real-time monitoring tools.",
+          },
+          {
+            icon: <HardDrive size="42px" />,
+            title: "Backups",
+            description:
+              "Automate your database backups with the Business plan and ensure your data is always safe and recoverable.",
+          },
+          {
+            icon: <Chats size="42px" />,
+            title: "Brokers",
+            description:
+              "Kafka, RabbitMQ, NATS - Mau supports a variety of message brokers to fit your application's needs.",
+          },
+        ]}
+      />
+      <TiltedText />
       <FaqSection />
       <EnterpriseSection className="lg:mt-30 mt-0" />
       <SyntaxSection className="mt-30 pt-2 pb-30" />

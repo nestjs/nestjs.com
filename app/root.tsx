@@ -93,7 +93,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
               animate-fade-out"
       ></div>
       <div
-        className="absolute inset-0 bg-gradient-to-r from-[#050303] via-[#7b0c57] to-[#050303]
+        className="absolute inset-0 bg-gradient-to-r from-[#050303] via-[#111] to-[#050303]
               opacity-0 animate-fade-in"
       ></div>
       <LazyRender
@@ -105,10 +105,10 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
           <Aurora
             onReady={() => setAuroraReady(true)}
             transitionColorStops={{
-              desktop: ["#630b47", "#050303", "#2e0420"],
-              mobile: ["#7b0c57", "#7b0c57", "#7f0d59"],
+              desktop: ["#333", "#000", "#444"],
+              mobile: ["#333", "#000", "#444"],
             }}
-            glowColor="#7b0c57"
+            glowColor="#444"
           />
           <NoiseOverlay />
         </>

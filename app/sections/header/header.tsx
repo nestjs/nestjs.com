@@ -305,7 +305,7 @@ export function Header({
             </div>
           </BlurIn>
           <div
-            className={`centered text-center pt-26 2xl:pt-32 flex flex-col items-center ${bottomPanel ? "pb-0" : "pb-40"}`}
+            className={`centered text-center pt-26 2xl:pt-28 flex flex-col items-center ${bottomPanel ? "pb-0" : "pb-40"}`}
           >
             {breadcrumb && (
               <BlurIn>
