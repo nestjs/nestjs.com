@@ -34,6 +34,7 @@ import { MENU_ITEMS } from "../common/menu";
 import AnimatedContent from "../components/animations/animated-content/animated-content";
 import { BlurIn } from "../components/animations/blur-in/blur-in";
 import ScrollReveal from "../components/animations/scroll-reveal/scroll-reveal";
+import Particles from "../components/backgrounds/particles/particles";
 import { PrimaryButton } from "../components/buttons/primary-button/primary-button";
 import { FeatureSection } from "../components/domain/feature-section/feature-section";
 import { SectionSubheading } from "../components/domain/section-subheading/section-subheading";
@@ -133,6 +134,9 @@ export default function Courses() {
         <BrandsSection />
       </div>
       <div className="relative px-4">
+        <div className="absolute inset-0 top-0 left-0 right-0 bottom-0 pointer-events-none">
+          <Particles alphaParticles speed={0.05} />
+        </div>
         <img src={MauMockup} className="w-full pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-40% via-[#050303] to-[#050303] h-[60%] top-auto"></div>
       </div>
