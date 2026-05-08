@@ -24,11 +24,13 @@ export function FeatureSection({
   reverse = false,
 }: FeatureSectionProps) {
   return (
-    <div className={`container mx-auto my-30 ${className}`}>
+    <div
+      className={`md:container md:mx-auto md:mt-30 md:mb-30 mt-15 mb-0 md:px-0 px-4 ${className}`}
+    >
       <div
-        className={`flex justify-center gap-40 ${reverse ? "flex-row-reverse" : ""}`}
+        className={`flex justify-center md:gap-40 gap-16 ${reverse ? "md:flex-row-reverse flex-col-reverse" : "md:flex-row flex-col-reverse"}`}
       >
-        <div className="flex flex-col basis-[48%] text-left">
+        <div className="flex flex-col md:basis-[48%] text-left">
           <SectionSubheading>{subheading}</SectionSubheading>
           <ScrollReveal
             ElementTag="h2"
@@ -69,7 +71,7 @@ export function FeatureSection({
             ))}
           </div>
         </div>
-        <div className="relative basis-[52%]">
+        <div className="relative md:basis-[52%]">
           <AnimatedContent distance={150} delay={0.1} initialOpacity={0}>
             <img src={image} className="w-full pointer-events-none" />
           </AnimatedContent>

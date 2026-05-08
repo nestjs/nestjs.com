@@ -6,12 +6,14 @@ export function PrimaryButton({
   onClick,
   className = "",
   target,
+  inline = true,
 }: {
   children: React.ReactNode;
   onClick?: () => void;
   className?: string;
   href?: string;
   target?: string;
+  inline?: boolean;
 }) {
   const circleRef = useRef<HTMLSpanElement>(null);
   const handleMouseMove = (
@@ -36,7 +38,9 @@ export function PrimaryButton({
   };
 
   return (
-    <div className="relative inline-flex overflow-hidden">
+    <div
+      className={`relative overflow-hidden ${inline ? "inline-flex" : "flex"}`}
+    >
       <a
         href={href}
         className={`btn bg-white rounded text-black font-bold 

@@ -37,6 +37,10 @@ import ScrollReveal from "../components/animations/scroll-reveal/scroll-reveal";
 import Particles from "../components/backgrounds/particles/particles";
 import { PrimaryButton } from "../components/buttons/primary-button/primary-button";
 import { FeatureSection } from "../components/domain/feature-section/feature-section";
+import {
+  PricingCards,
+  type Plan,
+} from "../components/domain/pricing-cards/pricing-cards";
 import { SectionSubheading } from "../components/domain/section-subheading/section-subheading";
 import { TiltedText } from "../components/domain/tilted-text/tilted-text";
 import { BrandsSection } from "../sections/brands/brands-section";
@@ -61,6 +65,140 @@ export function meta({}: Route.MetaArgs) {
     },
   ];
 }
+
+const PRICING_PLANS: Plan[] = [
+  {
+    type: "developer",
+    name: "Developer",
+    shortDescription: "For individuals and indie hackers",
+
+    price: "7",
+    symbol: "$",
+    currency: "USD",
+    bullets: [
+      {
+        text: "One application",
+      },
+      {
+        text: "100 deployments/day",
+      },
+      {
+        text: "One database",
+      },
+      {
+        text: "Unlimited brokers",
+      },
+      {
+        text: "Unlimited tasks",
+      },
+      {
+        text: "Unlimited lambdas",
+      },
+      {
+        text: "CLI integration",
+      },
+      {
+        text: "Database backups",
+        available: false,
+      },
+      {
+        text: "Collaboration (share projects)",
+        available: false,
+      },
+      {
+        text: "Metrics monitoring",
+        available: false,
+      },
+    ],
+    trial: true,
+  },
+  {
+    type: "team",
+    name: "Professional",
+    shortDescription: "For scalable commercial projects",
+    price: "20",
+    symbol: "$",
+    currency: "USD",
+    bullets: [
+      {
+        text: "One project",
+      },
+      {
+        text: "Unlimited applications",
+      },
+      {
+        text: "Unlimited deployments",
+      },
+      {
+        text: "Unlimited databases",
+      },
+      {
+        text: "Unlimited brokers",
+      },
+      {
+        text: "Unlimited tasks",
+      },
+      {
+        text: "Unlimited lambdas",
+      },
+      {
+        text: "CLI integration",
+      },
+      {
+        text: "Database backups",
+      },
+      {
+        text: "Collaboration (share projects)",
+        available: false,
+      },
+      {
+        text: "Metrics monitoring",
+        available: false,
+      },
+    ],
+  },
+  {
+    type: "enterprise",
+    name: "Business",
+    shortDescription: "For companies and teams",
+    price: "30",
+    symbol: "$",
+    currency: "USD",
+    bullets: [
+      {
+        text: "Unlimited projects",
+      },
+      {
+        text: "Unlimited applications",
+      },
+      {
+        text: "Unlimited deployments",
+      },
+      {
+        text: "Unlimited databases",
+      },
+      {
+        text: "Unlimited brokers",
+      },
+      {
+        text: "Unlimited tasks",
+      },
+      {
+        text: "Unlimited lambdas",
+      },
+      {
+        text: "CLI integration",
+      },
+      {
+        text: "Database backups",
+      },
+      {
+        text: "Collaboration (share projects)",
+      },
+      { text: "Metrics monitoring" },
+    ],
+  },
+];
 
 export default function Courses() {
   const [stats, setStats] = useState<NestStats | null>(null);
@@ -133,14 +271,33 @@ export default function Courses() {
       <div className="flex justify-center md:mt-20 mt-8 mb-0">
         <BrandsSection />
       </div>
-      <div className="relative px-4">
+      <div className="relative px-4 sm:block hidden">
         <div className="absolute inset-0 top-0 left-0 right-0 bottom-0 pointer-events-none">
           <Particles alphaParticles speed={0.05} />
         </div>
         <img src={MauMockup} className="w-full pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-40% via-[#050303] to-[#050303] h-[60%] top-auto"></div>
+        <div className="absolute inset-0 z-10 left-0 right-0 bottom-[20%] top-auto text-center">
+          <ScrollReveal
+            ElementTag="h2"
+            className="font-medium xl:text-7xl lg:text-6xl text-4xl text-center leading-[1.1] md:px-0 px-4"
+            enableBlur
+          >
+            Zero hassle, effortless deployment
+          </ScrollReveal>
+          <ScrollReveal
+            className="font-mono text-sm opacity-70 leading-6 font-light lg:pt-10 pt-4 max-w-2xl mx-auto text-center md:px-0 px-4"
+            ElementTag="p"
+            enableBlur
+          >
+            Say goodbye to complex configurations and DevOps overhead. With Mau,
+            you can deploy your Nest applications to AWS in just a few clicks,
+            allowing you to focus on building and scaling your projects with
+            ease.
+          </ScrollReveal>
+        </div>
       </div>
-      <div className="flex justify-center flex-col px-5 pt-40 pb-20">
+      <div className="flex justify-center flex-col px-5 pb-20 sm:pt-0 pt-20">
         <div className="relative container mx-auto">
           <div className="grid md:grid-cols-[60%_10%_30%] sm:grid-cols-[60%_5%_35%] grid-rows-[auto] gap-0">
             <div>
@@ -165,7 +322,7 @@ export default function Courses() {
             </ScrollReveal>
           </div>
         </div>
-        <div className="relative lg:container mx-auto mt-30 mb-15 w-full">
+        <div className="relative lg:container mx-auto md:mt-30 mt-15 md:mb-15 w-full">
           <div className="rounded-[32px] border border-white/8 bg-[#191717] w-full p-2 relative">
             <div className="flex md:flex-row flex-col items-center justify-between gap-2">
               <div className="flex items-center lg:h-[550px] md:h-[800px] h-[500px] md:flex-1 flex-auto w-full relative rounded-[24px] overflow-hidden border-white/12 border">
@@ -257,7 +414,7 @@ export default function Courses() {
           <div className="mt-20 grid md:grid-cols-4 md:grid-rows-1 grid-cols-2 grid-rows-2 md:gap-y-16 md:gap-x-16 gap-y-16 gap-x-4 mx-auto">
             <AnimatedContent distance={20} delay={0.1} duration={0.8}>
               <div className="flex items-center gap-2">
-                <Hexagon size="18px" />
+                <Hexagon size="18px" weight="fill" />
                 <h6 className="text-lg">Smart canvas</h6>
               </div>
               <p className="text-sm opacity-50 font-normal leading-6 mt-2">
@@ -266,7 +423,7 @@ export default function Courses() {
             </AnimatedContent>
             <AnimatedContent distance={20} delay={0.2} duration={0.8}>
               <div className="flex items-center gap-2">
-                <Rocket size="18px" />
+                <Rocket size="18px" weight="fill" />
                 <h6 className="text-lg">One-click deployment</h6>
               </div>
               <p className="text-sm opacity-50 font-normal leading-6 mt-2">
@@ -275,7 +432,7 @@ export default function Courses() {
             </AnimatedContent>
             <AnimatedContent distance={20} delay={0.3} duration={0.8}>
               <div className="flex items-center gap-2">
-                <Star size="18px" />
+                <Star size="18px" weight="fill" />
                 <h6 className="text-lg">Real-time logs</h6>
               </div>
               <p className="text-sm opacity-50 font-normal leading-6 mt-2">
@@ -285,7 +442,7 @@ export default function Courses() {
             </AnimatedContent>
             <AnimatedContent distance={20} delay={0.4} duration={0.8}>
               <div className="flex items-center gap-2">
-                <PulseIcon size="18px" />
+                <PulseIcon size="18px" weight="fill" />
                 <h6 className="text-lg">Traffic insights</h6>
               </div>
               <p className="text-sm opacity-50 font-normal leading-6 mt-2">
@@ -319,7 +476,7 @@ export default function Courses() {
               "Deploy your applications with ease using our dedicated command line interface.",
           },
           {
-            icon: <UsersThree size="42px" />,
+            icon: <UsersThree size="28px" weight="fill" className="shrink-0" />,
             title: "Collaboration",
             description:
               "Invite your team members to collaborate on infrastructure management and share access to resources.",
@@ -327,32 +484,36 @@ export default function Courses() {
         ]}
       />
       <FeatureSection
-        className="mt-60"
+        className="md:mt-60"
         subheading="Stability and reliability"
         title="Server management made easy"
         image={Box2}
         reverse
         items={[
           {
-            icon: <Cloud size="42px" weight="fill" />,
+            icon: <Cloud size="28px" weight="fill" className="shrink-0" />,
             title: "Web applications",
             description:
               "Trust Mau to handle the deployment and management of your NestJS applications.",
           },
           {
-            icon: <Database size="42px" weight="fill" />,
+            icon: <Database size="28px" weight="fill" className="shrink-0" />,
             title: "Databases",
             description:
               "Whether it's PostgreSQL, MySQL, MongoDB, or Redis, Mau has got you covered.",
           },
           {
-            icon: <ClockClockwise size="42px" weight="fill" />,
+            icon: (
+              <ClockClockwise size="28px" weight="fill" className="shrink-0" />
+            ),
             title: "Task scheduling",
             description:
               "Easily schedule and manage your background tasks and cron jobs with Mau.",
           },
           {
-            icon: <SquaresFour size="42px" weight="fill" />,
+            icon: (
+              <SquaresFour size="28px" weight="fill" className="shrink-0" />
+            ),
             title: "Microservices",
             description:
               "Deploy and manage your microservices architecture with our intuitive interface.",
@@ -360,37 +521,38 @@ export default function Courses() {
         ]}
       />
       <FeatureSection
-        className="mt-60"
+        className="md:mt-60"
         subheading="Insights and visibility"
         title="Monitor and optimize"
         image={Box3}
         items={[
           {
-            icon: <Notebook size="42px" weight="fill" />,
+            icon: <Notebook size="28px" weight="fill" className="shrink-0" />,
             title: "Real-time logs",
             description:
               "Logs are streamlined and conveniently accessible directly from the Mau dashboard.",
           },
           {
-            icon: <Pulse size="42px" weight="fill" />,
+            icon: <Pulse size="28px" weight="fill" className="shrink-0" />,
             title: "Monitoring",
             description:
               "Keep an eye on your application's performance (CPU, memory, health) with real-time monitoring tools.",
           },
           {
-            icon: <HardDrive size="42px" weight="fill" />,
+            icon: <HardDrive size="28px" weight="fill" className="shrink-0" />,
             title: "Backups",
             description:
               "Automate your database backups with the Business plan and ensure your data is always safe and recoverable.",
           },
           {
-            icon: <Chats size="42px" weight="fill" />,
+            icon: <Chats size="28px" weight="fill" className="shrink-0" />,
             title: "Brokers",
             description:
               "Kafka, RabbitMQ, NATS - Mau supports a variety of message brokers to fit your application's needs.",
           },
         ]}
       />
+      <PricingCards className="pt-12 pb-24" plans={PRICING_PLANS} />
       <TiltedText />
       <FaqSection />
       <EnterpriseSection className="lg:mt-30 mt-0" />
