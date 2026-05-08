@@ -49,8 +49,6 @@ import { EnterpriseSection } from "../sections/enterprise/enterprise-section";
 import FaqSection from "../sections/faq/faq-section";
 import { Footer } from "../sections/footer/footer";
 import { Header } from "../sections/header/header";
-import { StatsSection } from "../sections/stats/stats-section";
-import { SyntaxSection } from "../sections/syntax/syntax-section";
 import { TestimonialsSection } from "../sections/testimonials/testimonials-section";
 import { fetchNestStats, type NestStats } from "../services/nest-stats.service";
 import type { Route } from "./+types/home";
@@ -556,11 +554,7 @@ export default function Courses() {
       <TiltedText />
       <FaqSection />
       <EnterpriseSection className="lg:mt-30 mt-0" />
-      <SyntaxSection className="mt-30 pt-2 pb-30" />
       <CoursesSection className="sm:pt-30 pt-0" />
-      <div className="sm:p-10 sm:mt-50 mt-20 p-4">
-        <StatsSection stats={stats} />
-      </div>
       <TestimonialsSection />
       <Footer className="mt-20" />
     </>
