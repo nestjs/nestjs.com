@@ -10,7 +10,7 @@ import BarChartSection from "../sections/bar-chart/bar-chart-section";
 import { BrandsSection } from "../sections/brands/brands-section";
 import CommunitySection from "../sections/community/community-section";
 import { EnterpriseSection } from "../sections/enterprise/enterprise-section";
-import FaqSection from "../sections/faq/faq-section";
+import FaqSection, { type FaqItem } from "../sections/faq/faq-section";
 import { Footer } from "../sections/footer/footer";
 import { Header } from "../sections/header/header";
 import { StatsSection } from "../sections/stats/stats-section";
@@ -29,6 +29,57 @@ export function meta({}: Route.MetaArgs) {
     },
   ];
 }
+
+const FAQ_ITEMS: FaqItem[] = [
+  {
+    question: "Do courses have subtitles (Closed Captions)?",
+    answer:
+      "Yes! All courses have subtitles (Closed Captions) and full written transcripts for each lesson in English.",
+  },
+  {
+    question: "How long do I have access to the course?",
+    answer:
+      "All course purchases have unlimited lifetime access & free updates. No subscriptions needed, you can access the course anytime, forever.",
+  },
+  {
+    question: "What are my payment options?",
+    answer:
+      "Our online checkout accepts all major Credit Cards and Google Pay. Checkout is a fully secure 128-bit SSL encrypted payment system through Stripe.",
+  },
+  {
+    question: "Do you offer large team discounts?",
+    answer: (
+      <>
+        Yes of course! Please contact us at{" "}
+        <a href="mailto:support@nestjs.com" className="text-white underline">
+          support@nestjs.com
+        </a>{" "}
+        about the size of your team, and we can help you purchase all course
+        licenses with discount codes.
+      </>
+    ),
+  },
+  {
+    question: "Can I share my course with someone else?",
+    answer: (
+      <>
+        Each purchase is limited to <strong>ONE</strong> license & user viewing
+        the course. Our licensing agreement prohibits any form of sharing.
+        Account activity is tracked and abuse of copyright taken very seriously.
+        If you are purchasing for larger teams (10+) shoot us an email at{" "}
+        <a href="mailto:support@nestjs.com" className="text-white underline">
+          support@nestjs.com
+        </a>{" "}
+        to retrieve a large-team discount code.
+      </>
+    ),
+  },
+  {
+    question: "Do I receive a certificate of completion?",
+    answer:
+      "Yes. When completing each course you will receive an official Certificate indicating that you have completed each Nest certified course. You can download an official certificate of completion that can be used to be reimbursed by your employer or land that dream job you are applying for.",
+  },
+];
 
 export default function Courses() {
   const [stats, setStats] = useState<NestStats | null>(null);
@@ -82,7 +133,7 @@ export default function Courses() {
         className="px-5 py-8 mt-50"
       />
       <CommunitySection />
-      <FaqSection className="mt-50" />
+      <FaqSection className="mt-50" items={FAQ_ITEMS} />
       <LettersReveal
         ElementTag="h4"
         subComponent={

@@ -3,17 +3,16 @@ import {
   ClockClockwiseIcon as ClockClockwise,
   CloudIcon as Cloud,
   DatabaseIcon as Database,
+  GraphIcon,
   HardDriveIcon as HardDrive,
-  HexagonIcon as Hexagon,
   NotebookIcon as Notebook,
   PulseIcon as Pulse,
-  PulseIcon,
   RocketIcon as Rocket,
+  ScalesIcon,
   SquaresFourIcon as SquaresFour,
-  StarIcon as Star,
+  TerminalWindowIcon,
   UsersThreeIcon as UsersThree,
 } from "@phosphor-icons/react";
-import { useEffect, useState } from "react";
 import AWSIcon from "../assets/icons/aws.svg";
 import CLIIcon from "../assets/icons/cli.svg";
 import NestIcon from "../assets/icons/nest.svg";
@@ -46,11 +45,10 @@ import { TiltedText } from "../components/domain/tilted-text/tilted-text";
 import { BrandsSection } from "../sections/brands/brands-section";
 import { CoursesSection } from "../sections/courses/courses-section";
 import { EnterpriseSection } from "../sections/enterprise/enterprise-section";
-import FaqSection from "../sections/faq/faq-section";
+import FaqSection, { type FaqItem } from "../sections/faq/faq-section";
 import { Footer } from "../sections/footer/footer";
 import { Header } from "../sections/header/header";
 import { TestimonialsSection } from "../sections/testimonials/testimonials-section";
-import { fetchNestStats, type NestStats } from "../services/nest-stats.service";
 import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
@@ -198,15 +196,42 @@ const PRICING_PLANS: Plan[] = [
   },
 ];
 
-export default function Courses() {
-  const [stats, setStats] = useState<NestStats | null>(null);
+const FAQ_ITEMS: FaqItem[] = [
+  {
+    question: "Where is my infrastructure hosted?",
+    answer:
+      "All services, databases, brokers etc. are hosted in the cloud on Amazon Web Services (AWS). We use AWS because of its reliability, security, and scalability.",
+  },
+  {
+    question: "What happens to my application if I cancel my subscription?",
+    answer:
+      "If you decide to cancel your subscription, your application will continue to be available and operational. Nevertheless, you won't have access to the dashboard for making changes through Nest Mau; you'll need to handle it manually via the AWS UI.",
+  },
+  {
+    question: "What are my payment options?",
+    answer:
+      "Our online checkout accepts all major Credit Cards and Google Pay. Checkout is a fully secure 128-bit SSL encrypted payment system through Stripe.",
+  },
+  {
+    question:
+      "Does price include the cost of AWS services (e.g. EC2, RDS, etc.)?",
+    answer:
+      "No, the cost you incur is solely for Nest Mau's services. AWS will bill you separately for the usage of their services.",
+  },
+  {
+    question: "Can I use Mau to deploy my existing Nest application?",
+    answer:
+      "Absolutely! With Mau, you can deploy any Nest application on AWS. Just follow the instructions provided in the dashboard.",
+  },
+  {
+    question:
+      "Why should I use Mau instead of deploying my application manually?",
+    answer:
+      "Mau streamlines the deployment of your Nest application on AWS, sparing you from delving into the complexities of AWS-specific concepts and patterns. The AWS UI is designed to support various systems and use cases, making it somewhat challenging for less experienced users. That's where Mau comes in.",
+  },
+];
 
-  useEffect(() => {
-    fetchNestStats()
-      .then(setStats)
-      .catch(() => null);
-  }, []);
-
+export default function Mau() {
   return (
     <>
       <Header
@@ -344,9 +369,9 @@ export default function Courses() {
                   </AnimatedContent>
                   <AnimatedContent delay={0.4} distance={15} duration={0.8}>
                     <p className="mt-4 lg:text-[14px] md:text-xs text-sm opacity-70 font-mono font-thin leading-6">
-                      Providers are a core concept in Nest. Many of the basic
-                      Nest classes, such as services, repositories, factories,
-                      and helpers, can be treated as providers.
+                      Monitor your application's health and performance with
+                      real-time metrics ensuring optimal performance and
+                      reliability.
                     </p>
                   </AnimatedContent>
                 </div>
@@ -375,7 +400,7 @@ export default function Courses() {
                   <AnimatedContent delay={0.4} distance={15} duration={0.8}>
                     <p className="mt-4 lg:text-[14px] md:text-xs text-sm opacity-70 font-mono font-thin leading-6">
                       Get real-time visibility into log data, detect anomalies
-                      immediately, and respond swiftly
+                      immediately, and respond swiftly.
                     </p>
                   </AnimatedContent>
                 </div>
@@ -412,11 +437,12 @@ export default function Courses() {
           <div className="mt-20 grid md:grid-cols-4 md:grid-rows-1 grid-cols-2 grid-rows-2 md:gap-y-16 md:gap-x-16 gap-y-16 gap-x-4 mx-auto">
             <AnimatedContent distance={20} delay={0.1} duration={0.8}>
               <div className="flex items-center gap-2">
-                <Hexagon size="18px" weight="fill" />
-                <h6 className="text-lg">Smart canvas</h6>
+                <ScalesIcon size="18px" weight="fill" />
+                <h6 className="text-lg">Scale on demand</h6>
               </div>
               <p className="text-sm opacity-50 font-normal leading-6 mt-2">
-                An intuitive visual interface to manage your infrastructure.
+                Automatically scale your applications based on traffic and
+                resource needs.
               </p>
             </AnimatedContent>
             <AnimatedContent distance={20} delay={0.2} duration={0.8}>
@@ -425,26 +451,28 @@ export default function Courses() {
                 <h6 className="text-lg">One-click deployment</h6>
               </div>
               <p className="text-sm opacity-50 font-normal leading-6 mt-2">
-                Deploy your Nest application to AWS with a single command.
+                Deploy your Nest application to AWS with a single command, or
+                use our intuitive dashboard.
               </p>
             </AnimatedContent>
             <AnimatedContent distance={20} delay={0.3} duration={0.8}>
               <div className="flex items-center gap-2">
-                <Star size="18px" weight="fill" />
-                <h6 className="text-lg">Real-time logs</h6>
+                <GraphIcon size="18px" weight="fill" />
+                <h6 className="text-lg">Load balancing</h6>
               </div>
               <p className="text-sm opacity-50 font-normal leading-6 mt-2">
-                Get real-time visibility into log data and detect anomalies
-                immediately.
+                Distribute incoming traffic across multiple servers to ensure
+                high availability and reliability.
               </p>
             </AnimatedContent>
             <AnimatedContent distance={20} delay={0.4} duration={0.8}>
               <div className="flex items-center gap-2">
-                <PulseIcon size="18px" weight="fill" />
-                <h6 className="text-lg">Traffic insights</h6>
+                <TerminalWindowIcon size="18px" weight="fill" />
+                <h6 className="text-lg">CLI</h6>
               </div>
               <p className="text-sm opacity-50 font-normal leading-6 mt-2">
-                Explore historical traffic data and evaluate failure trends.
+                One command is all it takes to deploy your Nest application to
+                AWS.
               </p>
             </AnimatedContent>
           </div>
@@ -552,7 +580,7 @@ export default function Courses() {
       />
       <PricingCards className="pt-12 pb-24" plans={PRICING_PLANS} />
       <TiltedText />
-      <FaqSection />
+      <FaqSection items={FAQ_ITEMS} />
       <EnterpriseSection className="lg:mt-30 mt-0" />
       <CoursesSection className="sm:pt-30 pt-0" />
       <TestimonialsSection />

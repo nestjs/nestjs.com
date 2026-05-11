@@ -65,14 +65,14 @@ export function TiltedText({}) {
               />
             </div>
             <div className="flex md:items-start md:flex-row flex-col-reverse max-w-5xl mx-auto z-100 relative">
-              <div className="flex items-center flex-col w-full md:mt-0 mt-12">
+              <div className="flex items-center flex-col w-full md:mt-0 mt-12 px-8">
                 <h3 className="text-6xl md:text-8xl font-medium text-center">
                   Start a free trial today
                 </h3>
                 <p className="font-mono text-sm opacity-70 leading-6 font-light mt-6 mb-4 text-center">
-                  Experience the full power of NestJS with our free trial, and
-                  see how it can transform your development process and
-                  accelerate your projects.
+                  Experience the full power of Mau with our free trial, and see
+                  how it can transform your development process and accelerate
+                  your projects.
                 </p>
                 <PrimaryButton className="mt-6" href="/dashboard">
                   Deploy your first app
