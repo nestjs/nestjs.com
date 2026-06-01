@@ -1,13 +1,9 @@
 // @ts-ignore
 import { gsap } from "gsap/dist/gsap.js";
-// @ts-ignore
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger.js";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { BlurIn } from "../../components/animations/blur-in/blur-in";
 import ScrollReveal from "../../components/animations/scroll-reveal/scroll-reveal";
 import { PrimaryButton } from "../../components/buttons/primary-button/primary-button";
-
-gsap.registerPlugin(ScrollTrigger);
 
 type Avatar = {
   id: number;
@@ -16,8 +12,7 @@ type Avatar = {
   size: number;
   url: string;
   offset: number;
-  phase: number;
-  cycles: number;
+  duration: number;
   delay: number;
 };
 
@@ -87,9 +82,8 @@ export default function CommunitySection() {
           y,
           size: 48,
           url: `https://randomuser.me/api/portraits/${gender}/${userId}.jpg`,
-          offset: getRandom(10, 25) * sign,
-          phase: getRandom(0, Math.PI * 2),
-          cycles: getRandom(1.5, 3.5),
+          offset: getRandom(24, 52),
+          duration: getRandom(1.8, 3.8),
           delay: Math.random() * 1.25,
         });
 
@@ -108,42 +102,34 @@ export default function CommunitySection() {
     avatarRefs.current = avatarRefs.current.slice(0, avatars.length);
 
     const ctx = gsap.context(() => {
-      const setters = avatarRefs.current.map((avatar) =>
-        avatar ? gsap.quickSetter(avatar, "y", "px") : null,
-      );
-
-      const updateMotion = (progress: number) => {
-        avatars.forEach((avatar, index) => {
-          const setY = setters[index];
-
-          if (!setY) {
-            return;
-          }
-
-          const angle = progress * Math.PI * 2 * avatar.cycles + avatar.phase;
-          setY(Math.sin(angle) * avatar.offset);
+      const animateAvatar = (avatarElement: HTMLDivElement, avatar: Avatar) => {
+        gsap.to(avatarElement, {
+          y: getRandom(-avatar.offset, avatar.offset),
+          duration: avatar.duration,
+          ease: "sine.inOut",
+          onComplete: () => animateAvatar(avatarElement, avatar),
         });
       };
 
-      const trigger = ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true,
-        onUpdate: (self: { progress: number }) => updateMotion(self.progress),
-      });
+      avatarRefs.current.forEach((avatarElement, index) => {
+        const avatar = avatars[index];
 
-      updateMotion(trigger.progress);
+        if (!avatarElement || !avatar) {
+          return;
+        }
+
+        gsap.set(avatarElement, {
+          y: getRandom(-avatar.offset, avatar.offset) * 0.65,
+        });
+        animateAvatar(avatarElement, avatar);
+      });
     }, sectionRef);
 
     return () => ctx.revert();
   }, [avatars]);
 
   return (
-    <div
-      ref={sectionRef}
-      className="relative w-full h-screen mt-60 overflow-hidden"
-    >
+    <div ref={sectionRef} className="relative w-full h-screen mt-60">
       {avatars.map((a) => (
         <div
           key={a.id}
