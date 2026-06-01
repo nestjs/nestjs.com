@@ -1,7 +1,13 @@
-import { useMemo } from "react";
+// @ts-ignore
+import { gsap } from "gsap/dist/gsap.js";
+// @ts-ignore
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger.js";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { BlurIn } from "../../components/animations/blur-in/blur-in";
 import ScrollReveal from "../../components/animations/scroll-reveal/scroll-reveal";
 import { PrimaryButton } from "../../components/buttons/primary-button/primary-button";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type Avatar = {
   id: number;
@@ -9,12 +15,29 @@ type Avatar = {
   y: number;
   size: number;
   url: string;
+  offset: number;
+  phase: number;
+  cycles: number;
+  delay: number;
 };
 
 const getRandom = (min: number, max: number) =>
   Math.random() * (max - min) + min;
 
 export default function CommunitySection() {
+  const [viewportWidth, setViewportWidth] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const avatarRefs = useRef<Array<HTMLDivElement | null>>([]);
+
+  useEffect(() => {
+    const updateViewportWidth = () => setViewportWidth(window.innerWidth);
+
+    updateViewportWidth();
+    window.addEventListener("resize", updateViewportWidth);
+
+    return () => window.removeEventListener("resize", updateViewportWidth);
+  }, []);
+
   const avatars: Avatar[] = useMemo(() => {
     let count = 20,
       cols = 4,
@@ -23,9 +46,9 @@ export default function CommunitySection() {
       yJitter = 4;
 
     switch (true) {
-      case window.innerWidth > 1200:
+      case viewportWidth > 1200:
         break;
-      case window.innerWidth > 992:
+      case viewportWidth > 992:
         count = 16;
         cols = 4;
         rows = 4;
@@ -64,6 +87,10 @@ export default function CommunitySection() {
           y,
           size: 48,
           url: `https://randomuser.me/api/portraits/${gender}/${userId}.jpg`,
+          offset: getRandom(10, 25) * sign,
+          phase: getRandom(0, Math.PI * 2),
+          cycles: getRandom(1.5, 3.5),
+          delay: Math.random() * 1.25,
         });
 
         id++;
@@ -71,14 +98,59 @@ export default function CommunitySection() {
     }
 
     return points;
-  }, [window.innerWidth]);
+  }, [viewportWidth]);
+
+  useEffect(() => {
+    if (!sectionRef.current) {
+      return;
+    }
+
+    avatarRefs.current = avatarRefs.current.slice(0, avatars.length);
+
+    const ctx = gsap.context(() => {
+      const setters = avatarRefs.current.map((avatar) =>
+        avatar ? gsap.quickSetter(avatar, "y", "px") : null,
+      );
+
+      const updateMotion = (progress: number) => {
+        avatars.forEach((avatar, index) => {
+          const setY = setters[index];
+
+          if (!setY) {
+            return;
+          }
+
+          const angle = progress * Math.PI * 2 * avatar.cycles + avatar.phase;
+          setY(Math.sin(angle) * avatar.offset);
+        });
+      };
+
+      const trigger = ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+        onUpdate: (self: { progress: number }) => updateMotion(self.progress),
+      });
+
+      updateMotion(trigger.progress);
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [avatars]);
 
   return (
-    <div className="relative w-full h-screen mt-60">
+    <div
+      ref={sectionRef}
+      className="relative w-full h-screen mt-60 overflow-hidden"
+    >
       {avatars.map((a) => (
-        <BlurIn
+        <div
           key={a.id}
-          className="absolute rounded-full object-cover shadow-md overflow-hidden"
+          ref={(node) => {
+            avatarRefs.current[a.id] = node;
+          }}
+          className="absolute"
           style={{
             top: `${a.y}%`,
             left: `${a.x}%`,
@@ -86,11 +158,15 @@ export default function CommunitySection() {
             height: `${a.size}px`,
             transform: "translate(-50%, -50%)",
           }}
-          delay={Math.random() * 1.25}
-          scale={0}
         >
-          <img src={a.url} alt="avatar" className="grayscale opacity-30" />
-        </BlurIn>
+          <BlurIn
+            className="rounded-full object-cover shadow-md overflow-hidden"
+            delay={a.delay}
+            scale={0}
+          >
+            <img src={a.url} alt="avatar" className="grayscale opacity-30" />
+          </BlurIn>
+        </div>
       ))}
 
       <div className="absolute inset-0 flex items-center justify-center">
