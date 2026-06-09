@@ -18,6 +18,7 @@ import { CourseCurriculum } from "../components/domain/course-curriculum/course-
 import { CoursesFan } from "../components/domain/courses-fan/courses-fan";
 import { SectionSubheading } from "../components/domain/section-subheading/section-subheading";
 import { ServiceCard } from "../components/domain/service-card/service-card";
+import { TiltedText } from "../components/domain/tilted-text/tilted-text";
 import StackedCards from "../components/misc/stacked-cards/stacked-cards";
 import { COURSE_EXTENSIONS } from "../data/courses/extensions";
 import { FUNDAMENTALS_CURRICULUM } from "../data/courses/fundamentals";
@@ -318,6 +319,12 @@ export default function Courses() {
         className="px-5 py-8 mt-50"
       />
       <FaqSection className="mt-50" items={FAQ_ITEMS} />
+      <TiltedText
+        heading="Does your team need additional support?"
+        content="Nest core team members can work directly with your team on a daily basis to help take your project to the next-level. Let us partner with you and your team to develop the most ambitious projects."
+        buttonText="Enterprise official support"
+        buttonLink="/enterprise"
+      />
       <LettersReveal
         ElementTag="h4"
         subComponent={
