@@ -579,7 +579,12 @@ export default function Mau() {
         ]}
       />
       <PricingCards className="pt-12 pb-24" plans={PRICING_PLANS} />
-      <TiltedText />
+      <TiltedText
+        heading="Start a free trial today"
+        content="Experience the full power of Mau with our free trial, and see how it can transform your development process and accelerate your projects."
+        buttonText="Deploy your first app"
+        buttonLink="/dashboard"
+      />
       <FaqSection items={FAQ_ITEMS} />
       <EnterpriseSection className="lg:mt-30 mt-0" />
       <CoursesSection className="sm:pt-30 pt-0" />

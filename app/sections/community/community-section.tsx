@@ -156,21 +156,22 @@ export default function CommunitySection() {
       ))}
 
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="flex flex-col items-center text-center container mx-auto px-4 bg-[radial-gradient(circle,var(--color-bg),transparent)] shadow-lg">
+        <div className="flex flex-col items-center text-center container mx-auto px-4 shadow-lg">
           <ScrollReveal
             ElementTag="h2"
             className="font-medium xl:text-8xl md:text-6xl sm:text-5xl text-4xl mb-4 xl:leading-28 md:leading-18 sm:leading-15 leading-12"
             enableBlur
           >
-            Join our ever-growing community of students
+            Over 15000 people certificated
           </ScrollReveal>
           <ScrollReveal
             className="font-mono text-sm opacity-70 leading-6 font-light pt-4 max-w-4xl"
             ElementTag="p"
             enableBlur
           >
-            Our courses are trusted by over 100,000 students worldwide. Become a
-            part of our thriving community and start your NestJS journey today.
+            Become a
+            part of our thriving community and start your NestJS journey today. 
+            Join over 15,000 certified developers who have transformed their careers with our comprehensive courses.
           </ScrollReveal>
           <div className="mt-16">
             <PrimaryButton href="https://courses.nestjs.com/" target="_blank">
