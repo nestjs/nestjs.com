@@ -5,7 +5,7 @@ import {
   PlayCircleIcon,
   ScrollIcon,
 } from "@phosphor-icons/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MENU_ITEMS } from "../common/menu";
 import AnimatedContent from "../components/animations/animated-content/animated-content";
 import { BlurIn } from "../components/animations/blur-in/blur-in";
@@ -14,7 +14,10 @@ import ScrollReveal from "../components/animations/scroll-reveal/scroll-reveal";
 import { PrimaryButton } from "../components/buttons/primary-button/primary-button";
 import { CheckoutBox } from "../components/domain/checkout-box/checkout-box";
 import { CourseCard } from "../components/domain/course-card/course-card";
-import { CourseCurriculum } from "../components/domain/course-curriculum/course-curriculum";
+import {
+  CourseCurriculum,
+  CourseVideoModal,
+} from "../components/domain/course-curriculum/course-curriculum";
 import { CoursesFan } from "../components/domain/courses-fan/courses-fan";
 import { SectionSubheading } from "../components/domain/section-subheading/section-subheading";
 import { ServiceCard } from "../components/domain/service-card/service-card";
@@ -29,7 +32,6 @@ import FaqSection, { type FaqItem } from "../sections/faq/faq-section";
 import { Footer } from "../sections/footer/footer";
 import { Header } from "../sections/header/header";
 import { TestimonialsSection } from "../sections/testimonials/testimonials-section";
-import { fetchNestStats, type NestStats } from "../services/nest-stats.service";
 import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
@@ -48,13 +50,15 @@ const FUNDAMENTALS_ITEMS: Array<{
   title: string;
   description: string;
   footnote?: React.ReactNode;
+  videoId?: string;
 }> = [
   {
     icon: <PlayCircleIcon weight="fill" size={32} />,
     title: "80 videos",
     description:
       "Featuring 80 videos (with subtitles) and over 5 hours of content",
-    footnote: <a href="#">Watch free lesson</a>,
+    footnote: "Watch free lesson",
+    videoId: "447091051",
   },
   {
     title: "From NestJS creator",
@@ -135,13 +139,7 @@ const FAQ_ITEMS: FaqItem[] = [
 ];
 
 export default function Courses() {
-  const [stats, setStats] = useState<NestStats | null>(null);
-
-  useEffect(() => {
-    fetchNestStats()
-      .then(setStats)
-      .catch(() => null);
-  }, []);
+  const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
 
   return (
     <>
@@ -164,10 +162,10 @@ export default function Courses() {
         actions={null}
         shrink={false}
       />
-      <div className="relative my-40 checkout-container">
+      <div className="relative my-8 lg:my-40 checkout-container md:px-0 px-4">
         <div className="container relative flex mx-auto md:flex-row flex-col items-center">
-          <div className="grid md:grid-cols-[55%_5%_40%] grid-rows-[auto] gap-0 place-items-top w-full">
-            <div className="md:order-1 order-3 md:mt-0 mt-12">
+          <div className="grid lg:grid-cols-[55%_5%_40%] grid-rows-[auto] gap-0 place-items-top w-full">
+            <div className="lg:order-1 order-3 lg:mt-0 mt-32">
               <SectionSubheading>Fundamentals course</SectionSubheading>
               <ScrollReveal
                 ElementTag="h2"
@@ -220,7 +218,19 @@ export default function Courses() {
                           </p>
                           {item.footnote && (
                             <div className="mt-2 text-[var(--primary-color)] hover:underline font-semibold">
-                              {item.footnote}
+                              {item.videoId ? (
+                                <button
+                                  className="hover:cursor-pointer"
+                                  onClick={() =>
+                                    setSelectedVideoId(item.videoId!)
+                                  }
+                                  type="button"
+                                >
+                                  {item.footnote}
+                                </button>
+                              ) : (
+                                item.footnote
+                              )}
                             </div>
                           )}
                         </AnimatedContent>
@@ -229,14 +239,14 @@ export default function Courses() {
                   </AnimatedContent>
                 ))}
               </div>
-              <div className="mt-32" />
+              <div className="md:mt-32 mt-16" />
               <SectionSubheading>Curriculum</SectionSubheading>
               <ScrollReveal
                 ElementTag="h2"
                 className="font-medium sm:text-6xl text-[2.3rem] leading-[1.1]"
                 enableBlur
               >
-                What’s inside the course...
+                What's inside the course...
               </ScrollReveal>
               <ScrollReveal
                 className="font-mono text-sm opacity-70 leading-6 font-light pt-10"
@@ -250,12 +260,12 @@ export default function Courses() {
               <div className="my-16" />
               <CourseCurriculum blocks={FUNDAMENTALS_CURRICULUM} />
             </div>
-            <span className="md:order-2 order-2" />
-            <div className="md:order-3 order-1 w-full md:pl-12 pl-0">
+            <span className="lg:order-2 order-2" />
+            <div className="lg:order-3 order-1 w-full lg:pl-12 pl-0">
               <BlurIn
                 duration={0.5}
                 distance={100}
-                className="relative md:sticky md:top-0 pt-10"
+                className="relative lg:sticky lg:top-0 pt-10"
               >
                 <CheckoutBox />
               </BlurIn>
@@ -263,7 +273,7 @@ export default function Courses() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center overflow-hidden mt-60 mb-30">
+      <div className="flex justify-center overflow-hidden mt-60 lg:mb-30">
         <div className="container relative centered justify-center items-center flex flex-col">
           <SectionSubheading>Extensions</SectionSubheading>
           <ScrollReveal
@@ -284,7 +294,7 @@ export default function Courses() {
             projects, and real-world applications.
           </ScrollReveal>
           <BlurIn className="mt-20 flex justify-center w-full" duration={0.5}>
-            <div className="grid grid-cols-3 gap-6 w-full">
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 w-full md:px-0 px-4">
               {COURSE_EXTENSIONS.map((extension, index) => (
                 <div className="relative" key={index}>
                   <CourseCard
@@ -316,9 +326,9 @@ export default function Courses() {
           aLabel: "After course completion",
           bLabel: "No course",
         }}
-        className="px-5 py-8 mt-50"
+        className="px-5 py-8 mt-30"
       />
-      <FaqSection className="mt-50" items={FAQ_ITEMS} />
+      <FaqSection className="md:mt-50" items={FAQ_ITEMS} />
       <TiltedText
         heading="Does your team need additional support?"
         content="Nest core team members can work directly with your team on a daily basis to help take your project to the next-level. Let us partner with you and your team to develop the most ambitious projects."
@@ -422,6 +432,10 @@ export default function Courses() {
       />
       <EnterpriseSection className="lg:mt-30 mt-0" />
       <TestimonialsSection />
+      <CourseVideoModal
+        videoId={selectedVideoId}
+        onClose={() => setSelectedVideoId(null)}
+      />
       <Footer className="mt-20" />
     </>
   );

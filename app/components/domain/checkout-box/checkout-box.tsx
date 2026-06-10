@@ -10,6 +10,7 @@ export function CheckoutBox() {
     height: 0,
   });
   const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const containerElement = containerRef.current;
     if (!containerElement) {
@@ -26,13 +27,34 @@ export function CheckoutBox() {
     });
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      const containerElement = containerRef.current;
+      if (!containerElement) {
+        return;
+      }
+
+      const containerWidth = containerElement.offsetWidth;
+      const padding = 40;
+      const iframeWidth = containerWidth - padding * 2;
+      const iframeHeight = (iframeWidth / 16) * 9; // 16:9 aspect ratio
+      setIframeDimensions({
+        width: iframeWidth,
+        height: iframeHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div
       ref={containerRef}
       className="p-[1px] relative h-full rounded-[20px] overflow-hidden bg-[radial-gradient(circle_at_top_center,_#fff_0%,_#222_20%,_#222_100%)]"
     >
       <div
-        className={`rounded-[20px] p-10 flex flex-col h-full bg-[radial-gradient(circle_at_top_right,_#9a9a9a_0%,_#7a7a7a_5%,_#4a4a4a_9%,_#1f1f1f_15%,_#050303_21%)]`}
+        className={`rounded-[20px] lg:p-10 p-6 flex flex-col h-full bg-[radial-gradient(circle_at_top_right,_#9a9a9a_0%,_#7a7a7a_5%,_#4a4a4a_9%,_#1f1f1f_15%,_#050303_21%)]`}
       >
         <div
           className="
@@ -53,7 +75,7 @@ export function CheckoutBox() {
           height={iframeElementDimensions.height}
           allow="autoplay; fullscreen"
         ></iframe>
-        <h4 className="text-[1.7rem] font-normal mt-10">
+        <h4 className="md:text-[1.7rem] text-2xl font-normal mt-10">
           NestJS Fundamentals Course
         </h4>
         <div className="flex items-start gap-3 mt-2">
@@ -70,7 +92,7 @@ export function CheckoutBox() {
         </div>
         <div className="mt-8 mb-6">
           <PrimaryButton
-            href="/dashboard"
+            href="https://learn.nestjs.com/purchase?product_id=5676925"
             className="w-full text-center"
             inline={false}
           >
@@ -92,7 +114,7 @@ export function CheckoutBox() {
             and get a discount!
           </p>
         </div>
-        <div className="border-t border-white/10 w-full mt-8 flex pt-10 pb-2 justify-center gap-8">
+        <div className="border-t border-white/10 w-full mt-8 flex pt-10 pb-2 justify-center gap-8 sm:flex-row flex-col">
           <div className="flex items-center gap-2">
             <img src={KamilAvatar} className="rounded-full w-8" />
             <div className="font-light flex flex-col">

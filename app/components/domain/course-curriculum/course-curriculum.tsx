@@ -21,6 +21,11 @@ type CourseCurriculumProps = {
   blocks: CourseCurriculumBlock[];
 };
 
+type CourseVideoModalProps = {
+  videoId: string | null;
+  onClose: () => void;
+};
+
 function getInitialOpenState(blocks: CourseCurriculumBlock[]) {
   return Object.fromEntries(
     blocks.map((block) => [block.title, Boolean(block.isOpened)]),
@@ -53,10 +58,42 @@ function LessonChip({
   );
 }
 
+export function CourseVideoModal({ videoId, onClose }: CourseVideoModalProps) {
+  if (!videoId) {
+    return null;
+  }
+
+  return (
+    <div
+      aria-modal="true"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 py-6 backdrop-blur-sm"
+      onClick={onClose}
+      role="dialog"
+    >
+      <div
+        className="w-full max-w-[1170px] overflow-hidden rounded-[24px] border border-white/10 bg-black shadow-2xl"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <iframe
+          src={`https://player.vimeo.com/video/${videoId}?title=0&byline=0&portrait=0&sidedock=0`}
+          width="1170"
+          height="675"
+          frameBorder="0"
+          className="featured-lesson aspect-video h-auto w-full"
+          allow="autoplay; fullscreen"
+          allowFullScreen
+          title="Featured lesson"
+        ></iframe>
+      </div>
+    </div>
+  );
+}
+
 export function CourseCurriculum({ blocks }: CourseCurriculumProps) {
   const [openBlocks, setOpenBlocks] = useState<Record<string, boolean>>(() =>
     getInitialOpenState(blocks),
   );
+  const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
 
   useEffect(() => {
     setOpenBlocks(getInitialOpenState(blocks));
@@ -67,6 +104,10 @@ export function CourseCurriculum({ blocks }: CourseCurriculumProps) {
       ...current,
       [title]: !current[title],
     }));
+  };
+
+  const closeVideoModal = () => {
+    setSelectedVideoId(null);
   };
 
   return (
@@ -84,7 +125,7 @@ export function CourseCurriculum({ blocks }: CourseCurriculumProps) {
               aria-controls={panelId}
               aria-expanded={isOpen}
               className={`${isOpen ? "bg-white text-black" : "border border-white/10 text-white rounded-[20px]"}
-              flex w-full items-center gap-4 px-8 py-7 text-left hover:cursor-pointer`}
+              flex w-full items-center gap-4 md:px-8 md:py-7 px-4 py-6 text-left hover:cursor-pointer`}
               onClick={() => toggleBlock(block.title)}
               type="button"
             >
@@ -120,12 +161,12 @@ export function CourseCurriculum({ blocks }: CourseCurriculumProps) {
               >
                 {block.lessons.map((lesson, lessonIndex) => (
                   <div
-                    className="flex flex-col gap-3 border-b border-white/10 px-6 py-8 last:border-b-0 sm:flex-row sm:items-center sm:gap-4"
+                    className="flex flex-col gap-3 border-b border-white/10 md:px-6 md:py-8 px-4 py-6 last:border-b-0 sm:flex-row sm:items-center sm:gap-4"
                     key={lesson.title}
                   >
                     <div className="min-w-0 flex-1 text-white">
-                      <h6 className={`text-xs font-mono font-light sm:text-sm`}>
-                        <span className="mr-6 font-mono text-xs">
+                      <h6 className={`text-sm font-mono font-light`}>
+                        <span className="sm:mr-6 mr-4 font-mono text-xs">
                           [ {formatLessonIndex(lessonIndex)} ]
                         </span>
                         {lesson.title}
@@ -155,6 +196,7 @@ export function CourseCurriculum({ blocks }: CourseCurriculumProps) {
                         <button
                           className="inline-flex items-center font-mono gap-2 rounded-[12px] bg-[var(--primary-color)] py-2 px-2.5 text-xs font-light text-white uppercase transition hover:bg-[var(--primary-color)]/18 hover:cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-color)]/60"
                           data-video-id={lesson.videoId}
+                          onClick={() => setSelectedVideoId(lesson.videoId!)}
                           type="button"
                         >
                           <PlayCircleIcon
@@ -172,6 +214,8 @@ export function CourseCurriculum({ blocks }: CourseCurriculumProps) {
           </section>
         );
       })}
+
+      <CourseVideoModal videoId={selectedVideoId} onClose={closeVideoModal} />
     </div>
   );
 }

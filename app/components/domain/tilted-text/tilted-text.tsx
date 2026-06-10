@@ -76,7 +76,7 @@ export function TiltedText({
             </div>
             <div className="flex md:items-start md:flex-row flex-col-reverse max-w-5xl mx-auto z-100 relative">
               <div className="flex items-center flex-col w-full md:mt-0 mt-12 px-8">
-                <h3 className="text-6xl md:text-8xl md:leading-26 leading-22 font-medium text-center">
+                <h3 className="md:text-6xl xl:text-7xl 2xl:text-8xl 2xl:leading-26 xl:leading-20 md:leading-18 text-4xl leading-12 font-medium text-center">
                   {heading}
                 </h3>
                 <p className="font-mono text-sm opacity-70 leading-6 font-light mt-6 mb-4 text-center">
