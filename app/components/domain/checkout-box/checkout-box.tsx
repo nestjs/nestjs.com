@@ -18,7 +18,7 @@ export function CheckoutBox() {
     }
 
     const containerWidth = containerElement.offsetWidth;
-    const padding = 40;
+    const padding = window.innerWidth > 1023 ? 40 : 20;
     const iframeWidth = containerWidth - padding * 2;
     const iframeHeight = (iframeWidth / 16) * 9; // 16:9 aspect ratio
     setIframeDimensions({
@@ -35,7 +35,7 @@ export function CheckoutBox() {
       }
 
       const containerWidth = containerElement.offsetWidth;
-      const padding = 40;
+      const padding = window.innerWidth > 1023 ? 40 : 20;
       const iframeWidth = containerWidth - padding * 2;
       const iframeHeight = (iframeWidth / 16) * 9; // 16:9 aspect ratio
       setIframeDimensions({
