@@ -1,6 +1,5 @@
 import { useState } from "react";
 import AnimatedArrow from "../../components/animations/animated-arrow/animated-arrow";
-import AnimatedContent from "../../components/animations/animated-content/animated-content";
 import ScrollReveal from "../../components/animations/scroll-reveal/scroll-reveal";
 import { SectionSubheading } from "../../components/domain/section-subheading/section-subheading";
 
@@ -52,13 +51,11 @@ export function CertificatesSection() {
         </div>
         <span />
         <div className="w-full md:mt-0 mt-12">
-          <AnimatedContent distance={50} delay={0.1} initialOpacity={0}>
-            <iframe
-              src={`https://www.linkedin.com/embed/feed/update/urn:li:${CERTIFICATES[activeCertificate ?? 0].ugcPost ? "ugcPost" : "share"}:${CERTIFICATES[activeCertificate ?? 0].id}?collapsed=1`}
-              className="w-full rounded-lg h-[600px] overflow-y-scroll"
-              allowFullScreen
-            ></iframe>
-          </AnimatedContent>
+          <iframe
+            src={`https://www.linkedin.com/embed/feed/update/urn:li:${CERTIFICATES[activeCertificate ?? 0].ugcPost ? "ugcPost" : "share"}:${CERTIFICATES[activeCertificate ?? 0].id}?collapsed=1`}
+            className="w-full rounded-lg h-[600px] overflow-y-scroll"
+            allowFullScreen
+          ></iframe>
           <div className="flex w-full justify-center mt-6">
             <span
               onClick={() => {
