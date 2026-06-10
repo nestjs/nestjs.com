@@ -26,6 +26,7 @@ import StackedCards from "../components/misc/stacked-cards/stacked-cards";
 import { COURSE_EXTENSIONS } from "../data/courses/extensions";
 import { FUNDAMENTALS_CURRICULUM } from "../data/courses/fundamentals";
 import BarChartSection from "../sections/bar-chart/bar-chart-section";
+import { CertificatesSection } from "../sections/certificates/certificates";
 import CommunitySection from "../sections/community/community-section";
 import { EnterpriseSection } from "../sections/enterprise/enterprise-section";
 import FaqSection, { type FaqItem } from "../sections/faq/faq-section";
@@ -273,7 +274,10 @@ export default function Courses() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center overflow-hidden mt-60 lg:mb-30">
+      <div
+        className="flex justify-center overflow-hidden mt-60 lg:mb-30"
+        id="extensions"
+      >
         <div className="container relative centered justify-center items-center flex flex-col">
           <SectionSubheading>Extensions</SectionSubheading>
           <ScrollReveal
@@ -310,13 +314,14 @@ export default function Courses() {
         </div>
       </div>
       <CommunitySection />
+      <CertificatesSection />
       <BarChartSection
         subheading="Hands-on"
         heading="Less reading. More building."
         text="Stop spending your learning time buried in documentation and passive reading. This course is designed to get you into the code immediately, building real projects from the very first lesson. You'll learn faster by doing, not by scrolling-turning concepts into working skills as you go."
         cta={
-          <PrimaryButton href="#" target="_blank">
-            See courses
+          <PrimaryButton href="#extensions">
+            See course extensions
           </PrimaryButton>
         }
         chart={{
@@ -326,7 +331,7 @@ export default function Courses() {
           aLabel: "After course completion",
           bLabel: "No course",
         }}
-        className="px-5 py-8 mt-30"
+        className="px-5 py-8 md:mt-60 mt-30"
       />
       <FaqSection className="md:mt-50" items={FAQ_ITEMS} />
       <TiltedText

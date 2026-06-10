@@ -5,11 +5,13 @@ export default function AnimatedArrow({
   reverse,
   onClick,
   className = "",
+  delay = 2,
 }: {
   width?: number;
   reverse?: boolean;
   onClick?: () => void;
   className?: string;
+  delay?: number;
 }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -53,7 +55,7 @@ export default function AnimatedArrow({
           style={{
             strokeDasharray: 150,
             strokeDashoffset: visible ? 0 : 150,
-            transition: "stroke-dashoffset 0.75s ease-out 2s",
+            transition: `stroke-dashoffset 0.75s ease-out ${delay}s`,
           }}
         />
 
@@ -63,7 +65,7 @@ export default function AnimatedArrow({
           style={{
             transform: visible ? "scale(1)" : "scale(0)",
             transformOrigin: "150px 15px",
-            transition: "transform 0.5s ease-out 2.8s",
+            transition: `transform 0.5s ease-out ${delay + 0.8}s`,
           }}
         />
       </svg>

@@ -9,8 +9,6 @@ import { BlurIn } from "../../components/animations/blur-in/blur-in";
 import { SectionSubheading } from "../../components/domain/section-subheading/section-subheading";
 import Orb from "../../components/effects/orb/orb";
 
-const CARD_CHANGE_INTERVAL = 15000;
-
 const TESTIMONIALS = [
   {
     logo: O2Logo,

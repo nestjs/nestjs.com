@@ -169,13 +169,13 @@ export default function CommunitySection() {
             ElementTag="p"
             enableBlur
           >
-            Become a
-            part of our thriving community and start your NestJS journey today. 
-            Join over 15,000 certified developers who have transformed their careers with our comprehensive courses.
+            Become a part of our thriving community and start your NestJS
+            journey today. Join over 15,000 certified developers who have
+            transformed their careers with our comprehensive courses.
           </ScrollReveal>
           <div className="mt-16">
-            <PrimaryButton href="https://courses.nestjs.com/" target="_blank">
-              Browse courses
+            <PrimaryButton href="#certificated">
+              See certified developers
             </PrimaryButton>
           </div>
         </div>
