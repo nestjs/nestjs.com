@@ -1,58 +1,11 @@
 import { ShoppingBagIcon } from "@phosphor-icons/react";
-import { useEffect, useRef, useState } from "react";
 import KamilAvatar from "../../../assets/avatars/kamil.png";
 import MarkAvatar from "../../../assets/avatars/mark.png";
 import { PrimaryButton } from "../../buttons/primary-button/primary-button";
 
 export function CheckoutBox() {
-  const [iframeElementDimensions, setIframeDimensions] = useState({
-    width: 0,
-    height: 0,
-  });
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const containerElement = containerRef.current;
-    if (!containerElement) {
-      return;
-    }
-
-    const containerWidth = containerElement.offsetWidth;
-    const padding = window.innerWidth > 1023 ? 40 : 20;
-    const iframeWidth = containerWidth - padding * 2;
-    const iframeHeight = (iframeWidth / 16) * 9; // 16:9 aspect ratio
-    setIframeDimensions({
-      width: iframeWidth,
-      height: iframeHeight,
-    });
-  }, []);
-
-  useEffect(() => {
-    const handleResize = () => {
-      const containerElement = containerRef.current;
-      if (!containerElement) {
-        return;
-      }
-
-      const containerWidth = containerElement.offsetWidth;
-      const padding = window.innerWidth > 1023 ? 40 : 20;
-      const iframeWidth = containerWidth - padding * 2;
-      const iframeHeight = (iframeWidth / 16) * 9; // 16:9 aspect ratio
-      setIframeDimensions({
-        width: iframeWidth,
-        height: iframeHeight,
-      });
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
-    <div
-      ref={containerRef}
-      className="p-[1px] relative h-full rounded-[20px] overflow-hidden bg-[radial-gradient(circle_at_top_center,_#fff_0%,_#222_20%,_#222_100%)]"
-    >
+    <div className="p-[1px] relative h-full rounded-[20px] overflow-hidden bg-[radial-gradient(circle_at_top_center,_#fff_0%,_#222_20%,_#222_100%)]">
       <div
         className={`rounded-[20px] lg:p-10 p-6 flex flex-col h-full bg-[radial-gradient(circle_at_top_right,_#9a9a9a_0%,_#7a7a7a_5%,_#4a4a4a_9%,_#1f1f1f_15%,_#050303_21%)]`}
       >
@@ -71,9 +24,10 @@ export function CheckoutBox() {
         />
         <iframe
           src="https://player.vimeo.com/video/433943559?autoplay=1&muted=1&title=0&byline=0&portrait=0&sidedock=0"
-          width={iframeElementDimensions.width}
-          height={iframeElementDimensions.height}
+          width="100%"
+          height="100%"
           allow="autoplay; fullscreen"
+          className="aspect-video w-full overflow-hidden rounded-[16px] border border-white/10 bg-black"
         ></iframe>
         <h4 className="md:text-[1.7rem] text-2xl font-normal mt-10">
           NestJS Fundamentals Course
