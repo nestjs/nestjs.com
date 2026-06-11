@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
-import { MENU_ITEMS } from "../common/menu";
-import ScrollReveal from "../components/animations/scroll-reveal/scroll-reveal";
-import { PrimaryButton } from "../components/buttons/primary-button/primary-button";
-import { SectionSubheading } from "../components/domain/section-subheading/section-subheading";
-import { CoursesSection } from "../sections/courses/courses-section";
-import { EnterpriseSection } from "../sections/enterprise/enterprise-section";
-import { Footer } from "../sections/footer/footer";
-import { Header } from "../sections/header/header";
-import { ProductsSection } from "../sections/products/products-section";
-import { TestimonialsSection } from "../sections/testimonials/testimonials-section";
-import { fetchNestStats, type NestStats } from "../services/nest-stats.service";
+import { MENU_ITEMS } from "../marketing-ui/common/menu";
+import ScrollReveal from "../marketing-ui/components/animations/scroll-reveal/scroll-reveal";
+import { PrimaryButton } from "../marketing-ui/components/buttons/primary-button/primary-button";
+import { SectionSubheading } from "../marketing-ui/components/domain/section-subheading/section-subheading";
+import { CoursesSection } from "../marketing-ui/sections/courses/courses-section";
+import { EnterpriseSection } from "../marketing-ui/sections/enterprise/enterprise-section";
+import { Footer } from "../marketing-ui/sections/footer/footer";
+import { Header } from "../marketing-ui/sections/header/header";
+import { ProductsSection } from "../marketing-ui/sections/products/products-section";
+import { TestimonialsSection } from "../marketing-ui/sections/testimonials/testimonials-section";
+import {
+  fetchNestStats,
+  type NestStats,
+} from "../marketing-ui/services/nest-stats.service";
 import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {

@@ -29,26 +29,28 @@ import MauIllustration3 from "../assets/mau-cards/illustration-3.png";
 import HeaderBlock1 from "../assets/mau-header/header-block-1.png";
 import HeaderBlock2 from "../assets/mau-header/header-block-2.png";
 import MauMockup from "../assets/mau-mockup.png";
-import { MENU_ITEMS } from "../common/menu";
-import AnimatedContent from "../components/animations/animated-content/animated-content";
-import { BlurIn } from "../components/animations/blur-in/blur-in";
-import ScrollReveal from "../components/animations/scroll-reveal/scroll-reveal";
-import Particles from "../components/backgrounds/particles/particles";
-import { PrimaryButton } from "../components/buttons/primary-button/primary-button";
-import { FeatureSection } from "../components/domain/feature-section/feature-section";
+import { MENU_ITEMS } from "../marketing-ui/common/menu";
+import AnimatedContent from "../marketing-ui/components/animations/animated-content/animated-content";
+import { BlurIn } from "../marketing-ui/components/animations/blur-in/blur-in";
+import ScrollReveal from "../marketing-ui/components/animations/scroll-reveal/scroll-reveal";
+import Particles from "../marketing-ui/components/backgrounds/particles/particles";
+import { PrimaryButton } from "../marketing-ui/components/buttons/primary-button/primary-button";
+import { FeatureSection } from "../marketing-ui/components/domain/feature-section/feature-section";
 import {
   PricingCards,
   type Plan,
-} from "../components/domain/pricing-cards/pricing-cards";
-import { SectionSubheading } from "../components/domain/section-subheading/section-subheading";
-import { TiltedText } from "../components/domain/tilted-text/tilted-text";
-import { BrandsSection } from "../sections/brands/brands-section";
-import { CoursesSection } from "../sections/courses/courses-section";
-import { EnterpriseSection } from "../sections/enterprise/enterprise-section";
-import FaqSection, { type FaqItem } from "../sections/faq/faq-section";
-import { Footer } from "../sections/footer/footer";
-import { Header } from "../sections/header/header";
-import { TestimonialsSection } from "../sections/testimonials/testimonials-section";
+} from "../marketing-ui/components/domain/pricing-cards/pricing-cards";
+import { SectionSubheading } from "../marketing-ui/components/domain/section-subheading/section-subheading";
+import { TiltedText } from "../marketing-ui/components/domain/tilted-text/tilted-text";
+import { BrandsSection } from "../marketing-ui/sections/brands/brands-section";
+import { CoursesSection } from "../marketing-ui/sections/courses/courses-section";
+import { EnterpriseSection } from "../marketing-ui/sections/enterprise/enterprise-section";
+import FaqSection, {
+  type FaqItem,
+} from "../marketing-ui/sections/faq/faq-section";
+import { Footer } from "../marketing-ui/sections/footer/footer";
+import { Header } from "../marketing-ui/sections/header/header";
+import { TestimonialsSection } from "../marketing-ui/sections/testimonials/testimonials-section";
 import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {

@@ -7,30 +7,32 @@ import {
 } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import { MENU_ITEMS } from "../common/menu";
-import AnimatedContent from "../components/animations/animated-content/animated-content";
-import { BlurIn } from "../components/animations/blur-in/blur-in";
-import ScrollReveal from "../components/animations/scroll-reveal/scroll-reveal";
-import { PrimaryButton } from "../components/buttons/primary-button/primary-button";
-import { CheckoutBox } from "../components/domain/checkout-box/checkout-box";
-import { CourseCard } from "../components/domain/course-card/course-card";
+import { COURSE_EXTENSIONS } from "../data/courses/extensions";
+import { FUNDAMENTALS_CURRICULUM } from "../data/courses/fundamentals";
+import { MENU_ITEMS } from "../marketing-ui/common/menu";
+import AnimatedContent from "../marketing-ui/components/animations/animated-content/animated-content";
+import { BlurIn } from "../marketing-ui/components/animations/blur-in/blur-in";
+import ScrollReveal from "../marketing-ui/components/animations/scroll-reveal/scroll-reveal";
+import { PrimaryButton } from "../marketing-ui/components/buttons/primary-button/primary-button";
+import { CheckoutBox } from "../marketing-ui/components/domain/checkout-box/checkout-box";
+import { CourseCard } from "../marketing-ui/components/domain/course-card/course-card";
 import {
   CourseCurriculum,
   CourseVideoModal,
-} from "../components/domain/course-curriculum/course-curriculum";
-import { CoursesFan } from "../components/domain/courses-fan/courses-fan";
-import { SectionSubheading } from "../components/domain/section-subheading/section-subheading";
-import { TiltedText } from "../components/domain/tilted-text/tilted-text";
-import { COURSE_EXTENSIONS } from "../data/courses/extensions";
-import { FUNDAMENTALS_CURRICULUM } from "../data/courses/fundamentals";
-import BarChartSection from "../sections/bar-chart/bar-chart-section";
-import { CertificatesSection } from "../sections/certificates/certificates-section";
-import CommunitySection from "../sections/community/community-section";
-import FaqSection, { type FaqItem } from "../sections/faq/faq-section";
-import { Footer } from "../sections/footer/footer";
-import { Header } from "../sections/header/header";
-import { ProductsSection } from "../sections/products/products-section";
-import { TestimonialsSection } from "../sections/testimonials/testimonials-section";
+} from "../marketing-ui/components/domain/course-curriculum/course-curriculum";
+import { CoursesFan } from "../marketing-ui/components/domain/courses-fan/courses-fan";
+import { SectionSubheading } from "../marketing-ui/components/domain/section-subheading/section-subheading";
+import { TiltedText } from "../marketing-ui/components/domain/tilted-text/tilted-text";
+import BarChartSection from "../marketing-ui/sections/bar-chart/bar-chart-section";
+import { CertificatesSection } from "../marketing-ui/sections/certificates/certificates-section";
+import CommunitySection from "../marketing-ui/sections/community/community-section";
+import FaqSection, {
+  type FaqItem,
+} from "../marketing-ui/sections/faq/faq-section";
+import { Footer } from "../marketing-ui/sections/footer/footer";
+import { Header } from "../marketing-ui/sections/header/header";
+import { ProductsSection } from "../marketing-ui/sections/products/products-section";
+import { TestimonialsSection } from "../marketing-ui/sections/testimonials/testimonials-section";
 import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {

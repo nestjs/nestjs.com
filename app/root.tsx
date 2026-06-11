@@ -9,13 +9,13 @@ import {
   ScrollRestoration,
 } from "react-router";
 import type { Route } from "./+types/root";
-import { BlurIn } from "./components/animations/blur-in/blur-in";
-import Aurora from "./components/backgrounds/aurora-background/aurora-background";
-import NoiseOverlay from "./components/backgrounds/noise-overlay/noise-overlay";
-import { PrimaryButton } from "./components/buttons/primary-button/primary-button";
-import { GsapRouteHandler } from "./components/gsap-route-handler";
-import LazyRender from "./components/misc/lazy-render/lazy-render";
 import "./index.css";
+import { BlurIn } from "./marketing-ui/components/animations/blur-in/blur-in";
+import Aurora from "./marketing-ui/components/backgrounds/aurora-background/aurora-background";
+import NoiseOverlay from "./marketing-ui/components/backgrounds/noise-overlay/noise-overlay";
+import { PrimaryButton } from "./marketing-ui/components/buttons/primary-button/primary-button";
+import { GsapRouteHandler } from "./marketing-ui/components/gsap-route-handler";
+import LazyRender from "./marketing-ui/components/misc/lazy-render/lazy-render";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },

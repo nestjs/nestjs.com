@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
-import { MENU_ITEMS } from "../common/menu";
-import ScrollReveal from "../components/animations/scroll-reveal/scroll-reveal";
-import FeatureCards from "../components/domain/feature-cards/feature-cards";
-import { SectionSubheading } from "../components/domain/section-subheading/section-subheading";
-import { BrandsSection } from "../sections/brands/brands-section";
-import { CoursesSection } from "../sections/courses/courses-section";
-import { EnterpriseSection } from "../sections/enterprise/enterprise-section";
-import { Footer } from "../sections/footer/footer";
-import { Header } from "../sections/header/header";
-import { ProductsSection } from "../sections/products/products-section";
-import { SponsorsSection } from "../sections/sponsors/sponsors-section";
-import { StatsSection } from "../sections/stats/stats-section";
-import { SyntaxSection } from "../sections/syntax/syntax-section";
-import { TestimonialsSection } from "../sections/testimonials/testimonials-section";
-import { fetchNestStats, type NestStats } from "../services/nest-stats.service";
+import { MENU_ITEMS } from "../marketing-ui/common/menu";
+import ScrollReveal from "../marketing-ui/components/animations/scroll-reveal/scroll-reveal";
+import FeatureCards from "../marketing-ui/components/domain/feature-cards/feature-cards";
+import { SectionSubheading } from "../marketing-ui/components/domain/section-subheading/section-subheading";
+import { BrandsSection } from "../marketing-ui/sections/brands/brands-section";
+import { CoursesSection } from "../marketing-ui/sections/courses/courses-section";
+import { EnterpriseSection } from "../marketing-ui/sections/enterprise/enterprise-section";
+import { Footer } from "../marketing-ui/sections/footer/footer";
+import { Header } from "../marketing-ui/sections/header/header";
+import { ProductsSection } from "../marketing-ui/sections/products/products-section";
+import { SponsorsSection } from "../marketing-ui/sections/sponsors/sponsors-section";
+import { StatsSection } from "../marketing-ui/sections/stats/stats-section";
+import { SyntaxSection } from "../marketing-ui/sections/syntax/syntax-section";
+import { TestimonialsSection } from "../marketing-ui/sections/testimonials/testimonials-section";
+import {
+  fetchNestStats,
+  type NestStats,
+} from "../marketing-ui/services/nest-stats.service";
 import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
