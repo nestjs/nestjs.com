@@ -29,6 +29,7 @@ import MauIllustration3 from "../assets/mau-cards/illustration-3.png";
 import HeaderBlock1 from "../assets/mau-header/header-block-1.png";
 import HeaderBlock2 from "../assets/mau-header/header-block-2.png";
 import MauMockup from "../assets/mau-mockup.png";
+import MauHeaderImage from "../marketing-ui/assets/screenshots/mau_2.png";
 import { MENU_ITEMS } from "../marketing-ui/common/menu";
 import AnimatedContent from "../marketing-ui/components/animations/animated-content/animated-content";
 import { BlurIn } from "../marketing-ui/components/animations/blur-in/blur-in";
@@ -275,7 +276,7 @@ export default function Mau() {
               >
                 <div className="absolute inset-0 rounded-tl-[20px] rounded-tr-[20px] bg-gradient-to-t from-white/15 to-white/5 top-[-1px] left-[-1px] right-[-1px] bottom-[-1px] z-0"></div>
                 <img
-                  src={"/screenshots/mau_2.png"}
+                  src={MauHeaderImage}
                   className="rounded-tl-[12px] rounded-tr-[12px] z-2 relative"
                 />
               </div>
