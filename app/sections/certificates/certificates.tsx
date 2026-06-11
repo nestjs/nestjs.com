@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AnimatedArrow from "../../components/animations/animated-arrow/animated-arrow";
 import ScrollReveal from "../../components/animations/scroll-reveal/scroll-reveal";
+import { PrimaryButton } from "../../components/buttons/primary-button/primary-button";
 import { SectionSubheading } from "../../components/domain/section-subheading/section-subheading";
 
 // Linkedin posts to embed
@@ -47,9 +48,17 @@ export function CertificatesSection() {
             resume, or personal website. Showcase your new skills and boost your
             career prospects with a NestJS certification.
           </ScrollReveal>
+          <div className="mt-10">
+            <PrimaryButton
+              href="https://github.com/nestjs/courses.nestjs.com"
+              target="_blank"
+            >
+              Add your post
+            </PrimaryButton>
+          </div>
         </div>
         <span />
-        <div className="w-full md:mt-0 mt-12">
+        <div className="w-full md:mt-0 mt-24">
           <iframe
             src={`https://www.linkedin.com/embed/feed/update/urn:li:${CERTIFICATES[activeCertificate ?? 0].ugcPost ? "ugcPost" : "share"}:${CERTIFICATES[activeCertificate ?? 0].id}?collapsed=1`}
             className="w-full rounded-lg h-[600px] overflow-y-scroll"
