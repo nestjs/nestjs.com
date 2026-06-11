@@ -47,5 +47,5 @@ export const MENU_ITEMS: Array<MenuItem> = [
       },
     ],
   },
-  { id: "jobs", label: "Jobs", href: "https://jobs.nestjs.com" },
+  { id: "jobs", label: "Jobs", href: "/jobs" },
 ];

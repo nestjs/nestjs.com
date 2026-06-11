@@ -20,6 +20,9 @@ type Pages = {
   "/courses": {
     params: {};
   };
+  "/jobs": {
+    params: {};
+  };
   "/tools/mau": {
     params: {};
   };
@@ -28,7 +31,7 @@ type Pages = {
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/" | "/enterprise" | "/courses" | "/tools/mau";
+    page: "/" | "/enterprise" | "/courses" | "/jobs" | "/tools/mau";
   };
   "routes/home.tsx": {
     id: "routes/home";
@@ -42,6 +45,10 @@ type RouteFiles = {
     id: "routes/courses";
     page: "/courses";
   };
+  "routes/jobs.tsx": {
+    id: "routes/jobs";
+    page: "/jobs";
+  };
   "routes/tools-mau.tsx": {
     id: "routes/tools-mau";
     page: "/tools/mau";
@@ -53,5 +60,6 @@ type RouteModules = {
   "routes/home": typeof import("./app/routes/home.tsx");
   "routes/enterprise": typeof import("./app/routes/enterprise.tsx");
   "routes/courses": typeof import("./app/routes/courses.tsx");
+  "routes/jobs": typeof import("./app/routes/jobs.tsx");
   "routes/tools-mau": typeof import("./app/routes/tools-mau.tsx");
 };

@@ -42,7 +42,7 @@ export function CoursesSection({
           <PrimaryButton href="https://courses.nestjs.com/">
             {ctaText}
           </PrimaryButton>
-          <TransparentButton href="https://courses.nestjs.com/#featured">
+          <TransparentButton href="https://courses.nestjs.com?preview">
             <img src="/icons/play.svg" className="w-4 h-4 mr-2" />
             <span>Watch free lesson</span>
           </TransparentButton>
