@@ -9,7 +9,6 @@ import { EnterpriseSection } from "../marketing-ui/sections/enterprise/enterpris
 import { Footer } from "../marketing-ui/sections/footer/footer";
 import { Header } from "../marketing-ui/sections/header/header";
 import { ProductsSection } from "../marketing-ui/sections/products/products-section";
-import { SponsorsSection } from "../marketing-ui/sections/sponsors/sponsors-section";
 import { StatsSection } from "../marketing-ui/sections/stats/stats-section";
 import { SyntaxSection } from "../marketing-ui/sections/syntax/syntax-section";
 import { TestimonialsSection } from "../marketing-ui/sections/testimonials/testimonials-section";
@@ -17,6 +16,7 @@ import {
   fetchNestStats,
   type NestStats,
 } from "../marketing-ui/services/nest-stats.service";
+import { SponsorsSection } from "../sections/sponsors/sponsors-section";
 import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
