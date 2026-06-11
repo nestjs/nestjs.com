@@ -13,7 +13,6 @@ const CERTIFICATES = [
   { id: "7410378907469643776", ugcPost: false },
   { id: "7412859515353587712", ugcPost: false },
   { id: "7377707234614464512", ugcPost: false },
-  { id: "7354184738829410304", ugcPost: true },
   { id: "7418032027880329216", ugcPost: true },
   { id: "7367925902321651714", ugcPost: false },
 ];
