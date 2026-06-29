@@ -1,4 +1,4 @@
-import type { CourseCurriculumBlock } from "../../components/domain/course-curriculum/course-curriculum";
+import type { CourseCurriculumBlock } from "../../marketing-ui/components/domain/course-curriculum/course-curriculum";
 
 export const FUNDAMENTALS_CURRICULUM: CourseCurriculumBlock[] = [
   {

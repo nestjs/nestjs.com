@@ -10,6 +10,7 @@ export type CourseExtension = {
   isBundle?: boolean;
   extensionKey?: string;
   purchaseLink?: string;
+  url?: string;
 };
 
 export const COURSE_EXTENSIONS: CourseExtension[] = [
@@ -24,6 +25,7 @@ export const COURSE_EXTENSIONS: CourseExtension[] = [
     badge: "Bundle -30%",
     isBundle: true,
     purchaseLink: "https://learn.nestjs.com/purchase?product_id=5772222",
+    url: "https://learn.nestjs.com/purchase?product_id=5772222",
   },
   {
     title: "Extensions - bundle",
@@ -36,6 +38,7 @@ export const COURSE_EXTENSIONS: CourseExtension[] = [
     badge: "Bundle -30%",
     isBundle: true,
     purchaseLink: "https://learn.nestjs.com/purchase?product_id=5772223",
+    url: "https://learn.nestjs.com/purchase?product_id=5772223",
   },
   {
     title: "Architecture and Advanced patterns",
@@ -44,6 +47,7 @@ export const COURSE_EXTENSIONS: CourseExtension[] = [
     color: "192,13,39",
     price: 95,
     extensionKey: "architecture",
+    url: "/extensions/architecture-and-advanced-patterns",
   },
   {
     title: "Advanced concepts",
@@ -52,6 +56,7 @@ export const COURSE_EXTENSIONS: CourseExtension[] = [
     color: "192,13,39",
     price: 69,
     extensionKey: "advanced-concepts",
+    url: "/extensions/advanced-concepts",
   },
   {
     title: "GraphQL - Bundle",
@@ -64,6 +69,7 @@ export const COURSE_EXTENSIONS: CourseExtension[] = [
     badge: "Bundle -25%",
     isBundle: true,
     extensionKey: "graphql-bundle",
+    url: "https://learn.nestjs.com/purchase?product_id=4215020",
   },
   {
     title: "Authentication and Authorization",
@@ -72,6 +78,7 @@ export const COURSE_EXTENSIONS: CourseExtension[] = [
     color: "166,13,116",
     price: 79,
     extensionKey: "authentication",
+    url: "/extensions/authentication-and-authorization",
   },
   {
     title: "GraphQL - Code first",
@@ -80,6 +87,7 @@ export const COURSE_EXTENSIONS: CourseExtension[] = [
     color: "121,32,205",
     price: 39,
     extensionKey: "code-first",
+    url: "/extensions/graphql-code-first",
   },
   {
     title: "Microservices",
@@ -88,6 +96,7 @@ export const COURSE_EXTENSIONS: CourseExtension[] = [
     color: "0,108,128",
     price: 59,
     extensionKey: "microservices",
+    url: "/extensions/microservices",
   },
   {
     title: "Advanced - Bundle",
@@ -100,6 +109,7 @@ export const COURSE_EXTENSIONS: CourseExtension[] = [
     badge: "Bundle -22%",
     isBundle: true,
     extensionKey: "advanced-bundle",
+    url: "https://learn.nestjs.com/purchase?product_id=5301050",
   },
   {
     title: "GraphQL - Schema first",
@@ -108,5 +118,6 @@ export const COURSE_EXTENSIONS: CourseExtension[] = [
     color: "121,32,205",
     price: 39,
     extensionKey: "schema-first",
+    url: "/extensions/graphql-schema-first",
   },
 ];
