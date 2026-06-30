@@ -292,6 +292,11 @@ export default function Mau() {
             Start free trial
           </PrimaryButton>
         }
+        menuAction={
+          <PrimaryButton radius="24px" href="/dashboard">
+            Login to Mau
+          </PrimaryButton>
+        }
         shrink={false}
       />
       <div className="flex justify-center md:mt-20 mt-8 mb-0">

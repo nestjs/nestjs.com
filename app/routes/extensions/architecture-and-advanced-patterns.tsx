@@ -25,7 +25,7 @@ export function meta({}: Route.MetaArgs) {
 export default function ArchitectureAndAdvancedPatternsExtension() {
   return (
     <CourseExtensionPage
-      breadcrumb="Courses / Extensions"
+      breadcrumb="Fundamentals Course / Extensions"
       subheading="Course extension"
       heading="Architecture and Advanced Patterns"
       headerSubheading="Master advanced Node.js architecture and design patterns like DDD and Hexagonal to build scalable, production-ready NestJS systems."

@@ -38,6 +38,18 @@ type Pages = {
   "/extensions/graphql-schema-first": {
     params: {};
   };
+  "/extensions/graphql-bundle": {
+    params: {};
+  };
+  "/extensions/advanced-bundle": {
+    params: {};
+  };
+  "/extensions/all-in-one-bundle": {
+    params: {};
+  };
+  "/extensions/extensions-bundle": {
+    params: {};
+  };
   "/jobs": {
     params: {};
   };
@@ -49,7 +61,7 @@ type Pages = {
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/" | "/enterprise" | "/courses" | "/extensions/architecture-and-advanced-patterns" | "/extensions/advanced-concepts" | "/extensions/authentication-and-authorization" | "/extensions/microservices" | "/extensions/graphql-code-first" | "/extensions/graphql-schema-first" | "/jobs" | "/tools/mau";
+    page: "/" | "/enterprise" | "/courses" | "/extensions/architecture-and-advanced-patterns" | "/extensions/advanced-concepts" | "/extensions/authentication-and-authorization" | "/extensions/microservices" | "/extensions/graphql-code-first" | "/extensions/graphql-schema-first" | "/extensions/graphql-bundle" | "/extensions/advanced-bundle" | "/extensions/all-in-one-bundle" | "/extensions/extensions-bundle" | "/jobs" | "/tools/mau";
   };
   "routes/home.tsx": {
     id: "routes/home";
@@ -87,6 +99,22 @@ type RouteFiles = {
     id: "routes/extensions/graphql-schema-first";
     page: "/extensions/graphql-schema-first";
   };
+  "routes/extensions/graphql-bundle.tsx": {
+    id: "routes/extensions/graphql-bundle";
+    page: "/extensions/graphql-bundle";
+  };
+  "routes/extensions/advanced-bundle.tsx": {
+    id: "routes/extensions/advanced-bundle";
+    page: "/extensions/advanced-bundle";
+  };
+  "routes/extensions/all-in-one-bundle.tsx": {
+    id: "routes/extensions/all-in-one-bundle";
+    page: "/extensions/all-in-one-bundle";
+  };
+  "routes/extensions/extensions-bundle.tsx": {
+    id: "routes/extensions/extensions-bundle";
+    page: "/extensions/extensions-bundle";
+  };
   "routes/jobs.tsx": {
     id: "routes/jobs";
     page: "/jobs";
@@ -108,6 +136,10 @@ type RouteModules = {
   "routes/extensions/microservices": typeof import("./app/routes/extensions/microservices.tsx");
   "routes/extensions/graphql-code-first": typeof import("./app/routes/extensions/graphql-code-first.tsx");
   "routes/extensions/graphql-schema-first": typeof import("./app/routes/extensions/graphql-schema-first.tsx");
+  "routes/extensions/graphql-bundle": typeof import("./app/routes/extensions/graphql-bundle.tsx");
+  "routes/extensions/advanced-bundle": typeof import("./app/routes/extensions/advanced-bundle.tsx");
+  "routes/extensions/all-in-one-bundle": typeof import("./app/routes/extensions/all-in-one-bundle.tsx");
+  "routes/extensions/extensions-bundle": typeof import("./app/routes/extensions/extensions-bundle.tsx");
   "routes/jobs": typeof import("./app/routes/jobs.tsx");
   "routes/tools-mau": typeof import("./app/routes/tools-mau.tsx");
 };

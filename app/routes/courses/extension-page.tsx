@@ -82,8 +82,8 @@ export function CourseExtensionPage(props: CourseExtensionPageProps) {
         buttonText="Explore Fundamentals course"
         buttonLink="/courses"
         gradientColors={{
-          from: "#a61c30",
-          to: "#aa142b",
+          from: "#d3033b",
+          to: "#a10023",
         }}
       />
       <ExtensionsSection heading="Check other extensions" />

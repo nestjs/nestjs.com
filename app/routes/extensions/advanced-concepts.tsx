@@ -25,7 +25,7 @@ export function meta({}: Route.MetaArgs) {
 export default function AdvancedConceptsExtension() {
   return (
     <CourseExtensionPage
-      breadcrumb="Courses / Extensions"
+      breadcrumb="Fundamentals Course / Extensions"
       subheading="Course extension"
       heading="Advanced Concepts"
       headerSubheading="Gain an even deeper understanding of NestJS and learn how to conquer more complex scenarios in modern Node applications!"

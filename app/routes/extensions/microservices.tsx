@@ -26,7 +26,7 @@ export function meta({}: Route.MetaArgs) {
 export default function MicroservicesExtension() {
   return (
     <CourseExtensionPage
-      breadcrumb="Courses / Extensions"
+      breadcrumb="Fundamentals Course / Extensions"
       subheading="Course extension"
       heading="Microservices"
       headerSubheading="Dive into the exciting world of Microservice Architectures and learn how to easily tackle them with the help of NestJS."

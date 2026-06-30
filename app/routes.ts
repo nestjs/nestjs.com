@@ -26,6 +26,16 @@ export default [
     "extensions/graphql-schema-first",
     "routes/extensions/graphql-schema-first.tsx",
   ),
+  route("extensions/graphql-bundle", "routes/extensions/graphql-bundle.tsx"),
+  route("extensions/advanced-bundle", "routes/extensions/advanced-bundle.tsx"),
+  route(
+    "extensions/all-in-one-bundle",
+    "routes/extensions/all-in-one-bundle.tsx",
+  ),
+  route(
+    "extensions/extensions-bundle",
+    "routes/extensions/extensions-bundle.tsx",
+  ),
   route("jobs", "routes/jobs.tsx"),
   route("tools/mau", "routes/tools-mau.tsx"),
 ] satisfies RouteConfig;

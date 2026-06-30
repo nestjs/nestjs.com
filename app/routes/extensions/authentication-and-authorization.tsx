@@ -24,7 +24,7 @@ export function meta({}: Route.MetaArgs) {
 export default function AuthenticationAndAuthorizationExtension() {
   return (
     <CourseExtensionPage
-      breadcrumb="Courses / Extensions"
+      breadcrumb="Fundamentals Course / Extensions"
       subheading="Course extension"
       heading="Authentication and Authorization"
       headerSubheading="Create your own hand-written Authentication and Authorization with NestJS. Take full control over your IAM."

@@ -11,18 +11,18 @@
   --animate-blob: blob 30s linear infinite alternate;
   --animate-grid-move-left: grid-move-left 10s linear infinite;
   --animate-spin-slow: spinSlow 20s linear infinite;
-  --animate-fade-out: fadeOut 3s ease forwards;
-  --animate-fade-in: fadeIn 3s ease forwards;
+  --animate-fade-out: fadeOut 5s ease forwards;
+  --animate-fade-in: fadeIn 5s ease forwards;
 
   @keyframes fadeOut {
     0% { opacity: 1; }
-    50% { opacity: 1; }
+    25% { opacity: 1; }
     100% { opacity: 0; }
   }
 
   @keyframes fadeIn {
     0% { opacity: 0; }
-    50% { opacity: 0; }
+    25% { opacity: 0; }
     100% { opacity: 1; }
   }
 

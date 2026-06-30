@@ -25,7 +25,7 @@ export function meta({}: Route.MetaArgs) {
 export default function GraphQLCodeFirstExtension() {
   return (
     <CourseExtensionPage
-      breadcrumb="Courses / Extensions"
+      breadcrumb="Fundamentals Course / Extensions"
       subheading="Course extension"
       heading="GraphQL Code First"
       headerSubheading="Learn everything about the code-first approach to creating GraphQL APIs with NestJS. Master GraphQL concepts, tips & tricks, and everything you need to your own enterprise-grade GraphQL APIs."
@@ -85,6 +85,7 @@ export default function GraphQLCodeFirstExtension() {
       courseTitle="GraphQL Code-First Extension"
       coursePrice="$39.99"
       courseDiscountedPrice="$59.99"
+      courseVideoUrl="https://player.vimeo.com/video/740669317?autoplay=1&muted=1&title=0&byline=0&portrait=0&sidedock=0"
       purchaseUrl="https://learn.nestjs.com/purchase?product_id=4215017"
     />
   );
