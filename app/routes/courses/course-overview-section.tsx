@@ -81,7 +81,7 @@ export function CourseOverviewSection({
                     <button
                       className="border border-white/20 text-white rounded-[20px] group hover:border-white/40 transition-all duration-100 ease-in-out
               flex w-full items-center gap-4 md:px-8 md:py-7 px-4 py-6 text-left hover:cursor-pointer flex sm:flex-row flex-col sm:items-center items-start justify-between"
-                      onClick={() => navigate(block.url || "")}
+                      onClick={() => window.open(block.url, "_blank")}
                       type="button"
                     >
                       <div className="min-w-0 flex-1">
