@@ -1,0 +1,3 @@
+[submodule "app/marketing-ui"]
+	path = app/marketing-ui
+	url = https://github.com/nestjs/marketing-ui.git

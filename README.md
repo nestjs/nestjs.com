@@ -27,11 +27,11 @@ Repository contains [nestjs.com](https://nestjs.com) source code, the official N
 
 ## Developing
 
-Navigate to `http://localhost:1234/`.
+Navigate to `http://localhost:5173/`.
 
 ```
 $ npm install
-$ npm run start
+$ npm run dev
 ```
 
 ## Build

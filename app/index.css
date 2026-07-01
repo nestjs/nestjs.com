@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-2xl: 1920px;
+  --font-sans: 'Manrope', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+  --color-bg: #050303;
+  --color-text: #ffffff;
+  --primary-color: #ea2845;
+  --animate-shine: shine 3s linear infinite;
+  --animate-blob: blob 30s linear infinite alternate;
+  --animate-grid-move-left: grid-move-left 10s linear infinite;
+  --animate-spin-slow: spinSlow 20s linear infinite;
+  --animate-fade-out: fadeOut 5s ease forwards;
+  --animate-fade-in: fadeIn 5s ease forwards;
+
+  @keyframes fadeOut {
+    0% { opacity: 1; }
+    25% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    25% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes shine {
+    0% {
+      background-position: 100%;
+    }
+    100% {
+      background-position: -100%;
+    }
+  }
+
+  @keyframes grid-move-left {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -50px -50px;
+    }
+  }
+
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scaleY(1);
+    }
+    25% {
+      transform: translate(170px, 0) scaleY(1.6) rotate(50deg);
+    }
+    45% {
+      transform: translate(-130px, 0) scaleY(0.7) rotate(-10deg);
+    }
+    65% {
+      transform: translate(150px, 0) scaleY(1.2) rotate(30deg);
+      filter: blur(100px);
+    }
+    85% {
+      transform: translate(-120px, 0) scaleY(0.8) rotate(-20deg);
+    }
+    100% {
+      transform: translate(0px, 0px) scaleY(1);
+    }
+  }
+
+  @keyframes spinSlow {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+body {
+  background-color: var(--color-bg);
+  font-family: var(--font-sans);
+  color: var(--color-text);
+}
+
+.perspective-500 {
+  perspective: 500px;
+}
