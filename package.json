@@ -10,7 +10,7 @@
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
     "@react-router/node": "^7.9.2",
-    "@react-router/serve": "^7.9.2",
+    "@react-router/serve": "^8.1.0",
     "babel-plugin-react-compiler": "^1.0.0",
     "context-filter-polyfill": "^0.3.23",
     "embla-carousel-autoplay": "^8.6.0",
@@ -29,7 +29,7 @@
     "three": "^0.181.2"
   },
   "devDependencies": {
-    "@react-router/dev": "^7.9.2",
+    "@react-router/dev": "^8.1.0",
     "@tailwindcss/vite": "^4.1.13",
     "@types/gsap": "^1.20.2",
     "@types/node": "^24.0.0",
