@@ -32,6 +32,15 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Geist+Mono:wght@200..800&display=swap",
   },
+  // Favicons
+  { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+  {
+    rel: "icon",
+    type: "image/png",
+    sizes: "32x32",
+    href: "/favicon-32x32.png",
+  },
+  { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
