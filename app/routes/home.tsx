@@ -27,6 +27,43 @@ export function meta({}: Route.MetaArgs) {
       content:
         "NestJS is a framework for building efficient, scalable Node.js web applications. It uses modern JavaScript, is built with TypeScript and combines elements of OOP (Object Oriented Programming), FP (Functional Programming), and FRP (Functional Reactive Programming).",
     },
+    {
+      property: "og:url",
+      content: "https://nestjs.com",
+    },
+    {
+      property: "og:type",
+      content: "website",
+    },
+    {
+      name: "twitter:card",
+      content: "summary_large_image",
+    },
+    {
+      property: "og:site_name",
+      content: "NestJS - A progressive Node.js framework",
+    },
+    {
+      property: "og:title",
+      content: "NestJS - A progressive Node.js framework",
+    },
+    {
+      property: "og:description",
+      content:
+        "NestJS is a framework for building efficient, scalable Node.js web applications. It uses modern JavaScript, is built with TypeScript and combines elements of OOP (Object Oriented Programming), FP (Functional Programming), and FRP (Functional Reactive Programming).",
+    },
+    {
+      property: "og:image",
+      content: "https://nestjs.com/nest-og.png",
+    },
+    {
+      property: "og:image:width",
+      content: "820",
+    },
+    {
+      property: "og:image:height",
+      content: "429",
+    },
   ];
 }
 

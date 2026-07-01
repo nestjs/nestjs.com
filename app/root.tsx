@@ -41,6 +41,11 @@ export const links: Route.LinksFunction = () => [
     href: "/favicon-32x32.png",
   },
   { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+  // Other
+  {
+    rel: "canonical",
+    href: "https://nestjs.com",
+  },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
