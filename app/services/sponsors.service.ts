@@ -23,14 +23,25 @@ export interface Backer {
   newsletterOptIn: any;
 }
 
-export function fetchBronzeSponsors(): Promise<Backer[]> {
+export async function fetchBronzeSponsors(): Promise<Backer[]> {
   const fetchBronzeSponsorsUrl = `https://opencollective.com/nest/tiers/bronze-sponsors/all.json`;
-  return fetchSponsors(fetchBronzeSponsorsUrl);
+  const sponsors = await fetchSponsors(fetchBronzeSponsorsUrl);
+  return [
+    {
+      image: "/sponsors/bronze/netlify.svg",
+      website: "https://netlify.com/",
+      name: "Netlify",
+    } as any,
+  ].concat(sponsors);
 }
 
 export async function fetchSilverSponsors(): Promise<Backer[]> {
   const fetchSilverSponsorsUrl = `https://opencollective.com/nest/tiers/silver-sponsors/all.json`;
-  const sponsors = await fetchSponsors(fetchSilverSponsorsUrl);
+  const fetchAnnualSilverSponsorsUrl = `https://opencollective.com/nest/tiers/silver-sponsors-yearly/all.json`;
+  const sponsors = await Promise.all([
+    fetchSponsors(fetchSilverSponsorsUrl),
+    fetchSponsors(fetchAnnualSilverSponsorsUrl),
+  ]).then((results) => results.flat());
   return sponsors.filter((sponsor) => {
     // Filter out casinos, gambling, and adult content companies
     const blacklist = [

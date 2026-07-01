@@ -260,7 +260,7 @@ export function SponsorsSection() {
             {silverSponsors.map((sponsor, index) => (
               <BlurIn key={sponsor.MemberId} duration={0.5} ease="power2.out">
                 <div
-                  className={`cell lg:w-[160px] lg:h-[160px] aspect-square w-full border border-[#1e1d1d] flex items-center
+                  className={`cell lg:w-[160px] lg:h-[160px] aspect-square w-full border border-[#1e1d1d] flex items-center p-5
                       ${index % silverSponsorsGrid === 0 ? `border-l-1` : "border-l-0"} ${index < silverSponsorsGrid ? `border-t-1` : "border-t-0"}`}
                 >
                   <a
@@ -298,7 +298,7 @@ export function SponsorsSection() {
             {bronzeSponsors.map((sponsor, index) => (
               <BlurIn key={sponsor.MemberId} duration={0.5} ease="power2.out">
                 <div
-                  className={`cell lg:w-[80px] xl:h-[80px] aspect-square w-full border border-[#1e1d1d] flex items-center
+                  className={`cell lg:w-[80px] xl:h-[80px] aspect-square w-full border border-[#1e1d1d] flex items-center 
                       ${index % backersGrid === 0 ? `border-l-1` : "border-l-0"} ${index < backersGrid ? `border-t-1` : "border-t-0"}`}
                 >
                   <a
