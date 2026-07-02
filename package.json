@@ -40,7 +40,7 @@
     "sass-embedded": "^1.93.3",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2",
-    "vite": "^7.3.6",
+    "vite": "^8.0.0",
     "vite-plugin-svgr": "^4.5.0",
     "vite-tsconfig-paths": "^5.1.4"
   }
