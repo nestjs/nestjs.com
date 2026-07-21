@@ -13,6 +13,8 @@ import {
 const CELL_COMMON_CLASSES =
   "w-full h-full flex items-center justify-center grayscale hover:grayscale-0";
 
+const MEMORY_SQUARED_MEMBER_ID = 831990;
+
 function SponsorCell({
   children,
   className,
@@ -46,7 +48,13 @@ export function SponsorsSection() {
         // Just don't show backers section if fetching fails, to avoid breaking the page
       });
     fetchSilverSponsors()
-      .then(setSilverSponsors)
+      .then((sponsors) =>
+        setSilverSponsors(
+          sponsors.filter(
+            (sponsor) => sponsor.MemberId !== MEMORY_SQUARED_MEMBER_ID,
+          ),
+        ),
+      )
       .catch((err) => {
         // Just don't show backers section if fetching fails, to avoid breaking the page
       });
@@ -257,11 +265,25 @@ export function SponsorsSection() {
             </ScrollReveal>
           </div>
           <div className="grid xl:grid-cols-6 md:grid-cols-4 grid-cols-2 gap-0">
+            <BlurIn duration={0.5} ease="power2.out">
+              <div className="cell lg:w-[160px] lg:h-[160px] aspect-square w-full border border-[#1e1d1d] flex items-center p-5 border-l-1 border-t-1">
+                <a
+                  href="https://memory2.co/"
+                  className="brightness-100 grayscale hover:grayscale-0 w-full h-full flex items-center justify-center"
+                >
+                  <img
+                    src="/sponsors/silver/memory-squared.png"
+                    alt="Memory Squared"
+                    className="w-full h-full object-contain p-5 max-h-[100px]"
+                  />
+                </a>
+              </div>
+            </BlurIn>
             {silverSponsors.map((sponsor, index) => (
               <BlurIn key={sponsor.MemberId} duration={0.5} ease="power2.out">
                 <div
                   className={`cell lg:w-[160px] lg:h-[160px] aspect-square w-full border border-[#1e1d1d] flex items-center p-5
-                      ${index % silverSponsorsGrid === 0 ? `border-l-1` : "border-l-0"} ${index < silverSponsorsGrid ? `border-t-1` : "border-t-0"}`}
+                      ${(index + 1) % silverSponsorsGrid === 0 ? `border-l-1` : "border-l-0"} ${index + 1 < silverSponsorsGrid ? `border-t-1` : "border-t-0"}`}
                 >
                   <a
                     href={sponsor.website || "#"}
