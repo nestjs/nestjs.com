@@ -136,7 +136,7 @@ export function SponsorsSection() {
               </a>
             </SponsorCell>
             <SponsorCell className="md:ml-[-1px]">
-              <a href="https://www.mojam.com" className={CELL_COMMON_CLASSES}>
+              <a href="https://www.mojam.co" className={CELL_COMMON_CLASSES}>
                 <img
                   src="/sponsors/principal/mojam.png"
                   alt="Mojam"
