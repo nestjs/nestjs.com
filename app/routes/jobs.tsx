@@ -74,7 +74,7 @@ export default function Jobs() {
         </div>
       </div>
       <ProductsSection />
-      <EnterpriseSection className="lg:mt-30 mt-0" />
+      <EnterpriseSection className="lg:pt-30 pt-0" />
       <CoursesSection className="sm:pt-30 pt-0" />
       <TestimonialsSection />
       <Footer className="mt-20" />
