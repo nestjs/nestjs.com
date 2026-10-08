@@ -54,15 +54,24 @@ export function meta({}: Route.MetaArgs) {
     },
     {
       property: "og:image",
-      content: "https://nestjs.com/nest-og.png",
+      content: "https://nestjs.com/og-image.jpg",
     },
     {
       property: "og:image:width",
-      content: "820",
+      content: "1200",
     },
     {
       property: "og:image:height",
-      content: "429",
+      content: "630",
+    },
+    {
+      property: "og:image:alt",
+      content:
+        "NestJS - More than just a Node framework: a field of wireframe modules with one lit from inside",
+    },
+    {
+      name: "twitter:image",
+      content: "https://nestjs.com/og-image.jpg",
     },
   ];
 }
