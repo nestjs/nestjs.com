@@ -90,7 +90,7 @@ export default function Home() {
       <Header
         stats={stats}
         menuItems={MENU_ITEMS}
-        subheading="Nest - the world's fastest-growing Node framework for building efficient, reliable and scalable server-side applications, from a small API in one file to enterprise-grade systems."
+        subheading="Nest - the world's fastest-growing Node framework for efficient, scalable backends, from one file to enterprise-grade systems."
       />
       <div className="flex justify-center md:mt-20 mt-8 mb-0">
         <BrandsSection />
@@ -105,8 +105,8 @@ export default function Home() {
                 className="font-medium md:text-5xl sm:text-3xl text-4xl mb-4 md:leading-14 sm:leading-10 leading-12"
                 enableBlur
               >
-                Nest is a modern framework for building efficient, scalable
-                backends, from a small API to enterprise-grade systems
+                Nest is a modern framework for backends, from one file to
+                enterprise-grade systems
               </ScrollReveal>
             </div>
             <span></span>
@@ -116,9 +116,8 @@ export default function Home() {
               enableBlur
             >
               Built on TypeScript and Node.js, Nest blends best programming
-              practices with a clean, modular architecture. Start from a single
-              file, add modules and first-party packages as the project grows,
-              and keep it organized and easy to maintain.
+              practices with a clean, modular architecture. Start with one file
+              and add modules as you grow.
             </ScrollReveal>
           </div>
         </div>
