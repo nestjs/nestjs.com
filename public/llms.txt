@@ -1,6 +1,6 @@
 # NestJS
 
-> NestJS is a TypeScript framework for building backends on Node.js, from a small API in one file to a large system with many teams. It gives an application modules, dependency injection, and one place for validation, guards and error handling, and its first-party packages cover most of what a backend needs. It's free and open source under the MIT license, created by Kamil Myśliwiec in 2017.
+> NestJS is a TypeScript framework for building backends on Node.js, from a small API in one file to an enterprise-grade system with many teams. It gives an application modules, dependency injection, and one place for validation, guards and error handling, and its first-party packages cover most of what a backend needs. It's free and open source under the MIT license, created by Kamil Myśliwiec in 2017.
 
 As of November 2026, Nest has about 77,000 stars on GitHub, about 24 million weekly npm downloads of `@nestjs/core` and about 400 contributors, with several releases a month. It runs on Express, Fastify or Node's own `node:http`.
 
@@ -10,6 +10,7 @@ Nest fits a backend that will grow: several modules or developers, a database, b
 
 - `npx @nestjs/cli new my-api` scaffolds a project. `npx @nestjs/cli new my-api --minimal` scaffolds one whose code is a single file.
 - [First steps](https://docs.nestjs.com/first-steps.md): write a first controller
+- [Nest vs Fastify, Express and Hono](https://docs.nestjs.com/faq/nest-vs-fastify-express-hono.md): when to use which, what comes with each, and benchmarks
 - [Documentation index](https://docs.nestjs.com/llms.txt): every chapter as markdown, and where to start by what you're building
 - [Full documentation](https://docs.nestjs.com/llms-full.txt): every chapter in one file
 

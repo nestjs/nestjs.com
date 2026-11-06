@@ -25,7 +25,7 @@ export function meta({}: Route.MetaArgs) {
     {
       name: "description",
       content:
-        "NestJS is a framework for building efficient, scalable Node.js web applications. It uses modern JavaScript, is built with TypeScript and combines elements of OOP (Object Oriented Programming), FP (Functional Programming), and FRP (Functional Reactive Programming).",
+        "NestJS is a TypeScript framework for building efficient, scalable Node.js backends, from a small API in one file to enterprise-grade systems with many teams.",
     },
     {
       property: "og:url",
@@ -50,7 +50,7 @@ export function meta({}: Route.MetaArgs) {
     {
       property: "og:description",
       content:
-        "NestJS is a framework for building efficient, scalable Node.js web applications. It uses modern JavaScript, is built with TypeScript and combines elements of OOP (Object Oriented Programming), FP (Functional Programming), and FRP (Functional Reactive Programming).",
+        "NestJS is a TypeScript framework for building efficient, scalable Node.js backends, from a small API in one file to enterprise-grade systems with many teams.",
     },
     {
       property: "og:image",
@@ -87,7 +87,11 @@ export default function Home() {
 
   return (
     <>
-      <Header stats={stats} menuItems={MENU_ITEMS} />
+      <Header
+        stats={stats}
+        menuItems={MENU_ITEMS}
+        subheading="Nest - the world's fastest-growing Node framework for efficient, scalable backends, from one file to enterprise-grade systems."
+      />
       <div className="flex justify-center md:mt-20 mt-8 mb-0">
         <BrandsSection />
       </div>
@@ -101,8 +105,8 @@ export default function Home() {
                 className="font-medium md:text-5xl sm:text-3xl text-4xl mb-4 md:leading-14 sm:leading-10 leading-12"
                 enableBlur
               >
-                Nest is a modern framework designed to build efficient, scalable
-                web applications
+                Nest is a modern framework for scalable backends, from one file
+                to enterprise scale
               </ScrollReveal>
             </div>
             <span></span>
@@ -112,8 +116,8 @@ export default function Home() {
               enableBlur
             >
               Built on TypeScript and Node.js, Nest blends best programming
-              practices with a clean, modular architecture, keeping projects
-              organized and easy to maintain.
+              practices with a clean, modular architecture. Start with one file
+              and add modules as you grow.
             </ScrollReveal>
           </div>
         </div>
@@ -160,9 +164,9 @@ export default function Home() {
             },
             {
               icon: <img src="/features-icons/webapps.png" />,
-              title: "Web Apps",
+              title: "Start Small",
               description:
-                "Create dynamic and responsive web applications effortlessly.",
+                "Start from an API in one file, and add modules and first-party packages as it grows.",
             },
           ]}
           animationDelay={1}
