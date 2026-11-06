@@ -1,0 +1,20 @@
+# NestJS
+
+> NestJS is a TypeScript framework for building backends on Node.js, from a small API in one file to a large system with many teams. It gives an application modules, dependency injection, and first-party packages for most of what a backend needs. This file points to the official documentation.
+
+## Documentation
+
+- [Documentation index](https://docs.nestjs.com/llms.txt): every chapter, with a markdown page per chapter, and where to start by what you're building
+- [Full documentation](https://docs.nestjs.com/llms-full.txt): every chapter in one file
+- [First steps](https://docs.nestjs.com/first-steps.md): create a project and write a first controller
+
+## Moving to Nest
+
+- [From Express](https://docs.nestjs.com/recipes/express-migration.md): one route at a time or all at once
+- [From Fastify](https://docs.nestjs.com/recipes/fastify-migration.md): keeping your plugins
+- [As the backend of a Next.js app](https://docs.nestjs.com/recipes/nextjs.md): moving route handlers across one by one
+
+## Source
+
+- [GitHub](https://github.com/nestjs/nest)
+- [npm](https://www.npmjs.com/package/@nestjs/core)
