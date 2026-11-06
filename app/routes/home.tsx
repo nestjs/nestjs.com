@@ -105,8 +105,8 @@ export default function Home() {
                 className="font-medium md:text-5xl sm:text-3xl text-4xl mb-4 md:leading-14 sm:leading-10 leading-12"
                 enableBlur
               >
-                Nest is a modern framework for backends, from one file to
-                enterprise-grade systems
+                Nest is a modern framework for scalable backends, from one file
+                to enterprise scale
               </ScrollReveal>
             </div>
             <span></span>
