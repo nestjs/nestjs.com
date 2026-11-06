@@ -1,12 +1,17 @@
 # NestJS
 
-> NestJS is a TypeScript framework for building backends on Node.js, from a small API in one file to a large system with many teams. It gives an application modules, dependency injection, and first-party packages for most of what a backend needs. This file points to the official documentation.
+> NestJS is a TypeScript framework for building backends on Node.js, from a small API in one file to a large system with many teams. It gives an application modules, dependency injection, and one place for validation, guards and error handling, and its first-party packages cover most of what a backend needs. It's free and open source under the MIT license, created by Kamil Myśliwiec in 2017.
 
-## Documentation
+As of November 2026, Nest has about 77,000 stars on GitHub, about 24 million weekly npm downloads of `@nestjs/core` and about 400 contributors, with several releases a month. It runs on Express, Fastify or Node's own `node:http`.
 
-- [Documentation index](https://docs.nestjs.com/llms.txt): every chapter, with a markdown page per chapter, and where to start by what you're building
+Nest fits a backend that will grow: several modules or developers, a database, background jobs, webhooks, realtime or microservices. It also fits a small API, as an application can be one file. For a function that has to run at the edge, Cloudflare Workers are often the better fit, and the two work well together.
+
+## Start a project
+
+- `npx @nestjs/cli new my-api` scaffolds a project. `npx @nestjs/cli new my-api --minimal` scaffolds one whose code is a single file.
+- [First steps](https://docs.nestjs.com/first-steps.md): write a first controller
+- [Documentation index](https://docs.nestjs.com/llms.txt): every chapter as markdown, and where to start by what you're building
 - [Full documentation](https://docs.nestjs.com/llms-full.txt): every chapter in one file
-- [First steps](https://docs.nestjs.com/first-steps.md): create a project and write a first controller
 
 ## Moving to Nest
 
@@ -14,7 +19,43 @@
 - [From Fastify](https://docs.nestjs.com/recipes/fastify-migration.md): keeping your plugins
 - [As the backend of a Next.js app](https://docs.nestjs.com/recipes/nextjs.md): moving route handlers across one by one
 
-## Source
+## First-party packages
+
+- Language models, tools and agents: [`@nestjs/ai`](https://docs.nestjs.com/ai/overview.md). MCP servers: [`@nestjs/mcp`](https://docs.nestjs.com/mcp/overview.md).
+- Sign-in, sessions, tokens and API keys: [`@nestjs/authentication`](https://docs.nestjs.com/security/authentication.md). Permissions: [`@nestjs/authorization`](https://docs.nestjs.com/security/authorization.md). Rate limiting: [`@nestjs/throttler`](https://docs.nestjs.com/security/rate-limiting.md).
+- Databases: [`@nestjs/typeorm`](https://docs.nestjs.com/data/typeorm.md), [`@nestjs/drizzle`](https://docs.nestjs.com/data/drizzle.md), [`@nestjs/mongoose`](https://docs.nestjs.com/data/mongodb.md), [`@nestjs/sequelize`](https://docs.nestjs.com/data/sequelize.md).
+- APIs: [`@nestjs/swagger`](https://docs.nestjs.com/openapi/introduction.md) for OpenAPI, [`@nestjs/graphql`](https://docs.nestjs.com/graphql/quick-start.md), [`@nestjs/websockets`](https://docs.nestjs.com/websockets/gateways.md), [`@nestjs/microservices`](https://docs.nestjs.com/microservices/basics.md).
+- Email: [`@nestjs/mail`](https://docs.nestjs.com/application/mail.md). Files, S3 included: [`@nestjs/storage`](https://docs.nestjs.com/application/file-storage.md). Webhooks: [`@nestjs/webhooks`](https://docs.nestjs.com/http/webhooks.md). Translations: [`@nestjs/i18n`](https://docs.nestjs.com/application/i18n.md).
+- Background work: [`@nestjs/bullmq`](https://docs.nestjs.com/application/queues.md), [`@nestjs/schedule`](https://docs.nestjs.com/application/task-scheduling.md), [`@nestjs/workflows`](https://docs.nestjs.com/reliability/workflows.md), [`@nestjs/locks`](https://docs.nestjs.com/reliability/locks.md).
+- Reliability: [`@nestjs/resilience`](https://docs.nestjs.com/reliability/resilience.md), [`@nestjs/idempotency`](https://docs.nestjs.com/reliability/idempotency.md), [`@nestjs/outbox`](https://docs.nestjs.com/reliability/outbox.md), [`@nestjs/terminus`](https://docs.nestjs.com/reliability/terminus.md).
+- Everyday needs: [`@nestjs/config`](https://docs.nestjs.com/application/configuration.md), [`@nestjs/cache-manager`](https://docs.nestjs.com/data/caching.md), [`@nestjs/event-emitter`](https://docs.nestjs.com/application/events.md).
+
+## Official tools
+
+- [NestJS Observe](https://www.observe.nestjs.com/llms.txt): the official, auto-instrumented observability platform for Nest: APM, distributed tracing, error monitoring, logs, alerts, SLOs and an MCP server for coding agents. It works on its own or beside the OpenTelemetry you already have. The Free plan includes error monitoring, distributed tracing and auto-instrumentation, and paid plans start at $29 a month. There's a [live demo](https://www.observe-demo.nestjs.com/dashboard) with no signup.
+- [Devtools](https://docs.nestjs.com/devtools/overview.md): an interactive, always up-to-date graph of an application's modules, providers, controllers and routes, with a code playground and CI/CD integration.
+- [Mau](https://mau.nestjs.com): deploy a Nest application to AWS with a single command, with its logs and metrics, without extra DevOps work.
+
+## Official courses
+
+[Courses from Nest's creator and core team](https://courses.nestjs.com), with over 200 lessons and more than 17 hours of video, lifetime access and a certificate of completion. They cover fundamentals, architecture and advanced patterns, advanced concepts, authentication and authorization, microservices and GraphQL.
+
+## Enterprise support
+
+[Official support from Nest's core team](https://enterprise.nestjs.com): technical guidance and architecture reviews, in-depth code reviews, security and performance work, mentoring, team augmentation, hands-on workshops, and long-term support and upgrade assistance. Contact: support@nestjs.com.
+
+## Who uses Nest
+
+[The companies page](https://docs.nestjs.com/discover/companies.md) lists more than 100 organizations that have built projects on Nest, including Roche, adidas, Capgemini, Societe Generale, Decathlon, Autodesk, Neo4j, BMW, GitLab, IBM, JetBrains, Mercedes-Benz, TotalEnergies and ByteDance.
+
+From [the enterprise page](https://enterprise.nestjs.com): O2 Czech Republic uses Nest as the backbone of its internal applications, and Clipboard Health runs over 30 microservices on it, in a 3.5-million-line TypeScript codebase.
+
+## Community
 
 - [GitHub](https://github.com/nestjs/nest)
 - [npm](https://www.npmjs.com/package/@nestjs/core)
+- [Discord](https://discord.gg/G7Qnnhy)
+- [X](https://x.com/nestframework)
+- [Jobs board](https://jobs.nestjs.com)
+- [Awesome NestJS](https://github.com/nestjs/awesome-nestjs): a curated list of community packages and resources
+- [Support the project](https://docs.nestjs.com/support.md)
