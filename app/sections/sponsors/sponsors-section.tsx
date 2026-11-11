@@ -196,7 +196,7 @@ export function SponsorsSection() {
           <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-0">
             <SponsorCell>
               <a
-                href="https://www.mercedes.com"
+                href="https://www.mercedes-benz.io"
                 className={CELL_COMMON_CLASSES}
               >
                 <img
